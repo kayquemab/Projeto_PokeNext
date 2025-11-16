@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 
+
 export default function Navbar() {
     return (
         <header className="flex items-center justify-between whitespace-nowrap border-b border-[#E0E0E0] bg-white px-4 sm:px-10 lg:px-20 py-3">
