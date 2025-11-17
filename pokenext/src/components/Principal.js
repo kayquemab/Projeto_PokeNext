@@ -10,7 +10,7 @@ export default function Principal() {
       title: "Seleção de Região",
       description:
         "Navegue pelos Pokémon de Kanto, Johto, Hoenn e outras regiões.",
-      href: "#",
+      href: "/Regioes",
     },
     {
       icon: <Search className="w-10 h-10 text-red-600" />,
