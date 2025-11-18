@@ -1,5 +1,6 @@
-import "./globals.css";
+// app/layout.js
 import Navbar from "@/components/Navbar";
+import "./globals.css";
 import Footer from "@/components/Footer";
 
 export const metadata = {
@@ -9,10 +10,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="pt-BR" className="h-screen">
-      <body className="min-h-screen bg-gray-100 text-slate-900 flex flex-col">
+    <html lang="pt-BR">
+      <head>
+        {/* Webicon */}
+        <link rel="icon" href="/webicon.png" />
+      </head>
+
+      <body className="bg-pokedex-wallpaper min-h-screen">
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <div className="relative min-h-screen">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>

@@ -1,2 +1,22 @@
 @import "tailwindcss";
 
+/* Fundo: preto embaixo, branco menor no meio */
+.bg-pokedex-wallpaper {
+  /* cor de fallback */
+  background-color: #020617;
+
+  /* 1ª imagem = branco (camada de cima), 2ª = preto (camada de baixo) */
+  background-image:
+    url("/wallpaper-branco.png"),
+    url("/wallpaper-preto.png");
+
+  /* branco: 1 vez, centralizado | preto: repetindo */
+  background-repeat: no-repeat, repeat;
+  background-position: center center, top left;
+
+  /* branco menor (89% da largura), preto no tamanho original */
+  background-size: 92% auto, auto;
+
+  /* opcional: efeito de fundo “fixo” ao rolar */
+  background-attachment: fixed, fixed;
+}

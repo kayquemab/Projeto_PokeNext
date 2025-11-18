@@ -1,9 +1,9 @@
-import Principal from "@/components/Principal";
+import Mapa from "@/components/Mapa";
 
 export default function Home() {
   return (
     <div>
-      <Principal />
+      {/* <Mapa /> */}
     </div>
   );
 }
