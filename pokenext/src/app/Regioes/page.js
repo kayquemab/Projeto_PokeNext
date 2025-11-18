@@ -2,54 +2,56 @@
 
 import { Earth } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image"; // Import do Next.js Image
 
 const regioes = [
     {
         nome: "Kanto",
-        descricao:
-            "Região clássica da série, lar dos primeiros iniciais: Bulbasaur, Charmander e Squirtle.",
+        descricao: "Região clássica, lar de Bulbasaur, Charmander e Squirtle.",
+        imagem: "/regioes/kanto.jpeg",
     },
     {
         nome: "Johto",
-        descricao:
-            "Região de tradições antigas, marcada pelos lendários Ho-Oh e Lugia e suas torres históricas.",
+        descricao: "Região antiga, conhecida por Ho-Oh, Lugia e suas torres.",
+        imagem: "/regioes/johto.jpeg",
     },
     {
         nome: "Hoenn",
-        descricao:
-            "Região tropical e cheia de ilhas, palco dos lendários Groudon, Kyogre e Rayquaza.",
+        descricao: "Região tropical com ilhas, lar de Groudon, Kyogre e Rayquaza.",
+        imagem: "/regioes/hoenn.jpeg",
     },
     {
         nome: "Sinnoh",
-        descricao:
-            "Região montanhosa e misteriosa, fortemente ligada aos lendários Dialga, Palkia e Giratina.",
+        descricao: "Região montanhosa, ligada a Dialga, Palkia e Giratina.",
+        imagem: "/regioes/sinnoh.jpeg",
     },
     {
         nome: "Unova",
-        descricao:
-            "Região inspirada em grandes metrópoles, com enorme diversidade cultural e de Pokémon.",
+        descricao: "Região urbana, cheia de diversidade cultural e de Pokémon.",
+        imagem: "/regioes/unova.jpeg",
     },
     {
         nome: "Kalos",
-        descricao:
-            "Região elegante inspirada na França, conhecida pelas Mega Evoluções e cenários sofisticados.",
+        descricao: "Região elegante inspirada na França, famosa por Mega Evoluções.",
+        imagem: "/regioes/kalos.jpeg",
     },
     {
         nome: "Alola",
-        descricao:
-            "Região em forma de arquipélago tropical, famosa por suas formas regionais e clima descontraído.",
+        descricao: "Arquipélago tropical, com formas regionais únicas e clima leve.",
+        imagem: "/regioes/alola.jpeg",
     },
     {
         nome: "Galar",
-        descricao:
-            "Região inspirada no Reino Unido, famosa por seus estádios, ligas competitivas e Batalhas Dynamax.",
+        descricao: "Região inspirada no Reino Unido, famosa por ligas e Dynamax.",
+        imagem: "/regioes/galar.jpeg",
     },
     {
         nome: "Paldea",
-        descricao:
-            "Região de mundo aberto, com escolas de treinamento e o fenômeno Terastal como grande destaque.",
+        descricao: "Região de mundo aberto, com escolas de treino e Terastal.",
+        imagem: "/regioes/paldea1.png",
     },
 ];
+
 
 export default function Regioes() {
     return (
@@ -93,35 +95,39 @@ export default function Regioes() {
                                             ease: "easeOut",
                                         }}
                                     >
-                                        <div className="flex h-full flex-col gap-3 p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all border border-transparent hover:border-[#E3350D]">
+                                        <div className="flex flex-col gap-3 p-6 bg-white rounded-xl shadow-sm hover:shadow-lg transition-all border border-transparent hover:border-[#E3350D] min-h-[550px]">
 
-                                            {/* TÍTULO + ÍCONE */}
-                                            <div className="flex w-full items-center justify-between gap-3">
-                                                <h3 className="text-lg font-bold text-black">
-                                                    {regiao.nome}
-                                                </h3>
-                                                <Earth className="w-8 h-8 text-red-600 shrink-0" />
-                                            </div>
+                                            {/* IMAGEM MAIS ESTICADA COM NEXT IMAGE */}
+                                            {regiao.imagem && (
+                                                <Image
+                                                    src={regiao.imagem}
+                                                    alt={regiao.nome}
+                                                    width={600}       // largura base
+                                                    height={384}      // altura base, próxima de h-96
+                                                    className="w-full h-96 object-cover"
+                                                />
+                                            )}
 
-                                            {/* DESCRIÇÃO */}
-                                            <p className="text-sm text-black opacity-90">
-                                                {regiao.descricao}
-                                            </p>
+                                            {/* CONTEÚDO FLEXÍVEL */}
+                                            <div className="flex flex-col flex-1 justify-between">
+                                                {/* TÍTULO + ÍCONE */}
+                                                <div className="flex w-full items-center justify-between gap-3 mt-3">
+                                                    <h3 className="text-lg font-bold text-black">{regiao.nome}</h3>
+                                                    <Earth className="w-8 h-8 text-red-600 shrink-0" />
+                                                </div>
 
-                                            {/* BOTÕES ALINHADOS À DIREITA */}
-                                            <div className="mt-2 flex w-full justify-end gap-3">
+                                                {/* DESCRIÇÃO */}
+                                                <p className="text-sm text-black opacity-90 mt-2">{regiao.descricao}</p>
 
-                                                <button
-                                                    className="px-4 py-2 text-xs font-semibold tracking-wide uppercase rounded-xl border border-gray-300 text-black hover:bg-gray-100 hover:border-[#E3350D] hover:text-[#E3350D] transition"
-                                                >
-                                                    Mais informações
-                                                </button>
-
-                                                <button
-                                                    className="px-4 py-2 text-xs font-semibold tracking-wide uppercase rounded-xl bg-[#E3350D] text-white shadow-sm hover:bg-red-700 transition"
-                                                >
-                                                    Pokedex
-                                                </button>
+                                                {/* BOTÕES */}
+                                                <div className="mt-4 flex w-full justify-end gap-3">
+                                                    <button className="px-4 py-2 text-xs font-semibold tracking-wide uppercase rounded-xl border border-gray-300 text-black hover:bg-gray-100 hover:border-[#E3350D] hover:text-[#E3350D] transition">
+                                                        Mais informações
+                                                    </button>
+                                                    <button className="px-4 py-2 text-xs font-semibold tracking-wide uppercase rounded-xl bg-[#E3350D] text-white shadow-sm hover:bg-red-700 transition">
+                                                        Pokedex
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </motion.div>

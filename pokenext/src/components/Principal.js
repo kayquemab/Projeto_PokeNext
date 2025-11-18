@@ -16,7 +16,7 @@ export default function Principal() {
       icon: <Search className="w-10 h-10 text-red-600" />,
       title: "Busca Global",
       description: "Encontre qualquer Pokémon pelo nome ou número na Pokedex.",
-      href: "#",
+      href: "/Pokedex",
     },
   ];
 
