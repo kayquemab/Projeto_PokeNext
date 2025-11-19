@@ -7,13 +7,10 @@ export default function Navbar() {
   const menu = [
     { label: "Pokédex", href: "/Pokedex" },
     { label: "Regions", href: "/Regioes" },
-    { label: "Team", href: "/team" },
   ];
 
   return (
-    // header só organiza o layout; quem faz o “card branco” é o container interno
     <header className="relative flex justify-center px-4 sm:px-6 lg:px-8 py-4 h-20">
-      {/* Painel branco centralizado, agora com animação de entrada */}
       <motion.div
         className="flex w-full max-w-6xl items-center justify-between rounded-2xl border border-neutral-200 bg-white/95 shadow-md backdrop-blur-sm px-4 sm:px-6 lg:px-8"
         initial={{ opacity: 0, y: -24 }}
@@ -51,12 +48,30 @@ export default function Navbar() {
           </div>
 
           <h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">
-            Pokédex
+            PokeNext
           </h2>
         </Link>
 
-        {/* Menu de navegação */}
+        {/* Menu + botão Battle */}
         <nav className="flex items-center gap-8">
+
+          {/* 🔥 BOTÃO BATTLE */}
+          <motion.div
+            whileHover={{
+              scale: 1.08,
+              y: -2,
+              transition: { type: "spring", stiffness: 250, damping: 14 },
+            }}
+          >
+            <Link
+              href="/Battle"
+              className="px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold shadow-sm hover:bg-red-600 transition-colors"
+            >
+              Basttle
+            </Link>
+          </motion.div>
+
+          {/* Itens do menu */}
           {menu.map((item) => (
             <motion.div
               key={item.href}

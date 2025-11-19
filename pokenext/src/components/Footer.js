@@ -42,7 +42,7 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="font-semibold text-[#333333]">Pokédex</p>
+              <p className="font-semibold text-[#333333]">PokeNext</p>
               <p>
                 &copy; {new Date().getFullYear()} – Todos os direitos
                 reservados.

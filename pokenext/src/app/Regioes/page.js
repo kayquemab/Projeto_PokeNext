@@ -58,7 +58,7 @@ const regioes = [
   {
     nome: "Paldea",
     descricao: "Região de mundo aberto, com escolas de treino e Terastal.",
-    imagem: "/regioes/paldea.jpeg",
+    imagem: "/regioes/paldea.png",
     caminho: "/Regioes/paldea",
   },
 ];
