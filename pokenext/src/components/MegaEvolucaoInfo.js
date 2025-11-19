@@ -43,8 +43,11 @@ export default function MegaEvolucaoInfo() {
                     <div className="px-4 pt-3 pb-2 bg-white text-[#222]">
 
                         <h3 className="text-lg md:text-2xl font-semibold text-gray-800 mb-3 leading-snug">
-                            Mega Evolução — quando o vínculo atinge o auge e o poder rompe todos os limites.
+                            Mega Evolução
                         </h3>
+                        <p className="text-sm md:text-base leading-relaxed text-gray-700">
+                            Quando o vínculo atinge o auge e o poder rompe todos os limites.
+                        </p>
 
                     </div>
 
