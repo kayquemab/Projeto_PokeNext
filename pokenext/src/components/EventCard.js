@@ -7,16 +7,15 @@ import { Swords, Trophy } from "lucide-react";
 
 export default function EventCard() {
     return (
-        <div className="relative ml-[70px] ">
+        <div className="relative ml-[70px]">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full max-w-[650px] rounded-xl overflow-hidden shadow-lg bg-white"
+                className="w-full max-w-[565px] rounded-2xl overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
             >
                 {/* Topo do Card — altura controlada pela imagem */}
                 <div className="relative w-full h-[350px] sm:h-[450px] bg-white">
-                    {/* Fundo com pokébolas */}
                     <Image
                         src="/wallpaper_pokebola.jpeg"
                         alt="Pokébolas"
@@ -26,7 +25,6 @@ export default function EventCard() {
 
                     {/* Conteúdo sobreposto */}
                     <div className="absolute inset-0 flex">
-
                         {/* Banner */}
                         <div className="flex items-center justify-center w-1/2 p-4">
                             <Image
@@ -52,14 +50,13 @@ export default function EventCard() {
                     </div>
                 </div>
 
-                <div className="p-6 bg-white text-[#222] rounded-2xl shadow-xl font-sans hover:shadow-2xl transition-shadow duration-300">
-                    {/* Subtítulo elegante */}
-                    <h3 className="text-lg md:text-2xl font-semibold text-gray-800 mb-3 leading-snug font-sans">
+                {/* Corpo do card – sem borda própria, usa a do container */}
+                <div className="p-6 bg-white text-[#222] font-sans">
+                    <h3 className="text-lg md:text-2xl font-semibold text-gray-800 mb-3 leading-snug">
                         Batalha online
                     </h3>
 
-                    {/* Descrição limpa */}
-                    <p className="text-sm md:text-base leading-relaxed text-gray-700 font-sans">
+                    <p className="text-sm md:text-base leading-relaxed text-gray-700">
                         Escolha sua formação:{" "}
                         <span className="font-bold text-gray-900">1x1, trio ou batalha total</span>.
                         Teste sua estratégia, supere rivais do mundo inteiro e conquiste a glória.
@@ -68,10 +65,8 @@ export default function EventCard() {
                             apenas um sairá vitorioso{" "}
                             <Trophy className="w-6 h-6 ml-2 text-yellow-500" />
                         </span>
-
                     </p>
 
-                    {/* 🔥 BOTÃO BATTLE */}
                     <motion.div
                         whileHover={{
                             scale: 1.03,
@@ -91,12 +86,7 @@ export default function EventCard() {
                             <Swords className="w-4 h-4 inline-block" />
                             Batalhe Agora!
                         </Link>
-
                     </motion.div>
-
-
-
-
                 </div>
             </motion.div>
         </div>

@@ -3,43 +3,52 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Info } from "lucide-react";
+import { InfoIcon } from "lucide-react";
 
 export default function MegaEvolucaoInfo() {
     return (
-        <div className="relative mr-[100px] font-sans">
+        <div className="relative font-sans w-full h-full">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full max-w-[420px] rounded-xl overflow-hidden bg-white shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className="w-full max-w-[580px] rounded-2xl overflow-hidden bg-white shadow-lg transition-shadow duration-300 hover:shadow-2xl"
             >
                 {/* TOPO */}
-                <div className="relative w-full h-[300px] bg-white">
+                <div className="relative w-full h-[255px] bg-white">
+                    {/* Fundo */}
                     <Image
-                        src="/wallpaper_pokebola_branco.png"
+                        src="/megaevolucaoinfo.jpg"
                         alt="Fundo Pokémon"
                         fill
                         className="object-cover opacity-30"
                     />
 
-                    <div className="absolute inset-0 p-4 flex flex-col justify-center">
+                    {/* Pokémon sobreposto */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <Image
+                            src="/hawluchanite.png"
+                            alt="Hawlucha"
+                            width={150}          // diminui aqui
+                            height={150}         // e aqui
+                            className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
+                        />
                     </div>
+
                 </div>
 
-                {/* TEXTO */}
-                <div className="p-4 bg-white text-[#222]">
-                    <p className="text-sm md:text-base leading-relaxed text-gray-700">
-                        Kalos apresenta:{" "}
-                        <span className="font-semibold text-gray-900">
-                            Megaevolução
-                        </span>{" "}
-                        — transforme seus Pokémon no ápice da força!
-                    </p>
-                </div>
+                {/* CORPO */}
+                <div>
+                    {/* TEXTO */}
+                    <div className="px-4 pt-3 pb-2 bg-white text-[#222]">
 
-                {/* 🔥 BOTÃO — igual ao EventCard */}
-                <div className="p-4">
+                        <h3 className="text-lg md:text-2xl font-semibold text-gray-800 mb-3 leading-snug">
+                            Mega Evolução — quando o vínculo atinge o auge e o poder rompe todos os limites.
+                        </h3>
+
+                    </div>
+
+                    {/* BOTÃO */}
                     <motion.div
                         whileHover={{
                             scale: 1.03,
@@ -50,13 +59,14 @@ export default function MegaEvolucaoInfo() {
                                 damping: 10,
                             },
                         }}
+                        className="px-4 pb-4 pt-1"
                     >
                         <Link
                             href="/Battle"
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold shadow-sm hover:bg-red-600 transition-colors"
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#E3350D] text-white text-xs font-semibold shadow-sm hover:bg-red-600 transition-colors"
                         >
-                            <Info className="w-4 h-4 inline-block" />
-                            Mais informações
+                            <InfoIcon className="w-3.5 h-3.5 inline-block" />
+                            Mais Informações
                         </Link>
                     </motion.div>
                 </div>

@@ -3,17 +3,24 @@ import MegaEvolucaoInfo from "@/components/MegaEvolucaoInfo";
 
 export default function Home() {
   return (
-    <div className="w-full flex flex-col md:flex-row items-start justify-center gap-8 p-6">
+    <div className="w-full flex flex-col md:flex-row items-start justify-center p-6">
 
-      {/* Card grande à esquerda */}
-      <div className="flex-1 flex justify-start">
+      {/* Esquerda: */}
+      <div className="w-full md:w-1/2 flex justify-start">
         <EventCard />
       </div>
 
-      {/* Card pequeno à direita */}
-      <div className="shrink-0 flex flex-col justify-end gap-4">
-        <MegaEvolucaoInfo />
-        <MegaEvolucaoInfo />
+      {/* Direita: */}
+      <div className="w-full md:w-1/2 flex flex-col gap-6">
+        {/* Card 1 */}
+        <div className="grid grid-cols-1 md:grid-cols-1">
+          <MegaEvolucaoInfo />
+        </div>
+
+        {/* Card 2 */}
+        <div className="grid grid-cols-1 md:grid-cols-1">
+          {/* <MegaEvolucaoInfo /> */}
+        </div>
       </div>
 
 
