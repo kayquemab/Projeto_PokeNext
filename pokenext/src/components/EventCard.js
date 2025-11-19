@@ -3,11 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Trophy } from "lucide-react";
+import { Swords, Trophy } from "lucide-react";
 
 export default function EventCard() {
     return (
-        <div className="relative ml-[110px] mt-[50px]">
+        <div className="relative ml-[70px] ">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -74,23 +74,26 @@ export default function EventCard() {
                     {/* 🔥 BOTÃO BATTLE */}
                     <motion.div
                         whileHover={{
-                            scale: 1.03,      // menor aumento de tamanho
-                            y: -1,             // menor deslocamento vertical
+                            scale: 1.03,
+                            y: -1,
                             transition: {
                                 type: "spring",
-                                stiffness: 120,   // menos “rígido”
-                                damping: 10       // mais suave
+                                stiffness: 120,
+                                damping: 10,
                             },
                         }}
                         className="mt-6"
                     >
                         <Link
                             href="/Battle"
-                            className="px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold shadow-sm hover:bg-red-600 transition-colors"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold shadow-sm hover:bg-red-600 transition-colors"
                         >
-                            Battle
+                            <Swords className="w-4 h-4 inline-block" />
+                            Batalhe Agora!
                         </Link>
+
                     </motion.div>
+
 
 
 

@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function Navbar() {
   const menu = [
     { label: "Pokédex", href: "/Pokedex" },
-    { label: "Regions", href: "/Regioes" },
+    { label: "Regiões", href: "/Regioes" },
   ];
 
   return (
@@ -67,7 +67,7 @@ export default function Navbar() {
               href="/Battle"
               className="px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold shadow-sm hover:bg-red-600 transition-colors"
             >
-              Basttle
+              Batalha Online
             </Link>
           </motion.div>
 
