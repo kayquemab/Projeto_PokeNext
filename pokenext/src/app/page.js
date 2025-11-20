@@ -1,5 +1,6 @@
 import EventCard from "@/components/EventCard";
 import MegaEvolucaoInfo from "@/components/MegaEvolucaoInfo";
+import PokedexInfo from "@/components/PokedexInfo";
 
 export default function Home() {
   return (
@@ -11,16 +12,19 @@ export default function Home() {
       </div>
 
       {/* Direita: */}
-      <div className="w-full md:w-1/2 flex flex-col gap-6">
-        {/* Card 1 */}
-        <div className="grid grid-cols-1 md:grid-cols-1">
+      <div className="w-full md:w-1/2 flex flex-col">
+      
+        {/* Container dos cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2">
           <MegaEvolucaoInfo />
+          <PokedexInfo />
         </div>
 
+
         {/* Card 2 */}
-        <div className="grid grid-cols-1 md:grid-cols-1">
-          {/* <MegaEvolucaoInfo /> */}
-        </div>
+        {/* <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+          <PokedexInfo />
+        </div> */}
       </div>
 
 

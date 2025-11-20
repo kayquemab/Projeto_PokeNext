@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { InfoIcon } from "lucide-react";
 
-export default function MegaEvolucaoInfo() {
+export default function PokedexInfo() {
     return (
         <div className="relative font-sans w-full h-full">
             <motion.div
@@ -18,7 +18,7 @@ export default function MegaEvolucaoInfo() {
                 <div className="relative w-full h-[255px] bg-white">
                     {/* Fundo */}
                     <Image
-                        src="/megaevolucaoinfo.jpg"
+                        src="/wallpaper_pokebola_branco.png"
                         alt="Fundo Pokémon"
                         fill
                         className="object-cover opacity-30"
@@ -27,8 +27,8 @@ export default function MegaEvolucaoInfo() {
                     {/* Pokémon sobreposto */}
                     <div className="absolute inset-0 flex items-center justify-center">
                         <Image
-                            src="/hawluchanite.png"
-                            alt="Hawlucha"
+                            src="/pikachu.png"
+                            alt="pikachu"
                             width={150}          // diminui aqui
                             height={150}         // e aqui
                             className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
@@ -43,12 +43,11 @@ export default function MegaEvolucaoInfo() {
                     <div className="px-4 pt-3 pb-2 bg-white text-[#222]">
 
                         <h3 className="text-lg md:text-2xl font-semibold text-gray-800 mb-3 leading-snug">
-                            Mega Evolução
+                            Pokédex
                         </h3>
                         <p className="text-sm md:text-base leading-relaxed text-gray-700">
-                            Quando o vínculo atinge o auge e o poder rompe todos os limites.
+                            Conheça o mundo Pokémon, onde lendas despertam e poderes.
                         </p>
-
                     </div>
 
                     {/* BOTÃO */}
@@ -73,6 +72,7 @@ export default function MegaEvolucaoInfo() {
                         </Link>
                     </motion.div>
                 </div>
+
             </motion.div>
         </div>
     );
