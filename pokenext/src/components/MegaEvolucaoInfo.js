@@ -12,11 +12,10 @@ export default function MegaEvolucaoInfo() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full rounded-md overflow-hidden bg-white shadow-lg transition-shadow duration-300 hover:shadow-2xl"
+                className="w-full rounded-lg overflow-hidden bg-white shadow-md hover:shadow-xl transition-all"
             >
-                {/* TOPO */}
-                <div className="relative w-full h-[255px] bg-white">
-                    {/* Fundo */}
+                {/* TOPO REDUZIDO */}
+                <div className="relative w-full h-70 bg-white">
                     <Image
                         src="/megaevolucaoinfo.jpg"
                         alt="Fundo Pokémon"
@@ -24,55 +23,44 @@ export default function MegaEvolucaoInfo() {
                         className="object-cover opacity-30"
                     />
 
-                    {/* Pokémon sobreposto */}
                     <div className="absolute inset-0 flex items-center justify-center">
                         <Image
                             src="/hawluchanite.png"
                             alt="Hawlucha"
-                            width={150}          // diminui aqui
-                            height={150}         // e aqui
+                            width={110}
+                            height={110}
                             className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
                         />
                     </div>
-
                 </div>
 
-                {/* CORPO */}
-                <div>
-                    {/* TEXTO */}
-                    <div className="px-4 pt-3 pb-2 bg-white text-[#222]">
+                {/* TEXTO REDUZIDO */}
+                <div className="px-2 pt-2 pb-1">
+                    <h3 className="text-base font-semibold text-gray-800 mb-2">
+                        Mega Evolução
+                    </h3>
+                    <p className="text-xs text-gray-700 leading-snug">
+                        Quando o vínculo atinge o auge e o poder rompe todos os limites.
+                    </p>
+                </div>
 
-                        <h3 className="text-lg md:text-2xl font-semibold text-gray-800 mb-3 leading-snug">
-                            Mega Evolução
-                        </h3>
-                        <p className="text-sm md:text-base leading-relaxed text-gray-700">
-                            Quando o vínculo atinge o auge e o poder rompe todos os limites.
-                        </p>
-
-                    </div>
-
-                    {/* BOTÃO */}
-                    <motion.div
-                        whileHover={{
-                            scale: 1.03,
-                            y: -1,
-                            transition: {
-                                type: "spring",
-                                stiffness: 120,
-                                damping: 10,
-                            },
-                        }}
-                        className="px-4 pb-4 pt-1"
+                {/* BOTÃO MENOR */}
+                <motion.div
+                    whileHover={{
+                        scale: 1.03,
+                        y: -1,
+                        transition: { type: "spring", stiffness: 120, damping: 10 },
+                    }}
+                    className="px-2 pb-2 pt-2"
+                >
+                    <Link
+                        href="/Battle"
+                        className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-[#E3350D] text-white text-[10px] font-semibold"
                     >
-                        <Link
-                            href="/Battle"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#E3350D] text-white text-xs font-semibold shadow-sm hover:bg-red-600 transition-colors"
-                        >
-                            <InfoIcon className="w-3.5 h-3.5 inline-block" />
-                            Mais Informações
-                        </Link>
-                    </motion.div>
-                </div>
+                        <InfoIcon className="w-3 h-3" />
+                        Mais Informações
+                    </Link>
+                </motion.div>
             </motion.div>
         </div>
     );

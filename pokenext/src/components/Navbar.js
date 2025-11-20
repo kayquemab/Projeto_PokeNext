@@ -7,6 +7,7 @@ export default function Navbar() {
   const menu = [
     { label: "Pokédex", href: "/Pokedex" },
     { label: "Regiões", href: "/Regioes" },
+    { label: "Times", href: "/Times" },
   ];
 
   return (

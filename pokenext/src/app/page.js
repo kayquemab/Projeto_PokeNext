@@ -6,28 +6,45 @@ export default function Home() {
   return (
     <div className="w-full flex flex-col md:flex-row items-start justify-center p-6">
 
-      {/* Esquerda: */}
+      {/* Esquerda */}
       <div className="w-full md:w-1/2 flex justify-start">
         <EventCard />
       </div>
 
-      {/* Direita: */}
-      <div className="w-full md:w-1/2 flex flex-col">
+      {/* Direita */}
+      <div className="w-full md:w-1/2 flex flex-col gap-2">
 
-        {/* Container dos cards */}
-        <div className="flex flex-wrap p-0 m-0">
-          <MegaEvolucaoInfo />
-          <PokedexInfo />
+        {/* Cards lado a lado */}
+        <div className="flex flex-wrap gap-2 p-0 m-0">
+
+          {/* Card 1 */}
+          <div className="w-[52%]">
+            <MegaEvolucaoInfo />
+          </div>
+
+          {/* Card 2 */}
+          <div className="w-[36%]">
+            <PokedexInfo />
+          </div>
+
         </div>
 
+        {/* Cards lado a lado */}
+        <div className="flex flex-wrap gap-2 p-0 m-0">
 
+          {/* Card 1 */}
+          <div className="w-[89.5%]">
+            {/* <MegaEvolucaoInfo /> */}
+          </div>
 
-        {/* Card 2 */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-          <PokedexInfo />
-        </div> */}
+          {/* Card 2 */}
+          {/* <div className="w-[36%]">
+            <PokedexInfo />
+          </div> */}
+
+        </div>
+
       </div>
-
 
     </div>
   );
