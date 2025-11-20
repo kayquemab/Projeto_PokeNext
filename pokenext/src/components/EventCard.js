@@ -12,7 +12,7 @@ export default function EventCard() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full max-w-[565px] rounded-2xl overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
+                className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
             >
                 {/* Topo do Card — altura controlada pela imagem */}
                 <div className="relative w-full h-[350px] sm:h-[450px] bg-white">

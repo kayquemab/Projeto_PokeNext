@@ -12,7 +12,7 @@ export default function MegaEvolucaoInfo() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full max-w-[300px] rounded-2xl overflow-hidden bg-white shadow-lg transition-shadow duration-300 hover:shadow-2xl"
+                className="w-full rounded-md overflow-hidden bg-white shadow-lg transition-shadow duration-300 hover:shadow-2xl"
             >
                 {/* TOPO */}
                 <div className="relative w-full h-[255px] bg-white">

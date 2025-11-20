@@ -13,12 +13,13 @@ export default function Home() {
 
       {/* Direita: */}
       <div className="w-full md:w-1/2 flex flex-col">
-      
+
         {/* Container dos cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="flex flex-wrap p-0 m-0">
           <MegaEvolucaoInfo />
           <PokedexInfo />
         </div>
+
 
 
         {/* Card 2 */}
