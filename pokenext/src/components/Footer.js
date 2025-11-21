@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative mt-10 flex justify-center px-4 sm:px-6 lg:px-8 pb-6">
+    <footer className="relative  flex justify-center px-4 sm:px-6 lg:px-8 pb-6">
       {/* Painel branco centralizado, agora com animação de entrada */}
       <motion.div
         className="w-full max-w-6xl rounded-2xl border border-neutral-200 bg-white/95 shadow-md backdrop-blur-sm px-4 sm:px-6 lg:px-8 py-4"

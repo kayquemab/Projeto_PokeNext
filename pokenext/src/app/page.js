@@ -1,5 +1,6 @@
 import EventCard from "@/components/EventCard";
 import MegaEvolucaoInfo from "@/components/MegaEvolucaoInfo";
+import NovoJogoInfo from "@/components/NovoJogo";
 import PokedexInfo from "@/components/PokedexInfo";
 
 export default function Home() {
@@ -18,14 +19,10 @@ export default function Home() {
         <div className="flex flex-wrap gap-2 p-0 m-0">
 
           {/* Card 1 */}
-          <div className="w-[52%]">
-            <MegaEvolucaoInfo />
-          </div>
+          <div className="w-[52%]"><MegaEvolucaoInfo /></div>
 
           {/* Card 2 */}
-          <div className="w-[36%]">
-            <PokedexInfo />
-          </div>
+          <div className="w-[36%]"><PokedexInfo /></div>
 
         </div>
 
@@ -33,14 +30,7 @@ export default function Home() {
         <div className="flex flex-wrap gap-2 p-0 m-0">
 
           {/* Card 1 */}
-          <div className="w-[89.5%]">
-            {/* <MegaEvolucaoInfo /> */}
-          </div>
-
-          {/* Card 2 */}
-          {/* <div className="w-[36%]">
-            <PokedexInfo />
-          </div> */}
+          <div className="w-full"><NovoJogoInfo /></div>
 
         </div>
 

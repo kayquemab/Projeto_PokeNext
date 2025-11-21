@@ -12,20 +12,21 @@ export default function EventCard() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
+                whileHover={{
+                    scale: 1.02,
+                    boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
+                }}
                 className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
             >
-                {/* Topo do Card — altura controlada pela imagem */}
                 <div className="relative w-full h-[350px] sm:h-[450px] bg-white">
                     <Image
                         src="/wallpaper_pokebola.jpeg"
                         alt="Pokébolas"
                         fill
-                        className="object-cover opacity-30"
+                        className="object-cover opacity-40"
                     />
 
-                    {/* Conteúdo sobreposto */}
                     <div className="absolute inset-0 flex">
-                        {/* Banner */}
                         <div className="flex items-center justify-center w-1/2 p-4">
                             <Image
                                 src="/banner.png"
@@ -37,7 +38,6 @@ export default function EventCard() {
                             />
                         </div>
 
-                        {/* Pokémon direita */}
                         <div className="flex items-center justify-center w-1/2 p-4">
                             <Image
                                 src="/Riolu.png"
@@ -50,8 +50,7 @@ export default function EventCard() {
                     </div>
                 </div>
 
-                {/* Corpo do card – sem borda própria, usa a do container */}
-                <div className="p-6 bg-white text-[#222] font-sans">
+                <div className="px-3 bg-white text-[#222] font-sans">
                     <h3 className="text-lg md:text-2xl font-semibold text-gray-800 mb-3 leading-snug">
                         Batalha online
                     </h3>
@@ -67,26 +66,27 @@ export default function EventCard() {
                         </span>
                     </p>
 
-                    <motion.div
-                        whileHover={{
-                            scale: 1.03,
-                            y: -1,
-                            transition: {
-                                type: "spring",
-                                stiffness: 120,
-                                damping: 10,
-                            },
-                        }}
-                        className="mt-6"
+                   <motion.div
+                    whileHover={{
+                        scale: 1.01,
+                        y: -0.5,
+                        transition: {
+                            type: "spring",
+                            stiffness: 80,
+                            damping: 12,
+                        },
+                    }}
+                    className="py-3"
+                >
+                    <Link
+                        href="/Battle"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold shadow-sm hover:bg-red-600 transition-colors"
                     >
-                        <Link
-                            href="/Battle"
-                            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold shadow-sm hover:bg-red-600 transition-colors"
-                        >
-                            <Swords className="w-4 h-4 inline-block" />
-                            Batalhe Agora!
-                        </Link>
-                    </motion.div>
+                        <Swords className="w-4 h-4 inline-block" />
+                        Batalhe Agora!
+                    </Link>
+                </motion.div>
+                    
                 </div>
             </motion.div>
         </div>
