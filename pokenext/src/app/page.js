@@ -1,3 +1,4 @@
+import Eeveelution from "@/components/Eeveelution";
 import EventCard from "@/components/EventCard";
 import MegaEvolucaoInfo from "@/components/MegaEvolucaoInfo";
 import NovoJogoInfo from "@/components/NovoJogo";
@@ -8,8 +9,10 @@ export default function Home() {
     <div className="w-full flex flex-col md:flex-row items-start justify-center p-6">
 
       {/* Esquerda */}
-      <div className="w-full md:w-1/2 flex justify-start">
+      <div className="w-full md:w-1/2 flex flex-col gap-2">
         <EventCard />
+
+        <NovoJogoInfo />
       </div>
 
       {/* Direita */}
@@ -28,10 +31,7 @@ export default function Home() {
 
         {/* Cards lado a lado */}
         <div className="flex flex-wrap gap-2 p-0 m-0">
-
-          {/* Card 1 */}
-          <div className="w-full"><NovoJogoInfo /></div>
-
+          <Eeveelution />
         </div>
 
       </div>

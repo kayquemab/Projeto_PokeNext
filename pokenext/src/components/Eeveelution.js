@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { InfoIcon, Swords } from "lucide-react";
 
-export default function MegaEvolucaoInfo() {
+export default function Eeveelution() {
     return (
         <div className="relative font-sans w-full h-full">
             <motion.div
@@ -16,33 +16,24 @@ export default function MegaEvolucaoInfo() {
                     scale: 1.02,
                     boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
                 }}
-                className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
+                className="w-full max-w-[339px] rounded-md overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
             >
-                <div className="relative w-full h-70 bg-white">
+                <div className="relative w-full h-105 bg-white">
 
                     <Image
-                        src="/megaevolucaoinfo.jpg"
+                        src="/eeveelution.jpeg"
                         alt="Fundo Pokémon"
                         fill
                         className="object-cover opacity-50"
                     />
 
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        <Image
-                            src="/hawluchanite.png"
-                            alt="Hawlucha"
-                            width={110}
-                            height={110}
-                            className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]"
-                        />
-                    </div>
 
                 </div>
 
                 <div className="px-2 pt-2 pb-1">
-                    <h3 className="text-base font-semibold text-gray-800 mb-2">Mega Evolução</h3>
+                    <h3 className="text-base font-semibold text-gray-800 mb-2">Eevee Evoluções</h3>
                     <p className="text-xs text-gray-700 leading-snug">
-                        Quando o vínculo atinge o auge e o poder rompe todos os limites.
+                        Seu potencial é ilimitado — cada escolha, cada ambiente e cada laço despertam uma forma diferente de poder.
                     </p>
                 </div>
 
