@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { InfoIcon, Swords } from "lucide-react";
 
-export default function Eeveelution() {
+export default function PokebolaInfo() {
     return (
         <div className="relative font-sans w-full h-full">
             <motion.div
@@ -16,24 +16,23 @@ export default function Eeveelution() {
                     scale: 1.02,
                     boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
                 }}
-                className="w-full max-w-[339px] rounded-md overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
+                className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
             >
-                <div className="relative w-full h-107 bg-white">
+                <div className="relative w-full h-36 bg-white">
 
                     <Image
-                        src="/eeveelution.jpeg"
-                        alt="Fundo Pokémon"
+                        src="/pokelogo.jpeg"
+                        alt="pokelogo"
                         fill
-                        className="object-cover opacity-50"
+                        className="object-cover opacity-80"
                     />
-
 
                 </div>
 
                 <div className="px-2 pt-2 pb-1">
-                    <h3 className="text-base font-semibold text-gray-800 mb-2">Eevee Evoluções</h3>
+                    <h3 className="text-base font-semibold text-gray-800 mb-2">Pokébolas</h3>
                     <p className="text-xs text-gray-700 leading-snug">
-                        Seu potencial é ilimitado — cada escolha, cada ambiente e cada laço despertam uma forma diferente de poder.
+                        Ferramentas essenciais que conectam treinadores e Pokémon.
                     </p>
                 </div>
 

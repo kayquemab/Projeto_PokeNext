@@ -50,7 +50,7 @@ export default function EventCard() {
                     </div>
                 </div>
 
-                <div className="px-3 bg-white text-[#222] font-sans">
+                <div className="px-3 pt-2 bg-white text-[#222] font-sans">
                     <h3 className="text-lg md:text-2xl font-semibold text-gray-800 mb-3 leading-snug">
                         Batalha online
                     </h3>
