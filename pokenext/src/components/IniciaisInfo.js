@@ -32,8 +32,7 @@ export default function IniciaisInfo() {
                 <div className="px-2 pt-2 pb-1">
                     <h3 className="text-base font-semibold text-gray-800 mb-2">Pokémon Iniciais</h3>
                     <p className="text-xs text-gray-700 leading-snug">
-
-                        Companheiros fundamentais que acompanham todo treinador desde o começo da jornada..
+                        Companheiros lendários que marcam o início de toda grande jornada.
                     </p>
                 </div>
 
