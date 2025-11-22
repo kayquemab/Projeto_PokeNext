@@ -1,62 +1,42 @@
-import Eeveelution from "@/components/Eeveelution";          // Componente: Card das Evoluções do Eevee
-import EventCard from "@/components/EventCard";              // Componente: Card de eventos
+import Eeveelution from "@/components/Eeveelution";        
+import EventCard from "@/components/EventCard";            
 import IniciaisInfo from "@/components/IniciaisInfo";
-import MegaEvolucaoInfo from "@/components/MegaEvolucaoInfo"; // Componente: Card de Mega Evolução
-import NovoJogoInfo from "@/components/NovoJogo";            // Componente: Card sobre novo jogo anunciado
+import MegaEvolucaoInfo from "@/components/MegaEvolucaoInfo"; 
+import NovoJogoInfo from "@/components/NovoJogo";           
 import PokebolaInfo from "@/components/PokebolaInfo";
-import PokedexInfo from "@/components/PokedexInfo";          // Componente: Card de Pokédex
+import PokedexInfo from "@/components/PokedexInfo";          
+import PokemonCarousel from "@/components/PokemonCarousel";
 
 export default function Home() {
   return (
-    <div className="w-full flex flex-col md:flex-row items-start justify-center p-6">
 
-      {/* COLUNA ESQUERDA */}
-      <div className="w-full md:w-1/2 flex flex-col gap-2">
+    <div className="w-full flex flex-col items-center p-6">
 
-        {/* Componente: Card de Evento */}
-        <EventCard />
+      {/* WRAPPER DAS DUAS COLUNAS */}
+      <div className="w-full flex flex-col md:flex-row items-start justify-center gap-4">
 
-        {/* Componente: Card do Novo Jogo */}
-        <NovoJogoInfo />
-
-      </div>
-
-      {/* COLUNA DIREITA */}
-      <div className="w-full md:w-1/2 flex flex-col gap-2">
-
-        {/* LINHA 1 — MEGA + POKEDEX */}
-        <div className="flex flex-wrap gap-2 p-0 m-0">
-
-          {/* Componente: Mega Evolução */}
-          <div className="w-[52%]">
-            <MegaEvolucaoInfo />
-          </div>
-
-          {/* Componente: Pokédex */}
-          <div className="w-[36%]">
-            <PokedexInfo />
-          </div>
-
+        {/* COLUNA ESQUERDA */}
+        <div className="w-full md:w-1/2 flex flex-col gap-2">
+          <EventCard />
+          <NovoJogoInfo />
         </div>
 
-        {/* LINHA 2 — EEVEE + COLUNA MEGA/POKEDEX */}
-        <div className="flex gap-2 p-0 m-0">
+        {/* COLUNA DIREITA */}
+        <div className="w-full md:w-1/2 flex flex-col gap-2">
 
-          {/* Componente: Eeveelutions */}
-          <div className="w-[52%]">
-            <Eeveelution />
+          {/* LINHA 1 */}
+          <div className="flex flex-wrap gap-2 p-0 m-0">
+            <div className="w-[52%]"><MegaEvolucaoInfo /></div>
+            <div className="w-[36%]"><PokedexInfo /></div>
           </div>
 
-          {/* Coluna com Mega + Pokédex */}
-          <div className="w-[36%] flex flex-col gap-2">
+          {/* LINHA 2 */}
+          <div className="flex gap-2 p-0 m-0">
 
-            {/* Componente: Mega Evolução (versão pequena) */}
-            <div className="w-full">
+            <div className="w-[52%]"><Eeveelution /></div>
+
+            <div className="w-[36%] flex flex-col gap-2">
               <PokebolaInfo />
-            </div>
-
-            {/* Componente: Pokédex (versão pequena) */}
-            <div className="w-full">
               <IniciaisInfo />
             </div>
             
@@ -66,6 +46,12 @@ export default function Home() {
 
       </div>
 
+      {/* CAROUSEL — AGORA EMBAIXO DE TUDO */}
+      <div className="w-full px-7">
+        <PokemonCarousel />
+      </div>
+
     </div>
+
   );
 }

@@ -30,9 +30,10 @@ export default function IniciaisInfo() {
                 </div>
 
                 <div className="px-2 pt-2 pb-1">
-                    <h3 className="text-base font-semibold text-gray-800 mb-2">Pokébolas</h3>
+                    <h3 className="text-base font-semibold text-gray-800 mb-2">Pokémon Iniciais</h3>
                     <p className="text-xs text-gray-700 leading-snug">
-                        Ferramentas essenciais que conectam treinadores e Pokémon.
+
+                        Companheiros fundamentais que acompanham todo treinador desde o começo da jornada..
                     </p>
                 </div>
 
