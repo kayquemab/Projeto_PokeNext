@@ -1,167 +1,219 @@
 "use client";
 
 import Link from "next/link";
-
-import { Earth } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 const regioes = [
   {
     nome: "Kanto",
-    descricao: "Região clássica, lar de Bulbasaur, Charmander e Squirtle.",
+    descricao: "Zona-001. Habitat original das espécies iniciais clássicas.",
     imagem: "/regioes/kanto.jpeg",
     caminho: "/Regioes/kanto",
   },
   {
     nome: "Johto",
-    descricao: "Região antiga, conhecida por Ho-Oh, Lugia e suas torres.",
+    descricao: "Zona-102. Região histórica com lendas de longa data.",
     imagem: "/regioes/johto.jpeg",
     caminho: "/Regioes/johto",
   },
   {
     nome: "Hoenn",
-    descricao: "Região tropical com ilhas, lar de Groudon, Kyogre e Rayquaza.",
+    descricao: "Zona-203. Área tropical com energia elemental intensa.",
     imagem: "/regioes/hoenn.jpeg",
     caminho: "/Regioes/hoenn",
   },
   {
     nome: "Sinnoh",
-    descricao: "Região montanhosa, ligada a Dialga, Palkia e Giratina.",
+    descricao: "Zona-404. Território com instabilidade espaço-temporal.",
     imagem: "/regioes/sinnoh.jpeg",
     caminho: "/Regioes/sinnoh",
   },
   {
     nome: "Unova",
-    descricao: "Região urbana, cheia de diversidade cultural e de Pokémon.",
+    descricao: "Zona-507. Região urbana de diversidade elevada.",
     imagem: "/regioes/unova.jpeg",
     caminho: "/Regioes/unova",
   },
   {
     nome: "Kalos",
-    descricao: "Região elegante inspirada na França, famosa por Mega Evoluções.",
+    descricao: "Zona-611. Área elegante e moderna, fonte de Mega Energia.",
     imagem: "/regioes/kalos.jpeg",
     caminho: "/Regioes/kalos",
   },
   {
     nome: "Alola",
-    descricao: "Arquipélago tropical, com formas regionais únicas e clima leve.",
+    descricao: "Zona-718. Arquipélago tropical com variações regionais.",
     imagem: "/regioes/alola.jpeg",
     caminho: "/Regioes/alola",
   },
   {
     nome: "Galar",
-    descricao: "Região inspirada no Reino Unido, famosa por ligas e Dynamax.",
+    descricao: "Zona-820. Região inspirada em tradições de batalha.",
     imagem: "/regioes/galar.jpeg",
     caminho: "/Regioes/galar",
   },
   {
     nome: "Paldea",
-    descricao: "Região de mundo aberto, com escolas de treino e Terastal.",
+    descricao: "Zona-901. Mundo aberto com índice de Terastal elevado.",
     imagem: "/regioes/paldea.png",
     caminho: "/Regioes/paldea",
   },
 ];
 
-
 export default function Regioes() {
   return (
     <div className="relative w-full">
-      {/* Wrapper centralizado, alinhado com o layout geral (Navbar / Pokédex / Mapa) */}
       <section className="w-full mt-6 px-4 sm:px-6 lg:px-8 mb-10">
         <div className="w-full max-w-6xl mx-auto">
-          {/* Painel principal apenas para organizar; sem fundo branco chapado */}
           <motion.div
-            className="w-full rounded-2xl backdrop-blur-sm px-4 sm:px-6 lg:px-8 py-6"
+            className="w-full rounded-2xl px-4 sm:px-6 lg:px-8 py-6"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.6,
-              ease: "easeOut",
-            }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
           >
-
-
-            {/* GRID 3 / 3 / 3 */}
-            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
+            <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {regioes.map((regiao, index) => (
                 <motion.div
                   key={regiao.nome}
-                  className="group h-full"
-                  initial={{ opacity: 0, y: 16 }}
+                  className="
+                    group 
+                    relative 
+                    rounded-md 
+                    overflow-hidden 
+                    bg-white/5
+                    border border-white/20
+                    shadow-lg 
+                    transition-all
+                    hover:shadow-2xl
+                  "
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.05,
-                    ease: "easeOut",
-                  }}
+                  transition={{ delay: index * 0.06, duration: 0.45 }}
                   whileHover={{
-                    scale: 1.02,
+                    scale: 1.03,
                     y: -4,
                     transition: {
                       type: "spring",
-                      stiffness: 220,
-                      damping: 16,
+                      stiffness: 240,
+                      damping: 18,
                     },
                   }}
                 >
-                  <div
-                    className="
-                      flex flex-col gap-3 rounded-xl
-                      border border-neutral-200/60
-                      bg-transparent hover:bg-white/5
-                      transition-all overflow-hidden h-full
-                    "
-                  >
-                    {/* IMAGEM – sem altura fixa, respeita o tamanho/ratio original */}
-                    {regiao.imagem && (
-                      <Image
-                        src={regiao.imagem}
-                        alt={regiao.nome}
-                        width={900}      // base grande pra imagem “comprida”
-                        height={520}     // proporção aproximada; ajusta se quiser
-                        className="w-full h-auto object-cover"
-                      />
-                    )}
+                  {/* Imagem */}
+                  <Image
+                    src={regiao.imagem}
+                    alt={regiao.nome}
+                    width={900}
+                    height={520}
+                    className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition"
+                  />
 
-                    {/* CONTEÚDO */}
-                    <div className="flex flex-col flex-1 justify-between px-4 pb-4 pt-1">
-                      <div>
-                        {/* TÍTULO + ÍCONE */}
-                        <div className="flex w-full items-center justify-between gap-3 mt-2">
-                          <h3 className="text-base font-semibold text-slate-900">
-                            {regiao.nome}
-                          </h3>
-                          <Earth className="w-5 h-5 text-[#E3350D] shrink-0" />
-                        </div>
+                  {/* Overlay escuro hi-tech */}
+                  <div className="absolute inset-0 bg-linear-to-b from-black/25 via-black/55 to-black/80 pointer-events-none" />
 
-                        {/* DESCRIÇÃO */}
-                        <p className="mt-2 text-xs sm:text-sm text-slate-700">
-                          {regiao.descricao}
-                        </p>
-                      </div>
+                  {/* Grid holográfico */}
+                  <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.06] mix-blend-overlay pointer-events-none" />
 
-                      {/* BOTÕES */}
-                      <div className="mt-4 flex w-full justify-end gap-2">
-                        <Link
-                          href={regiao.caminho}
-                          className="px-3 py-1.5 text-[11px] sm:text-xs font-semibold tracking-wide uppercase rounded-lg border border-neutral-300 text-slate-800 hover:bg-neutral-100 hover:border-[#E3350D] hover:text-[#E3350D] transition"
-                        >
-                          Mais informações
-                        </Link>
-
-                        <button className="px-3 py-1.5 text-[11px] sm:text-xs font-semibold tracking-wide uppercase rounded-lg bg-[#E3350D] text-white shadow-sm hover:bg-red-700 transition">
-                          Pokedex
-                        </button>
-                      </div>
-                    </div>
+                  {/* Scan vermelho */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition">
+                    <div className="w-full h-1 bg-[#E3350D] animate-scan" />
                   </div>
+
+                  {/* 🔥 TOPO — título e descrição */}
+                  <motion.div
+                    className="absolute top-0 left-0 right-0 p-4 pt-5 flex flex-col"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.45 }}
+                  >
+                    {/* Nome + barra */}
+                    <div className="flex items-center gap-2">
+                      <motion.div
+                        className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                        initial={{ scaleY: 0.3, opacity: 0 }}
+                        animate={{ scaleY: 1, opacity: 1 }}
+                        transition={{ delay: 0.2, duration: 0.35 }}
+                      />
+
+                      <motion.h3
+                        className="text-white font-bold tracking-wide text-[15px]"
+                        initial={{ opacity: 0, x: -6 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.25, duration: 0.4 }}
+                      >
+                        {regiao.nome}
+                      </motion.h3>
+                    </div>
+
+                    {/* Descrição */}
+                    <p className="mt-2 text-[11px] leading-relaxed text-neutral-200 font-light opacity-90">
+                      {regiao.descricao}
+                    </p>
+                  </motion.div>
+
+                  {/* 🔥 BASE — botões */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 p-4 pb-3 flex gap-2"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25, duration: 0.45 }}
+                  >
+                    <Link
+                      href={regiao.caminho}
+                      className="
+                        px-2 py-1 
+                        text-[10px] 
+                        font-semibold 
+                        uppercase 
+                        tracking-wide
+                        rounded-md
+                        border border-[#E3350D]/60
+                        text-white 
+                        bg-black/30 
+                        backdrop-blur-sm
+                        hover:bg-[#E3350D] 
+                        hover:text-white
+                        transition
+                      "
+                    >
+                      Detalhes
+                    </Link>
+
+                    <button
+                      className="
+                        px-2 py-1 
+                        text-[10px] 
+                        font-semibold 
+                        uppercase 
+                        tracking-wide 
+                        rounded-md 
+                        bg-[#E3350D]/90 
+                        text-white
+                        hover:bg-[#c5280c]
+                        transition
+                      "
+                    >
+                      Pokedex
+                    </button>
+                  </motion.div>
                 </motion.div>
               ))}
             </section>
           </motion.div>
         </div>
       </section>
+
+      {/* animação scan */}
+      <style>{`
+        @keyframes scan {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(100%); }
+        }
+        .animate-scan {
+          animation: scan 1.4s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }
