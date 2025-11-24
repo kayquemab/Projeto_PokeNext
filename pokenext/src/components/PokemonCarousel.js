@@ -21,7 +21,7 @@ export default function PokemonCarousel() {
     // ----------------------------------------------------
     useEffect(() => {
         async function loadRandomPokemons() {
-            const randomIds = Array.from({ length: 10 }, () =>
+            const randomIds = Array.from({ length: 12 }, () =>
                 Math.floor(Math.random() * 898) + 1
             );
 
