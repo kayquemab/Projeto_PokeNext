@@ -45,7 +45,8 @@ export default function NovoJogoInfo() {
                         className="absolute bottom-2 left-2"
                     >
                         <Link
-                            href="/Battle"
+                            href="https://legends.pokemon.com/pt-br"
+                            target="blank"
                             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E3350D] text-white text-xs font-semibold shadow-sm hover:bg-red-600 transition-colors"
                         >
                             <InfoIcon className="w-3.5 h-3.5 inline-block" />
