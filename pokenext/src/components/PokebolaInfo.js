@@ -49,7 +49,8 @@ export default function PokebolaInfo() {
                     className="p-3"
                 >
                     <Link
-                        href="/Battle"
+                        href="https://www.poke-blast-news.net/2010/11/pokesav-do-bw.html"
+                        target="blank"
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E3350D] text-white text-xs font-semibold shadow-sm hover:bg-red-600 transition-colors"
                     >
                         <InfoIcon className="w-3.5 h-3.5 inline-block" />

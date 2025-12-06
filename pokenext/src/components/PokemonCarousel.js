@@ -9,16 +9,34 @@ import { motion } from "framer-motion";
 
 import ArrowPrev from "./ArrowPrev";
 import ArrowNext from "./ArrowNext";
+import Image from "next/image";
+
+// cores para cada tipo de Pokémon
+const typeColors = {
+    normal: "#A8A77A",
+    fire: "#EE8130",
+    water: "#6390F0",
+    electric: "#F7D02C",
+    grass: "#7AC74C",
+    ice: "#96D9D6",
+    fighting: "#C22E28",
+    poison: "#A33EA1",
+    ground: "#E2BF65",
+    flying: "#A98FF3",
+    psychic: "#F95587",
+    bug: "#A6B91A",
+    rock: "#B6A136",
+    ghost: "#735797",
+    dragon: "#6F35FC",
+    dark: "#705746",
+    steel: "#B7B7CE",
+    fairy: "#D685AD",
+};
 
 export default function PokemonCarousel() {
     const [realIndex, setRealIndex] = useState(0);
     const [cards, setCards] = useState([]);
 
-    const middleOffset = 2; // para 5 slides
-
-    // ----------------------------------------------------
-    // 🔥 Carregar 10 pokemons aleatórios ao abrir
-    // ----------------------------------------------------
     useEffect(() => {
         async function loadRandomPokemons() {
             const randomIds = Array.from({ length: 12 }, () =>
@@ -26,9 +44,7 @@ export default function PokemonCarousel() {
             );
 
             const promises = randomIds.map((id) =>
-                fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
-                    res.json()
-                )
+                fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => res.json())
             );
 
             const data = await Promise.all(promises);
@@ -51,119 +67,102 @@ export default function PokemonCarousel() {
         <div className="w-full py-10 select-none relative overflow-hidden">
             <div className="relative w-full mx-auto">
 
-                {/* -------------------- TÍTULO -------------------- */}
+                {/* TÍTULO */}
                 <h3
                     className="
-                        flex items-center gap-2 
-                        bg-[#1b1b1b] text-[#919191] 
-                        font-medium text-[20px] 
-                        mt-[5px] ml-6 
-                        py-[11px] px-5 pb-2 
-                        w-fit
-                    "
+            flex items-center gap-2 
+            bg-[#1b1b1b] text-[#919191] 
+            font-medium text-[20px] 
+            mt-[5px] ml-6 
+            py-[11px] px-5 pb-2 
+            w-fit
+          "
                 >
-                    <img
+                    <Image
                         src="/pokeball.png"
-                        alt=""
-                        className="
-                            w-[22px] h-[22px] 
-                            opacity-30 
-                            brightness-0 invert
-                            object-contain
-                        "
+                        alt="Pokeball"
+                        width={22}
+                        height={22}
+                        className="w-[22px] h-[22px] opacity-30 brightness-0 invert object-contain"
                     />
-
                     Pokémon em Destaque
                 </h3>
 
-                {/* -------------------- SWIPER WRAPPER -------------------- */}
-                <div className="px-1 pt-1 bg-[#1b1b1b]">
-
+                {/* SWIPER */}
+                <div className="px-0.5 pt-1 bg-[#1b1b1b]">
                     <Swiper
                         modules={[Navigation]}
                         navigation={{
                             prevEl: ".arrow-prev",
                             nextEl: ".arrow-next",
                         }}
-                        spaceBetween={4}
-                        slidesPerView={5}
+                        spaceBetween={5}
+                        slidesPerView={"auto"}
                         loop={true}
-                        onSlideChange={(swiper) => {
-                            setRealIndex(swiper.realIndex);
-                        }}
+                        onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
                         className="w-full"
                     >
-                        {cards.map((p, index) => {
-                            const middle = (realIndex + middleOffset) % cards.length;
-                            const isMiddle = index === middle;
-
-                            return (
-                                <SwiperSlide key={p.id}>
-                                    <motion.div
-                                        animate={{
-                                            scale: isMiddle ? 1.05 : 1,
-                                            opacity: isMiddle ? 1 : 0.5,
-                                            y: isMiddle ? -10 : 0
-                                        }}
-                                        transition={{
-                                            type: "spring",
-                                            stiffness: 220,
-                                            damping: 18
-                                        }}
-                                        className="relative h-[350px] w-61 bg-[#2d2d2d] overflow-hidden shadow-lg flex flex-col justify-end"
-                                    >
-                                        {/* -------------------- NÚMERO AO FUNDO -------------------- */}
-                                        <div className="absolute inset-0 flex items-center justify-center text-[250px] font-bold text-white/10 select-none">
-                                            {p.id}
-                                        </div>
-
-                                        {/* -------------------- IMAGEM DO POKEMON -------------------- */}
-                                        <img
+                        {cards.map((p) => (
+                            <SwiperSlide key={p.id} style={{ width: "250px" }}>
+                                <motion.div
+                                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                                    transition={{
+                                        type: "spring",
+                                        stiffness: 220,
+                                        damping: 18
+                                    }}
+                                    className="
+                    relative
+                    h-[400px] 
+                    flex 
+                    flex-col
+                    shadow-lg
+                  "
+                                >
+                                    {/* IMAGEM */}
+                                    <div className="relative h-[300px] bg-neutral-600 overflow-hidden">
+                                        <Image
                                             src={p.image}
                                             alt={p.name}
-                                            className="absolute inset-0 w-full h-full object-contain opacity-60"
+                                            fill
+                                            sizes="100%"
+                                            className="absolute inset-0 w-full h-full object-contain opacity-100 brightness-110"
                                         />
+                                    </div>
 
-                                        {/* -------------------- CARD INFERIOR -------------------- */}
-                                        <div className="relative z-10 bg-black/80 text-white px-3 py-2 text-sm h-24">
-                                            <h3 className="font-semibold text-base mb-1 capitalize">
-                                                {p.name}
-                                            </h3>
-
-                                            {/* Tipos */}
-                                            <div className="flex items-center gap-2 text-xs mb-1">
-                                                <span className="opacity-70">Tipos</span>
-
-                                                {p.types.map((t) => (
-                                                    <span
-                                                        key={t}
-                                                        className="bg-purple-700 px-2 py-1 rounded text-[10px] uppercase tracking-wide"
-                                                    >
-                                                        {t}
-                                                    </span>
-                                                ))}
-                                            </div>
-
-                                            {/* Habilidades */}
-                                            <div className="text-xs opacity-80">
-                                                Habilidades: {p.abilities.join(", ")}
-                                            </div>
+                                    {/* DESCRIÇÃO */}
+                                    <div className="h-[100px] bg-neutral-800 p-3 flex flex-col justify-center gap-1">
+                                        <h4 className="text-white text-lg font-semibold capitalize">
+                                            {p.name}
+                                        </h4>
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-white text-sm font-medium">Tipo:</span>
+                                            {p.types.map((type) => (
+                                                <span
+                                                    key={type}
+                                                    className="text-white text-xs font-medium px-2 py-1 rounded-md capitalize"
+                                                    style={{ backgroundColor: typeColors[type] }}
+                                                >
+                                                    {type}
+                                                </span>
+                                            ))}
                                         </div>
-                                    </motion.div>
-                                </SwiperSlide>
-                            );
-                        })}
+                                    </div>
+
+
+
+                                </motion.div>
+                            </SwiperSlide>
+                        ))}
                     </Swiper>
 
-                    {/* -------------------- SETAS -------------------- */}
+                    {/* SETAS */}
                     <div className="arrow-prev absolute left-2 top-1/2 -translate-y-1/2 z-50">
                         <ArrowPrev />
                     </div>
-
                     <div className="arrow-next absolute right-2 top-1/2 -translate-y-1/2 z-50">
                         <ArrowNext />
                     </div>
-
                 </div>
             </div>
         </div>

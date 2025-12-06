@@ -16,22 +16,21 @@ export default function IniciaisInfo() {
                     scale: 1.02,
                     boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
                 }}
-                className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
+                className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-emerald-600 transition-shadow duration-300 hover:shadow-2xl"
             >
-                <div className="relative w-full h-36 bg-white">
-
+                <div className="relative w-full h-36 bg-gray-300">
                     <Image
-                        src="/Iniciais.jpeg"
+                        src="/pokeiniciais.jpeg"
                         alt="pokelogo"
                         fill
-                        className="object-cover opacity-90"
+                        className="object-cover opacity-70" // ajuste aqui: 100, 90, 80, 70, 60, 50...
                     />
-
                 </div>
 
+
                 <div className="px-2 pt-2 pb-1">
-                    <h3 className="text-base font-semibold text-gray-800 mb-2">Pokémon Iniciais</h3>
-                    <p className="text-xs text-gray-700 leading-snug">
+                    <h3 className="text-base font-semibold text-white mb-2">Pokémon Iniciais</h3>
+                    <p className="text-xs text-white leading-snug">
                         Companheiros lendários que marcam o início de toda grande jornada.
                     </p>
                 </div>
@@ -49,7 +48,8 @@ export default function IniciaisInfo() {
                     className="p-3"
                 >
                     <Link
-                        href="/Battle"
+                        href="https://www.legiaodosherois.com.br/lista/pokemon-iniciais-cada-geracao.html"
+                        target="blank"
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E3350D] text-white text-xs font-semibold shadow-sm hover:bg-red-600 transition-colors"
                     >
                         <InfoIcon className="w-3.5 h-3.5 inline-block" />
