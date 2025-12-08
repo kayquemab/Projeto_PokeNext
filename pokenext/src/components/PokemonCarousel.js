@@ -96,7 +96,7 @@ export default function PokemonCarousel() {
                             prevEl: ".arrow-prev",
                             nextEl: ".arrow-next",
                         }}
-                        spaceBetween={5}
+                        spaceBetween={3}
                         slidesPerView={"auto"}
                         loop={true}
                         onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
@@ -113,14 +113,14 @@ export default function PokemonCarousel() {
                                     }}
                                     className="
                     relative
-                    h-[400px] 
+                    h-[300px] 
                     flex 
                     flex-col
                     shadow-lg
                   "
                                 >
                                     {/* IMAGEM */}
-                                    <div className="relative h-[300px] bg-neutral-600 overflow-hidden">
+                                    <div className="relative h-[200px] bg-neutral-600 overflow-hidden">
                                         <Image
                                             src={p.image}
                                             alt={p.name}
