@@ -33,7 +33,7 @@ const typeColors = {
     fairy: "#D685AD",
 };
 
-export default function PokemonCarousel() {
+export default function PokemonCarousel({ spaceBetween = 1 }) {
     const [realIndex, setRealIndex] = useState(0);
     const [cards, setCards] = useState([]);
 
@@ -92,17 +92,17 @@ export default function PokemonCarousel() {
 
                 {/* SWIPER */}
                 <div>
-
                     <Swiper
                         modules={[Navigation]}
                         navigation={{
                             prevEl: ".arrow-prev",
                             nextEl: ".arrow-next",
                         }}
-                        spaceBetween={3}
                         slidesPerView={"auto"}
                         loop={true}
                         speed={600}
+                        centeredSlides={true}
+                        spaceBetween={spaceBetween} 
                         onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
                         className="w-full"
                     >
@@ -110,12 +110,12 @@ export default function PokemonCarousel() {
                             // queremos o 3º card visível como "ativo"
                             const offsetFromFirstVisible =
                                 (index - realIndex + cards.length) % cards.length;
-                            const isActive = offsetFromFirstVisible === 2;
+                            const isActive = offsetFromFirstVisible === 0;
 
                             const mainAbility = p.abilities?.[0];
 
                             return (
-                                <SwiperSlide key={p.id} style={{ width: "255px" }}>
+                                <SwiperSlide key={p.id} style={{ width: "300px" }}>
                                     <motion.div
                                         animate={{ scale: 1, opacity: 1, y: 0 }}
                                         transition={{
@@ -124,23 +124,22 @@ export default function PokemonCarousel() {
                                             damping: 22,
                                         }}
                                         className={`
-    relative
-    flex 
-    flex-col
-    shadow-lg
-    overflow-visible
-    transition-all duration-300
-    ${isActive ? "h-[340px]" : "h-[300px]"}
-`}
-
+                                            relative
+                                            flex 
+                                            flex-col
+                                            shadow-lg
+                                            overflow-visible
+                                            transition-all duration-300
+                                            ${isActive ? "h-[340px]" : "h-[300px]"}
+                                        `}
                                     >
                                         {/* IMAGEM + NÚMERO DE FUNDO */}
                                         <div
                                             className={`
-        relative bg-neutral-600 overflow-hidden
-        transition-all duration-300
-        ${isActive ? "h-[220px]" : "h-[200px]"}
-    `}
+                                                relative bg-neutral-600 overflow-hidden
+                                                transition-all duration-300
+                                                ${isActive ? "h-[220px]" : "h-[200px]"}
+                                            `}
                                         >
                                             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                                 <span
@@ -148,9 +147,10 @@ export default function PokemonCarousel() {
                                                         font-black
                                                         leading-none
                                                         select-none
-                                                        ${isActive
-                                                            ? "mt-4 text-[140px] text-zinc-500/40"
-                                                            : "mt-2 text-[120px] text-zinc-800/40"
+                                                        ${
+                                                            isActive
+                                                                ? "mt-4 text-[140px] text-zinc-500/40"
+                                                                : "mt-2 text-[120px] text-zinc-800/40"
                                                         }
                                                     `}
                                                 >
@@ -170,12 +170,11 @@ export default function PokemonCarousel() {
                                         {/* DESCRIÇÃO – mesma altura para todos */}
                                         <div
                                             className={`
-        bg-neutral-800 p-3 flex flex-col justify-start gap-1 overflow-visible
-        transition-all duration-300
-        ${isActive ? "h-[140px]" : "h-[120px]"}
-    `}
+                                                bg-neutral-800 p-3 flex flex-col justify-start gap-1 overflow-visible
+                                                transition-all duration-300
+                                                ${isActive ? "h-[140px]" : "h-[120px]"}
+                                            `}
                                         >
-
                                             {/* Nome + número → todos os cards */}
                                             <h4
                                                 className={`
@@ -243,11 +242,10 @@ export default function PokemonCarousel() {
                     <div className="arrow-prev absolute left-2 top-1/2 -translate-y-1/2 z-50">
                         <ArrowPrev />
                     </div>
-                    
+
                     <div className="arrow-next absolute right-2 top-1/2 -translate-y-1/2 z-50">
                         <ArrowNext />
                     </div>
-
                 </div>
             </div>
         </div>
