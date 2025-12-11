@@ -91,7 +91,8 @@ export default function PokemonCarousel() {
                 </h3>
 
                 {/* SWIPER */}
-                <div >
+                <div>
+
                     <Swiper
                         modules={[Navigation]}
                         navigation={{
@@ -242,9 +243,11 @@ export default function PokemonCarousel() {
                     <div className="arrow-prev absolute left-2 top-1/2 -translate-y-1/2 z-50">
                         <ArrowPrev />
                     </div>
+                    
                     <div className="arrow-next absolute right-2 top-1/2 -translate-y-1/2 z-50">
                         <ArrowNext />
                     </div>
+
                 </div>
             </div>
         </div>
