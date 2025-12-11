@@ -44,7 +44,9 @@ export default function PokemonCarousel() {
             );
 
             const promises = randomIds.map((id) =>
-                fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) => res.json())
+                fetch(`https://pokeapi.co/api/v2/pokemon/${id}`).then((res) =>
+                    res.json()
+                )
             );
 
             const data = await Promise.all(promises);
@@ -64,19 +66,19 @@ export default function PokemonCarousel() {
     }, []);
 
     return (
-        <div className="w-full py-10 select-none relative overflow-hidden">
+        <div className="w-full py-10 select-none relative overflow-visible">
             <div className="relative w-full mx-auto">
 
                 {/* TÍTULO */}
                 <h3
                     className="
-            flex items-center gap-2 
-            bg-[#1b1b1b] text-[#919191] 
-            font-medium text-[20px] 
-            mt-[5px] ml-6 
-            py-[11px] px-5 pb-2 
-            w-fit
-          "
+                        flex items-center gap-2 
+                        bg-[#1b1b1b] text-[#919191] 
+                        font-medium text-[20px] 
+                        mt-[5px] ml-6 
+                        py-[11px] px-5 pb-2 
+                        w-fit
+                    "
                 >
                     <Image
                         src="/pokeball.png"
@@ -89,7 +91,7 @@ export default function PokemonCarousel() {
                 </h3>
 
                 {/* SWIPER */}
-                <div className="px-0.5 pt-1 bg-[#1b1b1b]">
+                <div >
                     <Swiper
                         modules={[Navigation]}
                         navigation={{
@@ -99,61 +101,141 @@ export default function PokemonCarousel() {
                         spaceBetween={3}
                         slidesPerView={"auto"}
                         loop={true}
+                        speed={600}
                         onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
                         className="w-full"
                     >
-                        {cards.map((p) => (
-                            <SwiperSlide key={p.id} style={{ width: "250px" }}>
-                                <motion.div
-                                    animate={{ scale: 1, opacity: 1, y: 0 }}
-                                    transition={{
-                                        type: "spring",
-                                        stiffness: 220,
-                                        damping: 18
-                                    }}
-                                    className="
-                    relative
-                    h-[300px] 
-                    flex 
-                    flex-col
-                    shadow-lg
-                  "
-                                >
-                                    {/* IMAGEM */}
-                                    <div className="relative h-[200px] bg-neutral-600 overflow-hidden">
-                                        <Image
-                                            src={p.image}
-                                            alt={p.name}
-                                            fill
-                                            sizes="100%"
-                                            className="absolute inset-0 w-full h-full object-contain opacity-100 brightness-110"
-                                        />
-                                    </div>
+                        {cards.map((p, index) => {
+                            // queremos o 3º card visível como "ativo"
+                            const offsetFromFirstVisible =
+                                (index - realIndex + cards.length) % cards.length;
+                            const isActive = offsetFromFirstVisible === 2;
 
-                                    {/* DESCRIÇÃO */}
-                                    <div className="h-[100px] bg-neutral-800 p-3 flex flex-col justify-center gap-1">
-                                        <h4 className="text-white text-lg font-semibold capitalize">
-                                            {p.name}
-                                        </h4>
-                                        <div className="flex items-center gap-2">
-                                            <span className="text-white text-sm font-medium">Tipo:</span>
-                                            {p.types.map((type) => (
+                            const mainAbility = p.abilities?.[0];
+
+                            return (
+                                <SwiperSlide key={p.id} style={{ width: "255px" }}>
+                                    <motion.div
+                                        animate={{ scale: 1, opacity: 1, y: 0 }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 120,
+                                            damping: 22,
+                                        }}
+                                        className={`
+    relative
+    flex 
+    flex-col
+    shadow-lg
+    overflow-visible
+    transition-all duration-300
+    ${isActive ? "h-[340px]" : "h-[300px]"}
+`}
+
+                                    >
+                                        {/* IMAGEM + NÚMERO DE FUNDO */}
+                                        <div
+                                            className={`
+        relative bg-neutral-600 overflow-hidden
+        transition-all duration-300
+        ${isActive ? "h-[220px]" : "h-[200px]"}
+    `}
+                                        >
+                                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                                 <span
-                                                    key={type}
-                                                    className="text-white text-xs font-medium px-2 py-1 rounded-md capitalize"
-                                                    style={{ backgroundColor: typeColors[type] }}
+                                                    className={`
+                                                        font-black
+                                                        leading-none
+                                                        select-none
+                                                        ${isActive
+                                                            ? "mt-4 text-[140px] text-zinc-500/40"
+                                                            : "mt-2 text-[120px] text-zinc-800/40"
+                                                        }
+                                                    `}
                                                 >
-                                                    {type}
+                                                    {String(p.id).padStart(3, "0")}
                                                 </span>
-                                            ))}
+                                            </div>
+
+                                            <Image
+                                                src={p.image}
+                                                alt={p.name}
+                                                fill
+                                                sizes="100%"
+                                                className="absolute inset-0 w-full h-full object-contain opacity-100 brightness-110 z-10"
+                                            />
                                         </div>
-                                    </div>
 
+                                        {/* DESCRIÇÃO – mesma altura para todos */}
+                                        <div
+                                            className={`
+        bg-neutral-800 p-3 flex flex-col justify-start gap-1 overflow-visible
+        transition-all duration-300
+        ${isActive ? "h-[140px]" : "h-[120px]"}
+    `}
+                                        >
 
+                                            {/* Nome + número → todos os cards */}
+                                            <h4
+                                                className={`
+                                                    font-semibold 
+                                                    flex items-center gap-1
+                                                    text-white
+                                                    ${isActive ? "text-xl" : "text-lg"}
+                                                `}
+                                            >
+                                                <span
+                                                    className={
+                                                        isActive
+                                                            ? "text-zinc-300 text-base"
+                                                            : "text-zinc-400 text-sm"
+                                                    }
+                                                >
+                                                    #{String(p.id).padStart(3, "0")}
+                                                </span>
+                                                <span className="capitalize">
+                                                    {p.name}
+                                                </span>
+                                            </h4>
 
-                                </motion.div>
-                            </SwiperSlide>
-                        ))}
+                                            {/* Tipo + Habilidade → só no card 3 visível, empurrado pra baixo */}
+                                            {isActive && (
+                                                <div className="relative translate-y-4">
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="text-white text-sm font-medium">
+                                                            Tipo:
+                                                        </span>
+                                                        {p.types.map((type) => (
+                                                            <span
+                                                                key={type}
+                                                                className="text-white text-sm font-medium px-2 py-1 rounded-md capitalize"
+                                                                style={{
+                                                                    backgroundColor:
+                                                                        typeColors[type],
+                                                                }}
+                                                            >
+                                                                {type}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+
+                                                    {mainAbility && (
+                                                        <div className="flex items-center gap-2 mt-1">
+                                                            <span className="text-zinc-300 text-sm font-medium">
+                                                                Habilidade:
+                                                            </span>
+                                                            <span className="text-zinc-100 text-sm capitalize truncate">
+                                                                {mainAbility.replace("-", " ")}
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                </SwiperSlide>
+                            );
+                        })}
                     </Swiper>
 
                     {/* SETAS */}
