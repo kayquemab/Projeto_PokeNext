@@ -68,7 +68,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
     return (
         <div className="w-full py-10 select-none relative overflow-visible">
             <div className="relative w-full mx-auto">
-
+                
                 {/* TÍTULO */}
                 <h3
                     className="
@@ -91,7 +91,8 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                 </h3>
 
                 {/* SWIPER */}
-                <div>
+                <div className="relative w-full h-[350px]">
+
                     <Swiper
                         modules={[Navigation]}
                         navigation={{
@@ -102,20 +103,19 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                         loop={true}
                         speed={600}
                         centeredSlides={true}
-                        spaceBetween={spaceBetween} 
+                        spaceBetween={spaceBetween}
                         onSlideChange={(swiper) => setRealIndex(swiper.realIndex)}
                         className="w-full"
                     >
                         {cards.map((p, index) => {
-                            // queremos o 3º card visível como "ativo"
                             const offsetFromFirstVisible =
                                 (index - realIndex + cards.length) % cards.length;
-                            const isActive = offsetFromFirstVisible === 0;
 
+                            const isActive = offsetFromFirstVisible === 0;
                             const mainAbility = p.abilities?.[0];
 
                             return (
-                                <SwiperSlide key={p.id} style={{ width: "300px" }}>
+                                <SwiperSlide key={p.id} style={{ width: "400px" }}>
                                     <motion.div
                                         animate={{ scale: 1, opacity: 1, y: 0 }}
                                         transition={{
@@ -124,13 +124,9 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                                             damping: 22,
                                         }}
                                         className={`
-                                            relative
-                                            flex 
-                                            flex-col
-                                            shadow-lg
-                                            overflow-visible
-                                            transition-all duration-300
-                                            ${isActive ? "h-[340px]" : "h-[300px]"}
+                                            relative flex flex-col shadow-lg 
+                                            overflow-visible transition-all duration-300
+                                            ${isActive ? "h-[400px]" : "h-[360px]"}
                                         `}
                                     >
                                         {/* IMAGEM + NÚMERO DE FUNDO */}
@@ -138,15 +134,13 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                                             className={`
                                                 relative bg-neutral-600 overflow-hidden
                                                 transition-all duration-300
-                                                ${isActive ? "h-[220px]" : "h-[200px]"}
+                                                ${isActive ? "h-[260px]" : "h-[230px]"}
                                             `}
                                         >
-                                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                            <div className="absolute inset-0 flex pointer-events-none">
                                                 <span
                                                     className={`
-                                                        font-black
-                                                        leading-none
-                                                        select-none
+                                                        font-black leading-none select-none
                                                         ${
                                                             isActive
                                                                 ? "mt-4 text-[140px] text-zinc-500/40"
@@ -163,27 +157,35 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                                                 alt={p.name}
                                                 fill
                                                 sizes="100%"
-                                                className="absolute inset-0 w-full h-full object-contain opacity-100 brightness-110 z-10"
+                                                className={`
+                                                    absolute inset-0 object-contain 
+                                                    opacity-100 brightness-110 z-10 
+                                                    transition-all duration-300
+                                                    ${isActive ? "scale-105" : "scale-90"}
+                                                `}
                                             />
                                         </div>
 
-                                        {/* DESCRIÇÃO – mesma altura para todos */}
+                                        {/* DESCRIÇÃO */}
                                         <div
                                             className={`
-                                                bg-neutral-800 p-3 flex flex-col justify-start gap-1 overflow-visible
+                                                bg-neutral-800 p-3 flex flex-col 
+                                                justify-start gap-1 overflow-visible
                                                 transition-all duration-300
-                                                ${isActive ? "h-[140px]" : "h-[120px]"}
+                                                ${isActive ? "h-[140px]" : "h-[130px]"}
                                             `}
                                         >
-                                            {/* Nome + número → todos os cards */}
+                                            {/* Nome + número */}
                                             <h4
                                                 className={`
                                                     font-semibold 
-                                                    flex items-center gap-1
-                                                    text-white
+                                                    flex items-center justify-between
+                                                    text-white 
                                                     ${isActive ? "text-xl" : "text-lg"}
                                                 `}
                                             >
+                                                <span className="capitalize">{p.name}</span>
+
                                                 <span
                                                     className={
                                                         isActive
@@ -193,18 +195,16 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                                                 >
                                                     #{String(p.id).padStart(3, "0")}
                                                 </span>
-                                                <span className="capitalize">
-                                                    {p.name}
-                                                </span>
                                             </h4>
 
-                                            {/* Tipo + Habilidade → só no card 3 visível, empurrado pra baixo */}
+                                            {/* Tipo + Habilidade → apenas se ativo */}
                                             {isActive && (
                                                 <div className="relative translate-y-4">
                                                     <div className="flex items-center gap-2">
                                                         <span className="text-white text-sm font-medium">
                                                             Tipo:
                                                         </span>
+
                                                         {p.types.map((type) => (
                                                             <span
                                                                 key={type}
@@ -224,6 +224,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                                                             <span className="text-zinc-300 text-sm font-medium">
                                                                 Habilidade:
                                                             </span>
+
                                                             <span className="text-zinc-100 text-sm capitalize truncate">
                                                                 {mainAbility.replace("-", " ")}
                                                             </span>
@@ -247,6 +248,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                         <ArrowNext />
                     </div>
                 </div>
+
             </div>
         </div>
     );
