@@ -75,7 +75,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                         flex items-center gap-2 
                         bg-[#1b1b1b] text-[#919191] 
                         font-medium text-[20px] 
-                        mt-[5px] ml-6 
+                        mt-[5px] ml-12 
                         py-[11px] px-5 pb-2 
                         w-fit
                     "
