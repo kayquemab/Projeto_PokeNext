@@ -126,7 +126,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                                         className={`
                                             relative flex flex-col shadow-lg 
                                             overflow-visible transition-all duration-300
-                                            ${isActive ? "h-[400px]" : "h-[360px]"}
+                                            ${isActive ? "h-[400px]" : "h-[330px]"}
                                         `}
                                     >
                                         {/* IMAGEM + NÚMERO DE FUNDO */}
@@ -172,7 +172,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                                                 bg-neutral-800 p-3 flex flex-col 
                                                 justify-start gap-1 overflow-visible
                                                 transition-all duration-300
-                                                ${isActive ? "h-[140px]" : "h-[130px]"}
+                                                ${isActive ? "h-[140px]" : "h-[100px]"}
                                             `}
                                         >
                                             {/* Nome + número */}
