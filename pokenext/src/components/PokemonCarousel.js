@@ -115,7 +115,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                             const mainAbility = p.abilities?.[0];
 
                             return (
-                                <SwiperSlide key={p.id} style={{ width: "400px" }}>
+                                <SwiperSlide key={p.id} style={{ width: "330px" }}>
                                     <motion.div
                                         animate={{ scale: 1, opacity: 1, y: 0 }}
                                         transition={{

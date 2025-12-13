@@ -102,75 +102,118 @@ export default function PokemonDetailPage() {
     );
   }
 
+  const artwork =
+    pokemon?.sprites?.other?.["official-artwork"]?.front_default ||
+    pokemon?.sprites?.front_default;
+
   return (
-    <div className="mt-8 flex justify-center px-4">
+    <div className="mt-8 w-full px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="w-full max-w-[420px]"
+        className="mx-auto w-full max-w-5xl"
       >
-        <div className="relative w-full aspect-736/1104">
-          <div className="absolute z-10 left-[14%] right-[14%] top-[12%] h-[48%] overflow-hidden rounded-md">
-            <div className="relative w-full h-full">
+        <div className="grid grid-cols-1 md:grid-cols-[420px_1fr] gap-6 items-start">
+          {/* ESQUERDA: CARD ORIGINAL (igual estava) */}
+          <div className="w-full max-w-[420px]">
+            <div className="relative w-full aspect-736/1104">
+              <div className="absolute z-10 left-[14%] right-[14%] top-[20%] h-[48%] overflow-hidden rounded-md">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={artwork}
+                    alt={formatPokemonName(pokemon.name)}
+                    fill
+                    unoptimized
+                    sizes="420px"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Se quiser voltar a moldura, descomenta aqui
               <Image
-                src={pokemon.sprites.other["official-artwork"].front_default}
-                alt={formatPokemonName(pokemon.name)}
+                src="/pokedexcard.png"
+                alt="Moldura Pokédex"
                 fill
-                unoptimized
-                sizes="420px"
-                className="object-contain"
+                priority
+                className="z-20 object-contain pointer-events-none select-none"
               />
+              */}
             </div>
           </div>
 
-          <Image
-            src="/pokedexcard.png"
-            alt="Moldura Pokédex"
-            fill
-            priority
-            className="z-20 object-contain pointer-events-none select-none"
-          />
+          {/* DIREITA: infos + wallpaper abaixo */}
+          <div className="flex flex-col gap-4">
+            {/* CARD CINZA (infos) */}
+            <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 p-5">
+              <div className="flex items-center gap-4">
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold text-black/70 dark:text-white/70">
+                    #{String(pokemon.id).padStart(3, "0")}
+                  </p>
 
-          <div className="absolute z-30 left-[10%] right-[10%] bottom-[9%]">
-            <div className="text-center">
-              <p className="text-[11px] font-semibold text-black/80">
-                #{String(pokemon.id).padStart(3, "0")}
-              </p>
+                  <h2 className="text-2xl font-extrabold text-black dark:text-white leading-tight truncate">
+                    {formatPokemonName(pokemon.name)}
+                  </h2>
 
-              <h2 className="text-lg font-extrabold text-black leading-tight">
-                {formatPokemonName(pokemon.name)}
-              </h2>
-
-              <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
-                {pokemon.types.map((t) => (
-                  <span
-                    key={t.type.name}
-                    className={`px-3 py-1 rounded-md text-xs font-bold capitalize ${getTypeClass(
-                      t.type.name
-                    )}`}
-                  >
-                    {t.type.name}
-                  </span>
-                ))}
+                  <div className="mt-2 flex flex-wrap items-center gap-2">
+                    {pokemon.types.map((t) => (
+                      <span
+                        key={t.type.name}
+                        className={`px-3 py-1 rounded-md text-xs font-bold capitalize ${getTypeClass(
+                          t.type.name
+                        )}`}
+                      >
+                        {t.type.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-2 text-[11px] font-medium text-black/80">
+              <div className="mt-4 text-sm text-black/80 dark:text-white/80">
                 <span className="font-extrabold">Base XP:</span>{" "}
-                {pokemon.base_experience} •{" "}
-                <span className="font-extrabold">Alt:</span> {pokemon.height / 10}m •{" "}
+                {pokemon.base_experience}
+                <span className="mx-2 opacity-50">•</span>
+                <span className="font-extrabold">Alt:</span> {pokemon.height / 10}m
+                <span className="mx-2 opacity-50">•</span>
                 <span className="font-extrabold">Peso:</span> {pokemon.weight / 10}kg
               </div>
 
-              <div className="mt-3">
+              <div className="mt-4">
                 <button
                   onClick={() => router.push("/pokedex")}
-                  className="text-[#E3350D] hover:underline text-xs font-semibold"
+                  className="text-[#E3350D] hover:underline text-sm font-semibold"
                 >
                   Voltar para a Pokédex
                 </button>
               </div>
             </div>
+
+            {/* ✅ AQUI: wallpaper-preto.png abaixo do card cinza (linha evolutiva) */}
+            <div className="rounded-xl border border-black/10 dark:border-white/10 overflow-hidden">
+              <div className="relative w-full h-100 bg-black">
+                <Image
+                  src="/wallpaper-preto.png"
+                  alt="Área da linha evolutiva"
+                  fill
+                  sizes="(min-width: 768px) 600px, 100vw"
+                  className="object-cover"
+                  priority={false}
+                />
+
+                {/* overlay/placeholder (trocar depois pela linha evolutiva real) */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-black/60 border border-white/10 rounded-md px-4 py-2">
+                    <span className="text-zinc-200 text-sm font-semibold">
+                      Linha evolutiva (placeholder)
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* ✅ fim do wallpaper */}
           </div>
         </div>
       </motion.div>
