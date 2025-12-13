@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Navbar() {
   const menu = [
-    { label: "Pokédex", href: "/Pokedex" },
+    { label: "Pokédex", href: "/pokedex" },
     { label: "Regiões", href: "/Regioes" },
     { label: "Times", href: "/Times" },
   ];
