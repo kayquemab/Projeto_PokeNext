@@ -7,9 +7,10 @@ import {
     Search,
     ChevronDown,
     ChevronUp,
-    Ruler,
-    Weight,
     BrushCleaning,
+    Tally1,
+    Tally2,
+    Tally3,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -69,7 +70,6 @@ function formatPokemonName(name) {
         .join(" ");
 }
 
-// util: extrair id da URL do pokeapi
 function getIdFromUrl(url) {
     try {
         return Number(url.split("/")[6]);
@@ -78,7 +78,6 @@ function getIdFromUrl(url) {
     }
 }
 
-// ✅ filtro simples: texto filtra por name (inclui) e número filtra por id exato
 function simpleMatch(pokemon, qRaw) {
     const q = String(qRaw || "").trim().toLowerCase();
     if (!q) return true;
@@ -135,6 +134,9 @@ export default function Pokedex() {
     // resultado aplicado da busca avançada
     const [filteredList, setFilteredList] = useState(null); // null | array
 
+    // ✅ NOVO: ordenar por
+    const [sortBy, setSortBy] = useState("id-asc"); // id-asc | id-desc | az | za
+
     // caches para endpoints (ref para não re-render)
     const typeCacheRef = useRef(new Map()); // typeName -> { ids:Set<number>, damageTo:string[] }
     const abilityCacheRef = useRef(new Map()); // abilityName -> Set<number>
@@ -149,19 +151,45 @@ export default function Pokedex() {
     // ✅ base = lista avançada aplicada OU pokedex inteira
     const baseList = filteredList ?? allPokemonList;
 
-    // ✅ lista final no grid = base + filtro simples (search)
+    // ✅ lista base do grid = base + filtro simples (search)
     const listForGrid = useMemo(() => {
         const q = String(search || "").trim();
         if (!q) return baseList;
-
-        // quando o usuário pesquisa, volta a paginação pro começo
         return baseList.filter((p) => simpleMatch(p, q));
     }, [baseList, search]);
+
+    // ✅ NOVO: aplica ordenação no resultado final
+    const sortedListForGrid = useMemo(() => {
+        const arr = [...listForGrid];
+
+        switch (sortBy) {
+            case "id-desc":
+                arr.sort((a, b) => b.id - a.id);
+                break;
+            case "az":
+                arr.sort((a, b) => a.name.localeCompare(b.name));
+                break;
+            case "za":
+                arr.sort((a, b) => b.name.localeCompare(a.name));
+                break;
+            case "id-asc":
+            default:
+                arr.sort((a, b) => a.id - b.id);
+                break;
+        }
+
+        return arr;
+    }, [listForGrid, sortBy]);
 
     // ✅ sempre que mudar o search, volta a paginação pra 15
     useEffect(() => {
         setVisibleCount(15);
     }, [search]);
+
+    // ✅ NOVO: ao mudar a ordenação, volta paginação também
+    useEffect(() => {
+        setVisibleCount(15);
+    }, [sortBy]);
 
     // ---------- Load base list ----------
     useEffect(() => {
@@ -228,9 +256,9 @@ export default function Pokedex() {
 
     // ---------- Cache details para cards visíveis ----------
     useEffect(() => {
-        if (!listForGrid.length) return;
+        if (!sortedListForGrid.length) return;
 
-        const visible = listForGrid.slice(0, visibleCount);
+        const visible = sortedListForGrid.slice(0, visibleCount);
         const missing = visible.filter((p) => !pokemonDetails[p.id]);
         if (missing.length === 0) return;
 
@@ -265,7 +293,7 @@ export default function Pokedex() {
             alive = false;
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [listForGrid, visibleCount]);
+    }, [sortedListForGrid, visibleCount]);
 
     // ---------- Suggestions (a partir da 1ª letra) ----------
     useEffect(() => {
@@ -292,28 +320,23 @@ export default function Pokedex() {
         return () => clearTimeout(t);
     }, [search, allNames]);
 
-    // ✅ navegação só no clique do card (ou se você quiser usar em outro lugar)
     function navigateToPokemon(value) {
         const query = String(value || "").trim().toLowerCase();
         if (!query) return;
         router.push(`/pokedex/${query}`);
     }
 
-    // ✅ ao escolher sugestão: só preenche e filtra (não navega)
     function pickSuggestion(name) {
         setSearch(name);
         setSuggestions([]);
         setError("");
     }
 
-    // ✅ "buscar" agora só fecha sugestões / mantém na tela
     function applySimpleSearch() {
         setSuggestions([]);
         setError("");
-        // não precisa fazer nada: listForGrid já reage ao `search`
     }
 
-    // ✅ LIMPAR TODOS OS FILTROS (simples + avançado + resultado)
     function clearAllFilters() {
         // busca simples
         setSearch("");
@@ -334,9 +357,11 @@ export default function Pokedex() {
         setWeightGroup("all");
         setMinId(1);
         setMaxId(1025);
+
+        // (opcional) se quiser resetar a ordenação ao limpar:
+        // setSortBy("id-asc");
     }
 
-    // ---------- Helpers de filtro ----------
     function intersectSets(a, b) {
         if (!a) return b;
         if (!b) return a;
@@ -387,7 +412,6 @@ export default function Pokedex() {
     }
 
     function heightPass(heightDm) {
-        // dm -> metros = dm/10
         const m = (heightDm || 0) / 10;
         if (heightGroup === "all") return true;
         if (heightGroup === "short") return m <= 1.0;
@@ -397,7 +421,6 @@ export default function Pokedex() {
     }
 
     function weightPass(weightHg) {
-        // hg -> kg = hg/10
         const kg = (weightHg || 0) / 10;
         if (weightGroup === "all") return true;
         if (weightGroup === "light") return kg <= 20;
@@ -407,13 +430,11 @@ export default function Pokedex() {
     }
 
     async function ensurePokemonDetails(idsArray) {
-        // pega detalhes do /pokemon/{id} só quando realmente precisar (altura/peso)
         const missing = idsArray.filter(
             (id) => !pokemonDetails[id] && pokemonById.get(id)?.url
         );
         if (missing.length === 0) return;
 
-        // limita concorrência
         const concurrency = 12;
         let idx = 0;
 
@@ -444,28 +465,22 @@ export default function Pokedex() {
             setAdvancedLoading(true);
             setError("");
 
-            // faixa
             const min = Math.max(1, Number(minId) || 1);
             const max = Math.min(1025, Number(maxId) || 1025);
             if (min > max) {
-                setError(
-                    "Intervalo inválido: o número inicial não pode ser maior que o final."
-                );
+                setError("Intervalo inválido: o número inicial não pode ser maior que o final.");
                 return;
             }
 
-            // começa com ids dentro do range
             let candidate = new Set();
             for (let i = min; i <= max; i++) candidate.add(i);
 
-            // tipos selecionados como "T"
             const selectedTypes = ALL_TYPES.filter((t) => typeMode[t] === "type");
             for (const t of selectedTypes) {
                 const tdata = await getTypeData(t);
                 candidate = intersectSets(candidate, tdata.ids);
             }
 
-            // fraquezas selecionadas como "F" (aproximação)
             const selectedWeakness = ALL_TYPES.filter((t) => typeMode[t] === "weakness");
             for (const atkType of selectedWeakness) {
                 const atkData = await getTypeData(atkType);
@@ -480,13 +495,11 @@ export default function Pokedex() {
                 candidate = intersectSets(candidate, union);
             }
 
-            // habilidade
             if (ability !== "all") {
                 const abilIds = await getAbilityIds(ability);
                 candidate = intersectSets(candidate, abilIds);
             }
 
-            // altura/peso
             const needHW = heightGroup !== "all" || weightGroup !== "all";
             const candidateArrPre = Array.from(candidate);
 
@@ -503,7 +516,6 @@ export default function Pokedex() {
                 candidate = new Set(filteredHW);
             }
 
-            // monta lista final ordenada
             const finalIds = Array.from(candidate).sort((a, b) => a - b);
             const finalList = finalIds.map((id) => pokemonById.get(id)).filter(Boolean);
 
@@ -542,9 +554,7 @@ export default function Pokedex() {
     }
 
     return (
-
         <div>
-
             <div className="relative w-full flex flex-col max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h1 className="text-2xl sm:text-3xl font-normal tracking-tight text-neutral-700">
                     Pokédex
@@ -554,26 +564,19 @@ export default function Pokedex() {
             <div className="relative w-full">
                 <section className="w-full mt-6 px-4 sm:px-6 lg:px-8 mb-10">
                     <div className="w-full max-w-6xl mx-auto">
-
                         {/* CARD PRINCIPAL */}
                         <motion.div
                             className={`
-    w-full mx-auto
-    bg-[url('/wallpaper-preto.png')] bg-cover bg-center bg-no-repeat
-    shadow-md backdrop-blur-sm
-    px-4 sm:px-6 lg:px-8 py-5
-
-    ${advancedOpen
-                                    ? "rounded-t-2xl rounded-b-none"
-                                    : "rounded-2xl"
-                                }
-  `}
+                w-full mx-auto
+                bg-[url('/wallpaper-preto.png')] bg-cover bg-center bg-no-repeat
+                shadow-md backdrop-blur-sm
+                px-4 sm:px-6 lg:px-8 py-5
+                ${advancedOpen ? "rounded-t-2xl rounded-b-none" : "rounded-2xl"}
+              `}
                             initial={{ opacity: 0, y: 24 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, ease: "easeOut" }}
                         >
-
-
                             {/* BUSCA SIMPLES */}
                             <div className="mb-3">
                                 <label className="block text-white text-lg font-medium mb-2">
@@ -584,11 +587,10 @@ export default function Pokedex() {
                                     <div className="relative">
                                         <input
                                             type="text"
-
                                             value={search}
                                             onChange={(e) => setSearch(e.target.value)}
                                             onKeyDown={(e) => {
-                                                if (e.key === "Enter") applySimpleSearch(); // ✅ não navega
+                                                if (e.key === "Enter") applySimpleSearch();
                                             }}
                                             className="w-110 max-w-full bg-neutral-50 text-gray-900 px-4 py-2 rounded-md border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/70"
                                         />
@@ -598,7 +600,7 @@ export default function Pokedex() {
                                                 {suggestions.map((name) => (
                                                     <button
                                                         key={name}
-                                                        onClick={() => pickSuggestion(name)} // ✅ não navega
+                                                        onClick={() => pickSuggestion(name)}
                                                         className="w-full text-left px-4 py-2 text-sm hover:bg-neutral-100 capitalize"
                                                     >
                                                         {name}
@@ -608,10 +610,9 @@ export default function Pokedex() {
                                         )}
                                     </div>
 
-                                    {/* botão buscar (agora só aplica/fecha sugestões) */}
                                     <button
                                         type="button"
-                                        onClick={applySimpleSearch} // ✅ não navega
+                                        onClick={applySimpleSearch}
                                         className="h-[42px] px-4 rounded-md bg-[#E3350D] text-white hover:bg-[#c52c0b] flex items-center justify-center"
                                         aria-label="Buscar"
                                         title="Buscar"
@@ -619,7 +620,6 @@ export default function Pokedex() {
                                         <Search className="w-5 h-5" />
                                     </button>
 
-                                    {/* botão limpar todos os filtros */}
                                     <button
                                         type="button"
                                         onClick={clearAllFilters}
@@ -641,12 +641,10 @@ export default function Pokedex() {
                                 <p className="text-sm text-slate-300 mt-3">Carregando...</p>
                             )}
                             {error && <p className="text-red-300 text-sm mt-3">{error}</p>}
-
                         </motion.div>
 
                         {/* ACCORDION */}
                         <div>
-
                             <AnimatePresence initial={false}>
                                 {advancedOpen && (
                                     <motion.div
@@ -657,9 +655,7 @@ export default function Pokedex() {
                                         transition={{ duration: 0.25, ease: "easeOut" }}
                                         className="overflow-hidden"
                                     >
-
                                         <div className="bg-[#616161] p-4 rounded-b-[3px]">
-
                                             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                                                 {/* ESQUERDA: Tipo e Fraqueza */}
                                                 <div className="lg:col-span-7">
@@ -697,7 +693,7 @@ export default function Pokedex() {
                                                                             type="button"
                                                                             onClick={() => toggleTypeMode(t, "type")}
                                                                             className={`w-7 h-7 rounded-full border text-xs font-bold transition
-                                      ${isT
+                                        ${isT
                                                                                     ? "bg-white text-neutral-900 border-white"
                                                                                     : "bg-transparent text-white border-white/40 hover:border-white/80"
                                                                                 }`}
@@ -710,7 +706,7 @@ export default function Pokedex() {
                                                                             type="button"
                                                                             onClick={() => toggleTypeMode(t, "weakness")}
                                                                             className={`w-7 h-7 rounded-full border text-xs font-bold transition
-                                      ${isF
+                                        ${isF
                                                                                     ? "bg-white text-neutral-900 border-white"
                                                                                     : "bg-transparent text-white border-white/40 hover:border-white/80"
                                                                                 }`}
@@ -732,11 +728,12 @@ export default function Pokedex() {
                                                             Habilidade
                                                         </h3>
 
-                                                        <div className="relative w-full">
+                                                        {/* Select de habilidade */}
+                                                        <div className="relative w-75">
                                                             <select
                                                                 value={ability}
                                                                 onChange={(e) => setAbility(e.target.value)}
-                                                                className="w-full appearance-none bg-neutral-900/40 text-white px-3 py-2 pr-10 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
+                                                                className="w-full appearance-none bg-neutral-700 text-white px-3 py-2 pr-10 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
                                                             >
                                                                 <option value="all">Todas</option>
                                                                 {abilities.map((a) => (
@@ -746,7 +743,6 @@ export default function Pokedex() {
                                                                 ))}
                                                             </select>
 
-                                                            {/* setinha custom (um pouquinho pra esquerda) */}
                                                             <svg
                                                                 className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70"
                                                                 viewBox="0 0 20 20"
@@ -760,7 +756,6 @@ export default function Pokedex() {
                                                                 />
                                                             </svg>
                                                         </div>
-
                                                     </div>
 
                                                     <div className="mb-5">
@@ -773,39 +768,39 @@ export default function Pokedex() {
                                                                 type="button"
                                                                 onClick={() => setHeightGroup("short")}
                                                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                ${heightGroup === "short"
+                                  ${heightGroup === "short"
                                                                         ? "bg-white text-neutral-900 border-white"
                                                                         : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                                                     }`}
                                                                 title="Baixa (≤ 1m)"
                                                             >
-                                                                <Ruler className="w-6 h-6" />
+                                                                <Tally1 className="w-6 h-6" />
                                                             </button>
 
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setHeightGroup("medium")}
                                                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                ${heightGroup === "medium"
+                                  ${heightGroup === "medium"
                                                                         ? "bg-white text-neutral-900 border-white"
                                                                         : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                                                     }`}
                                                                 title="Média (1m ~ 2m)"
                                                             >
-                                                                <Ruler className="w-6 h-6" />
+                                                                <Tally2 className="w-6 h-6" />
                                                             </button>
 
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setHeightGroup("tall")}
                                                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                ${heightGroup === "tall"
+                                  ${heightGroup === "tall"
                                                                         ? "bg-white text-neutral-900 border-white"
                                                                         : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                                                     }`}
                                                                 title="Alta (> 2m)"
                                                             >
-                                                                <Ruler className="w-6 h-6" />
+                                                                <Tally3 className="w-6 h-6" />
                                                             </button>
                                                         </div>
 
@@ -830,39 +825,39 @@ export default function Pokedex() {
                                                                 type="button"
                                                                 onClick={() => setWeightGroup("light")}
                                                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                ${weightGroup === "light"
+                                  ${weightGroup === "light"
                                                                         ? "bg-white text-neutral-900 border-white"
                                                                         : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                                                     }`}
                                                                 title="Leve (≤ 20kg)"
                                                             >
-                                                                <Weight className="w-6 h-6" />
+                                                                <Tally1 className="w-6 h-6" />
                                                             </button>
 
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setWeightGroup("medium")}
                                                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                ${weightGroup === "medium"
+                                  ${weightGroup === "medium"
                                                                         ? "bg-white text-neutral-900 border-white"
                                                                         : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                                                     }`}
                                                                 title="Médio (20kg ~ 100kg)"
                                                             >
-                                                                <Weight className="w-6 h-6" />
+                                                                <Tally2 className="w-6 h-6" />
                                                             </button>
 
                                                             <button
                                                                 type="button"
                                                                 onClick={() => setWeightGroup("heavy")}
                                                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                ${weightGroup === "heavy"
+                                  ${weightGroup === "heavy"
                                                                         ? "bg-white text-neutral-900 border-white"
                                                                         : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                                                     }`}
                                                                 title="Pesado (> 100kg)"
                                                             >
-                                                                <Weight className="w-6 h-6" />
+                                                                <Tally3 className="w-6 h-6" />
                                                             </button>
                                                         </div>
 
@@ -906,22 +901,17 @@ export default function Pokedex() {
                                                     />
                                                 </div>
 
-                                                <style jsx>
-                                                    {`
-                        /* Chrome, Edge, Safari */
-                        .no-spinner::-webkit-outer-spin-button,
-                        .no-spinner::-webkit-inner-spin-button {
-                        -webkit-appearance: none;
-                        margin: 0;
-                        }
-
-                        /* Firefox */
-                        .no-spinner {
-                        -moz-appearance: textfield;
-                        appearance: textfield;
-                        }
-                                                    `}
-                                                </style>
+                                                <style jsx>{`
+                          .no-spinner::-webkit-outer-spin-button,
+                          .no-spinner::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                          }
+                          .no-spinner {
+                            -moz-appearance: textfield;
+                            appearance: textfield;
+                          }
+                        `}</style>
 
                                                 <div className="flex items-center justify-end gap-3">
                                                     <button
@@ -943,7 +933,6 @@ export default function Pokedex() {
                                                     </button>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </motion.div>
                                 )}
@@ -968,24 +957,57 @@ export default function Pokedex() {
                                     </span>
                                 </button>
                             </div>
-
-
                         </div>
 
                         <div className="mt-8" />
 
+                        {/* Select novo (ORDENAR) */}
+                        <div className="w-full flex items-center justify-end mb-2">
+                            <label className="block text-black text-lg font-medium mr-2">
+                                    Organizar por:
+                                </label>
+                            <div className="w-full sm:w-72">
+                                <div className="relative w-full">
+                                    <select
+                                        value={sortBy}
+                                        onChange={(e) => setSortBy(e.target.value)}
+                                        className="w-full appearance-none bg-neutral-700 text-white px-3 py-2 pr-10 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
+                                    >
+                                        <option value="id-asc">Menor número primeiro</option>
+                                        <option value="id-desc">Maior número primeiro</option>
+                                        <option value="az">A-Z</option>
+                                        <option value="za">Z-A</option>
+                                    </select>
+
+                                    {/* setinha custom (um pouquinho pra esquerda) */}
+                                    <svg
+                                        className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70"
+                                        viewBox="0 0 20 20"
+                                        fill="currentColor"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            fillRule="evenodd"
+                                            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
+                                            clipRule="evenodd"
+                                        />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
                         {/* RESULTADO (GRID) */}
-                        {listForGrid.length > 0 ? (
+                        {sortedListForGrid.length > 0 ? (
                             <div className="mt-4">
                                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                                    {listForGrid.slice(0, visibleCount).map((p) => {
+                                    {sortedListForGrid.slice(0, visibleCount).map((p) => {
                                         const details = pokemonDetails[p.id];
 
                                         return (
                                             <motion.button
                                                 key={p.id}
                                                 whileHover={{ scale: 1.03 }}
-                                                onClick={() => navigateToPokemon(p.name)} // ✅ agora SÓ aqui navega
+                                                onClick={() => navigateToPokemon(p.name)}
                                                 className="flex flex-col items-stretch justify-start rounded-md bg-white p-4 shadow-[0_4px_10px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_18px_rgba(0,0,0,0.1)] border border-neutral-200 transition-shadow duration-200 text-left"
                                             >
                                                 <div className="relative aspect-square w-full rounded-md bg-gray-100 overflow-hidden">
@@ -1000,20 +1022,16 @@ export default function Pokedex() {
                                                 </div>
 
                                                 <div className="mt-3 flex items-center justify-between">
-
                                                     <span className="text-lg font-semibold text-neutral-600 text-right capitalize">
                                                         {formatPokemonName(p.name)}
                                                     </span>
                                                     <span className="text-lg font-semibold text-neutral-600">
                                                         #{String(p.id).padStart(3, "0")}
                                                     </span>
-
-
                                                 </div>
 
-
                                                 {details?.types ? (
-                                                    <div className="mt-2 flex flex-wrap  gap-1">
+                                                    <div className="mt-2 flex flex-wrap gap-1">
                                                         {details.types.map((typeName) => (
                                                             <span
                                                                 key={typeName}
@@ -1038,7 +1056,7 @@ export default function Pokedex() {
                                 </div>
 
                                 <div className="flex justify-center mt-6">
-                                    {visibleCount < listForGrid.length && (
+                                    {visibleCount < sortedListForGrid.length && (
                                         <button
                                             onClick={() => setVisibleCount((v) => v + 15)}
                                             className="bg-[#E3350D] text-white px-6 py-2 rounded-md hover:bg-[#c52c0b]"
@@ -1053,12 +1071,9 @@ export default function Pokedex() {
                                 Nenhum Pokémon encontrado com os filtros atuais.
                             </div>
                         )}
-
                     </div>
                 </section>
             </div>
-
         </div>
-
     );
 }
