@@ -732,18 +732,35 @@ export default function Pokedex() {
                                                             Habilidade
                                                         </h3>
 
-                                                        <select
-                                                            value={ability}
-                                                            onChange={(e) => setAbility(e.target.value)}
-                                                            className="w-full bg-neutral-900/40 text-white px-3 py-2 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
-                                                        >
-                                                            <option value="all">Todas</option>
-                                                            {abilities.map((a) => (
-                                                                <option key={a.name} value={a.name}>
-                                                                    {formatPokemonName(a.name)}
-                                                                </option>
-                                                            ))}
-                                                        </select>
+                                                        <div className="relative w-full">
+                                                            <select
+                                                                value={ability}
+                                                                onChange={(e) => setAbility(e.target.value)}
+                                                                className="w-full appearance-none bg-neutral-900/40 text-white px-3 py-2 pr-10 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
+                                                            >
+                                                                <option value="all">Todas</option>
+                                                                {abilities.map((a) => (
+                                                                    <option key={a.name} value={a.name}>
+                                                                        {formatPokemonName(a.name)}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+
+                                                            {/* setinha custom (um pouquinho pra esquerda) */}
+                                                            <svg
+                                                                className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70"
+                                                                viewBox="0 0 20 20"
+                                                                fill="currentColor"
+                                                                aria-hidden="true"
+                                                            >
+                                                                <path
+                                                                    fillRule="evenodd"
+                                                                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
+                                                                    clipRule="evenodd"
+                                                                />
+                                                            </svg>
+                                                        </div>
+
                                                     </div>
 
                                                     <div className="mb-5">
