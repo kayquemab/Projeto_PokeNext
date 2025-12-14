@@ -212,7 +212,6 @@ export default function PokemonId() {
         for (const p of basePokemons) if (p?.name) mapByName[p.name] = p;
 
         // 4) Para cada base do chain: busca species e pega TODAS as varieties
-        //    (sem chamar /pokemon de cada variedade pra não explodir requisições)
         await Promise.all(
           Object.values(mapByName).map(async (base) => {
             if (!base?.speciesUrl) return;
@@ -244,12 +243,11 @@ export default function PokemonId() {
                   };
                 });
 
-              // ordena: mecânicas primeiro, depois regionais, depois formas/outros
               const groupOrder = {
-                "Mecânica": 0,
-                "Regional": 1,
-                "Forma": 2,
-                "Outras": 3,
+                Mecânica: 0,
+                Regional: 1,
+                Forma: 2,
+                Outras: 3,
               };
 
               varieties.sort((a, b) => {
@@ -466,9 +464,10 @@ export default function PokemonId() {
                                         <button
                                           onClick={() => router.push(`/pokedex/${evo.id}`)}
                                           className={`group flex items-center gap-3 rounded-lg border px-3 py-2 transition
-                                            ${isCurrent
-                                              ? "border-[#E3350D] bg-white/10"
-                                              : "border-white/10 bg-white/5 hover:bg-white/10"
+                                            ${
+                                              isCurrent
+                                                ? "border-[#E3350D] bg-white/10"
+                                                : "border-white/10 bg-white/5 hover:bg-white/10"
                                             }`}
                                           title={formatPokemonName(evo.name)}
                                         >
@@ -506,10 +505,9 @@ export default function PokemonId() {
                                           </div>
                                         </button>
 
-                                        {/* VARIETIES (tudo) */}
+                                        {/* VARIETIES */}
                                         {allVarieties.length > 0 && (
                                           <div className="rounded-lg border border-white/10 bg-white/5 p-2">
-                                            {/* resumo por grupo */}
                                             <div className="flex flex-wrap items-center gap-2 mb-2">
                                               {Object.keys(groups).map((g) => (
                                                 <span
@@ -525,7 +523,9 @@ export default function PokemonId() {
                                               {shown.map((v) => (
                                                 <button
                                                   key={`${evo.name}-${v.name}`}
-                                                  onClick={() => router.push(`/pokedex/${v.name}`)}
+                                                  onClick={() =>
+                                                    router.push(`/pokedex/${v.id ?? v.name}`)
+                                                  }
                                                   className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 px-2 py-1 transition"
                                                   title={formatPokemonName(v.name)}
                                                 >
