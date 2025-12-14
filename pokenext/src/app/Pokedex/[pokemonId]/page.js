@@ -101,7 +101,7 @@ function classifyVariety(varietyName) {
   return { group: "Outras", label: "Forma" };
 }
 
-export default function PokemonDetailPage() {
+export default function PokemonId() {
   const router = useRouter();
   const params = useParams();
 

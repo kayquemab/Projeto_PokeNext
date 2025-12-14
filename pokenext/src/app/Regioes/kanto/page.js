@@ -1,6 +1,6 @@
 "use client";
 
-export default function Regioes() {
+export default function Kanto() {
     return (
         <div className="relative w-full">
             <section className="w-full mt-6 px-10 sm:px-10 lg:px-8 mb-10">
