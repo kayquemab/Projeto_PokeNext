@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const TYPE_STYLES = {
   grass: "bg-[#78C850] text-black dark:bg-[#78C850]",
@@ -65,7 +66,7 @@ function extractIdFromUrl(url) {
   return m ? Number(m[1]) : null;
 }
 
-// Classifica “varieties” (formas) em grupos — você pode adicionar mais padrões aqui
+// Classifica “varieties” (formas) em grupos
 function classifyVariety(varietyName) {
   const n = String(varietyName || "").toLowerCase();
 
@@ -76,7 +77,7 @@ function classifyVariety(varietyName) {
   if (n.includes("-mega")) return { group: "Mecânica", label: "Mega" };
   if (n.includes("-primal")) return { group: "Mecânica", label: "Primal" };
 
-  // Regionais / variações de região
+  // Regionais
   if (n.includes("-alola")) return { group: "Regional", label: "Alola" };
   if (n.includes("-galar")) return { group: "Regional", label: "Galar" };
   if (n.includes("-hisui")) return { group: "Regional", label: "Hisui" };
@@ -100,6 +101,8 @@ function classifyVariety(varietyName) {
 
   return { group: "Outras", label: "Forma" };
 }
+
+const padId4 = (id) => String(id).padStart(4, "0");
 
 export default function PokemonId() {
   const router = useRouter();
@@ -133,7 +136,9 @@ export default function PokemonId() {
 
     async function fetchNationalDexCount() {
       try {
-        const res = await fetch("https://pokeapi.co/api/v2/pokemon-species?limit=1");
+        const res = await fetch(
+          "https://pokeapi.co/api/v2/pokemon-species?limit=1"
+        );
         if (!res.ok) return;
         const data = await res.json();
         if (!alive) return;
@@ -260,7 +265,12 @@ export default function PokemonId() {
                   };
                 });
 
-              const groupOrder = { Mecânica: 0, Regional: 1, Forma: 2, Outras: 3 };
+              const groupOrder = {
+                Mecânica: 0,
+                Regional: 1,
+                Forma: 2,
+                Outras: 3,
+              };
 
               varieties.sort((a, b) => {
                 const ga = groupOrder[a.group] ?? 99;
@@ -270,7 +280,7 @@ export default function PokemonId() {
               });
 
               base.varieties = varieties;
-            } catch { }
+            } catch {}
           })
         );
 
@@ -329,27 +339,78 @@ export default function PokemonId() {
 
   return (
     <div>
-
-      {/* Avançar e Retroceder */}
-      <header className="relative flex justify-center px-4 sm:px-6 lg:px-8 pt-0 pb-0 h-auto">
+      {/* HEADER (design da imagem) - funcionalidade preservada */}
+      <header className="relative w-full">
         <motion.div
-          className="flex w-full max-w-6xl items-center py-2"
-          
+          className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pt-0 pb-0"
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
         >
-          <div className="w-full grid grid-cols-2 gap-2">
-            <button
-              onClick={() => router.push(`/pokedex/${prevId}`)}
-              className="w-full px-4 py-2 rounded-md text-sm font-semibold bg-[#616161] text-white hover:bg-[#1B1B1B]"
-            >
-              Anterior
-            </button>
+          {/* Barra cinza */}
+          <div className="w-full overflow-hidden rounded-b-2xl bg-[#616161] shadow-[0_10px_24px_rgba(0,0,0,0.18)]">
+            <div className="grid grid-cols-2">
+              {/* Prev */}
+              <button
+                onClick={() => router.push(`/pokedex/${prevId}`)}
+                className="group flex w-full items-center justify-start gap-3 px-4 py-3 text-left text-white transition hover:bg-[#1B1B1B]"
+              >
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-white text-[#616161] transition group-hover:text-[#1B1B1B]">
+                  <ChevronLeft className="h-4 w-4" />
+                </span>
 
-            <button
-              onClick={() => router.push(`/pokedex/${nextId}`)}
-              className="w-full px-4 py-2 rounded-md text-sm font-semibold bg-[#616161] text-white hover:bg-[#1B1B1B]"
-            >
-              Próximo
-            </button>
+                <div className="leading-tight">
+                  <div className="text-xs font-semibold opacity-90">
+                    N° {padId4(prevId)}
+                  </div>
+                  <div className="text-sm font-semibold truncate max-w-[180px] sm:max-w-none">
+                    {formatPokemonName(pokemon.name)}
+                  </div>
+                </div>
+              </button>
+
+              {/* Next */}
+              <button
+                onClick={() => router.push(`/pokedex/${nextId}`)}
+                className="group flex w-full items-center justify-end gap-3 border-l border-white/20 px-4 py-3 text-right text-white transition hover:bg-[#1B1B1B]"
+              >
+                <div className="leading-tight">
+                  <div className="text-sm font-semibold truncate max-w-[180px] sm:max-w-none">
+                    {formatPokemonName(pokemon.name)}
+                  </div>
+                  <div className="text-xs font-semibold opacity-90">
+                    N° {padId4(nextId)}
+                  </div>
+                </div>
+
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-white text-[#616161] transition group-hover:text-[#1B1B1B]">
+                  <ChevronRight className="h-4 w-4" />
+                </span>
+              </button>
+            </div>
+          </div>
+
+          {/* “Placa” branca com recortes */}
+          <div className="relative -mt-2">
+            <div className="relative mx-auto w-full rounded-t-3xl bg-white px-4 pb-3 pt-5 shadow-[0_-1px_0_rgba(0,0,0,0.06)]">
+              {/* recortes */}
+              <div className="pointer-events-none absolute -top-7 left-0 h-14 w-14 rounded-full bg-[#616161]" />
+              <div className="pointer-events-none absolute -top-7 right-0 h-14 w-14 rounded-full bg-[#616161]" />
+
+              {/* listras bem leves */}
+              <div
+                className="pointer-events-none absolute inset-0 rounded-t-3xl opacity-[0.08]"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(135deg, rgba(0,0,0,0.22) 0px, rgba(0,0,0,0.22) 10px, transparent 10px, transparent 22px)",
+                }}
+              />
+
+              <h1 className="relative z-10 text-center text-2xl sm:text-3xl font-medium tracking-wide text-neutral-900">
+                {formatPokemonName(pokemon.name)}{" "}
+                <span className="font-normal">N° {padId4(currentId)}</span>
+              </h1>
+            </div>
           </div>
         </motion.div>
       </header>
@@ -363,9 +424,6 @@ export default function PokemonId() {
           className="mx-auto w-full max-w-5xl"
         >
           <div className="grid grid-cols-1 md:grid-cols-[420px_1fr] gap-6 items-start">
-
-
-
             {/* ESQUERDA: CARD ORIGINAL */}
             <div className="w-full max-w-[420px]">
               <div className="relative w-full aspect-736/1104">
@@ -383,14 +441,14 @@ export default function PokemonId() {
                 </div>
 
                 {/*
-              <Image
-                src="/pokedexcard.png"
-                alt="Moldura Pokédex"
-                fill
-                priority
-                className="z-20 object-contain pointer-events-none select-none"
-              />
-              */}
+                <Image
+                  src="/pokedexcard.png"
+                  alt="Moldura Pokédex"
+                  fill
+                  priority
+                  className="z-20 object-contain pointer-events-none select-none"
+                />
+                */}
               </div>
             </div>
 
@@ -427,9 +485,11 @@ export default function PokemonId() {
                   <span className="font-extrabold">Base XP:</span>{" "}
                   {pokemon.base_experience}
                   <span className="mx-2 opacity-50">•</span>
-                  <span className="font-extrabold">Alt:</span> {pokemon.height / 10}m
+                  <span className="font-extrabold">Alt:</span>{" "}
+                  {pokemon.height / 10}m
                   <span className="mx-2 opacity-50">•</span>
-                  <span className="font-extrabold">Peso:</span> {pokemon.weight / 10}kg
+                  <span className="font-extrabold">Peso:</span>{" "}
+                  {pokemon.weight / 10}kg
                 </div>
 
                 <div className="mt-4">
@@ -462,7 +522,9 @@ export default function PokemonId() {
                           </h3>
 
                           {evoLoading && (
-                            <span className="text-xs text-zinc-300">Carregando...</span>
+                            <span className="text-xs text-zinc-300">
+                              Carregando...
+                            </span>
                           )}
                         </div>
 
@@ -484,11 +546,14 @@ export default function PokemonId() {
                                         String(evo.id) === String(pokemon.id) ||
                                         evo.name === pokemon.name;
 
-                                      const groups = evo.varieties.reduce((acc, v) => {
-                                        acc[v.group] = acc[v.group] || [];
-                                        acc[v.group].push(v);
-                                        return acc;
-                                      }, {});
+                                      const groups = evo.varieties.reduce(
+                                        (acc, v) => {
+                                          acc[v.group] = acc[v.group] || [];
+                                          acc[v.group].push(v);
+                                          return acc;
+                                        },
+                                        {}
+                                      );
 
                                       const allVarieties = evo.varieties;
                                       const isExpanded = Boolean(expanded[evo.name]);
@@ -504,15 +569,21 @@ export default function PokemonId() {
                                       );
 
                                       return (
-                                        <div key={evo.name} className="flex flex-col gap-2">
+                                        <div
+                                          key={evo.name}
+                                          className="flex flex-col gap-2"
+                                        >
                                           {/* card base */}
                                           <button
-                                            onClick={() => router.push(`/pokedex/${evo.id}`)}
+                                            onClick={() =>
+                                              router.push(`/pokedex/${evo.id}`)
+                                            }
                                             className={`group flex items-center gap-3 rounded-lg border px-3 py-2 transition
-                                            ${isCurrent
+                                            ${
+                                              isCurrent
                                                 ? "border-[#E3350D] bg-white/10"
                                                 : "border-white/10 bg-white/5 hover:bg-white/10"
-                                              }`}
+                                            }`}
                                             title={formatPokemonName(evo.name)}
                                           >
                                             <div className="relative w-12 h-12 shrink-0">
@@ -568,7 +639,9 @@ export default function PokemonId() {
                                                   <button
                                                     key={`${evo.name}-${v.name}`}
                                                     onClick={() =>
-                                                      router.push(`/pokedex/${v.id ?? v.name}`)
+                                                      router.push(
+                                                        `/pokedex/${v.id ?? v.name}`
+                                                      )
                                                     }
                                                     className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 px-2 py-1 transition"
                                                     title={formatPokemonName(v.name)}
@@ -652,11 +725,9 @@ export default function PokemonId() {
               </div>
               {/* fim */}
             </div>
-
           </div>
         </motion.div>
       </div>
-
     </div>
   );
 }
