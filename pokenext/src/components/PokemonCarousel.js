@@ -75,7 +75,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
   }, []);
 
   function goToDetail(p) {
-    router.push(`/pokedex/${p.id}`); // ✅ vai para a página de detalhe pelo ID
+    router.push(`/Pokedex/${p.id}`); // ✅ vai para a página de detalhe pelo ID
   }
 
   return (

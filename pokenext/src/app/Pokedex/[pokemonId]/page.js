@@ -317,7 +317,7 @@ export default function PokemonId() {
       <div className="w-full max-w-xl mx-auto mt-10 px-4">
         <p className="text-red-500 text-sm">{error || "Erro desconhecido."}</p>
         <button
-          onClick={() => router.push("/pokedex")}
+          onClick={() => router.push("/Pokedex")}
           className="mt-3 text-[#E3350D] hover:underline text-sm font-semibold"
         >
           Voltar para a Pokédex
@@ -352,7 +352,7 @@ export default function PokemonId() {
             <div className="grid grid-cols-2">
               {/* Prev */}
               <button
-                onClick={() => router.push(`/pokedex/${prevId}`)}
+                onClick={() => router.push(`/Pokedex/${prevId}`)}
                 className="group flex w-full items-center justify-start gap-3 px-4 py-3 text-left text-white transition hover:bg-[#1B1B1B]"
               >
                 <span className="grid h-7 w-7 place-items-center rounded-full bg-white text-[#616161] transition group-hover:text-[#1B1B1B]">
@@ -371,7 +371,7 @@ export default function PokemonId() {
 
               {/* Next */}
               <button
-                onClick={() => router.push(`/pokedex/${nextId}`)}
+                onClick={() => router.push(`/Pokedex/${nextId}`)}
                 className="group flex w-full items-center justify-end gap-3 border-l border-white/20 px-4 py-3 text-right text-white transition hover:bg-[#1B1B1B]"
               >
                 <div className="leading-tight">
@@ -494,7 +494,7 @@ export default function PokemonId() {
 
                 <div className="mt-4">
                   <button
-                    onClick={() => router.push("/pokedex")}
+                    onClick={() => router.push("/Pokedex")}
                     className="text-[#E3350D] hover:underline text-sm font-semibold"
                   >
                     Voltar para a Pokédex
@@ -640,7 +640,7 @@ export default function PokemonId() {
                                                     key={`${evo.name}-${v.name}`}
                                                     onClick={() =>
                                                       router.push(
-                                                        `/pokedex/${v.id ?? v.name}`
+                                                        `/Pokedex/${v.id ?? v.name}`
                                                       )
                                                     }
                                                     className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 px-2 py-1 transition"

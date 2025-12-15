@@ -310,7 +310,7 @@ export default function Pokedex() {
 
     // se já é número, vai direto
     if (/^\d+$/.test(raw)) {
-      router.push(`/pokedex/${Number(raw)}`);
+      router.push(`/Pokedex/${Number(raw)}`);
       return;
     }
 
@@ -318,7 +318,7 @@ export default function Pokedex() {
     const found = allPokemonList.find((p) => p.name === raw);
     if (!found?.id) return;
 
-    router.push(`/pokedex/${found.id}`);
+    router.push(`/Pokedex/${found.id}`);
   }
 
   function pickSuggestion(name) {
@@ -562,9 +562,7 @@ export default function Pokedex() {
                 px-4 sm:px-6 lg:px-8 py-5
                 ${advancedOpen ? "rounded-t-2xl rounded-b-none" : "rounded-2xl"}
               `}
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              
             >
               {/* BUSCA SIMPLES */}
               <div className="mb-3">
@@ -626,9 +624,7 @@ export default function Pokedex() {
                 </p>
               </div>
 
-              {loadingList && (
-                <p className="text-sm text-slate-300 mt-3">Carregando...</p>
-              )}
+              
               {error && <p className="text-red-300 text-sm mt-3">{error}</p>}
             </motion.div>
 
