@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
-import Link from "next/link";
+
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const TYPE_STYLES = {
@@ -41,7 +41,6 @@ function formatPokemonName(name) {
     .join(" ");
 }
 
-// stages por profundidade (suporta ramificações)
 function extractEvolutionStages(chainRoot) {
   const stages = [];
   const queue = [{ node: chainRoot, depth: 0 }];
@@ -280,7 +279,7 @@ export default function PokemonId() {
               });
 
               base.varieties = varieties;
-            } catch {}
+            } catch { }
           })
         );
 
@@ -330,7 +329,6 @@ export default function PokemonId() {
     pokemon?.sprites?.other?.["official-artwork"]?.front_default ||
     pokemon?.sprites?.front_default;
 
-  // ✅ wrap correto na Pokédex original (1..maxId)
   const currentId = Number(pokemon?.id || 0);
   const safeMax = Number(maxId) > 0 ? Number(maxId) : NATIONAL_DEX_FALLBACK;
 
@@ -339,21 +337,21 @@ export default function PokemonId() {
 
   return (
     <div>
+
       {/* HEADER (design da imagem) - funcionalidade preservada */}
       <header className="relative w-full">
         <motion.div
-          className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 pt-0 pb-0"
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="mx-auto w-full max-w-6xl pt-0 pb-0"
+
         >
-          {/* Barra cinza */}
-          <div className="w-full overflow-hidden rounded-b-2xl bg-[#616161] shadow-[0_10px_24px_rgba(0,0,0,0.18)]">
-            <div className="grid grid-cols-2">
+          {/* Container sem fundo */}
+          <div className="w-full">
+            <div className="grid grid-cols-2 gap-1">
+
               {/* Prev */}
               <button
                 onClick={() => router.push(`/Pokedex/${prevId}`)}
-                className="group flex w-full items-center justify-start gap-3 px-4 py-3 text-left text-white transition hover:bg-[#1B1B1B]"
+                className="group flex w-full items-center justify-start gap-3 rounded-l-2xl bg-[#616161] px-4 py-3 text-left text-white transition hover:bg-[#1B1B1B]"
               >
                 <span className="grid h-7 w-7 place-items-center rounded-full bg-white text-[#616161] transition group-hover:text-[#1B1B1B]">
                   <ChevronLeft className="h-4 w-4" />
@@ -369,10 +367,11 @@ export default function PokemonId() {
                 </div>
               </button>
 
+
               {/* Next */}
               <button
                 onClick={() => router.push(`/Pokedex/${nextId}`)}
-                className="group flex w-full items-center justify-end gap-3 border-l border-white/20 px-4 py-3 text-right text-white transition hover:bg-[#1B1B1B]"
+                className="group flex w-full items-center justify-end gap-3 rounded-r-2xl bg-[#616161] px-4 py-3 text-right text-white transition hover:bg-[#1B1B1B]"
               >
                 <div className="leading-tight">
                   <div className="text-sm font-semibold truncate max-w-[180px] sm:max-w-none">
@@ -387,33 +386,14 @@ export default function PokemonId() {
                   <ChevronRight className="h-4 w-4" />
                 </span>
               </button>
-            </div>
-          </div>
 
-          {/* “Placa” branca com recortes */}
-          <div className="relative -mt-2">
-            <div className="relative mx-auto w-full rounded-t-3xl bg-white px-4 pb-3 pt-5 shadow-[0_-1px_0_rgba(0,0,0,0.06)]">
-              {/* recortes */}
-              <div className="pointer-events-none absolute -top-7 left-0 h-14 w-14 rounded-full bg-[#616161]" />
-              <div className="pointer-events-none absolute -top-7 right-0 h-14 w-14 rounded-full bg-[#616161]" />
 
-              {/* listras bem leves */}
-              <div
-                className="pointer-events-none absolute inset-0 rounded-t-3xl opacity-[0.08]"
-                style={{
-                  backgroundImage:
-                    "repeating-linear-gradient(135deg, rgba(0,0,0,0.22) 0px, rgba(0,0,0,0.22) 10px, transparent 10px, transparent 22px)",
-                }}
-              />
-
-              <h1 className="relative z-10 text-center text-2xl sm:text-3xl font-medium tracking-wide text-neutral-900">
-                {formatPokemonName(pokemon.name)}{" "}
-                <span className="font-normal">N° {padId4(currentId)}</span>
-              </h1>
             </div>
           </div>
         </motion.div>
       </header>
+
+
 
       {/* Conteúdo principal */}
       <div className="mt-8 w-full px-4">
@@ -579,11 +559,10 @@ export default function PokemonId() {
                                               router.push(`/pokedex/${evo.id}`)
                                             }
                                             className={`group flex items-center gap-3 rounded-lg border px-3 py-2 transition
-                                            ${
-                                              isCurrent
+                                            ${isCurrent
                                                 ? "border-[#E3350D] bg-white/10"
                                                 : "border-white/10 bg-white/5 hover:bg-white/10"
-                                            }`}
+                                              }`}
                                             title={formatPokemonName(evo.name)}
                                           >
                                             <div className="relative w-12 h-12 shrink-0">
