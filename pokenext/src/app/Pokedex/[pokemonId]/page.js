@@ -833,7 +833,7 @@ export default function PokemonId() {
       </div>
 
       {/* ================= LINHA 3: Linha evolutiva ================= */}
-      <div className="mt-6">
+      <div className="my-6">
         <div
           className="
       mx-auto w-full max-w-6xl
