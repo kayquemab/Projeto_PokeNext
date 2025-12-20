@@ -488,7 +488,7 @@ export default function PokemonId() {
   return (
     <div>
 
-      {/* HEADER (design da imagem) - funcionalidade preservada */}
+      {/* HEADER - funcionalidade preservada */}
       <header className="relative w-full">
         <motion.div className="mx-auto w-full max-w-6xl pt-0 pb-0">
           <div className="w-full">
@@ -564,718 +564,435 @@ export default function PokemonId() {
       </header>
 
       {/* Conteúdo principal */}
-      <div className="mt-8 w-full px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="mx-auto w-full max-w-5xl"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-[420px_1fr] gap-6 items-start">
+      <div className="mt-5 w-full px-4">
 
-            {/* ESQUERDA: CARD ORIGINAL */}
-            <div className="w-full max-w-[520px]">
-              <div className="relative w-full aspect-736/1104">
-                <div className="absolute z-10 left-[14%] right-[14%] top-[20%] h-[48%] overflow-hidden rounded-md">
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={artwork}
-                      alt={formatPokemonName(pokemon.name)}
-                      fill
-                      unoptimized
-                      sizes="520px"
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-
-                {/*
-                <Image
-                  src="/pokedexcard.png"
-                  alt="Moldura Pokédex"
-                  fill
-                  priority
-                  className="z-20 object-contain pointer-events-none select-none"
-                />
-                */}
-              </div>
-            </div>
-
-            {/* DIREITA: infos + linha evolutiva */}
-            <div className="flex flex-col gap-4">
-              {/* CARD CINZA */}
-              <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 p-5">
-                <div className="flex items-center gap-4">
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold text-black/70 dark:text-white/70">
-                      #{String(pokemon.id).padStart(3, "0")}
-                    </p>
-
-                    <h2 className="text-2xl font-extrabold text-black dark:text-white leading-tight truncate">
-                      {formatPokemonName(pokemon.name)}
-                    </h2>
-
-                    <div className="mt-2 flex flex-wrap items-center gap-2">
-                      {pokemon.types.map((t) => (
-                        <span
-                          key={t.type.name}
-                          className={`px-3 py-1 rounded-md text-xs font-bold capitalize ${getTypeClass(
-                            t.type.name
-                          )}`}
-                        >
-                          {t.type.name}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-4 text-sm text-black/80 dark:text-white/80">
-                  <span className="font-extrabold">Base XP:</span>{" "}
-                  {pokemon.base_experience}
-                  <span className="mx-2 opacity-50">•</span>
-                  <span className="font-extrabold">Alt:</span>{" "}
-                  {pokemon.height / 10}m
-                  <span className="mx-2 opacity-50">•</span>
-                  <span className="font-extrabold">Peso:</span>{" "}
-                  {pokemon.weight / 10}kg
-                </div>
-
-                <div className="mt-4">
-                  <button
-                    onClick={() => router.push("/Pokedex")}
-                    className="text-[#E3350D] hover:underline text-sm font-semibold"
-                  >
-                    Voltar para a Pokédex
-                  </button>
-                </div>
-              </div>
-
-              {/* LINHA EVOLUTIVA + VARIETIES */}
-              <div className="rounded-xl border border-black/10 dark:border-white/10 overflow-hidden">
-                <div className="relative w-full h-[280px] md:h-[360px] bg-black">
-                  <Image
-                    src="/wallpaper-preto.png"
-                    alt="Área da linha evolutiva"
-                    fill
-                    sizes="(min-width: 768px) 600px, 100vw"
-                    className="object-cover"
-                  />
-
-                  <div className="absolute inset-0">
-                    <div className="relative z-10 h-full w-full p-4 md:p-6 flex items-center">
-                      <div className="w-full rounded-xl bg-black/60 border border-white/10 backdrop-blur-sm p-4">
-                        <div className="flex items-center justify-between gap-3">
-                          <h3 className="text-zinc-100 font-extrabold text-sm md:text-base">
-                            Linha evolutiva e variações
-                          </h3>
-
-                          {evoLoading && (
-                            <span className="text-xs text-zinc-300">
-                              Carregando...
-                            </span>
-                          )}
-                        </div>
-
-                        {evoError && (
-                          <p className="mt-2 text-xs text-red-300">{evoError}</p>
-                        )}
-
-                        {!evoLoading && !evoError && evoStages?.length > 0 && (
-                          <div className="mt-3 overflow-x-auto">
-                            <div className="flex items-start gap-3 min-w-max">
-                              {evoStages.map((stage, stageIdx) => (
-                                <div
-                                  key={`stage-${stageIdx}`}
-                                  className="flex items-start gap-3"
-                                >
-                                  <div className="flex items-start gap-3">
-                                    {stage.map((evo) => {
-                                      const isCurrent =
-                                        String(evo.id) === String(pokemon.id) ||
-                                        evo.name === pokemon.name;
-
-                                      const groups = evo.varieties.reduce(
-                                        (acc, v) => {
-                                          acc[v.group] = acc[v.group] || [];
-                                          acc[v.group].push(v);
-                                          return acc;
-                                        },
-                                        {}
-                                      );
-
-                                      const allVarieties = evo.varieties;
-                                      const isExpanded = Boolean(expanded[evo.name]);
-                                      const LIMIT = 10;
-
-                                      const shown = isExpanded
-                                        ? allVarieties
-                                        : allVarieties.slice(0, LIMIT);
-
-                                      const remaining = Math.max(
-                                        0,
-                                        allVarieties.length - LIMIT
-                                      );
-
-                                      return (
-                                        <div
-                                          key={evo.name}
-                                          className="flex flex-col gap-2"
-                                        >
-                                          {/* card base */}
-                                          <button
-                                            onClick={() =>
-                                              router.push(`/Pokedex/${evo.id}`)
-                                            }
-                                            className={`group flex items-center gap-3 rounded-lg border px-3 py-2 transition
-                                            ${isCurrent
-                                                ? "border-[#E3350D] bg-white/10"
-                                                : "border-white/10 bg-white/5 hover:bg-white/10"
-                                              }`}
-                                            title={formatPokemonName(evo.name)}
-                                          >
-                                            <div className="relative w-12 h-12 shrink-0">
-                                              <Image
-                                                src={evo.artwork}
-                                                alt={formatPokemonName(evo.name)}
-                                                fill
-                                                unoptimized
-                                                className="object-contain"
-                                              />
-                                            </div>
-
-                                            <div className="min-w-0 text-left">
-                                              <p className="text-[10px] text-zinc-300 font-semibold">
-                                                #{String(evo.id).padStart(3, "0")}
-                                              </p>
-
-                                              <p className="text-sm font-extrabold text-zinc-100 truncate max-w-[170px]">
-                                                {formatPokemonName(evo.name)}
-                                              </p>
-
-                                              <div className="mt-1 flex flex-wrap gap-1">
-                                                {evo.types.slice(0, 2).map((tp) => (
-                                                  <span
-                                                    key={tp}
-                                                    className={`px-2 py-1 rounded text-[10px] font-extrabold capitalize ${getTypeClass(
-                                                      tp
-                                                    )}`}
-                                                  >
-                                                    {tp}
-                                                  </span>
-                                                ))}
-                                              </div>
-                                            </div>
-                                          </button>
-
-                                          {/* VARIETIES */}
-                                          {allVarieties.length > 0 && (
-                                            <div className="rounded-lg border border-white/10 bg-white/5 p-2">
-                                              <div className="flex flex-wrap items-center gap-2 mb-2">
-                                                {Object.keys(groups).map((g) => (
-                                                  <span
-                                                    key={`${evo.name}-g-${g}`}
-                                                    className="text-[10px] font-extrabold text-zinc-200/90 bg-black/40 border border-white/10 rounded px-2 py-1"
-                                                  >
-                                                    {g}: {groups[g].length}
-                                                  </span>
-                                                ))}
-                                              </div>
-
-                                              <div className="flex flex-wrap gap-2">
-                                                {shown.map((v) => (
-                                                  <button
-                                                    key={`${evo.name}-${v.name}`}
-                                                    onClick={() =>
-                                                      router.push(
-                                                        `/Pokedex/${v.id ?? v.name}`
-                                                      )
-                                                    }
-                                                    className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 px-2 py-1 transition"
-                                                    title={formatPokemonName(v.name)}
-                                                  >
-                                                    <span className="text-[10px] font-extrabold text-zinc-100">
-                                                      {v.label}
-                                                    </span>
-                                                    <span className="text-[10px] text-zinc-300 font-semibold truncate max-w-[180px]">
-                                                      {formatPokemonName(v.name)}
-                                                    </span>
-                                                    {v.id ? (
-                                                      <span className="text-[10px] text-zinc-400 font-semibold">
-                                                        #{String(v.id).padStart(3, "0")}
-                                                      </span>
-                                                    ) : null}
-                                                  </button>
-                                                ))}
-
-                                                {remaining > 0 && (
-                                                  <button
-                                                    onClick={() =>
-                                                      setExpanded((prev) => ({
-                                                        ...prev,
-                                                        [evo.name]: true,
-                                                      }))
-                                                    }
-                                                    className="inline-flex items-center rounded-md border border-white/10 bg-black/30 hover:bg-black/40 px-2 py-1 transition"
-                                                  >
-                                                    <span className="text-[10px] font-extrabold text-zinc-100">
-                                                      Ver mais (+{remaining})
-                                                    </span>
-                                                  </button>
-                                                )}
-
-                                                {isExpanded && allVarieties.length > LIMIT && (
-                                                  <button
-                                                    onClick={() =>
-                                                      setExpanded((prev) => ({
-                                                        ...prev,
-                                                        [evo.name]: false,
-                                                      }))
-                                                    }
-                                                    className="inline-flex items-center rounded-md border border-white/10 bg-black/30 hover:bg-black/40 px-2 py-1 transition"
-                                                  >
-                                                    <span className="text-[10px] font-extrabold text-zinc-100">
-                                                      Ver menos
-                                                    </span>
-                                                  </button>
-                                                )}
-                                              </div>
-                                            </div>
-                                          )}
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-
-                                  {/* seta entre estágios */}
-                                  {stageIdx < evoStages.length - 1 && (
-                                    <span className="text-zinc-200/80 font-extrabold px-1 mt-4">
-                                      →
-                                    </span>
-                                  )}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-
-                        {!evoLoading && !evoError && evoStages?.length === 0 && (
-                          <p className="mt-2 text-xs text-zinc-300">
-                            Este Pokémon não possui cadeia evolutiva disponível.
-                          </p>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="absolute inset-0 bg-black/25 z-0" />
-                  </div>
-                </div>
-              </div>
-              {/* fim */}
-            </div>
-
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Conteúdo principal */}
-      <div className="mt-8 w-full px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className="mx-auto w-full max-w-6xl"
         >
-          {/* LINHA 1: [pokemon] | [Descrição + Infos] */}
+
+          {/* ================= TOPO CENTRAL ================= */}
+          <div className="mb-8 text-center">
+
+            <h1 className="flex items-center justify-center gap-3 text-3xl sm:text-4xl font-semibold tracking-tight text-neutral-900">
+              <span className="opacity-90">
+                {formatPokemonName(pokemon.name)}
+              </span>
+
+              <span className="text-gray-600 font-medium">
+                #{String(pokemon.id).padStart(4, "0")}
+              </span>
+            </h1>
+
+          </div>
+
+          {/* ================= LINHA 1 ================= */}
           <div className="grid grid-cols-1 md:grid-cols-[520px_1fr] gap-6 items-start">
-            {/* [pokemon] */}
-            <div className="w-full max-w-[520px]">
-              <div className="relative w-full aspect-736/1104">
-                <div className="absolute z-10 left-[14%] right-[14%] top-[20%] h-[48%] overflow-hidden rounded-md">
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={artwork}
-                      alt={formatPokemonName(pokemon.name)}
-                      fill
-                      unoptimized
-                      sizes="520px"
-                      className="object-contain"
-                    />
-                  </div>
+
+            {/* ===== CARD DA IMAGEM ===== */}
+            <div className="w-full h-full">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.35 }}
+                className="
+      relative
+      h-full w-full
+      rounded-2xl
+      bg-[url('/wallpaper-preto.png')]
+      bg-cover bg-center bg-no-repeat
+      shadow-lg
+      p-6
+      flex items-center justify-center
+    "
+              >
+                <div className="relative w-full max-w-[370px] aspect-square">
+                  <Image
+                    src={artwork}
+                    alt={formatPokemonName(pokemon.name)}
+                    fill
+                    unoptimized
+                    sizes="380px"
+                    className="object-contain drop-shadow-2xl"
+                  />
                 </div>
-              </div>
+              </motion.div>
             </div>
 
-            {/* [Descrição] + [Infos] */}
+
+            {/* ===== DESCRIÇÃO + INFOS ===== */}
             <div className="flex flex-col gap-4">
-              {/* [Descrição da Pokedex] */}
-              <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 p-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold text-black/70 dark:text-white/70">
-                      #{String(pokemon.id).padStart(3, "0")}
-                    </p>
 
-                    <h2 className="text-2xl font-extrabold text-black dark:text-white leading-tight truncate">
-                      {formatPokemonName(pokemon.name)}
-                    </h2>
-
-                    <div className="mt-2 flex flex-wrap items-center gap-2">
-                      {pokemon.types.map((t) => (
-                        <span
-                          key={t.type.name}
-                          className={`px-3 py-1 rounded-md text-xs font-bold capitalize ${getTypeClass(
-                            t.type.name
-                          )}`}
-                        >
-                          {t.type.name}
-                        </span>
-                      ))}
+              {/* Descrição */}
+              <div
+                className="
+    rounded-xl
+    border border-black/10 dark:border-white/10
+    p-5
+    bg-cover bg-center bg-no-repeat
+  "
+                style={{
+                  backgroundImage: "url('/wallpaper-cinza.png')",
+                }}
+              >
+                {/* overlay opcional para manter legibilidade */}
+                <div className="bg-white/70 dark:bg-zinc-900/60 rounded-lg p-5 -m-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="min-w-0">
+                      <h2 className="text-xl font-extrabold text-black dark:text-white leading-tight">
+                        Descrição
+                      </h2>
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => router.push("/Pokedex")}
-                    className="shrink-0 text-[#E3350D] hover:underline text-sm font-semibold"
-                  >
-                    Voltar
-                  </button>
-                </div>
-
-                <p className="mt-4 text-sm text-black/80 dark:text-white/80 leading-relaxed">
-                  {descricaoDex || "Descrição indisponível para este Pokémon."}
-                </p>
-              </div>
-
-              {/* [Informações: Altura, Categoria, Peso, Habilidades] */}
-              <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 p-5">
-                <h3 className="text-sm font-extrabold text-black dark:text-white">
-                  Informações
-                </h3>
-
-                <div className="mt-3 grid grid-cols-2 gap-3 text-sm text-black/80 dark:text-white/80">
-                  <div className="rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-3">
-                    <p className="text-xs font-semibold opacity-70">Altura</p>
-                    <p className="font-extrabold">{pokemon.height / 10} m</p>
-                  </div>
-
-                  <div className="rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-3">
-                    <p className="text-xs font-semibold opacity-70">Peso</p>
-                    <p className="font-extrabold">{pokemon.weight / 10} kg</p>
-                  </div>
-
-                  <div className="rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-3 col-span-2">
-                    <p className="text-xs font-semibold opacity-70">Categoria</p>
-                    <p className="font-extrabold">
-                      {categoriaDex ? categoriaDex : "—"}
-                    </p>
-                  </div>
-
-                  <div className="rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-3 col-span-2">
-                    <p className="text-xs font-semibold opacity-70">Habilidades</p>
-                    <p className="font-extrabold">
-                      {pokemon.abilities
-                        .map((a) => formatPokemonName(a.ability.name))
-                        .join(", ")}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* LINHA 2: [Estatísticas] | [Tipo / Fraquezas] */}
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-            {/* [Estatísticas] */}
-            <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 p-5">
-              <h3 className="text-sm font-extrabold text-black dark:text-white">
-                Estatísticas
-              </h3>
-
-              <div className="mt-4 space-y-3">
-                {pokemon.stats.map((s) => {
-                  const value = Number(s.base_stat || 0);
-                  const pct = Math.min(100, Math.round((value / 255) * 100));
-                  const label = formatPokemonName(s.stat.name.replace("special-", "sp-"));
-
-                  return (
-                    <div key={s.stat.name} className="space-y-1">
-                      <div className="flex items-center justify-between text-xs font-semibold text-black/70 dark:text-white/70">
-                        <span>{label}</span>
-                        <span>{value}</span>
-                      </div>
-
-                      <div className="h-2 w-full rounded-full bg-black/10 dark:bg-white/10 overflow-hidden">
-                        <div
-                          className="h-full rounded-full bg-black/50 dark:bg-white/50"
-                          style={{ width: `${pct}%` }}
-                        />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* [Tipo / Fraquezas] */}
-            <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white/70 dark:bg-zinc-900/40 p-5">
-              <h3 className="text-sm font-extrabold text-black dark:text-white">
-                Tipo / Fraquezas
-              </h3>
-
-              <div className="mt-4">
-                <p className="text-xs font-semibold text-black/70 dark:text-white/70">
-                  Tipos
-                </p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {pokemon.types.map((t) => (
-                    <span
-                      key={t.type.name}
-                      className={`px-3 py-1 rounded-md text-xs font-bold capitalize ${getTypeClass(
-                        t.type.name
-                      )}`}
-                    >
-                      {t.type.name}
-                    </span>
-                  ))}
+                  <p className="mt-4 text-sm text-black/80 dark:text-white/80 leading-relaxed">
+                    {descricaoDex || "Descrição indisponível para este Pokémon."}
+                  </p>
                 </div>
               </div>
 
-              <div className="mt-4">
-                <p className="text-xs font-semibold text-black/70 dark:text-white/70">
-                  Fraquezas {weakLoading ? "(calculando...)" : ""}
-                </p>
-
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {weaknesses.length > 0 ? (
-                    weaknesses.map((w) => (
-                      <span
-                        key={w}
-                        className={`px-3 py-1 rounded-md text-xs font-bold capitalize ${getTypeClass(
-                          w
-                        )}`}
-                      >
-                        {w}
-                      </span>
-                    ))
-                  ) : (
-                    <span className="text-xs text-black/60 dark:text-white/60">
-                      —
-                    </span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* LINHA 3: [Linha evolutiva] (full width) */}
-          <div className="mt-6">
-            {/* ✅ Cole aqui seu bloco atual de LINHA EVOLUTIVA + VARIETIES inteiro, sem alterar */}
-          </div>
-        </motion.div>
-      </div>
-
-      {/* LINHA 3: [Linha evolutiva] (full width) */}
-      <div className="mt-6 rounded-xl border border-black/10 dark:border-white/10 overflow-hidden">
-        <div className="relative w-full h-[280px] md:h-[360px] bg-black">
-          <Image
-            src="/wallpaper-preto.png"
-            alt="Área da linha evolutiva"
-            fill
-            sizes="(min-width: 768px) 900px, 100vw"
-            className="object-cover"
-          />
-
-          <div className="absolute inset-0">
-            <div className="relative z-10 h-full w-full p-4 md:p-6 flex items-center">
-              <div className="w-full rounded-xl bg-black/60 border border-white/10 backdrop-blur-sm p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <h3 className="text-zinc-100 font-extrabold text-sm md:text-base">
-                    Linha evolutiva e variações
+              {/* Informações */}
+              <div
+                className="
+    rounded-xl
+    border border-black/10 dark:border-white/10
+    p-5
+    bg-cover bg-center bg-no-repeat
+  "
+                style={{
+                  backgroundImage: "url('/wallpaper-cinza.png')",
+                }}
+              >
+                {/* overlay para legibilidade */}
+                <div className="bg-white/70 dark:bg-zinc-900/60 rounded-lg p-5 -m-5">
+                  <h3 className="text-xl font-extrabold text-black dark:text-white">
+                    Informações
                   </h3>
 
-                  {evoLoading && (
-                    <span className="text-xs text-zinc-300">Carregando...</span>
-                  )}
-                </div>
+                  <div className="mt-4 grid grid-cols-2 gap-3 text-sm text-black/80 dark:text-white/80">
+                    <div className="rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-3">
+                      <p className="text-xs font-semibold opacity-70">Altura</p>
+                      <p className="font-extrabold">{pokemon.height / 10} m</p>
+                    </div>
 
-                {evoError && <p className="mt-2 text-xs text-red-300">{evoError}</p>}
+                    <div className="rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-3">
+                      <p className="text-xs font-semibold opacity-70">Peso</p>
+                      <p className="font-extrabold">{pokemon.weight / 10} kg</p>
+                    </div>
 
-                {!evoLoading && !evoError && evoStages?.length > 0 && (
-                  <div className="mt-3 overflow-x-auto">
-                    <div className="flex items-start gap-3 min-w-max">
-                      {evoStages.map((stage, stageIdx) => (
-                        <div
-                          key={`stage-${stageIdx}`}
-                          className="flex items-start gap-3"
-                        >
-                          <div className="flex items-start gap-3">
-                            {stage.map((evo) => {
-                              const isCurrent =
-                                String(evo.id) === String(pokemon.id) ||
-                                evo.name === pokemon.name;
+                    <div className="rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-3 col-span-2">
+                      <p className="text-xs font-semibold opacity-70">Categoria</p>
+                      <p className="font-extrabold">
+                        {categoriaDex || "—"}
+                      </p>
+                    </div>
 
-                              const groups = evo.varieties.reduce((acc, v) => {
-                                acc[v.group] = acc[v.group] || [];
-                                acc[v.group].push(v);
-                                return acc;
-                              }, {});
-
-                              const allVarieties = evo.varieties;
-                              const isExpanded = Boolean(expanded[evo.name]);
-                              const LIMIT = 10;
-
-                              const shown = isExpanded
-                                ? allVarieties
-                                : allVarieties.slice(0, LIMIT);
-
-                              const remaining = Math.max(0, allVarieties.length - LIMIT);
-
-                              return (
-                                <div key={evo.name} className="flex flex-col gap-2">
-                                  {/* card base */}
-                                  <button
-                                    onClick={() => router.push(`/Pokedex/${evo.id}`)}
-                                    className={`group flex items-center gap-3 rounded-lg border px-3 py-2 transition
-                              ${isCurrent
-                                        ? "border-[#E3350D] bg-white/10"
-                                        : "border-white/10 bg-white/5 hover:bg-white/10"
-                                      }`}
-                                    title={formatPokemonName(evo.name)}
-                                  >
-                                    <div className="relative w-12 h-12 shrink-0">
-                                      <Image
-                                        src={evo.artwork}
-                                        alt={formatPokemonName(evo.name)}
-                                        fill
-                                        unoptimized
-                                        className="object-contain"
-                                      />
-                                    </div>
-
-                                    <div className="min-w-0 text-left">
-                                      <p className="text-[10px] text-zinc-300 font-semibold">
-                                        #{String(evo.id).padStart(3, "0")}
-                                      </p>
-
-                                      <p className="text-sm font-extrabold text-zinc-100 truncate max-w-[170px]">
-                                        {formatPokemonName(evo.name)}
-                                      </p>
-
-                                      <div className="mt-1 flex flex-wrap gap-1">
-                                        {evo.types.slice(0, 2).map((tp) => (
-                                          <span
-                                            key={tp}
-                                            className={`px-2 py-1 rounded text-[10px] font-extrabold capitalize ${getTypeClass(
-                                              tp
-                                            )}`}
-                                          >
-                                            {tp}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    </div>
-                                  </button>
-
-                                  {/* VARIETIES */}
-                                  {allVarieties.length > 0 && (
-                                    <div className="rounded-lg border border-white/10 bg-white/5 p-2">
-                                      <div className="flex flex-wrap items-center gap-2 mb-2">
-                                        {Object.keys(groups).map((g) => (
-                                          <span
-                                            key={`${evo.name}-g-${g}`}
-                                            className="text-[10px] font-extrabold text-zinc-200/90 bg-black/40 border border-white/10 rounded px-2 py-1"
-                                          >
-                                            {g}: {groups[g].length}
-                                          </span>
-                                        ))}
-                                      </div>
-
-                                      <div className="flex flex-wrap gap-2">
-                                        {shown.map((v) => (
-                                          <button
-                                            key={`${evo.name}-${v.name}`}
-                                            onClick={() =>
-                                              router.push(`/Pokedex/${v.id ?? v.name}`)
-                                            }
-                                            className="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 hover:bg-white/10 px-2 py-1 transition"
-                                            title={formatPokemonName(v.name)}
-                                          >
-                                            <span className="text-[10px] font-extrabold text-zinc-100">
-                                              {v.label}
-                                            </span>
-                                            <span className="text-[10px] text-zinc-300 font-semibold truncate max-w-[180px]">
-                                              {formatPokemonName(v.name)}
-                                            </span>
-                                            {v.id ? (
-                                              <span className="text-[10px] text-zinc-400 font-semibold">
-                                                #{String(v.id).padStart(3, "0")}
-                                              </span>
-                                            ) : null}
-                                          </button>
-                                        ))}
-
-                                        {remaining > 0 && (
-                                          <button
-                                            onClick={() =>
-                                              setExpanded((prev) => ({
-                                                ...prev,
-                                                [evo.name]: true,
-                                              }))
-                                            }
-                                            className="inline-flex items-center rounded-md border border-white/10 bg-black/30 hover:bg-black/40 px-2 py-1 transition"
-                                          >
-                                            <span className="text-[10px] font-extrabold text-zinc-100">
-                                              Ver mais (+{remaining})
-                                            </span>
-                                          </button>
-                                        )}
-
-                                        {isExpanded && allVarieties.length > LIMIT && (
-                                          <button
-                                            onClick={() =>
-                                              setExpanded((prev) => ({
-                                                ...prev,
-                                                [evo.name]: false,
-                                              }))
-                                            }
-                                            className="inline-flex items-center rounded-md border border-white/10 bg-black/30 hover:bg-black/40 px-2 py-1 transition"
-                                          >
-                                            <span className="text-[10px] font-extrabold text-zinc-100">
-                                              Ver menos
-                                            </span>
-                                          </button>
-                                        )}
-                                      </div>
-                                    </div>
-                                  )}
-                                </div>
-                              );
-                            })}
-                          </div>
-
-                          {/* seta entre estágios */}
-                          {stageIdx < evoStages.length - 1 && (
-                            <span className="text-zinc-200/80 font-extrabold px-1 mt-4">
-                              →
-                            </span>
-                          )}
-                        </div>
-                      ))}
+                    <div className="rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-3 col-span-2">
+                      <p className="text-xs font-semibold opacity-70">Habilidades</p>
+                      <p className="font-extrabold">
+                        {pokemon.abilities
+                          .map((a) => formatPokemonName(a.ability.name))
+                          .join(", ")}
+                      </p>
                     </div>
                   </div>
-                )}
+                </div>
+              </div>
 
-                {!evoLoading && !evoError && evoStages?.length === 0 && (
-                  <p className="mt-2 text-xs text-zinc-300">
-                    Este Pokémon não possui cadeia evolutiva disponível.
-                  </p>
-                )}
+            </div>
+
+          </div>
+
+          {/* ================= LINHA 2 ================= */}
+          <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+
+            {/* ================= Estatísticas (50%) ================= */}
+            <div
+              className="
+      rounded-xl
+      border border-black/10 dark:border-white/10
+      p-5
+      bg-cover bg-center bg-no-repeat
+    "
+              style={{ backgroundImage: "url('/wallpaper-cinza.png')" }}
+            >
+              <div className="bg-white/70 dark:bg-zinc-900/60 rounded-lg p-5 -m-5">
+                <h3 className="text-xl font-extrabold text-black dark:text-white">
+                  Estatísticas
+                </h3>
+
+                <div className="mt-4 space-y-3">
+                  {pokemon.stats.map((s) => {
+                    const value = Number(s.base_stat || 0);
+                    const pct = Math.min(100, Math.round((value / 255) * 100));
+                    const label = formatPokemonName(
+                      s.stat.name.replace("special-", "sp-")
+                    );
+
+                    return (
+                      <div key={s.stat.name} className="space-y-1">
+                        <div className="flex items-center justify-between text-xs font-semibold text-black/70 dark:text-white/70">
+                          <span>{label}</span>
+                          <span>{value}</span>
+                        </div>
+
+                        <div className="h-2 w-full rounded-full bg-black/10 dark:bg-white/10 overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-black/50 dark:bg-white/50"
+                            style={{ width: `${pct}%` }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
 
-            <div className="absolute inset-0 bg-black/25 z-0" />
+            {/* ================= Tipo / Fraquezas (IGUAL A ANTES) ================= */}
+            <div
+              className="
+      rounded-xl
+      border border-black/10 dark:border-white/10
+      p-5
+      bg-cover bg-center bg-no-repeat
+    "
+              style={{ backgroundImage: "url('/wallpaper-cinza.png')" }}
+            >
+              <div className="bg-white/70 dark:bg-zinc-900/60 rounded-lg p-5 -m-5">
+                <h3 className="text-xl font-extrabold text-black dark:text-white">
+                  Tipo / Fraquezas
+                </h3>
+
+                {/* Tipos */}
+                <div className="mt-5">
+                  <p className="text-xs font-semibold text-black/70 dark:text-white/70">
+                    Tipos
+                  </p>
+
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    {pokemon.types.map((t) => (
+                      <span
+                        key={t.type.name}
+                        className={`
+                px-4 py-2
+                rounded-lg
+                text-sm font-extrabold
+                capitalize
+                shadow-sm
+                text-white
+                ${getTypeClass(t.type.name)}
+              `}
+                      >
+                        {t.type.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Fraquezas */}
+                <div className="mt-6">
+                  <p className="text-xs font-semibold text-black/70 dark:text-white/70">
+                    Fraquezas {weakLoading ? "(calculando...)" : ""}
+                  </p>
+
+                  <div className="mt-3 flex flex-wrap gap-3">
+                    {weaknesses.length > 0 ? (
+                      weaknesses.map((w) => (
+                        <span
+                          key={w}
+                          className={`
+                  px-4 py-2
+                  rounded-lg
+                  text-sm font-extrabold
+                  capitalize
+                  shadow-sm
+                  text-white
+                  ${getTypeClass(w)}
+                `}
+                        >
+                          {w}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-sm text-black/60 dark:text-white/60">
+                        —
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
+
+        </motion.div>
+
+      </div>
+
+      {/* ================= LINHA 3: Linha evolutiva ================= */}
+      <div className="mt-6">
+        <div
+          className="
+      mx-auto w-full max-w-6xl
+      rounded-2xl
+      border border-black/10 dark:border-white/10
+      overflow-hidden
+      bg-[url('/wallpaper-preto.png')]
+      bg-cover bg-center bg-no-repeat
+      shadow-lg
+      p-6
+    "
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <h3 className="text-zinc-100 font-extrabold text-base md:text-lg">
+              Linha evolutiva
+            </h3>
+
+            {evoLoading && (
+              <span className="text-xs text-zinc-300">Carregando...</span>
+            )}
+          </div>
+
+          {evoError && (
+            <p className="text-xs text-red-300 mb-4">{evoError}</p>
+          )}
+
+          {/* ================= EVOLUÇÕES PRINCIPAIS ================= */}
+          {!evoLoading && !evoError && evoStages?.length > 0 && (
+            <div className="flex justify-center overflow-x-auto pb-4">
+              <div className="flex items-center gap-6 min-w-max">
+                {evoStages.map((stage, stageIdx) => (
+                  <div
+                    key={`stage-${stageIdx}`}
+                    className="flex items-center gap-6"
+                  >
+                    {stage.map((evo) => {
+                      const isCurrent =
+                        String(evo.id) === String(pokemon.id) ||
+                        evo.name === pokemon.name;
+
+                      return (
+                        <div key={evo.name} className="flex flex-col items-center">
+                          {/* Card da evolução */}
+                          <button
+                            onClick={() => router.push(`/Pokedex/${evo.id}`)}
+                            className={`
+                        flex flex-col items-center gap-2
+                        rounded-xl border
+                        px-6 py-3
+                        min-w-[180px]
+                        transition
+                        ${isCurrent
+                                ? "border-[#E3350D] bg-white/20"
+                                : "border-white/15 bg-white/10 hover:bg-white/20"
+                              }
+                      `}
+                          >
+                            <div className="relative w-20 h-20">
+                              <Image
+                                src={evo.artwork}
+                                alt={formatPokemonName(evo.name)}
+                                fill
+                                unoptimized
+                                className="object-contain"
+                              />
+                            </div>
+
+                            <p className="text-xs text-zinc-300 font-semibold">
+                              #{String(evo.id).padStart(3, "0")}
+                            </p>
+
+                            <p className="text-sm font-extrabold text-zinc-100 text-center">
+                              {formatPokemonName(evo.name)}
+                            </p>
+
+                            <div className="flex gap-1 mt-1">
+                              {evo.types.slice(0, 2).map((tp) => (
+                                <span
+                                  key={tp}
+                                  className={`px-2 py-1 rounded text-[10px] font-extrabold capitalize text-white ${getTypeClass(
+                                    tp
+                                  )}`}
+                                >
+                                  {tp}
+                                </span>
+                              ))}
+                            </div>
+                          </button>
+                        </div>
+                      );
+                    })}
+
+                    {/* Seta */}
+                    {stageIdx < evoStages.length - 1 && (
+                      <span className="text-zinc-200/80 text-xl font-extrabold">
+                        →
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* ================= MECÂNICAS / FORMAS ================= */}
+          {!evoLoading &&
+            !evoError &&
+            evoStages?.some((s) =>
+              s.some((evo) => evo.varieties && evo.varieties.length > 0)
+            ) && (
+              <div className="mt-8">
+                <h4 className="text-xs font-extrabold text-zinc-300 mb-3 uppercase tracking-wide text-center">
+                  Formas, Mega Evoluções e Mecânicas
+                </h4>
+
+                <div className="flex flex-wrap justify-center gap-3">
+                  {evoStages.flat().map((evo) =>
+                    evo.varieties.map((v) => (
+                      <button
+                        key={`${evo.name}-${v.name}`}
+                        onClick={() =>
+                          router.push(`/Pokedex/${v.id ?? v.name}`)
+                        }
+                        className="
+                    flex items-center gap-2
+                    rounded-lg
+                    border border-white/15
+                    bg-white/10 hover:bg-white/20
+                    px-4 py-2
+                    min-w-[220px]
+                    transition
+                  "
+                      >
+                        <span className="text-[10px] font-extrabold text-zinc-100">
+                          {v.label}
+                        </span>
+
+                        <span className="text-[10px] text-zinc-300 font-semibold truncate">
+                          {formatPokemonName(v.name)}
+                        </span>
+
+                        {v.id && (
+                          <span className="text-[10px] text-zinc-400 font-semibold ml-auto">
+                            #{String(v.id).padStart(3, "0")}
+                          </span>
+                        )}
+                      </button>
+                    ))
+                  )}
+                </div>
+              </div>
+            )}
+
+          {!evoLoading && !evoError && evoStages?.length === 0 && (
+            <p className="text-xs text-zinc-300 text-center">
+              Este Pokémon não possui cadeia evolutiva disponível.
+            </p>
+          )}
         </div>
       </div>
 
