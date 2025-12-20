@@ -843,48 +843,80 @@ export default function PokemonId() {
       bg-[url('/wallpaper-preto.png')]
       bg-cover bg-center bg-no-repeat
       shadow-lg
-      p-6
     "
         >
-          {/* Header */}
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-zinc-100 font-extrabold text-base md:text-lg">
-              Linha evolutiva
-            </h3>
+          <div className="bg-black/40 p-6">
 
-            {evoLoading && (
-              <span className="text-xs text-zinc-300">Carregando...</span>
-            )}
-          </div>
+            {/* Header */}
+            <div className="flex items-center justify-between mb-6">
+              <h3 className="text-zinc-100 font-extrabold text-base md:text-lg">
+                Linha evolutiva
+              </h3>
+            </div>
 
-          {evoError && (
-            <p className="text-xs text-red-300 mb-4">{evoError}</p>
-          )}
+            {!evoLoading && !evoError && evoStages?.length > 0 && (() => {
+              const isBranched = evoStages.some(stage => stage.length > 2);
 
-          {/* ================= EVOLUÇÕES PRINCIPAIS ================= */}
-          {!evoLoading && !evoError && evoStages?.length > 0 && (
-            <div className="flex justify-center overflow-x-auto pb-4">
-              <div className="flex items-center gap-6 min-w-max">
-                {evoStages.map((stage, stageIdx) => (
-                  <div
-                    key={`stage-${stageIdx}`}
-                    className="flex items-center gap-6"
-                  >
-                    {stage.map((evo) => {
-                      const isCurrent =
-                        String(evo.id) === String(pokemon.id) ||
-                        evo.name === pokemon.name;
+              /* ================= EVOLUÇÃO RAMIFICADA (EEVEE) ================= */
+              if (isBranched) {
+                const base = evoStages[0][0];
+                const evolutions = evoStages.flat().slice(1);
 
-                      return (
-                        <div key={evo.name} className="flex flex-col items-center">
-                          {/* Card da evolução */}
+                return (
+                  <div className="flex flex-col items-center gap-8">
+
+                    {/* Pokémon base */}
+                    <button
+                      onClick={() => router.push(`/Pokedex/${base.id}`)}
+                      className="
+                  flex flex-col items-center gap-2
+                  rounded-xl border border-[#E3350D]
+                  bg-white/20
+                  px-6 py-4
+                "
+                    >
+                      <div className="relative w-24 h-24">
+                        <Image
+                          src={base.artwork}
+                          alt={formatPokemonName(base.name)}
+                          fill
+                          unoptimized
+                          className="object-contain"
+                        />
+                      </div>
+
+                      <p className="text-sm font-extrabold text-zinc-100">
+                        {formatPokemonName(base.name)}
+                      </p>
+                    </button>
+
+                    {/* Linha divisória */}
+                    <div className="w-24 h-px bg-white/30" />
+
+                    {/* Evoluções */}
+                    <div
+                      className="
+                  grid
+                  grid-cols-2
+                  sm:grid-cols-3
+                  md:grid-cols-4
+                  lg:grid-cols-5
+                  gap-6
+                "
+                    >
+                      {evolutions.map(evo => {
+                        const isCurrent =
+                          String(evo.id) === String(pokemon.id);
+
+                        return (
                           <button
+                            key={evo.name}
                             onClick={() => router.push(`/Pokedex/${evo.id}`)}
                             className={`
                         flex flex-col items-center gap-2
                         rounded-xl border
-                        px-6 py-3
-                        min-w-[180px]
+                        px-4 py-4
+                        min-w-40
                         transition
                         ${isCurrent
                                 ? "border-[#E3350D] bg-white/20"
@@ -902,99 +934,88 @@ export default function PokemonId() {
                               />
                             </div>
 
-                            <p className="text-xs text-zinc-300 font-semibold">
-                              #{String(evo.id).padStart(3, "0")}
-                            </p>
-
-                            <p className="text-sm font-extrabold text-zinc-100 text-center">
+                            <p className="text-xs font-extrabold text-zinc-100">
                               {formatPokemonName(evo.name)}
                             </p>
 
-                            <div className="flex gap-1 mt-1">
-                              {evo.types.slice(0, 2).map((tp) => (
+                            <div className="flex gap-1">
+                              {evo.types.slice(0, 2).map(tp => (
                                 <span
                                   key={tp}
-                                  className={`px-2 py-1 rounded text-[10px] font-extrabold capitalize text-white ${getTypeClass(
-                                    tp
-                                  )}`}
+                                  className={`px-2 py-1 rounded text-[10px] font-extrabold capitalize text-white ${getTypeClass(tp)}`}
                                 >
                                   {tp}
                                 </span>
                               ))}
                             </div>
                           </button>
-                        </div>
-                      );
-                    })}
-
-                    {/* Seta */}
-                    {stageIdx < evoStages.length - 1 && (
-                      <span className="text-zinc-200/80 text-xl font-extrabold">
-                        →
-                      </span>
-                    )}
+                        );
+                      })}
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
-          )}
+                );
+              }
 
-          {/* ================= MECÂNICAS / FORMAS ================= */}
-          {!evoLoading &&
-            !evoError &&
-            evoStages?.some((s) =>
-              s.some((evo) => evo.varieties && evo.varieties.length > 0)
-            ) && (
-              <div className="mt-8">
-                <h4 className="text-xs font-extrabold text-zinc-300 mb-3 uppercase tracking-wide text-center">
-                  Formas, Mega Evoluções e Mecânicas
-                </h4>
+              /* ================= EVOLUÇÃO LINEAR (PADRÃO) ================= */
+              return (
+                <div className="flex justify-center overflow-x-auto pb-4">
+                  <div className="flex items-center gap-6 min-w-max">
+                    {evoStages.map((stage, stageIdx) => (
+                      <div key={stageIdx} className="flex items-center gap-6">
+                        {stage.map(evo => {
+                          const isCurrent =
+                            String(evo.id) === String(pokemon.id);
 
-                <div className="flex flex-wrap justify-center gap-3">
-                  {evoStages.flat().map((evo) =>
-                    evo.varieties.map((v) => (
-                      <button
-                        key={`${evo.name}-${v.name}`}
-                        onClick={() =>
-                          router.push(`/Pokedex/${v.id ?? v.name}`)
-                        }
-                        className="
-                    flex items-center gap-2
-                    rounded-lg
-                    border border-white/15
-                    bg-white/10 hover:bg-white/20
-                    px-4 py-2
-                    min-w-[220px]
-                    transition
-                  "
-                      >
-                        <span className="text-[10px] font-extrabold text-zinc-100">
-                          {v.label}
-                        </span>
+                          return (
+                            <button
+                              key={evo.name}
+                              onClick={() => router.push(`/Pokedex/${evo.id}`)}
+                              className={`
+                          flex flex-col items-center gap-2
+                          rounded-xl border
+                          px-5 py-4
+                          min-w-40
+                          transition
+                          ${isCurrent
+                                  ? "border-[#E3350D] bg-white/20"
+                                  : "border-white/15 bg-white/10 hover:bg-white/20"
+                                }
+                        `}
+                            >
+                              <div className="relative w-20 h-20">
+                                <Image
+                                  src={evo.artwork}
+                                  alt={formatPokemonName(evo.name)}
+                                  fill
+                                  unoptimized
+                                  className="object-contain"
+                                />
+                              </div>
 
-                        <span className="text-[10px] text-zinc-300 font-semibold truncate">
-                          {formatPokemonName(v.name)}
-                        </span>
+                              <p className="text-sm font-extrabold text-zinc-100">
+                                {formatPokemonName(evo.name)}
+                              </p>
+                            </button>
+                          );
+                        })}
 
-                        {v.id && (
-                          <span className="text-[10px] text-zinc-400 font-semibold ml-auto">
-                            #{String(v.id).padStart(3, "0")}
+                        {stageIdx < evoStages.length - 1 && (
+                          <span className="text-zinc-200/70 text-xl font-extrabold">
+                            →
                           </span>
                         )}
-                      </button>
-                    ))
-                  )}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
 
-          {!evoLoading && !evoError && evoStages?.length === 0 && (
-            <p className="text-xs text-zinc-300 text-center">
-              Este Pokémon não possui cadeia evolutiva disponível.
-            </p>
-          )}
+          </div>
         </div>
       </div>
+
+
 
     </div>
   );
