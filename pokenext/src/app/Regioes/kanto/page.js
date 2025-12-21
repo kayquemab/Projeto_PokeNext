@@ -185,12 +185,16 @@ export default function Kanto() {
                 </p>
             </section>
 
-            {/* ENCERRAMENTO */}
+            {/* ENCERRAMENTO  */}
             <section className="px-10 lg:px-8 mb-24">
                 <p className="text-zinc-400 max-w-3xl italic">
+
+
                     Kanto não é apenas uma região — é o início de uma lenda.
                     Cada cidade, cada rota e cada batalha carregam a essência
                     do que significa ser um Treinador Pokémon.
+
+                    
                 </p>
             </section>
 
