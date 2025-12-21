@@ -862,18 +862,25 @@ export default function PokemonId() {
                 const base = evoStages[0][0];
                 const evolutions = evoStages.flat().slice(1);
 
+                const isBaseCurrent =
+                  String(base.id) === String(pokemon.id);
+
                 return (
                   <div className="flex flex-col items-center gap-8">
 
                     {/* Pokémon base */}
                     <button
                       onClick={() => router.push(`/Pokedex/${base.id}`)}
-                      className="
+                      className={`
                   flex flex-col items-center gap-2
-                  rounded-xl border border-[#E3350D]
-                  bg-white/20
+                  rounded-xl border
                   px-6 py-4
-                "
+                  transition
+                  ${isBaseCurrent
+                          ? "border-[#E3350D] bg-white/20"
+                          : "border-white/15 bg-white/10 hover:bg-white/20"
+                        }
+                `}
                     >
                       <div className="relative w-24 h-24">
                         <Image
@@ -888,6 +895,23 @@ export default function PokemonId() {
                       <p className="text-sm font-extrabold text-zinc-100">
                         {formatPokemonName(base.name)}
                       </p>
+
+                      {/* Número */}
+                      <span className="text-[11px] font-bold text-zinc-300">
+                        #{String(base.id).padStart(3, "0")}
+                      </span>
+
+                      {/* Tipos */}
+                      <div className="flex gap-1">
+                        {base.types.slice(0, 2).map(tp => (
+                          <span
+                            key={tp}
+                            className={`px-2 py-1 rounded text-[10px] font-extrabold capitalize text-white ${getTypeClass(tp)}`}
+                          >
+                            {tp}
+                          </span>
+                        ))}
+                      </div>
                     </button>
 
                     {/* Linha divisória */}
@@ -938,6 +962,12 @@ export default function PokemonId() {
                               {formatPokemonName(evo.name)}
                             </p>
 
+                            {/* Número */}
+                            <span className="text-[10px] font-bold text-zinc-300">
+                              #{String(evo.id).padStart(3, "0")}
+                            </span>
+
+                            {/* Tipos */}
                             <div className="flex gap-1">
                               {evo.types.slice(0, 2).map(tp => (
                                 <span
@@ -995,6 +1025,23 @@ export default function PokemonId() {
                               <p className="text-sm font-extrabold text-zinc-100">
                                 {formatPokemonName(evo.name)}
                               </p>
+
+                              {/* Número */}
+                              <span className="text-[11px] font-bold text-zinc-300">
+                                #{String(evo.id).padStart(3, "0")}
+                              </span>
+
+                              {/* Tipos */}
+                              <div className="flex gap-1">
+                                {evo.types.slice(0, 2).map(tp => (
+                                  <span
+                                    key={tp}
+                                    className={`px-2 py-1 rounded text-[10px] font-extrabold capitalize text-white ${getTypeClass(tp)}`}
+                                  >
+                                    {tp}
+                                  </span>
+                                ))}
+                              </div>
                             </button>
                           );
                         })}
@@ -1014,8 +1061,6 @@ export default function PokemonId() {
           </div>
         </div>
       </div>
-
-
 
     </div>
   );
