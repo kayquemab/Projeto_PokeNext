@@ -1115,7 +1115,6 @@ export default function PokemonId() {
         className="
     w-full max-w-6xl
     rounded-2xl
-    border border-black/10 dark:border-white/10
     mx-auto mt-6
     overflow-visible
   "
