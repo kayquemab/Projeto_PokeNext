@@ -488,7 +488,7 @@ export default function PokemonId() {
   return (
     <div>
 
-      {/* HEADER - funcionalidade preservada */}
+      {/* Avançar e retroceder */}
       <header className="relative w-full">
         <motion.div className="mx-auto w-full max-w-6xl pt-0 pb-0">
           <div className="w-full">
@@ -565,7 +565,6 @@ export default function PokemonId() {
 
       {/* Conteúdo principal */}
       <div className="mt-5 w-full px-4">
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -574,7 +573,7 @@ export default function PokemonId() {
         >
 
           {/* ================= TOPO CENTRAL ================= */}
-          <div className="mb-8 text-center">
+          <div className="mb-6 text-center">
 
             <h1 className="flex items-center justify-center gap-3 text-3xl sm:text-4xl font-semibold tracking-tight text-neutral-900">
               <span className="opacity-90">
@@ -586,6 +585,36 @@ export default function PokemonId() {
               </span>
             </h1>
 
+          </div>
+
+          {/* ordenar tipos */}
+          <div className="w-full flex items-center justify-center mb-3">
+            <div className="w-full sm:w-72">
+              <div className="relative w-full">
+                <select
+
+                  className="w-full appearance-none bg-neutral-700 text-white px-3 py-2 pr-10 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
+                >
+                  <option value="id-asc">Menor número primeiro</option>
+                  <option value="id-desc">Maior número primeiro</option>
+                  <option value="az">A-Z</option>
+                  <option value="za">Z-A</option>
+                </select>
+
+                <svg
+                  className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+            </div>
           </div>
 
           {/* ================= LINHA 1 ================= */}
@@ -829,7 +858,6 @@ export default function PokemonId() {
           </div>
 
         </motion.div>
-
       </div>
 
       {/* ================= LINHA 3: Linha evolutiva ================= */}
@@ -882,7 +910,7 @@ export default function PokemonId() {
                         }
                 `}
                     >
-                      <div className="relative w-24 h-24">
+                      <div className="relative w-32 h-32">
                         <Image
                           src={base.artwork}
                           alt={formatPokemonName(base.name)}
@@ -915,7 +943,7 @@ export default function PokemonId() {
                     </button>
 
                     {/* Linha divisória */}
-                    <div className="w-24 h-px bg-white/30" />
+                    <div className="w-32 h-px bg-white/30" />
 
                     {/* Evoluções */}
                     <div
@@ -948,7 +976,7 @@ export default function PokemonId() {
                               }
                       `}
                           >
-                            <div className="relative w-20 h-20">
+                            <div className="relative w-28 h-28">
                               <Image
                                 src={evo.artwork}
                                 alt={formatPokemonName(evo.name)}
@@ -1012,7 +1040,7 @@ export default function PokemonId() {
                                 }
                         `}
                             >
-                              <div className="relative w-20 h-20">
+                              <div className="relative w-28 h-28">
                                 <Image
                                   src={evo.artwork}
                                   alt={formatPokemonName(evo.name)}
