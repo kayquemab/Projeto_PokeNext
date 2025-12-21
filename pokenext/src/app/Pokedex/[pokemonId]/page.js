@@ -142,7 +142,13 @@ export default function PokemonId() {
   const safeMax = Number(maxId) > 0 ? Number(maxId) : NATIONAL_DEX_FALLBACK;
 
   const prevId = currentId > 1 ? currentId - 1 : safeMax; // #001 -> último (1025)
-  const nextId = currentId < safeMax ? currentId + 1 : 1; // último -> #001
+  const nextId = currentId < safeMax ? currentId + 1 : 1; // último -> #
+
+  const currentEvoData = evoStages
+    .flat()
+    .find(p => String(p.id) === String(pokemon.id));
+
+  const hasOtherForms = Array.isArray(currentEvoData?.varieties) && currentEvoData.varieties.length > 0;
 
   const goTo = (id) => {
     if (isNavigating) return;
@@ -574,7 +580,6 @@ export default function PokemonId() {
 
           {/* ================= TOPO CENTRAL ================= */}
           <div className="mb-6 text-center">
-
             <h1 className="flex items-center justify-center gap-3 text-3xl sm:text-4xl font-semibold tracking-tight text-neutral-900">
               <span className="opacity-90">
                 {formatPokemonName(pokemon.name)}
@@ -584,8 +589,47 @@ export default function PokemonId() {
                 #{String(pokemon.id).padStart(4, "0")}
               </span>
             </h1>
-
           </div>
+
+          {/* Mecanismo para formas */}
+          {hasOtherForms && (
+            <div className="w-full flex items-center justify-end mb-2">
+              <div className="w-full sm:w-72">
+                <div className="relative w-full">
+                  <select
+                    className="w-full appearance-none bg-neutral-700 text-white px-3 py-2 pr-10 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
+                    defaultValue=""
+                    onChange={(e) => {
+                      const selectedId = e.target.value;
+                      if (selectedId) router.push(`/Pokedex/${selectedId}`);
+                    }}
+                  >
+                    <option value="" disabled>
+                      Outras formas
+                    </option>
+                    {currentEvoData.varieties.map(v => (
+                      <option key={v.id} value={v.id}>
+                        {v.label} ({formatPokemonName(v.name)})
+                      </option>
+                    ))}
+                  </select>
+
+                  <svg
+                    className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* ================= LINHA 1 ================= */}
           <div className="grid grid-cols-1 md:grid-cols-[520px_1fr] gap-6 items-start">
@@ -707,7 +751,7 @@ export default function PokemonId() {
           {/* ================= LINHA 2 ================= */}
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
 
-            {/* ================= Estatísticas (50%) ================= */}
+            {/* ================= Estatísticas ================= */}
             <div
               className="
       rounded-xl
@@ -750,7 +794,7 @@ export default function PokemonId() {
               </div>
             </div>
 
-            {/* ================= Tipo / Fraquezas (IGUAL A ANTES) ================= */}
+            {/* ================= Tipo / Fraquezas ================= */}
             <div
               className="
       rounded-xl
