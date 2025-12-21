@@ -144,11 +144,18 @@ export default function PokemonId() {
   const prevId = currentId > 1 ? currentId - 1 : safeMax; // #001 -> último (1025)
   const nextId = currentId < safeMax ? currentId + 1 : 1; // último -> #
 
+  // Encontra o Pokémon atual
   const currentEvoData = evoStages
     .flat()
     .find(p => String(p.id) === String(pokemon.id));
 
-  const hasOtherForms = Array.isArray(currentEvoData?.varieties) && currentEvoData.varieties.length > 0;
+  // Descobre o Pokémon que possui variedades (a base)
+  const baseWithVarieties = evoStages.flat().find(p => Array.isArray(p.varieties) && p.varieties.length > 0 && p.varieties.some(v => String(v.id) === String(pokemon.id))) || currentEvoData;
+
+  // Todas as formas (a base + variedades)
+  const allForms = baseWithVarieties
+    ? [{ id: baseWithVarieties.id, label: baseWithVarieties.name, name: baseWithVarieties.name }, ...(baseWithVarieties.varieties || [])]
+    : [];
 
   const goTo = (id) => {
     if (isNavigating) return;
@@ -592,22 +599,21 @@ export default function PokemonId() {
           </div>
 
           {/* Mecanismo para formas */}
-          {hasOtherForms && (
+          {allForms.length > 1 && (
             <div className="w-full flex items-center justify-end mb-2">
               <div className="w-full sm:w-72">
                 <div className="relative w-full">
                   <select
                     className="w-full appearance-none bg-neutral-700 text-white px-3 py-2 pr-10 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
-                    defaultValue=""
+                    value={String(pokemon.id)}
                     onChange={(e) => {
                       const selectedId = e.target.value;
-                      if (selectedId) router.push(`/Pokedex/${selectedId}`);
+                      if (selectedId && selectedId !== String(pokemon.id)) {
+                        router.push(`/Pokedex/${selectedId}`);
+                      }
                     }}
                   >
-                    <option value="" disabled>
-                      Outras formas
-                    </option>
-                    {currentEvoData.varieties.map(v => (
+                    {allForms.map(v => (
                       <option key={v.id} value={v.id}>
                         {v.label} ({formatPokemonName(v.name)})
                       </option>
