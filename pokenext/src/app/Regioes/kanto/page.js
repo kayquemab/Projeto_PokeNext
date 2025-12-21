@@ -1,204 +1,146 @@
-"use client";
-
-export default function Kanto() {
+export default function KantoNewsPage() {
     return (
-        <div className="relative w-full text-zinc-200">
+        <div className="relative w-full flex flex-col max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <main className="min-h-screen bg-white text-gray-900">
 
-            {/* HERO */}
-            <section className="w-full mt-10 px-10 lg:px-8 mb-16">
-                <h1 className="text-4xl font-bold mb-4">
-                    Região de Kanto
-                </h1>
-
-                <p className="text-red/80 max-w-3xl">
-                    O ponto de partida de milhões de treinadores ao redor do mundo.
-                    Kanto é a primeira região apresentada na franquia Pokémon,
-                    onde a aventura começou e a lenda nasceu.
-                </p>
-            </section>
-
-            {/* VISÃO GERAL */}
-            <section className="px-10 lg:px-8 mb-16">
-                <h2 className="text-2xl font-semibold mb-6">
-                    Visão geral
-                </h2>
-
-                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
-                    <li className="bg-neutral-900/60 p-4 rounded-lg">
-                        🌍 <span className="font-semibold">Região:</span> Kanto
-                    </li>
-                    <li className="bg-neutral-900/60 p-4 rounded-lg">
-                        🎮 <span className="font-semibold">Geração:</span> I
-                    </li>
-                    <li className="bg-neutral-900/60 p-4 rounded-lg">
-                        🧬 <span className="font-semibold">Pokémon nativos:</span> 151
-                    </li>
-                    <li className="bg-neutral-900/60 p-4 rounded-lg">
-                        🏆 <span className="font-semibold">Liga Pokémon:</span> Indigo Plateau
-                    </li>
-                </ul>
-            </section>
-
-            {/* POKÉMON INICIAIS */}
-            <section className="px-10 lg:px-8 mb-20">
-                <h2 className="text-2xl font-semibold mb-6">
-                    Pokémon Iniciais
-                </h2>
-
-                <p className="text-zinc-400 mb-8 max-w-3xl">
-                    Todo treinador que inicia sua jornada em Kanto escolhe um entre três Pokémon,
-                    cada um representando um caminho diferente de batalha e estratégia.
-                </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-                    <div className="bg-neutral-900/60 p-6 rounded-lg">
-                        🌱
-                        <h3 className="font-semibold mt-2">Bulbasaur</h3>
-                        <p className="text-sm text-zinc-400 mt-1">
-                            Tipo Grama/Veneno. Equilibrado e resistente,
-                            cresce junto com seu treinador.
+                {/* HERO */}
+                <section className="container mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                            Explore a Região de <br /> Kanto
+                        </h1>
+                        <p className="mt-4 text-gray-600 max-w-md">
+                            Fique por dentro das últimas notícias, descobertas e acontecimentos
+                            das cidades, rotas e ginásios da região mais icônica do mundo Pokémon.
                         </p>
+                        <button className="mt-6 px-6 py-3 rounded-xl bg-black text-white hover:bg-gray-800 transition">
+                            Ver últimas notícias
+                        </button>
                     </div>
 
-                    <div className="bg-neutral-900/60 p-6 rounded-lg">
-                        🔥
-                        <h3 className="font-semibold mt-2">Charmander</h3>
-                        <p className="text-sm text-zinc-400 mt-1">
-                            Tipo Fogo. Frágil no início, mas extremamente poderoso
-                            em sua evolução final.
-                        </p>
+                    <div className="grid grid-cols-2 gap-4">
+                        <div className="h-48 bg-gray-200 rounded-2xl flex items-center justify-center text-sm">
+                            Cidade de Pallet
+                        </div>
+                        <div className="h-48 bg-gray-200 rounded-2xl flex items-center justify-center text-sm">
+                            Cerulean City
+                        </div>
+                        <div className="col-span-2 h-56 bg-gray-200 rounded-2xl flex items-center justify-center text-sm">
+                            Floresta de Viridian
+                        </div>
+                    </div>
+                </section>
+
+                {/* LOCAIS EM DESTAQUE */}
+                <section className="container mx-auto px-6 py-10">
+                    <div className="flex items-center justify-between mb-6">
+                        <h2 className="text-2xl font-semibold">Locais em Destaque em Kanto</h2>
+                        <button className="px-4 py-2 border rounded-lg hover:bg-gray-100 transition">
+                            Explorar região
+                        </button>
                     </div>
 
-                    <div className="bg-neutral-900/60 p-6 rounded-lg">
-                        💧
-                        <h3 className="font-semibold mt-2">Squirtle</h3>
-                        <p className="text-sm text-zinc-400 mt-1">
-                            Tipo Água. Defensivo e confiável,
-                            ideal para batalhas estratégicas.
-                        </p>
+                    <div className="flex gap-3 mb-6 flex-wrap text-sm text-gray-600">
+                        <span className="px-3 py-1 rounded-full bg-gray-100">Cidades</span>
+                        <span className="px-3 py-1 rounded-full bg-gray-100">Ginásios</span>
+                        <span className="px-3 py-1 rounded-full bg-gray-100">Rotas</span>
+                        <span className="px-3 py-1 rounded-full bg-gray-100">Locais Lendários</span>
                     </div>
-                </div>
-            </section>
 
-            {/* CIDADES E GINÁSIOS */}
-            <section className="px-10 lg:px-8 mb-20">
-                <h2 className="text-2xl font-semibold mb-6">
-                    Cidades e Ginásios
-                </h2>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        {[
+                            { name: "Pewter City", desc: "Ginásio do Brock · Tipo Pedra" },
+                            { name: "Cerulean City", desc: "Ginásio da Misty · Tipo Água" },
+                            { name: "Lavender Town", desc: "Torre Pokémon · Tipo Fantasma" },
+                            { name: "Cinnabar Island", desc: "Ginásio do Blaine · Tipo Fogo" },
+                        ].map((place, i) => (
+                            <div key={i} className="space-y-3">
+                                <div className="h-40 bg-gray-200 rounded-2xl flex items-center justify-center text-sm">
+                                    {place.name}
+                                </div>
+                                <div>
+                                    <p className="font-medium">{place.name}</p>
+                                    <p className="text-sm text-gray-500">{place.desc}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
 
-                <p className="text-zinc-400 mb-8 max-w-3xl">
-                    Kanto é composta por cidades icônicas, cada uma com sua identidade,
-                    desafios únicos e líderes de ginásio que testam as habilidades
-                    dos treinadores.
-                </p>
+                {/* ÚLTIMAS NOTÍCIAS */}
+                <section className="container mx-auto px-6 py-10">
+                    <div className="flex items-center justify-between mb-6">
+                        <h2 className="text-2xl font-semibold">Últimas Notícias de Kanto</h2>
+                        <button className="px-4 py-2 border rounded-lg hover:bg-gray-100 transition">
+                            Ver todas
+                        </button>
+                    </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
-                    {[
-                        "Pewter City — Brock (Pedra)",
-                        "Cerulean City — Misty (Água)",
-                        "Vermilion City — Lt. Surge (Elétrico)",
-                        "Celadon City — Erika (Grama)",
-                        "Fuchsia City — Koga (Venenoso)",
-                        "Saffron City — Sabrina (Psíquico)",
-                        "Cinnabar Island — Blaine (Fogo)",
-                        "Viridian City — Giovanni (Terra)",
-                    ].map((city) => (
-                        <div
-                            key={city}
-                            className="bg-neutral-900/60 p-4 rounded-lg"
-                        >
-                            {city}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div className="lg:col-span-2 h-72 bg-gray-200 rounded-2xl p-6 flex items-end">
+                            <p className="font-semibold">
+                                Atividade incomum registrada na Caverna Cerulean
+                            </p>
                         </div>
-                    ))}
-                </div>
-            </section>
 
-            {/* INSÍGNIAS */}
-            <section className="px-10 lg:px-8 mb-20">
-                <h2 className="text-2xl font-semibold mb-6">
-                    Insígnias de Kanto
-                </h2>
-
-                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6 text-center text-sm">
-                    {[
-                        "Boulder",
-                        "Cascade",
-                        "Thunder",
-                        "Rainbow",
-                        "Soul",
-                        "Marsh",
-                        "Volcano",
-                        "Earth",
-                    ].map((badge) => (
-                        <div
-                            key={badge}
-                            className="bg-neutral-900/60 p-4 rounded-lg"
-                        >
-                            🏅
-                            <p className="mt-2">{badge}</p>
+                        <div className="space-y-4">
+                            {[
+                                "Ginásio de Cinnabar reabre após atividade vulcânica",
+                                "Lt. Surge anuncia batalhas amistosas em Vermilion",
+                                "Aumento de Pokémon selvagens na Rota 1",
+                            ].map((news, i) => (
+                                <div key={i} className="flex gap-4">
+                                    <div className="w-24 h-20 bg-gray-200 rounded-xl" />
+                                    <div>
+                                        <p className="font-medium text-sm">{news}</p>
+                                        <p className="text-xs text-gray-500 mt-1">
+                                            Relatório oficial da Liga Pokémon
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </section>
+                    </div>
+                </section>
 
-            {/* LENDÁRIOS */}
-            <section className="px-10 lg:px-8 mb-20">
-                <h2 className="text-2xl font-semibold mb-6">
-                    Pokémon Lendários e Míticos
-                </h2>
+                {/* TREINADOR EM DESTAQUE */}
+                <section className="container mx-auto px-6 py-10">
+                    <h2 className="text-2xl font-semibold mb-6">Treinador em Destaque</h2>
 
-                <p className="text-zinc-400 mb-8 max-w-3xl">
-                    Lendas antigas falam de Pokémon extremamente raros,
-                    escondidos em locais remotos e protegidos por desafios intensos.
-                </p>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+                        <div className="space-y-4">
+                            <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 rounded-full bg-gray-300" />
+                                <div>
+                                    <p className="font-medium">Treinador Red</p>
+                                    <p className="text-sm text-gray-500">
+                                        Explorador da Região de Kanto
+                                    </p>
+                                </div>
+                            </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
-                    {[
-                        { name: "Articuno", emoji: "❄️" },
-                        { name: "Zapdos", emoji: "⚡" },
-                        { name: "Moltres", emoji: "🔥" },
-                        { name: "Mewtwo", emoji: "🧬" },
-                        { name: "Mew", emoji: "✨" },
-                    ].map((pokemon) => (
-                        <div
-                            key={pokemon.name}
-                            className="bg-neutral-900/60 p-6 rounded-lg"
-                        >
-                            <div className="text-3xl mb-2">{pokemon.emoji}</div>
-                            <p className="font-semibold">{pokemon.name}</p>
+                            <p className="text-gray-600 text-sm">
+                                Uma jornada histórica enfrentando líderes de ginásio,
+                                documentando Pokémon raros e eventos importantes para
+                                a Liga Pokémon.
+                            </p>
+
+                            <button className="px-4 py-2 border rounded-lg hover:bg-gray-100 transition">
+                                Ver jornada completa
+                            </button>
                         </div>
-                    ))}
-                </div>
-            </section>
 
-            {/* EQUIPE ROCKET */}
-            <section className="px-10 lg:px-8 mb-20">
-                <h2 className="text-2xl font-semibold mb-6">
-                    Team Rocket
-                </h2>
+                        <div className="lg:col-span-2 h-64 bg-gray-200 rounded-2xl relative">
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-14 h-14 rounded-full bg-white shadow flex items-center justify-center">
+                                    ▶
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-                <p className="text-zinc-400 max-w-3xl">
-                    Atuando nas sombras de Kanto, a Team Rocket busca explorar Pokémon
-                    para ganho próprio. Liderada por Giovanni, a organização criminosa
-                    está presente em diversos pontos da região, incluindo ginásios,
-                    cassinos e esconderijos secretos.
-                </p>
-            </section>
-
-            {/* ENCERRAMENTO  */}
-            <section className="px-10 lg:px-8 mb-24">
-                <p className="text-zinc-400 max-w-3xl italic">
-
-
-                    Kanto não é apenas uma região — é o início de uma lenda.
-                    Cada cidade, cada rota e cada batalha carregam a essência
-                    do que significa ser um Treinador Pokémon.
-
-                    
-                </p>
-            </section>
-
+            </main>
         </div>
     );
 }
-
