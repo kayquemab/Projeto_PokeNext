@@ -845,7 +845,7 @@ export default function PokemonId() {
       shadow-lg
     "
         >
-          <div className="bg-black/40 p-6">
+          <div className="p-6">
 
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
