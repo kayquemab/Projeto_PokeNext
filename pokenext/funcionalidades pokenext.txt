@@ -1,0 +1,210 @@
+Funcionalidades principais (visíveis pro usuário)
+
+1) Homepage / Hub de features — /
+
+Página inicial que apresenta o projeto e serve como “portal” para acessar as ferramentas.
+
+Tem cards/atalhos para as principais áreas (time, análise, moves etc.) e animações.
+
+2) Dashboard do treinador — /dashboard
+
+Um painel geral que resume seu “perfil” dentro do app.
+
+Mostra visão rápida de time atual, conquistas/nível, e widgets (ex.: clima / Pokémon do dia).
+
+3) Construtor de Time — /team-builder
+
+Monta um time com até 6 Pokémon.
+
+Busca com autocomplete para encontrar Pokémon rapidamente.
+
+Mostra detalhes do Pokémon escolhido (ex.: tipos, stats, sprite).
+
+Permite:
+
+Salvar/Carregar time (persistência local)
+
+Exportar time (JSON)
+
+Importar time (JSON)
+
+Limpar time
+
+4) Análise do Time — /team-analysis
+
+Faz uma análise do time montado e mostra:
+
+Fraquezas, resistências e imunidades
+
+Cobertura de tipos (o que seu time cobre / sofre)
+
+Visão de stats do time (médias/insights)
+
+Pontuação (score)/indicadores visuais de performance do time
+
+5) Sugestão automática de Time — /team/suggest
+
+Gera recomendações de Pokémon para melhorar o time atual.
+
+A ideia é corrigir fraquezas e aumentar cobertura/sinergia, sugerindo opções adequadas.
+
+Permite aplicar a sugestão ao time.
+
+6) Coach “AI” (rule-based) — /ai-coach
+
+Um chat estilo “Professor Oak” que:
+
+Lê seu time atual
+
+Gera um diagnóstico (pontos fortes/fracos)
+
+Dá dicas estratégicas (roles, sinergia, cobertura, melhorias)
+
+Importante: é “AI” simulada por regras (StrategyEngine), não é integração com API externa.
+
+7) Simulador de Batalha — /battle-sim
+
+Simula uma batalha por turnos (com log do que acontece).
+
+Calcula dano com fatores como:
+
+STAB
+
+Efetividade de tipos
+
+Crítico, variação aleatória e accuracy
+
+Observação: é um motor simplificado (não é o sistema completo oficial com todos status/itens/moves reais por Pokémon).
+
+8) Social Hub (compartilhar time) — /social-hub
+
+Permite compartilhar seu time de forma prática.
+
+Gera:
+
+Código do time
+
+QR Code do time
+
+Mantém estado/estrutura para interação social (ex.: votes/likes no time).
+
+9) Eventos de Clima + Pokémon — /weather-events
+
+Lê o clima atual (se tiver chave configurada) ou usa fallback.
+
+Converte clima em algo “Pokémon-friendly”, como:
+
+Tipos favorecidos
+
+Pokémon do dia
+
+Enciclopédias Pokémon (Dex)
+10) Dex de Movimentos (Moves) — /moves e /moves/[name]
+
+Lista de golpes com:
+
+paginação
+
+filtros (tipo, classe do golpe, poder etc.)
+
+busca por nome
+
+Página do move mostra:
+
+efeito/descrição
+
+power/accuracy/PP/priority (quando existe)
+
+Pokémon que aprendem o move (learned by)
+
+11) Dex de Habilidades (Abilities) — /abilities e /abilities/[name]
+
+Lista paginada + busca.
+
+Detalhe mostra:
+
+descrição/efeitos
+
+infos adicionais disponíveis na API (e lista de Pokémon relacionados quando aplicável)
+
+Exploração do mundo do jogo
+12) Evolution Explorer — /evolution e /evolution/[chainId]
+
+Mostra cadeias evolutivas em formato de árvore/grafo.
+
+Exibe condições de evolução (nível, item, trade, happiness etc.) quando a API fornece.
+
+13) Encounter Explorer — /explorer/encounters e /explorer/encounters/[pokemon]
+
+Mostra onde encontrar um Pokémon:
+
+locais
+
+métodos (andar, pescar etc.)
+
+chances e níveis
+
+variações por versão do jogo (quando houver)
+
+14) Encounter Simulator — /encounter-sim
+
+Simula “rolagens” de encontros numa área.
+
+Retorna uma distribuição (quais Pokémon aparecem mais/menos e probabilidades aproximadas).
+
+15) Breeding Planner + Egg Moves — /breeding
+
+Seleciona dois pais.
+
+Verifica compatibilidade por egg groups (inclui regra especial do Ditto e No Eggs).
+
+Calcula possíveis Egg Moves herdáveis e explica a lógica.
+
+16) Sprite Gallery — /gallery e /gallery/[pokemon]
+
+Galeria de sprites/arte do Pokémon.
+
+Mostra variações (normal/shiny e outras disponíveis).
+
+17) Flavor & Lore Hub — /flavor e /flavor/[pokemon]
+
+Página “Pokédex/lore” com textos e infos de espécie:
+
+flavor texts por versão
+
+dados de espécie (quando disponíveis)
+
+Funcionalidades “de suporte” (infra/qualidade do app)
+18) Tema claro/escuro (Dark/Light)
+
+Botão fixo que alterna light/dark mode (persistindo preferência).
+
+19) Cache e performance de dados (React Query)
+
+O app usa TanStack React Query com cache e regras de “não refetchar toda hora”.
+
+Evita telas vazias em refetch usando placeholderData.
+
+20) Persistência local de estado
+
+Times, progresso e partes do estado ficam salvos localmente (ex.: time atual, conquistas, etc., via stores).
+
+21) Feedbacks visuais (Toast/Confetti/Animações)
+
+Toasts para ações importantes (ex.: conquistas).
+
+Confetti ao desbloquear conquistas.
+
+Animações com Framer Motion em várias telas.
+
+22) Testes automatizados de regras
+
+Há testes (Vitest) para partes como:
+
+breeding
+
+simulador de encontros
+
+sugestão de time
+
+utilitários
