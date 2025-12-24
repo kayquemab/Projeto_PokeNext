@@ -29,7 +29,7 @@ export default function Kanto() {
                             🌍 <span className="font-semibold">Região:</span> Kanto
                         </li>
                         <li className="bg-neutral-900/60 p-4 rounded-lg">
-                            🎮 <span className="font-semibold">Geração:</span> I
+                            🎮 <span className="font-semibold">Geração:</span> 1
                         </li>
                         <li className="bg-neutral-900/60 p-4 rounded-lg">
                             🧬 <span className="font-semibold">Pokémon nativos:</span> 151
