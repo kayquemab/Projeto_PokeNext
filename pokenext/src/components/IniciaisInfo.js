@@ -5,6 +5,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { InfoIcon, Swords } from "lucide-react";
 
+
+
+
 export default function IniciaisInfo() {
     return (
         <div className="relative font-sans w-full h-full">
