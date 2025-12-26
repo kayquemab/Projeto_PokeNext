@@ -7,7 +7,6 @@ import NovoJogoInfo from "@/components/NovoJogo";
 import PokebolaInfo from "@/components/PokebolaInfo";
 import PokedexInfo from "@/components/PokedexInfo";
 import PokemonCarousel from "@/components/PokemonCarousel";
-import Teste from "@/components/teste";
 
 export default function Home() {
   return (
@@ -28,33 +27,38 @@ export default function Home() {
         PokeNext
       </h1>
 
-      <div className="w-full flex flex-col items-center py-6 px-14">
+      <div className="w-full flex flex-col items-center py-6 px-4 lg:px-14">
 
-        {/* PRIMEIRA LINHA */}
-        <div className="w-full flex flex-col lg:flex-row gap-2 ">
+        {/* GRID PRINCIPAL */}
+        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-4">
 
-          {/* EventCard */}
-          <div className="w-full lg:w-2/4">
-            <EventCard />
+          {/* COLUNA ESQUERDA */}
+          <div className="flex flex-col gap-4 lg:col-span-2">
+            <EventCard />      {/* Batalha online */}
+            <NovoJogoInfo />  {/* Jogo */}
           </div>
 
+          {/* COLUNA DIREITA */}
+          <div className="grid grid-cols-2 gap-4 lg:col-span-1">
 
-          {/* MegaEvolucaoInfo */}
-          <div className="w-full lg:w-1/4">
-            <MegaEvolucaoInfo />
-          </div>
+            <div className="flex flex-col gap-4">
+              <MegaEvolucaoInfo />   {/* Mega Evolução */}
+              <Eeveelution />        {/* Eevee Evoluções (mais comprido) */}
+            </div>
 
-          {/* PokedexInfo */}
-          <div className="w-full lg:w-1/4">
-            <PokedexInfo />
+            <div className="flex flex-col gap-4">
+              <PokedexInfo />        {/* Pokedex */}
+              <PokebolaInfo />       {/* Pokébolas */}
+              <IniciaisInfo />       {/* Pokémon Iniciais */}
+            </div>
+
           </div>
 
         </div>
 
-        {/* SEGUNDA LINHA EM CONSTRUÇÃO */}
       </div>
 
-
+      {/* Carrousel - final */}
       <div className="w-full flex flex-col items-center py-6 px-6">
 
         <div className="w-full lg:px-7">

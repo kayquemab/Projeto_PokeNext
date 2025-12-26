@@ -7,8 +7,8 @@ import { InfoIcon } from "lucide-react";
 
 export default function PokedexInfo() {
     return (
-        <div className="relative w-full flex justify-center px-4  lg:px-0">
-        
+        <div className="relative w-full flex justify-center   lg:px-0">
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

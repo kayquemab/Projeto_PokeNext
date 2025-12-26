@@ -7,7 +7,7 @@ import { InfoIcon } from "lucide-react";
 
 export default function MegaEvolucaoInfo() {
     return (
-        <div className="w-full flex justify-center px-4 lg:px-0 ">
+        <div className="w-full flex justify-center  lg:px-0 ">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -16,7 +16,7 @@ export default function MegaEvolucaoInfo() {
                     scale: 1.02,
                     boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
                 }}
-                className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-red-800 transition-shadow duration-300 hover:shadow-2xl"
+                className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-red-900 transition-shadow duration-300 hover:shadow-2xl"
             >
                 {/* Banner responsivo */}
                 <div className="relative w-full h-[200px] sm:h-[260px] md:h-[280px] lg:h-[300px] bg-red-200">
