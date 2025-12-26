@@ -14,25 +14,25 @@ import { useRouter } from "next/navigation";
 
 // cores para cada tipo de Pokémon
 const typeColors = {
-    bug: "#A8B820",
-    dragon: "#7038F8",
-    fairy: "#EE99AC",
-    fire: "#F08030",
-    ghost: "#705898",
-    ground: "#E0C068",
-    normal: "#A8A878",
-    psychic: "#F85888",
-    steel: "#B8B8D0",
-    dark: "#705848",
-    electric: "#F8D030",
-    fighting: "#C03028",
-    flying: "#A890F0",
-    grass: "#78C850",
-    ice: "#98D8D8",
-    poison: "#A040A0",
-    rock: "#B8A038",
-    water: "#6890F0",
-    default: "#D3D3D3",
+  bug: "#A8B820",
+  dragon: "#7038F8",
+  fairy: "#EE99AC",
+  fire: "#F08030",
+  ghost: "#705898",
+  ground: "#E0C068",
+  normal: "#A8A878",
+  psychic: "#F85888",
+  steel: "#B8B8D0",
+  dark: "#705848",
+  electric: "#F8D030",
+  fighting: "#C03028",
+  flying: "#A890F0",
+  grass: "#78C850",
+  ice: "#98D8D8",
+  poison: "#A040A0",
+  rock: "#B8A038",
+  water: "#6890F0",
+  default: "#D3D3D3",
 };
 
 export default function PokemonCarousel({ spaceBetween = 1 }) {
@@ -81,16 +81,17 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
   return (
     <div className="w-full py-10 select-none relative overflow-visible">
       <div className="relative w-full mx-auto">
+
         {/* TÍTULO */}
         <h3
           className="
-            flex items-center gap-2 
-            bg-[#1b1b1b] text-[#919191] 
-            font-medium text-[20px] 
-            mt-[5px] ml-12 
-            py-[11px] px-5 pb-2 
-            w-fit
-          "
+    flex items-center gap-2
+    bg-[#1b1b1b] text-[#919191]
+    font-medium text-[20px]
+    mt-[5px] mx-auto sm:ml-8
+    py-[11px] px-5 pb-2
+    w-fit
+  "
         >
           <Image
             src="/pokeball.png"
@@ -101,6 +102,8 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
           />
           Pokémon em Destaque
         </h3>
+
+
 
         {/* SWIPER */}
         <div className="relative w-full h-[350px]">
@@ -155,10 +158,9 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                         <span
                           className={`
                             font-black leading-none select-none
-                            ${
-                              isActive
-                                ? "mt-4 text-[140px] text-zinc-500/40"
-                                : "mt-2 text-[120px] text-zinc-800/40"
+                            ${isActive
+                              ? "mt-4 text-[140px] text-zinc-500/40"
+                              : "mt-2 text-[120px] text-zinc-800/40"
                             }
                           `}
                         >
