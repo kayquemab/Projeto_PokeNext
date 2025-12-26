@@ -27,7 +27,7 @@ export default function Home() {
         PokeNext
       </h1>
 
-      <div className="w-full flex flex-col items-center py-6 px-4 lg:px-13">
+      <div className="w-full flex flex-col items-center py-6  lg:px-13">
 
         {/* GRID PRINCIPAL */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-4">
