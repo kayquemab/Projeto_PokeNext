@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/webicon.png" />
       </head>
 
-      <body className="bg-pokedex-wallpaper min-h-screen">
+      <body className="bg-pokedex-wallpaper">
         <Navbar />
         <div className="relative min-h-screen">
           {children}

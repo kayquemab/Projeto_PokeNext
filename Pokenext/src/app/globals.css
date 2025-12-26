@@ -15,7 +15,9 @@
   background-position: center center, top left;
 
   /* branco menor (89% da largura), preto no tamanho original */
-  background-size: 92% auto, auto;
+  background-size: 92% 100%;
+
+
 
   /* opcional: efeito de fundo “fixo” ao rolar */
   background-attachment: fixed, fixed;

@@ -8,32 +8,38 @@ export default function Navbar() {
     { label: "Pokédex", href: "/Pokedex" },
     { label: "Regiões", href: "/Regioes" },
     { label: "Movimentos", href: "/Movimentos" },
-    
-  ];
 
+  ];
 
   return (
     <header className="relative flex justify-center px-4 sm:px-6 lg:px-8 py-4 h-20">
       <motion.div
-        className="flex w-full max-w-6xl items-center justify-between rounded-2xl border border-neutral-200 bg-white/95 shadow-md backdrop-blur-sm px-4 sm:px-6 lg:px-8"
+        className="
+      grid grid-cols-1
+      sm:grid-cols-[auto_1fr_auto]
+      w-full max-w-6xl
+      items-center
+      rounded-2xl border border-neutral-200
+      bg-white/95 shadow-md backdrop-blur-sm
+      px-4 sm:px-6 lg:px-8
+    "
         initial={{ opacity: 0, y: -24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.6,
-          ease: "easeOut",
-        }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
       >
+
         {/* Logo + título */}
         <Link
           href="/"
-          className="flex items-center gap-3 text-[#333333] cursor-pointer"
+          className="
+        flex items-center gap-3
+        justify-self-center
+        sm:justify-self-start
+        text-[#333333] cursor-pointer
+      "
         >
           <div className="size-8 text-[#E3350D]">
-            <svg
-              fill="none"
-              viewBox="0 0 48 48"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4ZM24 38C16.268 38 10 31.732 10 24C10 16.268 16.268 10 24 10C31.732 10 38 16.268 38 24C38 31.732 31.732 38 24 38Z"
                 fill="currentColor"
@@ -42,11 +48,7 @@ export default function Navbar() {
                 d="M24 30C27.3137 30 30 27.3137 30 24C30 20.6863 27.3137 18 24 18C20.6863 18 18 20.6863 18 24C18 27.3137 20.6863 30 24 30Z"
                 fill="currentColor"
               />
-              <path
-                d="M0 24H48"
-                stroke="currentColor"
-                strokeWidth="4"
-              />
+              <path d="M0 24H48" stroke="currentColor" strokeWidth="4" />
             </svg>
           </div>
 
@@ -55,15 +57,17 @@ export default function Navbar() {
           </h2>
         </Link>
 
-        {/* Menu + botão Battle */}
-        <nav className="flex items-center gap-8">
+        {/* Espaço central (Grid) */}
+        <div className="hidden sm:block" />
 
+        {/* Menu + botão Battle */}
+        <nav className="hidden sm:flex items-center gap-8 justify-self-end">
           {/* 🔥 BOTÃO BATTLE */}
           <motion.div
             whileHover={{
               scale: 1.08,
               y: -2,
-              transition: { type: "spring", stiffness: 250, damping: 14 },
+              transition: { type: 'spring', stiffness: 250, damping: 14 },
             }}
           >
             <Link
@@ -81,7 +85,7 @@ export default function Navbar() {
               whileHover={{
                 scale: 1.08,
                 y: -2,
-                transition: { type: "spring", stiffness: 250, damping: 14 },
+                transition: { type: 'spring', stiffness: 250, damping: 14 },
               }}
             >
               <Link
@@ -93,6 +97,7 @@ export default function Navbar() {
             </motion.div>
           ))}
         </nav>
+
       </motion.div>
     </header>
   );
