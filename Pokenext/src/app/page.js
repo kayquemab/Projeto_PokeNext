@@ -14,11 +14,15 @@ export default function Home() {
 
       <h1
         className="
-          text-2xl sm:text-3xl
-          font-normal tracking-tight text-neutral-700
-          text-left
-          ml-5 sm:ml-6 md:ml-10 lg:ml-16
-        "
+    text-2xl sm:text-3xl
+    font-normal tracking-tight text-neutral-700
+    text-left
+
+    ml-5
+    sm:ml-6
+    md:ml-10
+    lg:ml-16
+  "
       >
         PokeNext
       </h1>
@@ -35,15 +39,23 @@ export default function Home() {
 
         </div>
 
-        {/* CAROUSEL */}
-        <div className="w-full px-2 md:px-7 mt-4">
+
+
+      </div>
+
+      <div className="w-full flex flex-col items-center p-6">
+
+        <div className="w-full lg:px-7">
           <PokemonCarousel />
         </div>
 
       </div>
+
     </div>
   );
 }
+
+
 
 
 

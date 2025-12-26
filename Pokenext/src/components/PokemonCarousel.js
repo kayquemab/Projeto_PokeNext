@@ -88,7 +88,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
     flex items-center gap-2
     bg-[#1b1b1b] text-[#919191]
     font-medium text-[20px]
-    mt-[5px] mx-auto sm:ml-8
+    mt-[5px] mx-auto sm:ml-16
     py-[11px] px-5 pb-2
     w-fit
   "
@@ -102,8 +102,6 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
           />
           Pokémon em Destaque
         </h3>
-
-
 
         {/* SWIPER */}
         <div className="relative w-full h-[350px]">
