@@ -21,7 +21,7 @@ export default function IniciaisInfo() {
                 }}
                 className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-emerald-600 transition-shadow duration-300 hover:shadow-2xl"
             >
-                <div className="relative w-full h-36 bg-gray-300">
+                <div className="relative w-full h-39 bg-white">
                     <Image
                         src="/pokeiniciais.jpeg"
                         alt="pokelogo"
