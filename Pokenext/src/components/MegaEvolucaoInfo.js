@@ -7,8 +7,7 @@ import { InfoIcon } from "lucide-react";
 
 export default function MegaEvolucaoInfo() {
     return (
-        <div className="relative w-full flex justify-center px-4 lg:px-0">
-
+        <div className="w-full flex justify-center px-4 lg:px-0 ">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -19,8 +18,7 @@ export default function MegaEvolucaoInfo() {
                 }}
                 className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-red-800 transition-shadow duration-300 hover:shadow-2xl"
             >
-
-                {/* Banner responsivo (igual EventCard) */}
+                {/* Banner responsivo */}
                 <div className="relative w-full h-[200px] sm:h-[260px] md:h-[280px] lg:h-[300px] bg-red-200">
                     <Image
                         src="/megaevolucaoinfo.jpg"
@@ -28,19 +26,13 @@ export default function MegaEvolucaoInfo() {
                         fill
                         className="object-cover opacity-50"
                     />
-
                     <div className="absolute inset-0 flex items-center justify-center">
                         <Image
                             src="/hawluchanite.png"
                             alt="Hawlucha"
                             width={110}
                             height={110}
-                            className="
-                                object-contain
-                                drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]
-                                w-20 sm:w-[95px] md:w-[105px] lg:w-[110px]
-                                h-auto
-                            "
+                            className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)] w-20 sm:w-[95px] md:w-[105px] lg:w-[110px] h-auto"
                         />
                     </div>
                 </div>
@@ -50,7 +42,6 @@ export default function MegaEvolucaoInfo() {
                     <h3 className="text-base sm:text-lg font-semibold text-white mb-2">
                         Mega Evolução
                     </h3>
-
                     <p className="text-xs sm:text-sm text-white leading-snug">
                         Quando o vínculo atinge o auge e o poder rompe todos os limites.
                     </p>
@@ -61,11 +52,7 @@ export default function MegaEvolucaoInfo() {
                     whileHover={{
                         scale: 1.01,
                         y: -0.5,
-                        transition: {
-                            type: "spring",
-                            stiffness: 80,
-                            damping: 12,
-                        },
+                        transition: { type: "spring", stiffness: 80, damping: 12 },
                     }}
                     className="p-3"
                 >
@@ -78,7 +65,6 @@ export default function MegaEvolucaoInfo() {
                         Mais informações
                     </Link>
                 </motion.div>
-
             </motion.div>
         </div>
     );

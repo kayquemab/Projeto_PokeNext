@@ -7,7 +7,8 @@ import { InfoIcon } from "lucide-react";
 
 export default function PokedexInfo() {
     return (
-        <div className="relative w-full flex justify-center px-4 lg:px-0">
+        <div className="relative w-full flex justify-center px-4  lg:px-0">
+        
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -18,7 +19,7 @@ export default function PokedexInfo() {
                 }}
                 className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-cyan-950 transition-shadow duration-300 hover:shadow-2xl"
             >
-                {/* Banner responsivo (igual EventCard) */}
+                {/* Banner responsivo */}
                 <div className="relative w-full h-[200px] sm:h-[260px] md:h-[280px] lg:h-[300px] bg-cyan-800">
                     <Image
                         src="/wallpaper_pokebola_branco.jpeg"
@@ -26,19 +27,13 @@ export default function PokedexInfo() {
                         fill
                         className="object-cover opacity-70"
                     />
-
                     <div className="absolute inset-0 flex items-center justify-center">
                         <Image
                             src="/pokedex.png"
                             alt="Pokedex"
                             width={150}
                             height={150}
-                            className="
-                                object-contain
-                                drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)]
-                                w-[100px] sm:w-[120px] md:w-[135px] lg:w-[150px]
-                                h-auto
-                            "
+                            className="object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.35)] w-[100px] sm:w-[120px] md:w-[135px] lg:w-[150px] h-auto"
                         />
                     </div>
                 </div>
@@ -58,11 +53,7 @@ export default function PokedexInfo() {
                     whileHover={{
                         scale: 1.01,
                         y: -0.5,
-                        transition: {
-                            type: "spring",
-                            stiffness: 80,
-                            damping: 12,
-                        },
+                        transition: { type: "spring", stiffness: 80, damping: 12 },
                     }}
                     className="p-3"
                 >
@@ -75,6 +66,7 @@ export default function PokedexInfo() {
                     </Link>
                 </motion.div>
             </motion.div>
+
         </div>
     );
 }

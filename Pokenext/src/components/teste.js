@@ -5,9 +5,9 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Swords, Trophy } from "lucide-react";
 
-export default function EventCard() {
+export default function Teste() {
     return (
-        <div className="relative w-full flex justify-center  lg:px-0">
+        <div className="relative w-full flex justify-center px-4 lg:pr-[70px] lg:px-0">
 
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -17,7 +17,7 @@ export default function EventCard() {
                     scale: 1.02,
                     boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
                 }}
-                className="w-full rounded-md overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
+                className="w-full max-w-[565px] rounded-md overflow-hidden shadow-lg bg-white transition-shadow duration-300 hover:shadow-2xl"
             >
 
                 <div className="relative w-full h-[350px] sm:h-[450px] bg-white">
@@ -29,7 +29,6 @@ export default function EventCard() {
                     />
 
                     <div className="absolute inset-0 flex">
-
                         <div className="flex items-center justify-center w-1/2 p-4">
                             <Image
                                 src="/banner.png"
@@ -39,11 +38,11 @@ export default function EventCard() {
                                 className="
                                         drop-shadow-xl
                                         object-contain
-                                        h-[350px]        
-                                        sm:h-[450px]     
-                                        md:h-[450px]     
-                                        lg:h-[450px]     
-                                        xl:h-[450px]
+                                        h-[350px]        /* mobile */
+                                        sm:h-[450px]     /* tablet */
+                                        md:h-[450px]     /* notebook */
+                                        lg:h-[450px]     /* desktop */
+                                        xl:h-[450px]     /* telas grandes */
                                     "
                                 priority
                             />

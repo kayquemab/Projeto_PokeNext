@@ -7,6 +7,7 @@ import NovoJogoInfo from "@/components/NovoJogo";
 import PokebolaInfo from "@/components/PokebolaInfo";
 import PokedexInfo from "@/components/PokedexInfo";
 import PokemonCarousel from "@/components/PokemonCarousel";
+import Teste from "@/components/teste";
 
 export default function Home() {
   return (
@@ -27,23 +28,34 @@ export default function Home() {
         PokeNext
       </h1>
 
-      <div className="w-full flex flex-col items-center p-6">
+      <div className="w-full flex flex-col items-center py-6 px-14">
 
         {/* PRIMEIRA LINHA */}
-        <div className="w-full flex flex-col lg:flex-row gap-4">
+        <div className="w-full flex flex-col lg:flex-row gap-2 ">
 
           {/* EventCard */}
           <div className="w-full lg:w-2/4">
             <EventCard />
           </div>
 
+
+          {/* MegaEvolucaoInfo */}
+          <div className="w-full lg:w-1/4">
+            <MegaEvolucaoInfo />
+          </div>
+
+          {/* PokedexInfo */}
+          <div className="w-full lg:w-1/4">
+            <PokedexInfo />
+          </div>
+
         </div>
 
-
-
+        {/* SEGUNDA LINHA EM CONSTRUÇÃO */}
       </div>
 
-      <div className="w-full flex flex-col items-center p-6">
+
+      <div className="w-full flex flex-col items-center py-6 px-6">
 
         <div className="w-full lg:px-7">
           <PokemonCarousel />
