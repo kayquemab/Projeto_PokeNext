@@ -30,16 +30,16 @@ export default function Home() {
       <div className="w-full flex flex-col items-center py-6 px-4 lg:px-14">
 
         {/* GRID PRINCIPAL */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-4">
 
           {/* COLUNA ESQUERDA */}
           <div className="flex flex-col gap-4 lg:col-span-2">
-            <EventCard />      {/* Batalha online */}
-            <NovoJogoInfo />  {/* Jogo */}
+            <EventCard />
+            <NovoJogoInfo />
           </div>
 
           {/* COLUNA DIREITA */}
-          <div className="grid grid-cols-2 gap-4 lg:col-span-1">
+          <div className="grid grid-cols-2 gap-4 lg:col-span-2">
 
             <div className="flex flex-col gap-4">
               <MegaEvolucaoInfo />   {/* Mega Evolução */}
@@ -59,7 +59,7 @@ export default function Home() {
       </div>
 
       {/* Carrousel - final */}
-      <div className="w-full flex flex-col items-center py-6 px-6">
+      <div className="w-full flex flex-col items-center pb-6 px-6">
 
         <div className="w-full lg:px-7">
           <PokemonCarousel />
