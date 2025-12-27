@@ -7,6 +7,7 @@ import { InfoIcon } from "lucide-react";
 
 export default function Eeveelution() {
     return (
+
         <div className="relative w-full flex justify-center lg:px-0">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -74,5 +75,6 @@ export default function Eeveelution() {
                 </motion.div>
             </motion.div>
         </div>
+
     );
 }
