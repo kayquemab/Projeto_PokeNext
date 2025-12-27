@@ -53,7 +53,7 @@ export default function Navbar() {
           {/* HAMBURGUER (mobile) */}
           <button
             onClick={() => setOpen(!open)}
-            className="sm:hidden text-2xl font-bold text-red-500"
+            className="sm:hidden text-2xl font-bold text-[#333333]"
           >
             {open ? "✕" : "☰"}
           </button>
