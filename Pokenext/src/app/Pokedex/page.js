@@ -544,34 +544,43 @@ export default function Pokedex() {
 
   return (
     <div>
-      <div className="relative w-full flex flex-col max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-2xl sm:text-3xl font-normal tracking-tight text-neutral-700">
-          Pokédex
-        </h1>
-      </div>
+      <h1
+        className="
+          text-2xl sm:text-3xl
+          font-normal tracking-tight text-neutral-700
+          text-left
+          ml-5 sm:ml-6 md:ml-10 lg:ml-16
+        "
+      >
+        Pokedex
+      </h1>
 
       <div className="relative w-full">
-        <section className="w-full mt-6 px-4 sm:px-6 lg:px-8 mb-10">
+        <section className="w-full mt-6 px-3 sm:px-6 lg:px-8 mb-10">
           <div className="w-full max-w-6xl mx-auto">
+
             {/* CARD PRINCIPAL */}
             <motion.div
               className={`
                 w-full mx-auto
                 bg-[url('/wallpaper-preto.png')] bg-cover bg-center bg-no-repeat
                 shadow-md backdrop-blur-sm
-                px-4 sm:px-6 lg:px-8 py-5
+                px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16 py-5
                 ${advancedOpen ? "rounded-t-2xl rounded-b-none" : "rounded-2xl"}
               `}
-              
+
             >
               {/* BUSCA SIMPLES */}
               <div className="mb-3">
+
                 <label className="block text-white text-lg font-medium mb-2">
                   Nome ou número
                 </label>
 
-                <div className="flex items-stretch gap-3">
-                  <div className="relative">
+                <div className="flex flex-col sm:flex-row sm:items-stretch gap-3">
+
+                  {/* INPUT */}
+                  <div className="relative w-full sm:w-auto">
                     <input
                       type="text"
                       value={search}
@@ -579,7 +588,20 @@ export default function Pokedex() {
                       onKeyDown={(e) => {
                         if (e.key === "Enter") applySimpleSearch();
                       }}
-                      className="w-110 max-w-full bg-neutral-50 text-gray-900 px-4 py-2 rounded-md border border-neutral-200 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/70"
+                      className="
+        w-full
+        sm:w-80
+        md:w-96
+        lg:w-[28rem]
+        bg-neutral-50
+        text-gray-900
+        px-4 py-2
+        rounded-md
+        border border-neutral-200
+        focus:outline-none
+        focus:ring-2
+        focus:ring-[#E3350D]/70
+      "
                     />
 
                     {suggestions.length > 0 && (
@@ -597,34 +619,39 @@ export default function Pokedex() {
                     )}
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={applySimpleSearch}
-                    className="h-[42px] px-4 rounded-md bg-[#E3350D] text-white hover:bg-[#c52c0b] flex items-center justify-center"
-                    aria-label="Buscar"
-                    title="Buscar"
-                  >
-                    <Search className="w-5 h-5" />
-                  </button>
+                  {/* BOTÕES */}
+                  <div className="flex gap-3">
+                    <button
+                      type="button"
+                      onClick={applySimpleSearch}
+                      className="h-[42px] px-4 rounded-md bg-[#E3350D] text-white hover:bg-[#c52c0b] flex items-center justify-center"
+                      aria-label="Buscar"
+                      title="Buscar"
+                    >
+                      <Search className="w-5 h-5" />
+                    </button>
 
-                  <button
-                    type="button"
-                    onClick={clearAllFilters}
-                    className="h-[42px] px-4 rounded-md bg-white/15 text-white hover:bg-white/20 border border-white/10 flex items-center justify-center"
-                    aria-label="Limpar filtros"
-                    title="Limpar filtros"
-                  >
-                    <BrushCleaning className="w-5 h-5" />
-                  </button>
+                    <button
+                      type="button"
+                      onClick={clearAllFilters}
+                      className="h-[42px] px-4 rounded-md bg-white/15 text-white hover:bg-white/20 border border-white/10 flex items-center justify-center"
+                      aria-label="Limpar filtros"
+                      title="Limpar filtros"
+                    >
+                      <BrushCleaning className="w-5 h-5" />
+                    </button>
+                  </div>
+
                 </div>
 
                 <p className="mt-3 text-sm sm:text-base text-white">
                   Use a busca avançada para explorar Pokémon por tipo, fraqueza,
                   habilidade e mais!
                 </p>
+
               </div>
 
-              
+
               {error && <p className="text-red-300 text-sm mt-3">{error}</p>}
             </motion.div>
 
@@ -678,10 +705,9 @@ export default function Pokedex() {
                                       type="button"
                                       onClick={() => toggleTypeMode(t, "type")}
                                       className={`w-7 h-7 rounded-full border text-xs font-bold transition
-                                        ${
-                                          isT
-                                            ? "bg-white text-neutral-900 border-white"
-                                            : "bg-transparent text-white border-white/40 hover:border-white/80"
+                                        ${isT
+                                          ? "bg-white text-neutral-900 border-white"
+                                          : "bg-transparent text-white border-white/40 hover:border-white/80"
                                         }`}
                                       title="Filtrar por Tipo"
                                     >
@@ -692,10 +718,9 @@ export default function Pokedex() {
                                       type="button"
                                       onClick={() => toggleTypeMode(t, "weakness")}
                                       className={`w-7 h-7 rounded-full border text-xs font-bold transition
-                                        ${
-                                          isF
-                                            ? "bg-white text-neutral-900 border-white"
-                                            : "bg-transparent text-white border-white/40 hover:border-white/80"
+                                        ${isF
+                                          ? "bg-white text-neutral-900 border-white"
+                                          : "bg-transparent text-white border-white/40 hover:border-white/80"
                                         }`}
                                       title="Filtrar por Fraqueza"
                                     >
@@ -755,10 +780,9 @@ export default function Pokedex() {
                                 type="button"
                                 onClick={() => setHeightGroup("short")}
                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                  ${
-                                    heightGroup === "short"
-                                      ? "bg-white text-neutral-900 border-white"
-                                      : "bg-white/10 text-white border-white/10 hover:bg-white/15"
+                                  ${heightGroup === "short"
+                                    ? "bg-white text-neutral-900 border-white"
+                                    : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                   }`}
                                 title="Baixa (≤ 1m)"
                               >
@@ -769,10 +793,9 @@ export default function Pokedex() {
                                 type="button"
                                 onClick={() => setHeightGroup("medium")}
                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                  ${
-                                    heightGroup === "medium"
-                                      ? "bg-white text-neutral-900 border-white"
-                                      : "bg-white/10 text-white border-white/10 hover:bg-white/15"
+                                  ${heightGroup === "medium"
+                                    ? "bg-white text-neutral-900 border-white"
+                                    : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                   }`}
                                 title="Média (1m ~ 2m)"
                               >
@@ -783,10 +806,9 @@ export default function Pokedex() {
                                 type="button"
                                 onClick={() => setHeightGroup("tall")}
                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                  ${
-                                    heightGroup === "tall"
-                                      ? "bg-white text-neutral-900 border-white"
-                                      : "bg-white/10 text-white border-white/10 hover:bg-white/15"
+                                  ${heightGroup === "tall"
+                                    ? "bg-white text-neutral-900 border-white"
+                                    : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                   }`}
                                 title="Alta (> 2m)"
                               >
@@ -816,10 +838,9 @@ export default function Pokedex() {
                                 type="button"
                                 onClick={() => setWeightGroup("light")}
                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                  ${
-                                    weightGroup === "light"
-                                      ? "bg-white text-neutral-900 border-white"
-                                      : "bg-white/10 text-white border-white/10 hover:bg-white/15"
+                                  ${weightGroup === "light"
+                                    ? "bg-white text-neutral-900 border-white"
+                                    : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                   }`}
                                 title="Leve (≤ 20kg)"
                               >
@@ -830,10 +851,9 @@ export default function Pokedex() {
                                 type="button"
                                 onClick={() => setWeightGroup("medium")}
                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                  ${
-                                    weightGroup === "medium"
-                                      ? "bg-white text-neutral-900 border-white"
-                                      : "bg-white/10 text-white border-white/10 hover:bg-white/15"
+                                  ${weightGroup === "medium"
+                                    ? "bg-white text-neutral-900 border-white"
+                                    : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                   }`}
                                 title="Médio (20kg ~ 100kg)"
                               >
@@ -844,10 +864,9 @@ export default function Pokedex() {
                                 type="button"
                                 onClick={() => setWeightGroup("heavy")}
                                 className={`rounded-lg border p-3 flex items-center justify-center transition
-                                  ${
-                                    weightGroup === "heavy"
-                                      ? "bg-white text-neutral-900 border-white"
-                                      : "bg-white/10 text-white border-white/10 hover:bg-white/15"
+                                  ${weightGroup === "heavy"
+                                    ? "bg-white text-neutral-900 border-white"
+                                    : "bg-white/10 text-white border-white/10 hover:bg-white/15"
                                   }`}
                                 title="Pesado (> 100kg)"
                               >
@@ -869,45 +888,38 @@ export default function Pokedex() {
                       </div>
 
                       <div className="mt-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-5">
-                        <div className="flex items-center gap-3">
+
+                        {/* INTERVALO */}
+                        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:gap-3">
                           <span className="text-white text-lg font-semibold">
                             Intervalo de números
                           </span>
 
-                          <input
-                            type="number"
-                            value={minId}
-                            onChange={(e) => setMinId(e.target.value)}
-                            className="w-20 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none no-spinner"
-                            min={1}
-                            max={1025}
-                          />
+                          <div className="flex items-center gap-3">
+                            <input
+                              type="number"
+                              value={minId}
+                              onChange={(e) => setMinId(e.target.value)}
+                              className="w-20 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none no-spinner"
+                              min={1}
+                              max={1025}
+                            />
 
-                          <span className="text-white/70">-</span>
+                            <span className="text-white/70">-</span>
 
-                          <input
-                            type="number"
-                            value={maxId}
-                            onChange={(e) => setMaxId(e.target.value)}
-                            className="w-24 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none no-spinner"
-                            min={1}
-                            max={1025}
-                          />
+                            <input
+                              type="number"
+                              value={maxId}
+                              onChange={(e) => setMaxId(e.target.value)}
+                              className="w-24 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none no-spinner"
+                              min={1}
+                              max={1025}
+                            />
+                          </div>
                         </div>
 
-                        <style jsx>{`
-                          .no-spinner::-webkit-outer-spin-button,
-                          .no-spinner::-webkit-inner-spin-button {
-                            -webkit-appearance: none;
-                            margin: 0;
-                          }
-                          .no-spinner {
-                            -moz-appearance: textfield;
-                            appearance: textfield;
-                          }
-                        `}</style>
-
-                        <div className="flex items-center justify-end gap-3">
+                        {/* BOTÕES */}
+                        <div className="flex items-center gap-3 justify-start lg:justify-end">
                           <button
                             type="button"
                             onClick={resetAdvanced}
@@ -926,7 +938,22 @@ export default function Pokedex() {
                             {advancedLoading ? "Pesquisando..." : "Pesquisar"}
                           </button>
                         </div>
+
+                        {/* REMOVE SPINNER */}
+                        <style jsx>{`
+    .no-spinner::-webkit-outer-spin-button,
+    .no-spinner::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .no-spinner {
+      -moz-appearance: textfield;
+      appearance: textfield;
+    }
+  `}</style>
                       </div>
+
+
                     </div>
                   </motion.div>
                 )}
@@ -955,17 +982,32 @@ export default function Pokedex() {
 
             <div className="mt-8" />
 
+
+
             {/* ORDENAR */}
-            <div className="w-full flex items-center justify-end mb-2">
-              <label className="block text-black text-lg font-medium mr-2">
+            <div className="w-full px-4 sm:px-0 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-2 mb-2">
+
+              <label className="block text-black text-lg font-medium">
                 Organizar por:
               </label>
-              <div className="w-full sm:w-72">
-                <div className="relative w-full">
+
+              <div className="w-fit sm:w-72">
+                <div className="relative">
+
                   <select
                     value={sortBy}
                     onChange={(e) => setSortBy(e.target.value)}
-                    className="w-full appearance-none bg-neutral-700 text-white px-3 py-2 pr-10 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
+                    className="
+          appearance-none
+          w-full
+          bg-neutral-700
+          text-white
+          px-3 py-2 pr-10
+          rounded-md
+          border border-white/10
+          focus:outline-none
+          focus:ring-2 focus:ring-[#E3350D]/60
+        "
                   >
                     <option value="id-asc">Menor número primeiro</option>
                     <option value="id-desc">Maior número primeiro</option>
@@ -973,8 +1015,9 @@ export default function Pokedex() {
                     <option value="za">Z-A</option>
                   </select>
 
+                  {/* SETA CUSTOM */}
                   <svg
-                    className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70"
+                    className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                     aria-hidden="true"
@@ -985,9 +1028,13 @@ export default function Pokedex() {
                       clipRule="evenodd"
                     />
                   </svg>
+
                 </div>
               </div>
+
             </div>
+
+
 
             {/* GRID */}
             {sortedListForGrid.length > 0 ? (

@@ -44,8 +44,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="font-semibold text-[#333333]">PokeNext</p>
-            <p>© {new Date().getFullYear()} – Projeto fã, sem fins comerciais.</p>
+            <p className="font-semibold text-[#333333]">PokeNext
+              © {new Date().getFullYear()}</p>
           </div>
         </div>
 

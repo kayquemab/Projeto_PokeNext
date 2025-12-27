@@ -598,11 +598,14 @@ export default function PokemonId() {
             </h1>
           </div>
 
+
+
           {/* Mecanismo para formas */}
           {allForms.length > 1 && (
-            <div className="w-full flex items-center justify-end mb-2">
+            <div className="w-full flex items-center justify-end mb-2 px-4 sm:px-0">
               <div className="w-full sm:w-72">
                 <div className="relative w-full">
+
                   <select
                     className="w-full appearance-none bg-neutral-700 text-white px-3 py-2 pr-10 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
                     value={String(pokemon.id)}
@@ -632,10 +635,12 @@ export default function PokemonId() {
                       clipRule="evenodd"
                     />
                   </svg>
+
                 </div>
               </div>
             </div>
           )}
+
 
           {/* ================= LINHA 1 ================= */}
           <div className="grid grid-cols-1 md:grid-cols-[520px_1fr] gap-6 items-start">
@@ -880,8 +885,17 @@ export default function PokemonId() {
         </motion.div>
       </div>
 
+
+
       {/* ================= LINHA 3: Linha evolutiva ================= */}
-      <div className="mt-6">
+      <div className="
+  mt-6
+  px-4
+  sm:px-6
+  md:px-8
+  lg:px-0
+">
+
         <div
           className="
       mx-auto w-full max-w-6xl
@@ -915,7 +929,7 @@ export default function PokemonId() {
 
                 return (
                   <div className="flex flex-col items-center gap-8">
-
+                    {/* --- (EEVEE INTACTO, NÃO MEXIDO) --- */}
                     {/* Pokémon base */}
                     <button
                       onClick={() => router.push(`/Pokedex/${base.id}`)}
@@ -944,12 +958,10 @@ export default function PokemonId() {
                         {formatPokemonName(base.name)}
                       </p>
 
-                      {/* Número */}
                       <span className="text-[11px] font-bold text-zinc-300">
                         #{String(base.id).padStart(3, "0")}
                       </span>
 
-                      {/* Tipos */}
                       <div className="flex gap-1">
                         {base.types.slice(0, 2).map(tp => (
                           <span
@@ -962,20 +974,16 @@ export default function PokemonId() {
                       </div>
                     </button>
 
-                    {/* Linha divisória */}
                     <div className="w-32 h-px bg-white/30" />
 
-                    {/* Evoluções */}
-                    <div
-                      className="
-                  grid
-                  grid-cols-2
-                  sm:grid-cols-3
-                  md:grid-cols-4
-                  lg:grid-cols-5
-                  gap-6
-                "
-                    >
+                    <div className="
+                grid
+                grid-cols-2
+                sm:grid-cols-3
+                md:grid-cols-4
+                lg:grid-cols-5
+                gap-6
+              ">
                       {evolutions.map(evo => {
                         const isCurrent =
                           String(evo.id) === String(pokemon.id);
@@ -1010,12 +1018,10 @@ export default function PokemonId() {
                               {formatPokemonName(evo.name)}
                             </p>
 
-                            {/* Número */}
                             <span className="text-[10px] font-bold text-zinc-300">
                               #{String(evo.id).padStart(3, "0")}
                             </span>
 
-                            {/* Tipos */}
                             <div className="flex gap-1">
                               {evo.types.slice(0, 2).map(tp => (
                                 <span
@@ -1034,12 +1040,15 @@ export default function PokemonId() {
                 );
               }
 
-              /* ================= EVOLUÇÃO LINEAR (PADRÃO) ================= */
+              /* ================= EVOLUÇÃO LINEAR (MOBILE EMPILHADO) ================= */
               return (
-                <div className="flex justify-center overflow-x-auto pb-4">
-                  <div className="flex items-center gap-6 min-w-max">
+                <div className="flex justify-center">
+                  <div className="flex flex-col md:flex-row items-center gap-6">
                     {evoStages.map((stage, stageIdx) => (
-                      <div key={stageIdx} className="flex items-center gap-6">
+                      <div
+                        key={stageIdx}
+                        className="flex flex-col md:flex-row items-center gap-6"
+                      >
                         {stage.map(evo => {
                           const isCurrent =
                             String(evo.id) === String(pokemon.id);
@@ -1074,12 +1083,10 @@ export default function PokemonId() {
                                 {formatPokemonName(evo.name)}
                               </p>
 
-                              {/* Número */}
                               <span className="text-[11px] font-bold text-zinc-300">
                                 #{String(evo.id).padStart(3, "0")}
                               </span>
 
-                              {/* Tipos */}
                               <div className="flex gap-1">
                                 {evo.types.slice(0, 2).map(tp => (
                                   <span
@@ -1094,8 +1101,9 @@ export default function PokemonId() {
                           );
                         })}
 
+                        {/* seta só no desktop */}
                         {stageIdx < evoStages.length - 1 && (
-                          <span className="text-zinc-200/70 text-xl font-extrabold">
+                          <span className="hidden md:block text-zinc-200/70 text-xl font-extrabold">
                             →
                           </span>
                         )}
@@ -1109,6 +1117,8 @@ export default function PokemonId() {
           </div>
         </div>
       </div>
+
+
 
       {/* Botão Voltar para a Pokédex */}
       <div
