@@ -50,18 +50,21 @@ export default function MegaEvolucaoInfo() {
                 {/* Botão */}
                 <motion.div
                     whileHover={{
-                        scale: 1.01,
-                        y: -0.5,
-                        transition: { type: "spring", stiffness: 80, damping: 12 },
+                        scale: 1.03,
+                        transition: {
+                            type: "spring",
+                            stiffness: 80,
+                            damping: 12,
+                        },
                     }}
-                    className="p-3"
+                    className="px-2 py-2"
                 >
                     <Link
-                        href="https://mega.pokemon.com/pt-br/"
-                        target="_blank"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E3350D] text-white text-xs sm:text-sm font-semibold shadow-sm hover:bg-red-600 transition-colors"
+                        href="https://www.legiaodosherois.com.br/lista/pokemon-iniciais-cada-geracao.html"
+                        target="blank"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E3350D] text-white text-xs font-semibold shadow-sm hover:bg-red-600 transition-colors"
                     >
-                        <InfoIcon className="w-3.5 h-3.5" />
+                        <InfoIcon className="w-3.5 h-3.5 inline-block" />
                         Mais informações
                     </Link>
                 </motion.div>

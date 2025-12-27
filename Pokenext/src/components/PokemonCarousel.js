@@ -79,7 +79,9 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
   }
 
   return (
-    <div className="w-full pb-10 select-none relative overflow-visible">
+    <div className="w-full pb-10 pt-8 lg:pt-0 select-none relative overflow-visible">
+
+
       <div className="relative w-full mx-auto">
 
         {/* TÍTULO */}

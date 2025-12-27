@@ -43,7 +43,7 @@ export default function Home() {
 
             <div className="flex flex-col gap-4">
               <MegaEvolucaoInfo />
-              <Eeveelution /> {/* Arrumar esse */}
+              <Eeveelution />
             </div>
 
             <div className="flex flex-col gap-4">
@@ -61,9 +61,9 @@ export default function Home() {
       </div>
 
       {/* Carrousel - final */}
-      <div className="w-full flex flex-col items-center  px-6">
+      <div className="w-full flex flex-col items-center px-4 xl:px-14 lg:px-12 md:px-10 sm:px-8 xs:px-6">
 
-        <div className="w-full lg:px-7">
+        <div className="w-full">
           <PokemonCarousel />
         </div>
 
