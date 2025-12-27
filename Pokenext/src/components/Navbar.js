@@ -11,6 +11,10 @@ export default function Navbar() {
     { label: "Pokédex", href: "/Pokedex" },
     { label: "Regiões", href: "/Regioes" },
     { label: "Movimentos", href: "/Movimentos" },
+    { label: "Times", href: "/Times" },
+    { label: "Habilidades", href: "/Habilidades" },
+    { label: "Evolução", href: "/Evolucao" },
+    { label: "Exploração", href: "/Exploração" },
   ];
 
   return (
@@ -50,16 +54,16 @@ export default function Navbar() {
             <h2 className="text-lg font-bold">PokeNext</h2>
           </Link>
 
-          {/* HAMBURGUER (mobile) */}
+          {/* HAMBURGUER (mobile + tablet) */}
           <button
             onClick={() => setOpen(!open)}
-            className="sm:hidden text-2xl font-bold text-[#333333]"
+            className="lg:hidden text-2xl font-bold text-[#333333]"
           >
             {open ? "✕" : "☰"}
           </button>
 
           {/* MENU DESKTOP */}
-          <nav className="hidden sm:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-8">
             <Link
               href="/Battle"
               className="px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold hover:bg-red-600 transition"
@@ -79,7 +83,7 @@ export default function Navbar() {
           </nav>
         </div>
 
-        {/* MENU MOBILE */}
+        {/* MENU MOBILE / TABLET */}
         <AnimatePresence>
           {open && (
             <motion.nav
@@ -90,7 +94,7 @@ export default function Navbar() {
               className="
                 absolute left-0 right-0 top-full
                 z-50 mt-4
-                sm:hidden
+                lg:hidden
                 flex flex-col gap-4
                 p-4
                 bg-white
