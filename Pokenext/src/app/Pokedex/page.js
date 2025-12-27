@@ -592,7 +592,7 @@ export default function Pokedex() {
         w-full
         sm:w-80
         md:w-96
-        lg:w-[28rem]
+        lg:w-md
         bg-neutral-50
         text-gray-900
         px-4 py-2
