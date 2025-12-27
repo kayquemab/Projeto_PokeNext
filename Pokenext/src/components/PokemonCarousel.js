@@ -79,7 +79,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
   }
 
   return (
-    <div className="w-full py-10 select-none relative overflow-visible">
+    <div className="w-full pb-10 select-none relative overflow-visible">
       <div className="relative w-full mx-auto">
 
         {/* TÍTULO */}
@@ -105,6 +105,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
 
         {/* SWIPER */}
         <div className="relative w-full h-[350px]">
+
           <Swiper
             modules={[Navigation]}
             navigation={{
@@ -259,7 +260,9 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
           <div className="arrow-next absolute right-2 top-1/2 -translate-y-1/2 z-50">
             <ArrowNext />
           </div>
+
         </div>
+
       </div>
     </div>
   );

@@ -27,26 +27,26 @@ export default function Home() {
         PokeNext
       </h1>
 
-      <div className="w-full flex flex-col items-center py-6  lg:px-13">
+      <div className="w-full flex flex-col items-center pt-6 px-20 ">
 
         {/* GRID PRINCIPAL */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-4">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-4 gap-4">
 
           {/* COLUNA ESQUERDA */}
-          <div className="flex flex-col lg:col-span-2">
+          <div className="flex flex-col lg:col-span-2 gap-4">
             <EventCard />
             <NovoJogoInfo />
           </div>
 
           {/* COLUNA DIREITA */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 lg:col-span-2">
+          <div className="grid grid-cols-1 lg:grid-cols-2 lg:col-span-2 gap-4">
 
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-4">
               <MegaEvolucaoInfo />
               <Eeveelution /> {/* Arrumar esse */}
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-4">
               <PokedexInfo />
               <PokebolaInfo /> {/* Arrumar esse */}
               <IniciaisInfo /> {/* Arrumar esse */}
@@ -61,7 +61,7 @@ export default function Home() {
       </div>
 
       {/* Carrousel - final */}
-      <div className="w-full flex flex-col items-center pb-6 px-6">
+      <div className="w-full flex flex-col items-center  px-6">
 
         <div className="w-full lg:px-7">
           <PokemonCarousel />

@@ -19,7 +19,7 @@ export default function Eeveelution() {
                 className="w-full max-w-[339px] rounded-md overflow-hidden shadow-lg bg-yellow-600 transition-shadow duration-300 hover:shadow-2xl"
             >
                 {/* Imagem de fundo + Eevee na frente */}
-                <div className="relative w-full h-107 bg-white">
+                <div className="relative w-full h-110 bg-white">
 
                     {/* Imagem de fundo */}
                     <Image
