@@ -1101,12 +1101,21 @@ export default function PokemonId() {
                           );
                         })}
 
-                        {/* seta só no desktop */}
+                        {/* seta responsiva */}
                         {stageIdx < evoStages.length - 1 && (
-                          <span className="hidden md:block text-zinc-200/70 text-xl font-extrabold">
-                            →
-                          </span>
+                          <>
+                            {/* Mobile: seta para baixo */}
+                            <span className="md:hidden text-zinc-200/70 text-xl font-extrabold">
+                              ↓
+                            </span>
+
+                            {/* Desktop: seta para direita */}
+                            <span className="hidden md:block text-zinc-200/70 text-xl font-extrabold">
+                              →
+                            </span>
+                          </>
                         )}
+
                       </div>
                     ))}
                   </div>
