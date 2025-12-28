@@ -17,7 +17,6 @@ export default function Navbar() {
     { label: "Habilidades", href: "/Habilidades" },
     { label: "Evolução", href: "/Evolucao" },
     { label: "Exploração", href: "/Exploracao" },
-    { label: "Lendários", href: "/Lendarios" },
     { label: "Mecânicas", href: "/Mecanicas" },
   ];
 
