@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const popoverRef = useRef(null);
+  const buttonRef = useRef(null);
 
   const menu = [
     { label: "Pokédex", href: "/Pokedex" },
@@ -16,6 +18,23 @@ export default function Navbar() {
     { label: "Evolução", href: "/Evolucao" },
     { label: "Exploração", href: "/Exploração" },
   ];
+
+  // Fecha o popover ao clicar fora (excluindo o botão)
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        popoverRef.current &&
+        !popoverRef.current.contains(event.target) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header className="relative z-50 flex justify-center px-4 sm:px-6 lg:px-8 py-4 h-20">
@@ -30,13 +49,9 @@ export default function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        {/* TOPO */}
-        <div className="flex items-center justify-between h-12">
-          {/* Logo + título */}
-          <Link
-            href="/"
-            className="flex items-center gap-3 text-[#333333]"
-          >
+        <div className="flex items-center justify-between h-12 relative">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 text-[#333333]">
             <div className="size-8 text-[#E3350D]">
               <svg fill="none" viewBox="0 0 48 48">
                 <path
@@ -50,80 +65,55 @@ export default function Navbar() {
                 <path d="M0 24H48" stroke="currentColor" strokeWidth="4" />
               </svg>
             </div>
-
             <h2 className="text-lg font-bold">PokeNext</h2>
           </Link>
 
-          {/* HAMBURGUER (mobile + tablet) */}
+          {/* Botão Hambúrguer */}
           <button
+            ref={buttonRef}
             onClick={() => setOpen(!open)}
-            className="lg:hidden text-2xl font-bold text-[#333333]"
+            className="text-2xl font-bold text-[#333333]"
           >
             {open ? "✕" : "☰"}
           </button>
 
-          {/* MENU DESKTOP */}
-          <nav className="hidden lg:flex items-center gap-8">
-            <Link
-              href="/Battle"
-              className="px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold hover:bg-red-600 transition"
-            >
-              Batalha Online
-            </Link>
-
-            {menu.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium text-[#333333] hover:text-[#E3350D]"
+          {/* Popover */}
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                ref={popoverRef}
+                initial={{ opacity: 0, scale: 0.9, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 10 }}
+                transition={{ duration: 0.2 }}
+                className="
+                  absolute right-0 top-full mt-2 w-56
+                  bg-white border border-neutral-200 rounded-2xl shadow-lg
+                  flex flex-col p-3 gap-2
+                "
               >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        {/* MENU MOBILE / TABLET */}
-        <AnimatePresence>
-          {open && (
-            <motion.nav
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: "auto", opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="
-                absolute left-0 right-0 top-full
-                z-50 mt-4
-                lg:hidden
-                flex flex-col gap-4
-                p-4
-                bg-white
-                border border-neutral-200
-                rounded-2xl
-                shadow-xl
-              "
-            >
-              <Link
-                href="/Battle"
-                className="px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold text-center"
-                onClick={() => setOpen(false)}
-              >
-                Batalha Online
-              </Link>
-
-              {menu.map((item) => (
                 <Link
-                  key={item.href}
-                  href={item.href}
+                  href="/Battle"
+                  className="px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold text-left"
                   onClick={() => setOpen(false)}
-                  className="text-sm font-medium text-[#333333] hover:text-[#E3350D]"
                 >
-                  {item.label}
+                  Batalha Online
                 </Link>
-              ))}
-            </motion.nav>
-          )}
-        </AnimatePresence>
+
+                {menu.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="text-sm font-medium text-[#333333] hover:text-[#E3350D] text-left px-2 py-1 rounded-md"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </motion.div>
     </header>
   );

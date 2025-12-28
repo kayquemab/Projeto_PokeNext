@@ -49,7 +49,7 @@ export default function Home() {
       </div>
 
       {/* Carrousel - final */}
-      <div className="w-full flex flex-col items-center px-4 xl:px-14 lg:px-12 md:px-10 sm:px-8 xs:px-6">
+      <div className="w-full flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
         <div className="w-full">
           <PokemonCarousel />
         </div>
