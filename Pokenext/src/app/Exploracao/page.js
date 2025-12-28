@@ -1,5 +1,5 @@
 
-export default function Times() {
+export default function Exploracao() {
     return (
 
         <div>
@@ -11,7 +11,7 @@ export default function Times() {
           ml-5 sm:ml-10 md:ml-10 lg:ml-16
         "
             >
-                Times
+                Exploração
             </h1>
         </div>
 

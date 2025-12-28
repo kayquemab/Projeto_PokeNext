@@ -1,7 +1,7 @@
+import React from 'react'
 
-export default function Times() {
+export default function Batalha() {
     return (
-
         <div>
             <h1
                 className="
@@ -11,12 +11,8 @@ export default function Times() {
           ml-5 sm:ml-10 md:ml-10 lg:ml-16
         "
             >
-                Times
+                Batalha Online
             </h1>
         </div>
-
-
-    );
+    )
 }
-
-

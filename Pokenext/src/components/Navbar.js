@@ -16,7 +16,9 @@ export default function Navbar() {
     { label: "Times", href: "/Times" },
     { label: "Habilidades", href: "/Habilidades" },
     { label: "Evolução", href: "/Evolucao" },
-    { label: "Exploração", href: "/Exploração" },
+    { label: "Exploração", href: "/Exploracao" },
+    { label: "Lendários", href: "/Lendarios" },
+    { label: "Mecânicas", href: "/Mecanicas" },
   ];
 
   // Fecha o popover ao clicar fora (excluindo o botão)
@@ -93,7 +95,7 @@ export default function Navbar() {
                 "
               >
                 <Link
-                  href="/Battle"
+                  href="/Batalha"
                   className="px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold text-left"
                   onClick={() => setOpen(false)}
                 >

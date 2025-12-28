@@ -1,0 +1,61 @@
+descrição de cada página
+
+📚 Pokédex
+Visualize informações detalhadas de cada Pokémon, incluindo stats, tipos, sprites e lore. Consulte também diferentes formas e variantes.
+
+🗺️ Regiões
+Explore as regiões do jogo, visualize os habitats naturais dos Pokémon e consulte quais Pokémon aparecem em cada área.
+
+📖 Movimentos
+Acesse a lista completa de movimentos Pokémon, filtre por tipo, categoria e poder, busque por nome e veja stats, Pokémon que aprendem cada movimento e detalhes de TM/HM.
+
+	📖 Enciclopédia de Movimentos
+	Veja cards com informações principais e páginas de detalhes com descrição, stats, Pokémon que aprendem e TM/HM.
+
+🎨 Times
+Monte e gerencie seu time de Pokémon com facilidade, visualizando stats, tipos e sprites. Salve, carregue, exporte ou importe times e organize-os com drag-and-drop.
+
+	Análise de Time
+	Avalie a sinergia do seu time com gráficos de stats, matriz de cobertura de tipos, análise de fraquezas e recomendações para melhorar a equipe.
+
+	Sugestão de Times
+	Identifique funções (sweeper, atacante, tank, wall…), analise cobertura de tipos e receba sugestões de Pokémon para balancear seu time, incluindo explicações 	de tipo e função. Considera Pokémon raros e lendários.
+
+	Construtor de Times
+	Monte times de 6 Pokémon com busca automática, detalhes completos de cada Pokémon e funcionalidades de salvar, carregar, exportar, importar e organizar com 	drag-and-drop.
+
+✨ Habilidades
+Consulte a lista completa de habilidades, busque por nome, veja efeitos e textos detalhados, e descubra quais Pokémon possuem cada habilidade.
+
+	Página de Detalhes de Habilidade
+	Acesse a contagem de Pokémon com a habilidade, efeitos detalhados, textos explicativos e lista dos Pokémon que a possuem.
+
+🌳 Evolução
+Visualize árvores de evolução interativas, veja triggers de evolução (nível, item, troca, felicidade…), sprites de cada estágio e links para cada Pokémon.
+
+	Visualizador de Evolução
+	Acesse a árvore de evolução interativa com triggers de evolução, sprites de cada estágio e links diretos para os Pokémon.
+
+🗺️ Exploração
+Consulte locais de encontro de cada Pokémon, métodos de captura (Caminhar, Surf, Pesca…), chances e níveis encontrados e habitat natural.
+
+	Explorador de Encontros
+	Veja locais de encontro de cada Pokémon, métodos de captura, chances e níveis encontrados, e habitat natural.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
