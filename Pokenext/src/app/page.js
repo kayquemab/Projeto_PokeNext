@@ -41,8 +41,8 @@ export default function Home() {
 
             <div className="flex flex-col gap-4">
               <PokedexInfo />
-              <PokebolaInfo /> {/* Arrumar esse */}
-              <IniciaisInfo /> {/* Arrumar esse */}
+              <PokebolaInfo />
+              <IniciaisInfo />
             </div>
           </div>
         </div>

@@ -694,12 +694,21 @@ export default function PokemonId() {
                 {/* overlay opcional para manter legibilidade */}
                 <div className="bg-white/70 dark:bg-zinc-900/60 rounded-lg p-5 -m-5">
                   <div className="flex items-start justify-between gap-4">
-                    <div className="min-w-0">
+                    <div className="flex items-center gap-2 min-w-0">
+                      <motion.div
+                        className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                        initial={{ scaleY: 0.3, opacity: 0 }}
+                        animate={{ scaleY: 1, opacity: 1 }}
+                        transition={{ delay: 0.2, duration: 0.35 }}
+                      />
+
                       <h2 className="text-xl font-extrabold text-black dark:text-white leading-tight">
                         Descrição
                       </h2>
                     </div>
                   </div>
+
+
 
                   <p className="mt-4 text-sm text-black/80 dark:text-white/80 leading-relaxed">
                     {descricaoDex || "Descrição indisponível para este Pokémon."}
@@ -721,9 +730,19 @@ export default function PokemonId() {
               >
                 {/* overlay para legibilidade */}
                 <div className="bg-white/70 dark:bg-zinc-900/60 rounded-lg p-5 -m-5">
-                  <h3 className="text-xl font-extrabold text-black dark:text-white">
-                    Informações
-                  </h3>
+                  <div className="flex items-center gap-2">
+                    <motion.div
+                      className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                      initial={{ scaleY: 0.3, opacity: 0 }}
+                      animate={{ scaleY: 1, opacity: 1 }}
+                      transition={{ delay: 0.2, duration: 0.35 }}
+                    />
+
+                    <h3 className="text-xl font-extrabold text-black dark:text-white">
+                      Informações
+                    </h3>
+                  </div>
+
 
                   <div className="mt-4 grid grid-cols-2 gap-3 text-sm text-black/80 dark:text-white/80">
                     <div className="rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-white/5 p-3">
@@ -773,9 +792,18 @@ export default function PokemonId() {
               style={{ backgroundImage: "url('/wallpaper-cinza.png')" }}
             >
               <div className="bg-white/70 dark:bg-zinc-900/60 rounded-lg p-5 -m-5">
-                <h3 className="text-xl font-extrabold text-black dark:text-white">
-                  Estatísticas
-                </h3>
+                <div className="flex items-center gap-2">
+                  <motion.div
+                    className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                    initial={{ scaleY: 0.3, opacity: 0 }}
+                    animate={{ scaleY: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.35 }}
+                  />
+
+                  <h3 className="text-xl font-extrabold text-black dark:text-white">
+                    Estatísticas
+                  </h3>
+                </div>
 
                 <div className="mt-4 space-y-3">
                   {pokemon.stats.map((s) => {
@@ -816,9 +844,18 @@ export default function PokemonId() {
               style={{ backgroundImage: "url('/wallpaper-cinza.png')" }}
             >
               <div className="bg-white/70 dark:bg-zinc-900/60 rounded-lg p-5 -m-5">
-                <h3 className="text-xl font-extrabold text-black dark:text-white">
-                  Tipo / Fraquezas
-                </h3>
+                <div className="flex items-center gap-2">
+                  <motion.div
+                    className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                    initial={{ scaleY: 0.3, opacity: 0 }}
+                    animate={{ scaleY: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.35 }}
+                  />
+
+                  <h3 className="text-xl font-extrabold text-black dark:text-white">
+                    Tipo / Fraquezas
+                  </h3>
+                </div>
 
                 {/* Tipos */}
                 <div className="mt-5">
@@ -911,9 +948,18 @@ export default function PokemonId() {
 
             {/* Header */}
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-zinc-100 font-extrabold text-base md:text-lg">
-                Linha evolutiva
-              </h3>
+              <div className="flex items-center gap-2">
+                <motion.div
+                  className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                  initial={{ scaleY: 0.3, opacity: 0 }}
+                  animate={{ scaleY: 1, opacity: 1 }}
+                  transition={{ delay: 0.2, duration: 0.35 }}
+                />
+
+                <h3 className="text-xl font-extrabold text-black dark:text-white">
+                  Linha evolutiva
+                </h3>
+              </div>
             </div>
 
             {!evoLoading && !evoError && evoStages?.length > 0 && (() => {

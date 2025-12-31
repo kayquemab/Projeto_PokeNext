@@ -196,14 +196,25 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                       {/* Nome + número (clicável também) */}
                       <h4
                         className={`
-                          font-semibold 
-                          flex items-center justify-between
-                          text-white 
-                          ${isActive ? "text-xl" : "text-lg"}
-                        `}
+    font-semibold 
+    flex items-center justify-between
+    text-white 
+    ${isActive ? "text-xl" : "text-lg"}
+  `}
                       >
-                        <span className="capitalize">{p.name}</span>
+                        {/* Barra + Nome */}
+                        <div className="flex items-center gap-2">
+                          <motion.div
+                            className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                            initial={{ scaleY: 0.3, opacity: 0 }}
+                            animate={{ scaleY: 1, opacity: 1 }}
+                            transition={{ delay: 0.2, duration: 0.35 }}
+                          />
 
+                          <span className="capitalize">{p.name}</span>
+                        </div>
+
+                        {/* Número */}
                         <span
                           className={
                             isActive
@@ -214,6 +225,7 @@ export default function PokemonCarousel({ spaceBetween = 1 }) {
                           #{String(p.id).padStart(3, "0")}
                         </span>
                       </h4>
+
 
                       {/* Tipo + Habilidade → apenas se ativo */}
                       {isActive && (

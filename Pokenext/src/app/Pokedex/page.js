@@ -573,12 +573,19 @@ export default function Pokedex() {
 
               {/* BUSCA SIMPLES */}
               <div className="mb-3">
+                <div className="flex items-center gap-2 mb-3">
+                  <motion.div
+                    className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                    initial={{ scaleY: 0.3, opacity: 0 }}
+                    animate={{ scaleY: 1, opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.35 }}
+                  />
+                  <label className="block text-white text-lg font-medium">
+                    Nome ou número
+                  </label>
+                </div>
 
-                <label className="block text-white text-lg font-medium mb-2">
-                  Nome ou número
-                </label>
-
-                <div className="flex flex-col sm:flex-row sm:items-stretch gap-3">
+                <div className="flex flex-col sm:flex-row sm:items-stretch gap-3 mb-2">
 
                   {/* INPUT */}
                   <div className="relative w-full sm:w-auto">
@@ -1064,13 +1071,26 @@ export default function Pokedex() {
                         </div>
 
                         <div className="mt-3 flex items-center justify-between">
-                          <span className="text-lg font-semibold text-neutral-600 text-right capitalize">
-                            {formatPokemonName(p.name)}
-                          </span>
+                          {/* Barra + Nome */}
+                          <div className="flex items-center gap-2">
+                            <motion.div
+                              className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                              initial={{ scaleY: 0.3, opacity: 0 }}
+                              animate={{ scaleY: 1, opacity: 1 }}
+                              transition={{ delay: 0.2, duration: 0.35 }}
+                            />
+
+                            <span className="text-lg font-semibold text-neutral-600 capitalize">
+                              {formatPokemonName(p.name)}
+                            </span>
+                          </div>
+
+                          {/* Número */}
                           <span className="text-lg font-semibold text-neutral-600">
                             #{String(p.id).padStart(3, "0")}
                           </span>
                         </div>
+
 
                         {details?.types ? (
                           <div className="mt-2 flex flex-wrap gap-1">
