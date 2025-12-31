@@ -562,14 +562,15 @@ export default function Pokedex() {
             {/* CARD PRINCIPAL */}
             <motion.div
               className={`
-                w-full mx-auto
-                bg-[url('/wallpaper-preto.png')] bg-cover bg-center bg-no-repeat
-                shadow-md backdrop-blur-sm
-                px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16 py-5
-                ${advancedOpen ? "rounded-t-2xl rounded-b-none" : "rounded-2xl"}
-              `}
-
+    relative z-20
+    w-full mx-auto
+    bg-[url('/wallpaper-preto.png')] bg-cover bg-center bg-no-repeat
+    shadow-md backdrop-blur-sm
+    px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16 py-5
+    ${advancedOpen ? "rounded-t-2xl rounded-b-none" : "rounded-2xl"}
+  `}
             >
+
               {/* BUSCA SIMPLES */}
               <div className="mb-3">
 
@@ -605,7 +606,7 @@ export default function Pokedex() {
                     />
 
                     {suggestions.length > 0 && (
-                      <div className="absolute left-0 right-0 top-full mt-1 bg-white rounded-md shadow-lg border border-neutral-200 z-30 overflow-hidden">
+                      <div className="absolute left-0 right-0 top-full mt-1 bg-white rounded-md shadow-lg border border-neutral-200 z-50 overflow-hidden">
                         {suggestions.map((name) => (
                           <button
                             key={name}
@@ -959,7 +960,7 @@ export default function Pokedex() {
                 )}
               </AnimatePresence>
 
-              <div className="w-60 mx-auto flex justify-center bg-[#616161] rounded-b-[5px] overflow-visible relative">
+              <div className="w-60 mx-auto flex justify-center bg-[#616161] rounded-b-[5px] overflow-visible relative z-10">
                 <button
                   type="button"
                   onClick={() => setAdvancedOpen((v) => !v)}
