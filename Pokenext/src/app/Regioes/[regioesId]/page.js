@@ -15,10 +15,6 @@ import {
     Shuffle,
 } from "lucide-react";
 
-/* =========================
-   Helpers (estilo parecido, mas não “copiado”)
-========================= */
-
 const TYPE_STYLES = {
     grass: "bg-[#78C850] text-black",
     poison: "bg-[#A040A0] text-white",
@@ -69,12 +65,6 @@ function extractIdFromUrl(url) {
     const m = String(url || "").match(/\/(\d+)\/?$/);
     return m ? Number(m[1]) : null;
 }
-
-/* =========================
-   Dados das regiões (UI + integração)
-   - leaders/teams: mock “bonito” (você pode refinar depois)
-   - carousel: pega 12 aleatórios via PokeAPI (pokedex/{name})
-========================= */
 
 const REGIOES = [
     {
@@ -456,10 +446,6 @@ const REGIOES = [
     },
 ];
 
-/* =========================
-   UI Pieces
-========================= */
-
 function TypePill({ type }) {
     return (
         <span
@@ -570,10 +556,6 @@ function SectionHeader({ icon: Icon, title, subtitle }) {
         </div>
     );
 }
-
-/* =========================
-   Page
-========================= */
 
 export default function RegioesId() {
     const router = useRouter();
@@ -722,6 +704,7 @@ export default function RegioesId() {
 
     return (
         <div>
+
             {/* ================= NAV (Prev/Next) ================= */}
             <header className="relative w-full">
                 <motion.div className="mx-auto w-full max-w-6xl pt-0 pb-0">
@@ -1168,10 +1151,6 @@ export default function RegioesId() {
                 </div>
             </div>
 
-            {/* Observação prática (só pra não te pegar de surpresa):
-          Se você não tiver /regioes/mapa-mundi.png ainda, adicione essa imagem.
-          O resto usa seus wallpapers + grid e funciona de boa.
-      */}
         </div>
     );
 }
