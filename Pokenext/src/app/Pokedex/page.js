@@ -1070,6 +1070,9 @@ export default function Pokedex() {
                           />
                         </div>
 
+
+
+
                         <div className="mt-3 flex items-center justify-between">
                           {/* Barra + Nome */}
                           <div className="flex items-center gap-2">
