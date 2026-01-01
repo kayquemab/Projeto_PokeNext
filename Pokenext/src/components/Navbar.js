@@ -18,6 +18,7 @@ export default function Navbar() {
     { label: "Evolução", href: "/Evolucao" },
     { label: "Exploração", href: "/Exploracao" },
     { label: "Mecânicas", href: "/Mecanicas" },
+    { label: "Pokébolas", href: "/Pokebolas" },
   ];
 
   // Fecha o popover ao clicar fora (excluindo o botão)
