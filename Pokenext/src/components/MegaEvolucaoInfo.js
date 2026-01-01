@@ -60,7 +60,7 @@ export default function MegaEvolucaoInfo() {
                     className="px-2 py-2"
                 >
                     <Link
-                        href="https://www.legiaodosherois.com.br/lista/pokemon-iniciais-cada-geracao.html"
+                        href="https://mega.pokemon.com/pt-br/"
                         target="blank"
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E3350D] text-white text-xs font-semibold shadow-sm hover:bg-red-600 transition-colors"
                     >

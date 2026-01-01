@@ -61,7 +61,7 @@ export default function PokedexInfo() {
                     className="px-2 py-2"
                 >
                     <Link
-                        href="https://www.legiaodosherois.com.br/lista/pokemon-iniciais-cada-geracao.html"
+                        href="/Pokedex"
                         target="blank"
                         className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#E3350D] text-white text-xs font-semibold shadow-sm hover:bg-red-600 transition-colors"
                     >
