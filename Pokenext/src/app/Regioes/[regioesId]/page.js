@@ -1,23 +1,37 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 
+
 export default function RegioesPage() {
-    const router = useRouter();
+    const { regioesId } = useParams();
+
+    const nomeRegiao =
+        regioesId.charAt(0).toUpperCase() + regioesId.slice(1);
+
     return (
         <div>
+
             <main className="relative w-full h-screen overflow-hidden">
 
-                {/* 🗺️ MAPA DE FUNDO */}
-                <Image
-                    src="/mapa.jpg"
-                    alt="Mapa do mundo Pokémon"
-                    fill
-                    priority
-                    className="object-cover"
-                />
+                {/* TEXTO — SEM ALTERAR DESIGN EXISTENTE */}
+                <div className="absolute left-[8%] top-[35%] z-10">
+                    <p className="text-[#2B3A4A] text-lg">Região de:</p>
+                    <p className="text-[#2B3A4A] text-5xl font-medium">
+                        {nomeRegiao}
+                    </p>
+                </div>
+
+                <div className="relative mx-auto w-[92%] h-full overflow-hidden">
+                    <Image
+                        src="/mapa.jpg"
+                        alt="Mapa do mundo Pokémon"
+                        fill
+                        priority
+                        className="object-cover"
+                    />
+                </div>
 
                 {/* imagem 1 */}
                 <div className="absolute left-[58%] top-[3%] w-[170px] h-[300px] z-10">
@@ -39,18 +53,17 @@ export default function RegioesPage() {
                     />
                 </div>
 
-                {/* imagem 3 */}
+                {/* imagem 3 — DINÂMICA, MESMO DESIGN */}
                 <div className="absolute left-[80%] top-[26%] w-40 h-[260px] z-10">
                     <Image
-                        src="/silhueta/kanto.jpeg"
-                        alt="Silhueta da região de Kanto"
+                        src={`/silhueta/${regioesId}.jpeg`}
+                        alt={`Silhueta da região de ${nomeRegiao}`}
                         fill
                         className="object-cover rounded-lg shadow-lg"
                     />
                 </div>
             </main>
 
-            
         </div>
     );
 }
