@@ -3,6 +3,8 @@
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import RegionStarters from "@/components/RegionStarters";
+import RegionPokemonCarousel from "@/components/RegionPokemonCarousel";
 
 export default function RegioesPage() {
     const { regioesId } = useParams();
@@ -87,6 +89,11 @@ export default function RegioesPage() {
                 </motion.div>
 
             </main>
+
+            <RegionStarters region={regioesId} />
+
+            <RegionPokemonCarousel region={regioesId} />
+
         </div>
     );
 }
