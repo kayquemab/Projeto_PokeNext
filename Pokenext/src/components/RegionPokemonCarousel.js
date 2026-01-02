@@ -40,7 +40,7 @@ const regionToPokedex = {
     kanto: "kanto",
     johto: "original-johto",
     hoenn: "hoenn",
-    sinnoh: "sinnoh",
+    sinnoh: "original-sinnoh",
     unova: "original-unova",
     kalos: "kalos-central",
     alola: "original-alola",
