@@ -19,6 +19,7 @@ export default function RegioesPage() {
 
     return (
         <div>
+
             <main className="relative w-full h-screen overflow-hidden">
                 <div className="absolute left-[8%] top-[35%] z-10">
                     <p className="text-[#2B3A4A] text-lg">Região de:</p>
@@ -36,9 +37,7 @@ export default function RegioesPage() {
                 </div>
 
                 <motion.div
-                    className="absolute left-[58%] top-[3%] w-[210px] h-[300px] z-10"
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute left-[55%] top-[3%] w-[210px] h-[300px] z-10"
                 >
                     {imagem1 && (
                         <Image
@@ -51,9 +50,7 @@ export default function RegioesPage() {
                 </motion.div>
 
                 <motion.div
-                    className="absolute left-[40%] top-[60%] w-40 h-[220px] z-10"
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute left-[37%] top-[45%] w-50 h-[300px] z-10"
                 >
                     {imagem2 && (
                         <Image
@@ -66,9 +63,7 @@ export default function RegioesPage() {
                 </motion.div>
 
                 <motion.div
-                    className="absolute left-[80%] top-[26%] w-50 h-[260px] z-10"
-                    animate={{ scale: [1, 1.04, 1] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute left-[77%] top-[28%] w-50 h-[260px] z-10"
                 >
                     {imagem3 && (
                         <Image
@@ -81,11 +76,15 @@ export default function RegioesPage() {
                 </motion.div>
             </main>
 
+
+
             <RegionStarters region={regioesId} />
 
             <div className="w-full flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14 mt-6 py-10">
                 <RegionPokemonCarousel region={regioesId} />
             </div>
+
+
 
             <RegionLegendaries region={regioesId} />
 
@@ -104,6 +103,8 @@ export default function RegioesPage() {
                     </motion.button>
                 </div>
             </div>
+
+
         </div>
     );
 }

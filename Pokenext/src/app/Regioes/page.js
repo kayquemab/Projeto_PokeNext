@@ -15,8 +15,8 @@ const regioes = [
     infoCaminho: "/Regioes/kanto",
     imagensDetalhes: {
       imagem1: "/imagens_kanto/PalletTown.jpg",
-      imagem2: "/imagens_kanto/PewterCity.jpg",
-      imagem3: "/imagens_kanto/CeruleanCity.jpg"
+      imagem2: "/imagens_kanto/banner_liga_kanto.jpg",
+      imagem3: "/imagens_kanto/silhueta_kanto.jpeg"
     }
   },
   {
@@ -28,9 +28,9 @@ const regioes = [
     caminho: "/Regioes/johto",
     infoCaminho: "/Regioes/johto",
     imagensDetalhes: {
-      imagem1: "/",
-      imagem2: "/",
-      imagem3: "/"
+      imagem1: "/imagens_johto/Cyndaquil.jpg",
+      imagem2: "/imagens_johto/banner_liga_johto.jpg",
+      imagem3: "/imagens_johto/silhueta_johto.jpeg"
     }
   },
   {
@@ -42,9 +42,9 @@ const regioes = [
     caminho: "/Regioes/hoenn",
     infoCaminho: "/Regioes/hoenn",
     imagensDetalhes: {
-      imagem1: "/",
-      imagem2: "/",
-      imagem3: "/"
+      imagem1: "/imagens_hoenn/banner_latiosElatias.jpg",
+      imagem2: "/imagens_hoenn/banner_liga_hoenn.jpg",
+      imagem3: "/imagens_hoenn/silhueta_hoenn.jpeg"
     }
   },
   {
