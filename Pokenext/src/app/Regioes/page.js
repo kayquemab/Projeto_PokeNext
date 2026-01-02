@@ -56,9 +56,9 @@ const regioes = [
     caminho: "/Regioes/sinnoh",
     infoCaminho: "/Regioes/sinnoh",
     imagensDetalhes: {
-      imagem1: "/",
-      imagem2: "/",
-      imagem3: "/"
+      imagem1: "/imagens_sinnoh/sinnoh.jpg",
+      imagem2: "/imagens_sinnoh/Riolu_Wallpaper.jpg",
+      imagem3: "/imagens_sinnoh/silhueta_sinnoh.jpeg"
     }
   },
   {
@@ -70,9 +70,9 @@ const regioes = [
     caminho: "/Regioes/unova",
     infoCaminho: "/Regioes/unova",
     imagensDetalhes: {
-      imagem1: "/",
-      imagem2: "/",
-      imagem3: "/"
+      imagem1: "/imagens_unova/banner_liga_unova.jpg",
+      imagem2: "/imagens_unova/unova.jpg",
+      imagem3: "/imagens_unova/silhueta_unova.jpeg"
     }
   },
   {
@@ -84,9 +84,9 @@ const regioes = [
     caminho: "/Regioes/kalos",
     infoCaminho: "/Regioes/kalos",
     imagensDetalhes: {
-      imagem1: "/",
-      imagem2: "/",
-      imagem3: "/"
+      imagem1: "/imagens_kalos/kalos.jpg",
+      imagem2: "/imagens_kalos/Lumiose_City.jpg",
+      imagem3: "/imagens_kalos/silhueta_kalos.jpeg"
     }
   },
   {
@@ -98,9 +98,9 @@ const regioes = [
     caminho: "/Regioes/alola",
     infoCaminho: "/Regioes/alola",
     imagensDetalhes: {
-      imagem1: "/",
-      imagem2: "/",
-      imagem3: "/"
+      imagem1: "/imagens_alola/alola.jpg",
+      imagem2: "/imagens_alola/anuncio_alola.jpg",
+      imagem3: "/imagens_alola/silhueta_alola.jpeg"
     }
   },
   {
@@ -112,9 +112,9 @@ const regioes = [
     caminho: "/Regioes/galar",
     infoCaminho: "/Regioes/galar",
     imagensDetalhes: {
-      imagem1: "/",
-      imagem2: "/",
-      imagem3: "/"
+      imagem1: "/imagens_galar/galar.jpg",
+      imagem2: "/imagens_galar/Pokemon League.jpg",
+      imagem3: "/imagens_galar/silhueta_galar.jpeg"
     }
   },
   {
@@ -126,9 +126,9 @@ const regioes = [
     caminho: "/Regioes/paldea",
     infoCaminho: "/Regioes/paldea",
     imagensDetalhes: {
-      imagem1: "/",
-      imagem2: "/",
-      imagem3: "/"
+      imagem1: "/imagens_paldea/paldea_region.jpg",
+      imagem2: "/imagens_paldea/Miraidon.jpg",
+      imagem3: "/imagens_paldea/Koraidon.jpg"
     }
   }
 ];
