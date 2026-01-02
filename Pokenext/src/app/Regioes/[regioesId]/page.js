@@ -93,7 +93,9 @@ export default function RegioesPage() {
 
             <RegionStarters region={regioesId} />
 
-            <RegionPokemonCarousel region={regioesId} />
+            <div className="w-full flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14 mt-6 py-10">
+                <RegionPokemonCarousel region={regioesId} />
+            </div>
 
             <RegionLegendaries region={regioesId} />
 
