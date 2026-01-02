@@ -13,6 +13,11 @@ const regioes = [
     icone: "/pokedexicons/kanto.svg",
     caminho: "/Regioes/kanto",
     infoCaminho: "/Regioes/kanto",
+    imagensDetalhes: {
+      imagem1: "/imagens_kanto/PalletTown.jpg",
+      imagem2: "/imagens_kanto/PewterCity.jpg",
+      imagem3: "/imagens_kanto/CeruleanCity.jpg"
+    }
   },
   {
     nome: "Johto",
@@ -22,6 +27,11 @@ const regioes = [
     icone: "/pokedexicons/johto.svg",
     caminho: "/Regioes/johto",
     infoCaminho: "/Regioes/johto",
+    imagensDetalhes: {
+      imagem1: "/",
+      imagem2: "/",
+      imagem3: "/"
+    }
   },
   {
     nome: "Hoenn",
@@ -31,6 +41,11 @@ const regioes = [
     icone: "/pokedexicons/hoenn.svg",
     caminho: "/Regioes/hoenn",
     infoCaminho: "/Regioes/hoenn",
+    imagensDetalhes: {
+      imagem1: "/",
+      imagem2: "/",
+      imagem3: "/"
+    }
   },
   {
     nome: "Sinnoh",
@@ -40,6 +55,11 @@ const regioes = [
     icone: "/pokedexicons/sinnoh.svg",
     caminho: "/Regioes/sinnoh",
     infoCaminho: "/Regioes/sinnoh",
+    imagensDetalhes: {
+      imagem1: "/",
+      imagem2: "/",
+      imagem3: "/"
+    }
   },
   {
     nome: "Unova",
@@ -49,6 +69,11 @@ const regioes = [
     icone: "/pokedexicons/unova.svg",
     caminho: "/Regioes/unova",
     infoCaminho: "/Regioes/unova",
+    imagensDetalhes: {
+      imagem1: "/",
+      imagem2: "/",
+      imagem3: "/"
+    }
   },
   {
     nome: "Kalos",
@@ -58,6 +83,11 @@ const regioes = [
     icone: "/pokedexicons/kalos.svg",
     caminho: "/Regioes/kalos",
     infoCaminho: "/Regioes/kalos",
+    imagensDetalhes: {
+      imagem1: "/",
+      imagem2: "/",
+      imagem3: "/"
+    }
   },
   {
     nome: "Alola",
@@ -67,6 +97,11 @@ const regioes = [
     icone: "/pokedexicons/alola.svg",
     caminho: "/Regioes/alola",
     infoCaminho: "/Regioes/alola",
+    imagensDetalhes: {
+      imagem1: "/",
+      imagem2: "/",
+      imagem3: "/"
+    }
   },
   {
     nome: "Galar",
@@ -76,6 +111,11 @@ const regioes = [
     icone: "/pokedexicons/galar.svg",
     caminho: "/Regioes/galar",
     infoCaminho: "/Regioes/galar",
+    imagensDetalhes: {
+      imagem1: "/",
+      imagem2: "/",
+      imagem3: "/"
+    }
   },
   {
     nome: "Paldea",
@@ -85,23 +125,18 @@ const regioes = [
     icone: "/pokedexicons/paldea.svg",
     caminho: "/Regioes/paldea",
     infoCaminho: "/Regioes/paldea",
-  },
+    imagensDetalhes: {
+      imagem1: "/",
+      imagem2: "/",
+      imagem3: "/"
+    }
+  }
 ];
-
 
 export default function Regioes() {
   return (
-
     <div>
-
-      <h1
-        className="
-          text-2xl sm:text-3xl
-          font-normal tracking-tight text-neutral-700
-          text-left
-          ml-5 sm:ml-10 md:ml-10 lg:ml-16
-        "
-      >
+      <h1 className="text-2xl sm:text-3xl font-normal tracking-tight text-neutral-700 text-left ml-5 sm:ml-10 md:ml-10 lg:ml-16">
         Regiões
       </h1>
 
@@ -118,17 +153,7 @@ export default function Regioes() {
                 {regioes.map((regiao, index) => (
                   <motion.div
                     key={regiao.nome}
-                    className="
-                    group
-                    relative
-                    rounded-md
-                    overflow-hidden
-                    bg-white/5
-                    border border-white/20
-                    shadow-lg
-                    transition-all
-                    hover:shadow-2xl
-                  "
+                    className="group relative rounded-md overflow-hidden bg-white/5 border border-white/20 shadow-lg transition-all hover:shadow-2xl"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.06, duration: 0.45 }}
@@ -138,7 +163,6 @@ export default function Regioes() {
                       transition: { type: "spring", stiffness: 240, damping: 18 },
                     }}
                   >
-                    {/* Imagem */}
                     <Image
                       src={regiao.imagem}
                       alt={regiao.nome}
@@ -147,58 +171,44 @@ export default function Regioes() {
                       className="w-full h-auto object-cover opacity-90 group-hover:opacity-100 transition"
                     />
 
-                    {/* Overlay escuro hi-tech */}
                     <div className="absolute inset-0 bg-linear-to-b from-black/25 via-black/55 to-black/80 pointer-events-none" />
-
-                    {/* Grid holográfico */}
                     <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.06] mix-blend-overlay pointer-events-none" />
 
-                    {/* Ícone clicável com animação (pra parecer botão) */}
-                    {(() => {
-                      const size = 54; // 👈 ajuste o tamanho aqui
+                    <motion.div
+                      className="absolute bottom-3 left-3 z-20"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{
+                        opacity: 1,
+                        y: [0, -3, 0],
+                        scale: [1, 1.06, 1],
+                      }}
+                      transition={{
+                        opacity: { duration: 0.35 },
+                        y: { duration: 1.6, repeat: Infinity, ease: "easeInOut" },
+                        scale: { duration: 1.6, repeat: Infinity, ease: "easeInOut" },
+                      }}
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Link
+                        href={{
+                          pathname: regiao.infoCaminho,
+                          query: regiao.imagensDetalhes
+                        }}
+                        aria-label={`Ver mais informações sobre ${regiao.nome}`}
+                        className="inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                        style={{ width: 54, height: 54 }}
+                      >
+                        <Image
+                          src={regiao.icone}
+                          alt=""
+                          width={54}
+                          height={54}
+                          className="opacity-90 group-hover:opacity-100 transition drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]"
+                        />
+                      </Link>
+                    </motion.div>
 
-                      return (
-                        <motion.div
-                          className="absolute bottom-3 left-3 z-20"
-                          initial={{ opacity: 0, scale: 0.9 }}
-                          animate={{
-                            opacity: 1,
-                            y: [0, -3, 0],
-                            scale: [1, 1.06, 1],
-                          }}
-                          transition={{
-                            opacity: { duration: 0.35 },
-                            y: { duration: 1.6, repeat: Infinity, ease: "easeInOut" },
-                            scale: { duration: 1.6, repeat: Infinity, ease: "easeInOut" },
-                          }}
-                          whileHover={{ scale: 1.15 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <Link
-                            href={regiao.infoCaminho}
-                            aria-label={`Ver mais informações sobre ${regiao.nome}`}
-                            className="
-                            inline-flex items-center justify-center
-                            focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
-                          "
-                            style={{ width: size, height: size }}
-                          >
-                            <Image
-                              src={regiao.icone}
-                              alt=""
-                              width={size}
-                              height={size}
-                              className="
-                              opacity-90 group-hover:opacity-100 transition
-                              drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]
-                            "
-                            />
-                          </Link>
-                        </motion.div>
-                      );
-                    })()}
-
-                    {/* TOPO — título e descrição */}
                     <motion.div
                       className="absolute top-0 left-0 right-0 p-4 pt-5 flex flex-col"
                       initial={{ opacity: 0, y: -10 }}
@@ -221,7 +231,6 @@ export default function Regioes() {
                           {regiao.nome}
                         </motion.h3>
                       </div>
-
                       <p className="mt-2 text-[11px] leading-relaxed text-neutral-200 font-light opacity-90">
                         {regiao.descricao}
                       </p>
@@ -233,8 +242,6 @@ export default function Regioes() {
           </div>
         </section>
       </div>
-
-
     </div>
   );
 }
