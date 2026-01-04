@@ -6,132 +6,133 @@ import Link from "next/link";
 
 const regioes = [
   {
+    id: "kanto",
+    ordem: 0,
     nome: "Kanto",
     descricao:
       "O berço de inúmeras jornadas: cidades clássicas, rotas lendárias e o início de tudo para muitos Treinadores.",
     imagem: "/regioes/kanto.jpeg",
     icone: "/pokedexicons/kanto.svg",
-    caminho: "/Regioes/kanto",
-    infoCaminho: "/Regioes/kanto",
     imagensDetalhes: {
       imagem1: "/imagens_kanto/PalletTown.jpg",
       imagem2: "/imagens_kanto/banner_liga_kanto.jpg",
-      imagem3: "/imagens_kanto/silhueta_kanto.jpeg"
-    }
+      imagem3: "/imagens_kanto/silhueta_kanto.jpeg",
+    },
   },
   {
+    id: "johto",
+    ordem: 1,
     nome: "Johto",
     descricao:
       "Uma região onde tradição e natureza caminham juntas, marcada por templos antigos, lendas e uma cultura viva.",
     imagem: "/regioes/johto.jpeg",
     icone: "/pokedexicons/johto.svg",
-    caminho: "/Regioes/johto",
-    infoCaminho: "/Regioes/johto",
     imagensDetalhes: {
       imagem1: "/imagens_johto/Cyndaquil.jpg",
       imagem2: "/imagens_johto/banner_liga_johto.jpg",
-      imagem3: "/imagens_johto/silhueta_johto.jpeg"
-    }
+      imagem3: "/imagens_johto/silhueta_johto.jpeg",
+    },
   },
   {
+    id: "hoenn",
+    ordem: 2,
     nome: "Hoenn",
     descricao:
       "Terras tropicais moldadas por mar e montanha, com paisagens vibrantes e uma energia natural impressionante.",
     imagem: "/regioes/hoenn.jpeg",
     icone: "/pokedexicons/hoenn.svg",
-    caminho: "/Regioes/hoenn",
-    infoCaminho: "/Regioes/hoenn",
     imagensDetalhes: {
       imagem1: "/imagens_hoenn/banner_latiosElatias.jpg",
       imagem2: "/imagens_hoenn/banner_liga_hoenn.jpg",
-      imagem3: "/imagens_hoenn/silhueta_hoenn.jpeg"
-    }
+      imagem3: "/imagens_hoenn/silhueta_hoenn.jpeg",
+    },
   },
   {
+    id: "sinnoh",
+    ordem: 3,
     nome: "Sinnoh",
     descricao:
       "Região de clima intenso e mitologia profunda, onde o passado ecoa em montanhas e mistérios do tempo e do espaço.",
     imagem: "/regioes/sinnoh.jpeg",
     icone: "/pokedexicons/sinnoh.svg",
-    caminho: "/Regioes/sinnoh",
-    infoCaminho: "/Regioes/sinnoh",
     imagensDetalhes: {
       imagem1: "/imagens_sinnoh/sinnoh.jpg",
       imagem2: "/imagens_sinnoh/Riolu_Wallpaper.jpg",
-      imagem3: "/imagens_sinnoh/silhueta_sinnoh.jpeg"
-    }
+      imagem3: "/imagens_sinnoh/silhueta_sinnoh.jpeg",
+    },
   },
   {
+    id: "unova",
+    ordem: 4,
     nome: "Unova",
     descricao:
       "Moderna e pulsante, reúne culturas, ideias e estilos em uma região dinâmica, perfeita para novas descobertas.",
     imagem: "/regioes/unova.jpeg",
     icone: "/pokedexicons/unova.svg",
-    caminho: "/Regioes/unova",
-    infoCaminho: "/Regioes/unova",
     imagensDetalhes: {
       imagem1: "/imagens_unova/banner_liga_unova.jpg",
       imagem2: "/imagens_unova/unova.jpg",
-      imagem3: "/imagens_unova/silhueta_unova.jpeg"
-    }
+      imagem3: "/imagens_unova/silhueta_unova.jpeg",
+    },
   },
   {
+    id: "kalos",
+    ordem: 5,
     nome: "Kalos",
     descricao:
       "Elegância em cada detalhe: arte, moda e beleza se encontram em uma região que também revelou o poder da Mega Evolução.",
     imagem: "/regioes/kalos.jpeg",
     icone: "/pokedexicons/kalos.svg",
-    caminho: "/Regioes/kalos",
-    infoCaminho: "/Regioes/kalos",
     imagensDetalhes: {
       imagem1: "/imagens_kalos/kalos.jpg",
       imagem2: "/imagens_kalos/Lumiose_City.jpg",
-      imagem3: "/imagens_kalos/silhueta_kalos.jpeg"
-    }
+      imagem3: "/imagens_kalos/silhueta_kalos.jpeg",
+    },
   },
   {
+    id: "alola",
+    ordem: 6,
     nome: "Alola",
     descricao:
       "Um arquipélago ensolarado guiado por tradições e laços comunitários, com formas regionais únicas e espírito acolhedor.",
     imagem: "/regioes/alola.jpeg",
     icone: "/pokedexicons/alola.svg",
-    caminho: "/Regioes/alola",
-    infoCaminho: "/Regioes/alola",
     imagensDetalhes: {
       imagem1: "/imagens_alola/alola.jpg",
       imagem2: "/imagens_alola/anuncio_alola.jpg",
-      imagem3: "/imagens_alola/silhueta_alola.jpeg"
-    }
+      imagem3: "/imagens_alola/silhueta_alola.jpeg",
+    },
   },
   {
+    id: "galar",
+    ordem: 7,
     nome: "Galar",
     descricao:
       "Tradição e espetáculo se unem em batalhas grandiosas, com estádios imponentes e uma paixão nacional pelo desafio.",
     imagem: "/regioes/galar.jpeg",
     icone: "/pokedexicons/galar.svg",
-    caminho: "/Regioes/galar",
-    infoCaminho: "/Regioes/galar",
     imagensDetalhes: {
       imagem1: "/imagens_galar/galar.jpg",
       imagem2: "/imagens_galar/Pokemon_League.jpg",
-      imagem3: "/imagens_galar/silhueta_galar.jpeg"
-    }
+      imagem3: "/imagens_galar/silhueta_galar.jpeg",
+    },
   },
   {
+    id: "paldea",
+    ordem: 8,
     nome: "Paldea",
     descricao:
       "Exploração em liberdade total: uma região aberta, diversa e cheia de surpresas, onde a Terastalização brilha.",
     imagem: "/regioes/paldea.png",
     icone: "/pokedexicons/paldea.svg",
-    caminho: "/Regioes/paldea",
-    infoCaminho: "/Regioes/paldea",
     imagensDetalhes: {
       imagem1: "/imagens_paldea/paldea_region.jpg",
       imagem2: "/imagens_paldea/Miraidon.jpg",
-      imagem3: "/imagens_paldea/Koraidon.jpg"
-    }
-  }
+      imagem3: "/imagens_paldea/Koraidon.jpg",
+    },
+  },
 ];
+
 
 export default function Regioes() {
   return (

@@ -21,7 +21,6 @@ const REGIOES = [
     "paldea",
 ];
 
-/* 🔑 MESMO MAPA DA PÁGINA PRINCIPAL */
 const IMAGENS_POR_REGIAO = {
     kanto: {
         imagem1: "/imagens_kanto/PalletTown.jpg",
@@ -106,18 +105,21 @@ export default function RegioesPage() {
                     <div className="grid grid-cols-2 gap-1">
                         <button
                             onClick={() => goToRegion(prev)}
-                            className="group flex items-center gap-3 rounded-l-2xl px-4 py-3 text-white bg-[#616161] hover:bg-[#1B1B1B]"
+                            className="group flex items-center justify-start gap-3 rounded-l-2xl px-4 py-3 text-white bg-[#616161] hover:bg-[#1B1B1B]"
                         >
                             <span className="grid h-7 w-7 place-items-center rounded-full bg-white text-[#616161] group-hover:text-[#1B1B1B]">
                                 <ChevronLeft className="h-4 w-4" />
                             </span>
-                            <div>
+
+                            <div className="text-left">
                                 <div className="text-xs">Região anterior</div>
                                 <div className="text-sm font-semibold">
                                     {prev.charAt(0).toUpperCase() + prev.slice(1)}
                                 </div>
+                                
                             </div>
                         </button>
+
 
                         <button
                             onClick={() => goToRegion(next)}
