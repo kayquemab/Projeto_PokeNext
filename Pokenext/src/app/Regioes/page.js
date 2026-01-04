@@ -113,7 +113,7 @@ const regioes = [
     infoCaminho: "/Regioes/galar",
     imagensDetalhes: {
       imagem1: "/imagens_galar/galar.jpg",
-      imagem2: "/imagens_galar/Pokemon League.jpg",
+      imagem2: "/imagens_galar/Pokemon_League.jpg",
       imagem3: "/imagens_galar/silhueta_galar.jpeg"
     }
   },
