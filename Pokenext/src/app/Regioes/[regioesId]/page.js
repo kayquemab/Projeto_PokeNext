@@ -135,11 +135,44 @@ export default function RegioesPage() {
 
             <RegionStarters region={regioesId} />
 
-            <div className="w-full flex flex-col items-center px-4 mt-6 py-10">
+            <div className="mt-6 py-10 w-full flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
+
                 <RegionPokemonCarousel region={regioesId} />
             </div>
 
             <RegionLegendaries region={regioesId} />
+
+            {/* Botão Voltar para as Regiões */}
+            <div
+                className="
+    w-full max-w-6xl
+    rounded-2xl
+    mx-auto mt-6
+    overflow-visible
+  "
+            >
+                <div className="px-5 pb-4 flex justify-end">
+                    <motion.button
+                        onClick={() => router.push("/Regioes")}
+                        whileHover={{
+                            scale: 1.08,
+                            y: -2,
+                            transition: { type: "spring", stiffness: 250, damping: 14 },
+                        }}
+                        className="
+        relative z-10
+        px-6 py-3
+        rounded-xl
+        bg-[#E3350D] hover:bg-[#C32B0B]
+        text-white font-semibold text-sm
+        transition
+      "
+                    >
+                        Voltar para as Regiões
+                    </motion.button>
+                </div>
+            </div>
+
         </div>
     );
 }
