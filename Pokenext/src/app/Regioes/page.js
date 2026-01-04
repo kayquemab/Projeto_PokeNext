@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const regioes = [
+export const regioes = [
   {
     id: "kanto",
     ordem: 0,
@@ -133,7 +133,6 @@ const regioes = [
   },
 ];
 
-
 export default function Regioes() {
   return (
     <div>
@@ -191,11 +190,9 @@ export default function Regioes() {
                       whileHover={{ scale: 1.15 }}
                       whileTap={{ scale: 0.95 }}
                     >
+
                       <Link
-                        href={{
-                          pathname: regiao.infoCaminho,
-                          query: regiao.imagensDetalhes
-                        }}
+                        href={`/Regioes/${regiao.id}`}
                         aria-label={`Ver mais informações sobre ${regiao.nome}`}
                         className="inline-flex items-center justify-center focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
                         style={{ width: 54, height: 54 }}
@@ -208,6 +205,8 @@ export default function Regioes() {
                           className="opacity-90 group-hover:opacity-100 transition drop-shadow-[0_0_10px_rgba(255,255,255,0.35)]"
                         />
                       </Link>
+
+
                     </motion.div>
 
                     <motion.div
