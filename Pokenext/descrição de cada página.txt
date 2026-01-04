@@ -1,10 +1,6 @@
 descrição de cada página
 
-📚 Pokédex
-Visualize informações detalhadas de cada Pokémon, incluindo stats, tipos, sprites e lore. Consulte também diferentes formas e variantes.
 
-🗺️ Regiões
-Explore as regiões do jogo, visualize os habitats naturais dos Pokémon e consulte quais Pokémon aparecem em cada área.
 
 📖 Movimentos
 Acesse a lista completa de movimentos Pokémon, filtre por tipo, categoria e poder, busque por nome e veja stats, Pokémon que aprendem cada movimento e detalhes de TM/HM.
