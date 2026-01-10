@@ -213,7 +213,7 @@ export default function RegionLegendaries({ region }) {
                             />
 
                             <h3 className="text-xl font-extrabold text-black dark:text-white">
-                                Pokémon Lendários de {regionName}
+                                Pokémon Lendários de: {regionName}
                             </h3>
                         </div>
 

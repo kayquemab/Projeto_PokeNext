@@ -10,6 +10,7 @@ import RegionPokemonCarousel from "@/components/RegionPokemonCarousel";
 import RegionLegendaries from "@/components/RegionLegendaries";
 
 import { regioes } from "../page";
+import Lideres from "@/components/Lideres";
 
 export default function RegioesPage() {
     const { regioesId } = useParams();
@@ -136,11 +137,18 @@ export default function RegioesPage() {
             <RegionStarters region={regioesId} />
 
             <div className="mt-6 py-10 w-full flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
-
                 <RegionPokemonCarousel region={regioesId} />
             </div>
 
+
+            <Lideres region={regioesId} />
+
+
+
+
             <RegionLegendaries region={regioesId} />
+
+
 
             {/* Botão Voltar para as Regiões */}
             <div

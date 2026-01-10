@@ -102,7 +102,7 @@ export default function RegionStarters({ region }) {
                             />
 
                             <h3 className="text-xl font-extrabold text-black dark:text-white">
-                                Pokémons Iniciais de {regionName}
+                                Pokémons Iniciais de: {regionName}
                             </h3>
                         </div>
 
