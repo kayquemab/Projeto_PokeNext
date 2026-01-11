@@ -607,6 +607,8 @@ export default function MovimentosPage() {
                                                     <Search className="w-4 h-4" />
                                                     {advancedLoading ? "Pesquisando..." : "Pesquisar"}
                                                 </button>
+
+                                                
                                             </div>
 
                                         </div>
