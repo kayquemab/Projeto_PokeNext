@@ -518,8 +518,9 @@ export default function MovimentosPage() {
                                                                     type="number"
                                                                     value={minPower}
                                                                     onChange={(e) => setMinPower(e.target.value)}
-                                                                    className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none"
+                                                                    className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none no-spinner"
                                                                 />
+
 
                                                                 <div className="mt-2">
                                                                     <button
@@ -541,10 +542,11 @@ export default function MovimentosPage() {
 
                                                                 <input
                                                                     type="number"
-                                                                    value={minPower}
-                                                                    onChange={(e) => setMinPower(e.target.value)}
-                                                                    className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none"
+                                                                    value={minAccuracy}
+                                                                    onChange={(e) => setMinAccuracy(e.target.value)}
+                                                                    className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none no-spinner"
                                                                 />
+
 
                                                                 <div className="mt-2">
                                                                     <button
@@ -566,9 +568,9 @@ export default function MovimentosPage() {
 
                                                                 <input
                                                                     type="number"
-                                                                    value={minPower}
-                                                                    onChange={(e) => setMinPower(e.target.value)}
-                                                                    className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none"
+                                                                    value={minPP}
+                                                                    onChange={(e) => setMinPP(e.target.value)}
+                                                                    className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none no-spinner"
                                                                 />
 
                                                                 <div className="mt-2">
@@ -584,6 +586,18 @@ export default function MovimentosPage() {
                                                         </div>
                                                     </div>
 
+                                                    {/* REMOVE SPINNER */}
+                                                    <style jsx>{`
+  .no-spinner::-webkit-outer-spin-button,
+  .no-spinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .no-spinner {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+`}</style>
 
                                                 </div>
                                             </div>
@@ -608,7 +622,7 @@ export default function MovimentosPage() {
                                                     {advancedLoading ? "Pesquisando..." : "Pesquisar"}
                                                 </button>
 
-                                                
+
                                             </div>
 
                                         </div>
