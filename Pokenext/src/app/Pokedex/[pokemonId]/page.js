@@ -9,26 +9,25 @@ import { useParams, useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const TYPE_STYLES = {
-  grass: "bg-[#78C850] text-black dark:bg-[#78C850]",
-  poison: "bg-[#A040A0] text-white dark:bg-[#A040A0]",
-  fire: "bg-[#F08030] text-white dark:bg-[#F08030]",
-  water: "bg-[#6890F0] text-white dark:bg-[#6890F0]",
-  electric: "bg-[#F8D030] text-black dark:bg-[#F8D030]",
-  flying: "bg-[#A890F0] text-black dark:bg-[#A890F0]",
-  ice: "bg-[#98D8D8] text-black dark:bg-[#98D8D8]",
-  bug: "bg-[#A8B820] text-black dark:bg-[#A8B820]",
-  normal: "bg-[#A8A878] text-black dark:bg-[#A8A878]",
-  fighting: "bg-[#C03028] text-white dark:bg-[#C03028]",
-  psychic: "bg-[#F85888] text-white dark:bg-[#F85888]",
-  rock: "bg-[#B8A038] text-black dark:bg-[#B8A038]",
-  ground: "bg-[#E0C068] text-black dark:bg-[#E0C068]",
-  ghost: "bg-[#705898] text-white dark:bg-[#705898]",
-  dragon: "bg-[#7038F8] text-white dark:bg-[#7038F8]",
-  dark: "bg-[#705848] text-white dark:bg-[#705848]",
-  steel: "bg-[#B8B8D0] text-black dark:bg-[#B8B8D0]",
-  fairy: "bg-[#EE99AC] text-black dark:bg-[#EE99AC]",
-  default:
-    "bg-neutral-300 text-neutral-900 dark:bg-neutral-700 dark:text-white",
+  bug: "bg-[#A8B820] text-white",
+  dragon: "bg-[#7038F8] text-white",
+  fairy: "bg-[#EE99AC] text-white",
+  fire: "bg-[#F08030] text-white",
+  ghost: "bg-[#705898] text-white",
+  ground: "bg-[#E0C068] text-white",
+  normal: "bg-[#A8A878] text-white",
+  psychic: "bg-[#F85888] text-white",
+  steel: "bg-[#B8B8D0] text-white",
+  dark: "bg-[#705848] text-white",
+  electric: "bg-[#F8D030] text-white",
+  fighting: "bg-[#C03028] text-white",
+  flying: "bg-[#A890F0] text-white",
+  grass: "bg-[#78C850] text-white",
+  ice: "bg-[#98D8D8] text-white",
+  poison: "bg-[#A040A0] text-white",
+  rock: "bg-[#B8A038] text-white",
+  water: "bg-[#6890F0] text-white",
+  default: "bg-neutral-400 text-white",
 };
 
 function getTypeClass(typeName) {
@@ -1173,7 +1172,7 @@ export default function PokemonId() {
         </div>
       </div>
 
-
+      
 
       {/* Botão Voltar para a Pokédex */}
       <div
