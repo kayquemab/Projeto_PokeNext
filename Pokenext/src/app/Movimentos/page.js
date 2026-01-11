@@ -802,7 +802,7 @@ export default function MovimentosPage() {
                                         transition={{ delay: 0.2, duration: 0.35 }}
                                     />
                                     <label className="block text-white text-lg font-medium">
-                                        Nome ou número
+                                        Buscar Movimento
                                     </label>
                                 </div>
 
