@@ -541,8 +541,8 @@ export default function MovimentosPage() {
 
                                                                 <input
                                                                     type="number"
-                                                                    value={minAccuracy}
-                                                                    onChange={(e) => setMinAccuracy(e.target.value)}
+                                                                    value={minPower}
+                                                                    onChange={(e) => setMinPower(e.target.value)}
                                                                     className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none"
                                                                 />
 
@@ -566,8 +566,8 @@ export default function MovimentosPage() {
 
                                                                 <input
                                                                     type="number"
-                                                                    value={minPP}
-                                                                    onChange={(e) => setMinPP(e.target.value)}
+                                                                    value={minPower}
+                                                                    onChange={(e) => setMinPower(e.target.value)}
                                                                     className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none"
                                                                 />
 
@@ -577,7 +577,7 @@ export default function MovimentosPage() {
                                                                         onClick={() => setHeightGroup("all")}
                                                                         className="text-xs text-white/70 hover:text-white underline"
                                                                     >
-                                                                        Limpar Power
+                                                                        Limpar PP
                                                                     </button>
                                                                 </div>
                                                             </div>
