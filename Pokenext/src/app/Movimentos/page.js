@@ -638,59 +638,83 @@ export default function MovimentosPage() {
                         </div>
 
 
-                        {/* GRID */}
-                        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                            {visibleMoves.map((m) => {
-                                const d = moveDetails[m.id];
+                        {/* GRID DE MOVES */}
+                        {visibleMoves.length > 0 ? (
+                            <div className="mt-6">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                                    {visibleMoves.map((m) => {
+                                        const d = moveDetails[m.id];
 
-                                return (
-                                    <motion.div
-                                        key={m.id}
-                                        whileHover={{ scale: 1.03 }}
-                                        className="bg-white rounded-md p-4 shadow border"
-                                    >
-                                        <div className="flex items-center justify-between gap-2">
-                                            <h3 className="font-semibold text-neutral-700 mb-2">
-                                                {formatName(m.name)}
-                                            </h3>
-                                            <span className="text-xs text-neutral-400">#{m.id}</span>
-                                        </div>
-
-                                        {d ? (
-                                            <>
-                                                <span
-                                                    className={`inline-block px-3 py-1 text-xs rounded ${getTypeClass(
-                                                        d.type
-                                                    )}`}
-                                                >
-                                                    {d.type ? TYPE_LABELS_PT[d.type] || d.type : "—"}
-                                                </span>
-
-                                                <div className="mt-2 text-sm text-neutral-600 space-y-1">
-                                                    <div>Classe: {d.damageClass || "—"}</div>
-                                                    <div>Power: {d.power ?? "-"}</div>
-                                                    <div>Accuracy: {d.accuracy ?? "-"}</div>
-                                                    <div>PP: {d.pp ?? "-"}</div>
+                                        return (
+                                            <motion.button
+                                                key={m.id}
+                                                whileHover={{ scale: 1.03 }}
+                                                onClick={() => navigateToMove(m.id)}
+                                                className="flex flex-col items-stretch justify-start rounded-md bg-white p-4 shadow-[0_4px_10px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_18px_rgba(0,0,0,0.1)] border border-neutral-200 transition-shadow duration-200 text-left"
+                                            >
+                                                {/* Nome + Número */}
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <motion.div
+                                                        className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                                                        initial={{ scaleY: 0.3, opacity: 0 }}
+                                                        animate={{ scaleY: 1, opacity: 1 }}
+                                                        transition={{ delay: 0.2, duration: 0.35 }}
+                                                    />
+                                                    <h3 className="text-lg font-semibold text-neutral-600 capitalize">
+                                                        {formatName(m.name)}
+                                                    </h3>
                                                 </div>
-                                            </>
-                                        ) : (
-                                            <span className="text-xs text-neutral-400">Carregando...</span>
-                                        )}
-                                    </motion.div>
-                                );
-                            })}
-                        </div>
 
-                        {visibleCount < filteredList.length && (
-                            <div className="flex justify-center mt-6">
-                                <button
-                                    onClick={() => setVisibleCount((v) => v + 20)}
-                                    className="bg-[#E3350D] text-white px-6 py-2 rounded-md"
-                                >
-                                    Carregar mais movimentos
-                                </button>
+
+                                                {/* Tipo */}
+                                                {d?.type ? (
+                                                    <span
+                                                        className={`inline-block px-3 py-1 text-xs rounded-md font-medium capitalize ${getTypeClass(
+                                                            d.type
+                                                        )}`}
+                                                    >
+                                                        {TYPE_LABELS_PT[d.type] || d.type}
+                                                    </span>
+                                                ) : (
+                                                    <span className="text-[11px] text-slate-500">Carregando tipo...</span>
+                                                )}
+
+                                                {/* Detalhes da move */}
+                                                {d ? (
+                                                    <div className="mt-2 text-sm text-neutral-600 space-y-1">
+                                                        <div>Classe: {d.damageClass || "—"}</div>
+                                                        <div>Power: {d.power ?? "-"}</div>
+                                                        <div>Accuracy: {d.accuracy ?? "-"}</div>
+                                                        <div>PP: {d.pp ?? "-"}</div>
+                                                    </div>
+                                                ) : (
+                                                    <div className="mt-2 text-[11px] text-slate-500">Carregando detalhes...</div>
+                                                )}
+                                            </motion.button>
+                                        );
+                                    })}
+                                </div>
+
+                                {/* Botão carregar mais */}
+                                <div className="flex justify-center mt-6">
+                                    {visibleCount < allMoves.length && (
+                                        <button
+                                            onClick={() => setVisibleCount((v) => v + 15)}
+                                            className="bg-[#E3350D] text-white px-6 py-2 rounded-md hover:bg-[#c52c0b]"
+                                        >
+                                            Carregar mais movimentos
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="mt-6 text-center text-white/80">
+                                Nenhuma move encontrada com os filtros atuais.
                             </div>
                         )}
+
+
+
                     </div>
                 </section>
             </div>
