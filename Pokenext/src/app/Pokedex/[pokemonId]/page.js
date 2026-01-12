@@ -7,6 +7,7 @@ import { useParams, useRouter } from "next/navigation";
 
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import MovimentosPokemonCarrousel from "@/components/MovimentosPokemonCarrousel";
 
 const TYPE_STYLES = {
   bug: "bg-[#A8B820] text-white",
@@ -1172,7 +1173,12 @@ export default function PokemonId() {
         </div>
       </div>
 
-      
+      {/* Carrousel - final */}
+      <div className="mt-6 w-full flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-14">
+        <div className="w-full">
+          <MovimentosPokemonCarrousel pokemonId={pokemon.id} />
+        </div>
+      </div>
 
       {/* Botão Voltar para a Pokédex */}
       <div
