@@ -53,6 +53,4 @@ npm run dev
 
 ## 👤 Autor
 
-Criado por **Kayque Miqueias** | Desenvolvido por **Kayque Miqueias**
-
-
+Criado por **Matheus Battisti** | Desenvolvido por **Kayque Miqueias**
