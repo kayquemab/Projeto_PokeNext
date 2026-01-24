@@ -990,8 +990,6 @@ export default function Pokedex() {
 
             <div className="mt-8" />
 
-
-
             {/* ORDENAR */}
             <div className="w-full px-4 sm:px-0 flex flex-col sm:flex-row sm:items-center sm:justify-end gap-2 mb-2">
 
@@ -1041,8 +1039,6 @@ export default function Pokedex() {
               </div>
 
             </div>
-
-
 
             {/* GRID */}
             {sortedListForGrid.length > 0 ? (
