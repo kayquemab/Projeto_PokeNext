@@ -2,18 +2,46 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Pokebolas() {
+    const [pokebolas, setPokebolas] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-const pokebolas = []
+    useEffect(() => {
+        async function buscarPokebolas() {
+            try {
+                // 1. Busca a categoria "pokeballs"
+                const respostaCategoria = await fetch("https://pokeapi.co/api/v2/item-category/34/");
+                const categoria = await respostaCategoria.json();
 
-    // useEffect(() => {
-    //     async function buscarDados() {
-    //         const resposta = await fetch("https://pokeapi.co/api/v2/item?limit=10");
-    //         const dados = await resposta.json();
-    //     }
-    // })
+                // 2. Pega as URLs dos itens dessa categoria
+                const urls = categoria.items.map(item => item.url);
+
+                // 3. Busca os detalhes de cada pokébola
+                const detalhes = await Promise.all(
+                    urls.map(async (url) => {
+                        const resposta = await fetch(url);
+                        const dados = await resposta.json();
+
+                        return {
+                            id: dados.id,
+                            name: dados.name,
+                            image: dados.sprites.default,
+                        };
+                    })
+                );
+
+                setPokebolas(detalhes);
+            } catch (erro) {
+                console.error("Erro ao buscar pokébolas:", erro);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        buscarPokebolas();
+    }, []);
 
     return (
         <div>
@@ -51,8 +79,11 @@ const pokebolas = []
 
                                             {/* Imagem */}
                                             <Image
-                                                alt=""
-                                                className="absolute inset-0 z-10 object-containscale-105 opacity-100 brightness-110 transition-all duration-300" />
+                                                src={item.image}
+                                                alt={item.name}
+                                                width={100}
+                                                height={100}
+                                                className="absolute inset-0 z-10 object-contain scale-105 opacity-100 brightness-110 transition-all duration-300" />
                                         </div>
 
                                         {/* DESCRIÇÃO */}
@@ -69,18 +100,18 @@ const pokebolas = []
                                                         transition={{ delay: 0.2, duration: 0.35 }}
                                                     />
 
-                                                    <span className="capitalize">{item.nome}</span>
+                                                    <span className="capitalize">{item.name}</span>
                                                 </div>
 
                                                 {/* Número */}
-                                                <span className="text-base text-zinc-300">{item.numero}</span>
+                                                <span className="text-base text-zinc-300">{item.id}</span>
                                             </h4>
 
                                             {/* Tipo */}
                                             <div className="relative translate-y-4">
                                                 <div className="flex items-center gap-2">
                                                     <span className="text-sm font-medium text-white">
-                                                        Tipo: {item.tipo}
+                                                        Tipo:
                                                     </span>
                                                 </div>
                                             </div>
@@ -92,8 +123,12 @@ const pokebolas = []
                     </div>
                 </section>
             </div>
+
         </div >
     );
 }
+
+
+
 
 
