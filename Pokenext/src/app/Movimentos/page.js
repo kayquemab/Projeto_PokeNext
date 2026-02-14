@@ -183,7 +183,7 @@ export default function MovimentosPage() {
 
     const searchBoxRef = useRef(null);
 
-    // ✅ agora navega por NOME (slug)
+    // agora navega por NOME
     function navigateToMove(slug) {
         router.push(`/Movimentos/${slug}`);
     }
@@ -782,6 +782,7 @@ export default function MovimentosPage() {
             <div className="relative w-full">
                 <section className="w-full mt-6 px-3 sm:px-6 lg:px-8 mb-10">
                     <div className="w-full max-w-6xl mx-auto">
+
                         {/* CARD PRINCIPAL */}
                         <motion.div
                             className={`

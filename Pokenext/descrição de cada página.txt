@@ -1,13 +1,3 @@
-descrição de cada página
-
-
-
-📖 Movimentos
-Acesse a lista completa de movimentos Pokémon, filtre por tipo, categoria e poder, busque por nome e veja stats, Pokémon que aprendem cada movimento e detalhes de TM/HM.
-
-	📖 Enciclopédia de Movimentos
-	Veja cards com informações principais e páginas de detalhes com descrição, stats, Pokémon que aprendem e TM/HM.
-
 🎨 Times
 Monte e gerencie seu time de Pokémon com facilidade, visualizando stats, tipos e sprites. Salve, carregue, exporte ou importe times e organize-os com drag-and-drop.
 
