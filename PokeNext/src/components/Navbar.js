@@ -1,41 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const popoverRef = useRef(null);
-  const buttonRef = useRef(null);
-
   const menu = [
     { label: "Pokédex", href: "/Pokedex" },
     { label: "Regiões", href: "/Regioes" },
     { label: "Movimentos", href: "/Movimentos" },
     { label: "Times", href: "/Times" },
-    { label: "Habilidades", href: "/Habilidades" },
-    { label: "Evolução", href: "/Evolucao" },
-    { label: "Exploração", href: "/Exploracao" },
-    { label: "Mecânicas", href: "/Mecanicas" },
   ];
-
-  // Fecha o popover ao clicar fora (excluindo o botão)
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (
-        popoverRef.current &&
-        !popoverRef.current.contains(event.target) &&
-        buttonRef.current &&
-        !buttonRef.current.contains(event.target)
-      ) {
-        setOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   return (
     <header className="relative z-50 flex justify-center px-4 sm:px-6 lg:px-8 py-4 h-20">
@@ -50,7 +24,7 @@ export default function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className="flex items-center justify-between h-12 relative">
+        <div className="flex items-center justify-between h-12">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 text-[#333333]">
             <div className="size-8 text-[#E3350D]">
@@ -69,51 +43,36 @@ export default function Navbar() {
             <h2 className="text-lg font-bold">PokeNext</h2>
           </Link>
 
-          {/* Botão Hambúrguer */}
-          <button
-            ref={buttonRef}
-            onClick={() => setOpen(!open)}
-            className="text-2xl font-bold text-[#333333]"
-          >
-            {open ? "✕" : "☰"}
-          </button>
-
-          {/* Popover */}
-          <AnimatePresence>
-            {open && (
-              <motion.div
-                ref={popoverRef}
-                initial={{ opacity: 0, scale: 0.9, y: 10 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 10 }}
-                transition={{ duration: 0.2 }}
+          {/* Menu Desktop */}
+          <nav className="hidden md:flex items-center gap-6">
+            {menu.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
                 className="
-                  absolute right-0 top-full mt-2 w-56
-                  bg-white border border-neutral-200 rounded-2xl shadow-lg
-                  flex flex-col p-3 gap-2
+                  text-sm font-medium text-[#333333]
+                  hover:text-[#E3350D]
+                  transition-colors duration-200
                 "
               >
-                <Link
-                  href="/Batalha"
-                  className="px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold text-left"
-                  onClick={() => setOpen(false)}
-                >
-                  Batalha Online
-                </Link>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-                {menu.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="text-sm font-medium text-[#333333] hover:text-[#E3350D] text-left px-2 py-1 rounded-md"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* Botão destaque */}
+          <Link
+            href="/Batalha"
+            className="
+              hidden md:block
+              px-4 py-2 rounded-xl
+              bg-[#E3350D] text-white
+              text-sm font-semibold
+              hover:opacity-90 transition
+            "
+          >
+            Batalha Online
+          </Link>
         </div>
       </motion.div>
     </header>
