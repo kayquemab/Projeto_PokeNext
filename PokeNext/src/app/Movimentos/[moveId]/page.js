@@ -397,7 +397,7 @@ export default function MoveIdPage() {
           </div>
         </motion.div>
 
-        <div className="mt-6 w-full flex flex-col items-center px-4 sm:px-6 md:px-8 lg:px-10 xl:px-8 2xl:px-14">
+        <div className="mt-6 w-full flex flex-col items-center sm:px-6 md:px-8 lg:px-10 xl:px-8 2xl:px-14">
           <div className="w-full">
             <PokeMoveCarousel learnedByPokemon={move?.learned_by_pokemon} />
 

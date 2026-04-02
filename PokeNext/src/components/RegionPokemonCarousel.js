@@ -111,7 +111,8 @@ export default function RegionPokemonCarousel({ region, spaceBetween = 1 }) {
             <div className="relative w-full mx-auto">
 
                 {/* TÍTULO */}
-                <h3 className="flex items-center gap-2 bg-[#1b1b1b] text-[#919191] font-medium text-[20px] mt-[5px] mx-auto sm:ml-16 py-[11px] px-5 pb-2 w-fit">
+                <h3
+                    className="flex items-center gap-2 bg-[#1b1b1b] text-[#919191] font-medium text-[20px] mt-[5px] mx-auto sm:ml-16 py-[11px] px-5 pb-2 w-fit">
                     <Image src="/pokeball.png" alt="Pokeball" width={22} height={22} className="w-[22px] h-[22px] opacity-30 brightness-0 invert object-contain" />
                     Pokémons da Região
                 </h3>

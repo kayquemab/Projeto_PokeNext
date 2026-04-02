@@ -158,8 +158,6 @@ export default function PokeMoveCarrousel({
                     Movimento usado por:
                 </h3>
 
-                
-
                 {/* SWIPER */}
                 <div className="relative w-full h-[350px]">
                     {loading && cards.length === 0 ? (
