@@ -19,7 +19,7 @@ Aplicação web com Next.js que consome a PokéAPI para exibir dados de Pokémon
 
 ```bash
 git clone https://github.com/kayquemab/Projeto_PokeNext
-cd pokeNext
+cd PokeNext
 
 # Instalar dependências
 npm install
