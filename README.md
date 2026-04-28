@@ -7,6 +7,7 @@ Aplicação web com Next.js que consome a PokéAPI para exibir dados de Pokémon
 * Next.js
 * Tailwind CSS
 * JavaScript
+* PokéAPI
 
 ## ✨ Funcionalidades
 
