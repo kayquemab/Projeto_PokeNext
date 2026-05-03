@@ -1,8 +1,27 @@
 "use client";
 
-import React, { useMemo } from "react";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar } from "recharts";
-import { motion } from "framer-motion";
+import { AlertTriangle, BarChart3, ShieldCheck, Sparkles } from "lucide-react";
+
+const TYPE_LABELS = {
+    bug: "Inseto",
+    dragon: "Dragão",
+    fairy: "Fada",
+    fire: "Fogo",
+    ghost: "Fantasma",
+    ground: "Terra",
+    normal: "Normal",
+    psychic: "Psíquico",
+    steel: "Aço",
+    dark: "Sombrio",
+    electric: "Elétrico",
+    fighting: "Lutador",
+    flying: "Voador",
+    grass: "Planta",
+    ice: "Gelo",
+    poison: "Veneno",
+    rock: "Pedra",
+    water: "Água",
+};
 
 const TYPE_COLORS = {
     bug: "#A8B820",
@@ -25,167 +44,320 @@ const TYPE_COLORS = {
     water: "#6890F0",
 };
 
-const TYPE_EFFECTIVENESS = {
-    normal: { weak: ['fighting'], resist: [], immune: ['ghost'] },
-    fighting: { weak: ['flying', 'psychic', 'fairy'], resist: ['rock', 'bug', 'dark'], immune: [] },
-    flying: { weak: ['rock', 'electric', 'ice'], resist: ['fighting', 'bug', 'grass'], immune: ['ground'] },
-    poison: { weak: ['ground', 'psychic'], resist: ['fighting', 'poison', 'bug', 'grass', 'fairy'], immune: [] },
-    ground: { weak: ['water', 'grass', 'ice'], resist: ['poison', 'rock'], immune: ['electric'] },
-    rock: { weak: ['fighting', 'ground', 'steel', 'water', 'grass'], resist: ['normal', 'flying', 'poison', 'fire'], immune: [] },
-    bug: { weak: ['flying', 'rock', 'fire'], resist: ['fighting', 'ground', 'grass'], immune: [] },
-    ghost: { weak: ['ghost', 'dark'], resist: ['poison', 'bug'], immune: ['normal', 'fighting'] },
-    steel: { weak: ['fighting', 'ground', 'fire'], resist: ['normal', 'flying', 'rock', 'bug', 'steel', 'grass', 'psychic', 'ice', 'dragon', 'fairy'], immune: ['poison'] },
-    fire: { weak: ['ground', 'rock', 'water'], resist: ['bug', 'steel', 'fire', 'grass', 'ice', 'fairy'], immune: [] },
-    water: { weak: ['grass', 'electric'], resist: ['steel', 'fire', 'water', 'ice'], immune: [] },
-    grass: { weak: ['flying', 'poison', 'bug', 'fire', 'ice'], resist: ['ground', 'water', 'grass', 'electric'], immune: [] },
-    electric: { weak: ['ground'], resist: ['flying', 'steel', 'electric'], immune: [] },
-    psychic: { weak: ['bug', 'ghost', 'dark'], resist: ['fighting', 'psychic'], immune: [] },
-    ice: { weak: ['fighting', 'rock', 'steel', 'fire'], resist: ['ice'], immune: [] },
-    dragon: { weak: ['ice', 'dragon', 'fairy'], resist: ['fire', 'water', 'grass', 'electric'], immune: [] },
-    dark: { weak: ['fighting', 'bug', 'fairy'], resist: ['ghost', 'dark'], immune: ['psychic'] },
-    fairy: { weak: ['poison', 'steel'], resist: ['fighting', 'bug', 'dark'], immune: ['dragon'] },
+const TYPE_WEAKNESSES = {
+    normal: ["fighting"],
+    fire: ["water", "ground", "rock"],
+    water: ["electric", "grass"],
+    electric: ["ground"],
+    grass: ["fire", "ice", "poison", "flying", "bug"],
+    ice: ["fire", "fighting", "rock", "steel"],
+    fighting: ["flying", "psychic", "fairy"],
+    poison: ["ground", "psychic"],
+    ground: ["water", "grass", "ice"],
+    flying: ["electric", "ice", "rock"],
+    psychic: ["bug", "ghost", "dark"],
+    bug: ["fire", "flying", "rock"],
+    rock: ["water", "grass", "fighting", "ground", "steel"],
+    ghost: ["ghost", "dark"],
+    dragon: ["ice", "dragon", "fairy"],
+    dark: ["fighting", "bug", "fairy"],
+    steel: ["fire", "fighting", "ground"],
+    fairy: ["poison", "steel"],
 };
 
-export default function TeamAnalysis({ team }) {
-    const statsData = useMemo(() => {
-        if (!team.length) return [];
+const STAT_LABELS = {
+    hp: "HP",
+    attack: "Ataque",
+    defense: "Defesa",
+    "special-attack": "Atq. Esp.",
+    "special-defense": "Def. Esp.",
+    speed: "Velocidade",
+};
 
-        const stats = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
-        return stats.map(stat => ({
-            stat: stat.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()),
-            average: Math.round(team.reduce((sum, p) => sum + (p.stats?.find(s => s.stat.name === stat)?.base_stat || 0), 0) / team.length),
-        }));
-    }, [team]);
+function formatName(name) {
+    return String(name || "")
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+}
 
-    const typeCoverage = useMemo(() => {
-        if (!team.length) return { coverage: {}, weaknesses: {} };
+function getTotalStats(pokemon) {
+    return pokemon.stats.reduce((total, item) => total + item.base_stat, 0);
+}
 
-        const coverage = {};
-        const weaknesses = {};
+function getStat(pokemon, statName) {
+    return (
+        pokemon.stats.find((item) => item.stat.name === statName)?.base_stat ?? 0
+    );
+}
 
-        team.forEach(pokemon => {
-            pokemon.types?.forEach(typeInfo => {
-                const type = typeInfo.type.name;
-                if (!coverage[type]) coverage[type] = 0;
-                coverage[type]++;
+function TypeBadge({ type }) {
+    return (
+        <span
+            className="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase text-white"
+            style={{ backgroundColor: TYPE_COLORS[type] ?? "#737373" }}
+        >
+            {TYPE_LABELS[type] ?? type}
+        </span>
+    );
+}
 
-                const typeData = TYPE_EFFECTIVENESS[type];
-                if (typeData) {
-                    typeData.weak.forEach(weakType => {
-                        if (!weaknesses[weakType]) weaknesses[weakType] = 0;
-                        weaknesses[weakType]++;
-                    });
-                }
-            });
-        });
+function SimpleCard({ icon: Icon, title, value, description }) {
+    return (
+        <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
+            <div className="flex items-start gap-3">
+                <div className="rounded-xl bg-[#E3350D]/10 p-2 text-[#E3350D]">
+                    <Icon className="h-5 w-5" />
+                </div>
 
-        return { coverage, weaknesses };
-    }, [team]);
+                <div>
+                    <p className="text-xs font-semibold uppercase text-neutral-400">
+                        {title}
+                    </p>
 
-    const typeChartData = useMemo(() => {
-        const allTypes = Object.keys(TYPE_COLORS);
-        return allTypes.map(type => ({
-            type: type.charAt(0).toUpperCase() + type.slice(1),
-            coverage: typeCoverage.coverage[type] || 0,
-            weaknesses: typeCoverage.weaknesses[type] || 0,
-        }));
-    }, [typeCoverage]);
+                    <p className="mt-1 text-2xl font-bold text-neutral-800">
+                        {value}
+                    </p>
 
-    const radarData = useMemo(() => {
-        if (!team.length) return [];
-
-        const stats = ['hp', 'attack', 'defense', 'special-attack', 'special-defense', 'speed'];
-        return stats.map(stat => {
-            const value = team.reduce((sum, p) => sum + (p.stats?.find(s => s.stat.name === stat)?.base_stat || 0), 0) / team.length;
-            return {
-                stat: stat.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase()),
-                value: Math.round(value),
-                fullMark: 150,
-            };
-        });
-    }, [team]);
-
-    if (!team.length) {
-        return (
-            <div className="text-center py-8 text-gray-500">
-                Adicione Pokémon ao seu time para ver a análise.
+                    <p className="mt-1 text-xs text-neutral-500">
+                        {description}
+                    </p>
+                </div>
             </div>
+        </div>
+    );
+}
+
+function StatLine({ label, value }) {
+    const width = Math.min(100, Math.round((value / 150) * 100));
+
+    return (
+        <div>
+            <div className="mb-1 flex items-center justify-between text-xs">
+                <span className="text-neutral-600">{label}</span>
+                <span className="font-semibold text-neutral-700">{value}</span>
+            </div>
+
+            <div className="h-2 overflow-hidden rounded-full bg-neutral-200">
+                <div
+                    className="h-full rounded-full bg-[#E3350D]"
+                    style={{ width: `${width}%` }}
+                />
+            </div>
+        </div>
+    );
+}
+
+export default function TeamAnalysis({ team = [] }) {
+    if (team.length === 0) {
+        return (
+            <section className="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-8 text-center">
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#E3350D] shadow-sm">
+                    <BarChart3 className="h-7 w-7" />
+                </div>
+
+                <h2 className="text-lg font-semibold text-neutral-800">
+                    Nenhum time para analisar
+                </h2>
+
+                <p className="mx-auto mt-2 max-w-xl text-sm text-neutral-500">
+                    Adicione Pokémon no Construtor de times para visualizar a análise.
+                </p>
+            </section>
         );
     }
 
+    const totalPower = team.reduce((total, pokemon) => {
+        return total + getTotalStats(pokemon);
+    }, 0);
+
+    const allTypes = team.flatMap((pokemon) =>
+        pokemon.types.map((item) => item.type.name)
+    );
+
+    const uniqueTypes = [...new Set(allTypes)];
+
+    const averageStats = Object.keys(STAT_LABELS).map((statName) => {
+        const average = Math.round(
+            team.reduce((sum, pokemon) => sum + getStat(pokemon, statName), 0) /
+            team.length
+        );
+
+        return {
+            statName,
+            label: STAT_LABELS[statName],
+            value: average,
+        };
+    });
+
+    const weaknessCount = {};
+
+    allTypes.forEach((type) => {
+        const weaknesses = TYPE_WEAKNESSES[type] ?? [];
+
+        weaknesses.forEach((weakness) => {
+            weaknessCount[weakness] = (weaknessCount[weakness] ?? 0) + 1;
+        });
+    });
+
+    const mainWeaknesses = Object.entries(weaknessCount)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+
+    const balanceScore = Math.min(
+        100,
+        Math.round(uniqueTypes.length * 10 + team.length * 8)
+    );
+
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="space-y-8"
-        >
-            <div>
-                <h3 className="text-xl font-semibold mb-4">Estatísticas Médias do Time</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={statsData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="stat" />
-                        <YAxis />
-                        <Tooltip />
-                        <Bar dataKey="average" fill="#3B82F6" />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
+        <section className="space-y-5">
+            <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
+                <div className="border-b border-neutral-200 bg-neutral-50 px-5 py-4">
+                    <h2 className="text-xl font-semibold text-neutral-800">
+                        Análise de times
+                    </h2>
 
-            <div>
-                <h3 className="text-xl font-semibold mb-4">Radar de Estatísticas</h3>
-                <ResponsiveContainer width="100%" height={400}>
-                    <RadarChart data={radarData}>
-                        <PolarGrid />
-                        <PolarAngleAxis dataKey="stat" />
-                        <PolarRadiusAxis angle={90} domain={[0, 150]} />
-                        <Radar name="Time" dataKey="value" stroke="#3B82F6" fill="#3B82F6" fillOpacity={0.3} />
-                    </RadarChart>
-                </ResponsiveContainer>
-            </div>
+                    <p className="mt-1 text-sm text-neutral-500">
+                        Uma visão simples do equilíbrio, força e fraquezas do seu time.
+                    </p>
+                </div>
 
-            <div>
-                <h3 className="text-xl font-semibold mb-4">Cobertura de Tipos</h3>
-                <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={typeChartData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="type" />
-                        <YAxis />
-                        <Tooltip />
-                        <Bar dataKey="coverage" fill="#10B981" name="Cobertura" />
-                        <Bar dataKey="weaknesses" fill="#EF4444" name="Fraquezas" />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
+                <div className="p-5">
+                    <div className="grid gap-4 md:grid-cols-3">
+                        <SimpleCard
+                            icon={Sparkles}
+                            title="Equilíbrio"
+                            value={`${balanceScore}%`}
+                            description="Estimativa geral do time."
+                        />
 
-            <div>
-                <h3 className="text-xl font-semibold mb-4">Recomendações</h3>
-                <div className="space-y-2">
-                    {Object.entries(typeCoverage.weaknesses).filter(([_, count]) => count > 1).length > 0 && (
-                        <div className="p-4 bg-red-50 border border-red-200 rounded">
-                            <h4 className="font-semibold text-red-800">Fraquezas Críticas</h4>
-                            <p className="text-red-700">
-                                Seu time é vulnerável a: {Object.entries(typeCoverage.weaknesses).filter(([_, count]) => count > 1).map(([type]) => type).join(', ')}
-                            </p>
-                        </div>
-                    )}
-                    {Object.keys(typeCoverage.coverage).length < 6 && (
-                        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded">
-                            <h4 className="font-semibold text-yellow-800">Diversidade de Tipos</h4>
-                            <p className="text-yellow-700">
-                                Considere adicionar mais variedade de tipos para melhor cobertura.
-                            </p>
-                        </div>
-                    )}
-                    <div className="p-4 bg-blue-50 border border-blue-200 rounded">
-                        <h4 className="font-semibold text-blue-800">Equilíbrio</h4>
-                        <p className="text-blue-700">
-                            Mantenha um equilíbrio entre ataque físico, especial e defesa.
-                        </p>
+                        <SimpleCard
+                            icon={ShieldCheck}
+                            title="Tipos únicos"
+                            value={uniqueTypes.length}
+                            description="Variedade de tipos no time."
+                        />
+
+                        <SimpleCard
+                            icon={AlertTriangle}
+                            title="Fraquezas"
+                            value={mainWeaknesses.length}
+                            description="Principais riscos encontrados."
+                        />
                     </div>
                 </div>
             </div>
-        </motion.div>
+
+            <div className="grid gap-5 lg:grid-cols-[1fr_340px]">
+                <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+                    <h3 className="text-lg font-semibold text-neutral-800">
+                        Médias do time
+                    </h3>
+
+                    <p className="mt-1 text-sm text-neutral-500">
+                        Média dos principais atributos dos Pokémon escolhidos.
+                    </p>
+
+                    <div className="mt-5 space-y-3">
+                        {averageStats.map((item) => (
+                            <StatLine
+                                key={item.statName}
+                                label={item.label}
+                                value={item.value}
+                            />
+                        ))}
+                    </div>
+                </div>
+
+                <aside className="space-y-5">
+                    <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+                        <h3 className="text-lg font-semibold text-neutral-800">
+                            Resumo
+                        </h3>
+
+                        <div className="mt-4 rounded-2xl bg-[#E3350D]/10 p-4">
+                            <p className="text-xs font-semibold uppercase text-[#E3350D]">
+                                Poder total
+                            </p>
+
+                            <p className="mt-1 text-3xl font-bold text-neutral-800">
+                                {totalPower}
+                            </p>
+                        </div>
+
+                        <div className="mt-4">
+                            <p className="mb-2 text-sm font-semibold text-neutral-700">
+                                Tipos usados
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                                {uniqueTypes.map((type) => (
+                                    <TypeBadge key={type} type={type} />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+                        <h3 className="text-lg font-semibold text-neutral-800">
+                            Fraquezas principais
+                        </h3>
+
+                        {mainWeaknesses.length === 0 ? (
+                            <p className="mt-2 text-sm text-neutral-500">
+                                Nenhuma fraqueza encontrada.
+                            </p>
+                        ) : (
+                            <div className="mt-4 space-y-2">
+                                {mainWeaknesses.map(([type, count]) => (
+                                    <div
+                                        key={type}
+                                        className="flex items-center justify-between rounded-xl bg-neutral-50 px-3 py-2"
+                                    >
+                                        <TypeBadge type={type} />
+
+                                        <span className="text-sm font-semibold text-neutral-600">
+                                            {count}x
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </aside>
+            </div>
+
+            <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
+                <h3 className="text-lg font-semibold text-neutral-800">
+                    Pokémon analisados
+                </h3>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {team.map((pokemon) => (
+                        <div
+                            key={pokemon.id}
+                            className="rounded-2xl border border-neutral-200 bg-neutral-50 p-3"
+                        >
+                            <p className="font-mono text-xs font-semibold text-neutral-400">
+                                #{String(pokemon.id).padStart(3, "0")}
+                            </p>
+
+                            <h4 className="mt-1 font-semibold text-neutral-800">
+                                {formatName(pokemon.name)}
+                            </h4>
+
+                            <div className="mt-2 flex flex-wrap gap-1.5">
+                                {pokemon.types.map((item) => (
+                                    <TypeBadge
+                                        key={item.type.name}
+                                        type={item.type.name}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
     );
 }

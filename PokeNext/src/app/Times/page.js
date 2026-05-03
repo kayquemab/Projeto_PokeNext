@@ -1,98 +1,161 @@
 "use client";
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+
+import { useState } from "react";
+import { BarChart3, UsersRound } from "lucide-react";
+
 import TeamBuilder from "../../components/TeamBuilder";
-import TeamAnalysis from "../../components/TeamAnalysis";
-import TeamSuggestions from "../../components/TeamSuggestions";
+import TeamAnalysis from "@/components/TeamAnalysis";
+
 
 export default function Times() {
     const [activeTab, setActiveTab] = useState("builder");
     const [currentTeam, setCurrentTeam] = useState([]);
 
-    const tabs = [
-        { id: "builder", label: "Construtor de Times", icon: "⚙️" },
-        { id: "analysis", label: "Análise de Time", icon: "📊" },
-        { id: "suggestions", label: "Sugestão de Times", icon: "💡" },
-    ];
+    const isBuilderActive = activeTab === "builder";
+    const isAnalysisActive = activeTab === "analysis";
+
+    function tabBackground(isActive) {
+        return {
+            backgroundImage: `url(${isActive ? "/wallpaper-preto.png" : "/wallpaper-cinza.png"
+                })`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+        };
+    }
+
+    const baseButtonClass = `
+        group relative overflow-hidden
+        flex items-center gap-3
+        px-4 py-3 text-white
+        transition-all duration-200
+    `;
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <h1 className="text-3xl sm:text-4xl font-normal tracking-tight text-neutral-700 text-left mb-8">
-                        🎨 Times
-                    </h1>
-                    <p className="text-lg text-gray-600 mb-8 max-w-3xl">
-                        Monte e gerencie seu time de Pokémon com facilidade, visualizando stats, tipos e sprites.
-                        Salve, carregue, exporte ou importe times e organize-os com drag-and-drop.
-                    </p>
-                </motion.div>
+        <div>
+            <h1
+                className="
+                    text-2xl sm:text-3xl
+                    font-normal tracking-tight text-neutral-700
+                    text-left
+                    ml-5 sm:ml-10 md:ml-10 lg:ml-16
+                "
+            >
+                Times
+            </h1>
 
-                <div className="mb-8">
-                    <div className="border-b border-gray-200">
-                        <nav className="-mb-px flex space-x-8">
-                            {tabs.map((tab) => (
-                                <button
-                                    key={tab.id}
-                                    onClick={() => setActiveTab(tab.id)}
-                                    className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === tab.id
-                                            ? "border-blue-500 text-blue-600"
-                                            : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-                                        }`}
-                                >
-                                    <span className="mr-2">{tab.icon}</span>
-                                    {tab.label}
-                                </button>
-                            ))}
-                        </nav>
+            <header className="relative mt-6 w-full px-5 sm:px-10 md:px-10 lg:px-16">
+                <div className="mx-auto w-full max-w-6xl">
+                    <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+                        <button
+                            type="button"
+                            onClick={() => setActiveTab("builder")}
+                            style={tabBackground(isBuilderActive)}
+                            className={`
+                                ${baseButtonClass}
+                                justify-start rounded-2xl sm:rounded-r-none
+                            `}
+                        >
+                            {!isBuilderActive && (
+                                <div
+                                    className="
+                                        absolute inset-0
+                                        opacity-0 transition-opacity duration-200
+                                        group-hover:opacity-100
+                                    "
+                                    style={{
+                                        backgroundImage: "url(/wallpaper-preto.png)",
+                                        backgroundSize: "cover",
+                                        backgroundPosition: "center",
+                                    }}
+                                />
+                            )}
+
+                            <span
+                                className={`
+                                    relative z-10 grid h-7 w-7 place-items-center rounded-full bg-white
+                                    transition-colors duration-200
+                                    ${isBuilderActive
+                                        ? "text-[#1B1B1B]"
+                                        : "text-[#616161] group-hover:text-[#1B1B1B]"
+                                    }
+                                `}
+                            >
+                                <UsersRound className="h-4 w-4" />
+                            </span>
+
+                            <div className="relative z-10 text-left">
+                                <div className="text-xs opacity-90">
+                                    Monte sua equipe
+                                </div>
+
+                                <div className="text-sm font-semibold">
+                                    Construtor de times
+                                </div>
+                            </div>
+                        </button>
+
+                        <button
+                            type="button"
+                            onClick={() => setActiveTab("analysis")}
+                            style={tabBackground(isAnalysisActive)}
+                            className={`
+                                ${baseButtonClass}
+                                justify-end rounded-2xl sm:rounded-l-none
+                            `}
+                        >
+                            {!isAnalysisActive && (
+                                <div
+                                    className="
+                                        absolute inset-0
+                                        opacity-0 transition-opacity duration-200
+                                        group-hover:opacity-100
+                                    "
+                                    style={{
+                                        backgroundImage: "url(/wallpaper-preto.png)",
+                                        backgroundSize: "cover",
+                                        backgroundPosition: "center",
+                                    }}
+                                />
+                            )}
+
+                            <div className="relative z-10 text-right">
+                                <div className="text-sm font-semibold">
+                                    Análise de times
+                                </div>
+
+                                <div className="text-xs opacity-90">
+                                    Forças, fraquezas e equilíbrio
+                                </div>
+                            </div>
+
+                            <span
+                                className={`
+                                    relative z-10 grid h-7 w-7 place-items-center rounded-full bg-white
+                                    transition-colors duration-200
+                                    ${isAnalysisActive
+                                        ? "text-[#1B1B1B]"
+                                        : "text-[#616161] group-hover:text-[#1B1B1B]"
+                                    }
+                                `}
+                            >
+                                <BarChart3 className="h-4 w-4" />
+                            </span>
+                        </button>
                     </div>
                 </div>
+            </header>
 
-                <motion.div
-                    key={activeTab}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-white rounded-lg shadow-sm border p-6"
-                >
+            <main className="mt-6 w-full px-5 sm:px-10 md:px-10 lg:px-16">
+                <div className="mx-auto w-full max-w-6xl">
                     {activeTab === "builder" && (
-                        <div>
-                            <h2 className="text-2xl font-semibold mb-4">Construtor de Times</h2>
-                            <p className="text-gray-600 mb-6">
-                                Monte times de 6 Pokémon com busca automática, detalhes completos de cada Pokémon e funcionalidades de salvar, carregar, exportar, importar e organizar com drag-and-drop.
-                            </p>
-                            <TeamBuilder onTeamChange={setCurrentTeam} />
-                        </div>
+                        <TeamBuilder onTeamChange={setCurrentTeam} />
                     )}
 
                     {activeTab === "analysis" && (
-                        <div>
-                            <h2 className="text-2xl font-semibold mb-4">Análise de Time</h2>
-                            <p className="text-gray-600 mb-6">
-                                Avalie a sinergia do seu time com gráficos de stats, matriz de cobertura de tipos, análise de fraquezas e recomendações para melhorar a equipe.
-                            </p>
-                            <TeamAnalysis team={currentTeam} />
-                        </div>
+                        <TeamAnalysis team={currentTeam} />
                     )}
-
-                    {activeTab === "suggestions" && (
-                        <div>
-                            <h2 className="text-2xl font-semibold mb-4">Sugestão de Times</h2>
-                            <p className="text-gray-600 mb-6">
-                                Identifique funções (sweeper, atacante, tank, wall…), analise cobertura de tipos e receba sugestões de Pokémon para balancear seu time, incluindo explicações de tipo e função. Considera Pokémon raros e lendários.
-                            </p>
-                            <TeamSuggestions team={currentTeam} />
-                        </div>
-                    )}
-                </motion.div>
-            </div>
+                </div>
+            </main>
         </div>
     );
 }
-
-
