@@ -1,9 +1,17 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, {
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, ChevronDown, ChevronUp, BrushCleaning } from "lucide-react";
 import { useRouter } from "next/navigation";
+
+const TYPE_CACHE_KEY = "poke_type_weaknesses_v1";
 
 const TYPE_STYLES = {
     bug: "bg-[#A8B820] text-white",
@@ -48,7 +56,7 @@ const TYPE_LABELS_PT = {
     water: "Water",
 };
 
-const ALL_TYPES = Object.keys(TYPE_STYLES).filter((t) => t !== "default");
+const ALL_TYPES = Object.keys(TYPE_STYLES).filter((type) => type !== "default");
 
 function getTypeClass(type) {
     return TYPE_STYLES[type] || TYPE_STYLES.default;
@@ -57,7 +65,7 @@ function getTypeClass(type) {
 function formatName(name) {
     return String(name || "")
         .split("-")
-        .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
 }
 
@@ -70,15 +78,30 @@ function getIdFromUrl(url) {
 }
 
 function createEmptyTypeMode() {
-    return Object.fromEntries(ALL_TYPES.map((t) => [t, null]));
+    return Object.fromEntries(ALL_TYPES.map((type) => [type, null]));
+}
+
+function isWeaknessMapReady(map) {
+    return map && Object.keys(map).length > 0;
+}
+
+function buildWeaknessAllowedTypes(selectedWeaknessTargets, weaknessMap) {
+    const allowedTypes = new Set();
+
+    selectedWeaknessTargets.forEach((targetType) => {
+        const weaknesses = weaknessMap[targetType] || [];
+
+        weaknesses.forEach((attackType) => {
+            allowedTypes.add(attackType);
+        });
+    });
+
+    return allowedTypes;
 }
 
 export default function MovimentosPage() {
     const router = useRouter();
 
-    // =========================
-    // Performance knobs
-    // =========================
     const PREFETCH_INITIAL = 250;
     const PREFETCH_CONCURRENCY = 10;
     const PREFETCH_FLUSH_MS = 120;
@@ -86,55 +109,31 @@ export default function MovimentosPage() {
     const SCAN_BATCH = 60;
     const SCAN_PARALLEL_FETCH = 18;
 
-    // =========================
-    // Busca
-    // =========================
     const [search, setSearch] = useState("");
     const [showSuggestions, setShowSuggestions] = useState(true);
 
-    // =========================
-    // Data
-    // =========================
     const [allMoves, setAllMoves] = useState([]);
-    const [moveDetails, setMoveDetails] = useState({}); // id -> detail simplificado
+    const [moveDetails, setMoveDetails] = useState({});
     const moveDetailsRef = useRef(moveDetails);
-
-    useEffect(() => {
-        moveDetailsRef.current = moveDetails;
-    }, [moveDetails]);
 
     const [visibleCount, setVisibleCount] = useState(20);
 
-    // =========================
-    // UI
-    // =========================
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [advancedOpen, setAdvancedOpen] = useState(false);
     const [advancedLoading, setAdvancedLoading] = useState(false);
 
-    // =========================
-    // Filtros avançados
-    // =========================
     const [damageClass, setDamageClass] = useState("all");
     const [minPower, setMinPower] = useState("");
     const [minAccuracy, setMinAccuracy] = useState("");
     const [minPP, setMinPP] = useState("");
 
-    // Tipo/Fraqueza (T/F)
-    const [typeMode, setTypeMode] = useState(() => createEmptyTypeMode());
+    const [typeMode, setTypeMode] = useState(createEmptyTypeMode);
 
-    // =========================
-    // Fraquezas via API
-    // =========================
     const [typeWeaknesses, setTypeWeaknesses] = useState({});
     const [typeWeaknessesLoading, setTypeWeaknessesLoading] = useState(false);
     const typeWeaknessesPromiseRef = useRef(null);
-    const TYPE_CACHE_KEY = "poke_type_weaknesses_v1";
 
-    // =========================
-    // Engine avançado
-    // =========================
     const [advancedApplied, setAdvancedApplied] = useState(false);
     const [advancedMatches, setAdvancedMatches] = useState([]);
     const [advancedCursor, setAdvancedCursor] = useState(0);
@@ -143,6 +142,20 @@ export default function MovimentosPage() {
     const advancedAppliedRef = useRef(false);
     const advancedMatchesRef = useRef([]);
     const advancedCursorRef = useRef(0);
+    const advancedFilterSnapshotRef = useRef(null);
+
+    const detailsCache = useRef(new Map());
+    const inFlight = useRef(new Map());
+    const runIdRef = useRef(0);
+
+    const pendingDetailsRef = useRef({});
+    const flushTimerRef = useRef(null);
+
+    const searchBoxRef = useRef(null);
+
+    useEffect(() => {
+        moveDetailsRef.current = moveDetails;
+    }, [moveDetails]);
 
     useEffect(() => {
         advancedAppliedRef.current = advancedApplied;
@@ -156,34 +169,35 @@ export default function MovimentosPage() {
         advancedCursorRef.current = advancedCursor;
     }, [advancedCursor]);
 
-    // caches
-    const detailsCache = useRef(new Map()); // id -> detail
-    const inFlight = useRef(new Map()); // id -> Promise
-    const runIdRef = useRef(0);
-
-    // batching do setMoveDetails
-    const pendingDetailsRef = useRef({});
-    const flushTimerRef = useRef(null);
+    useEffect(() => {
+        return () => {
+            if (flushTimerRef.current) {
+                clearTimeout(flushTimerRef.current);
+            }
+        };
+    }, []);
 
     const queueDetailToState = useCallback(
         (id, detail) => {
             pendingDetailsRef.current[id] = detail;
 
             if (flushTimerRef.current) return;
+
             flushTimerRef.current = setTimeout(() => {
                 const payload = pendingDetailsRef.current;
+
                 pendingDetailsRef.current = {};
                 flushTimerRef.current = null;
 
-                setMoveDetails((prev) => ({ ...prev, ...payload }));
+                setMoveDetails((currentDetails) => ({
+                    ...currentDetails,
+                    ...payload,
+                }));
             }, PREFETCH_FLUSH_MS);
         },
         [PREFETCH_FLUSH_MS]
     );
 
-    const searchBoxRef = useRef(null);
-
-    // agora navega por NOME
     function navigateToMove(slug) {
         router.push(`/Movimentos/${slug}`);
     }
@@ -191,32 +205,49 @@ export default function MovimentosPage() {
     function prefetchMove(slug) {
         try {
             router.prefetch?.(`/Movimentos/${slug}`);
-        } catch { }
+        } catch {}
+    }
+
+    function resetAdvancedResults() {
+        setAdvancedApplied(false);
+        setAdvancedMatches([]);
+        setAdvancedCursor(0);
+        setAdvancedHasMore(false);
+        advancedFilterSnapshotRef.current = null;
     }
 
     function toggleTypeModeLocal(type, mode) {
-        setTypeMode((prev) => {
-            const current = prev[type];
-            return { ...prev, [type]: current === mode ? null : mode };
+        if (mode === "weakness" && !isWeaknessMapReady(typeWeaknesses)) {
+            ensureTypeWeaknesses();
+        }
+
+        setTypeMode((currentTypeMode) => {
+            const currentMode = currentTypeMode[type];
+            const nextMode = currentMode === mode ? null : mode;
+
+            return {
+                ...currentTypeMode,
+                [type]: nextMode,
+            };
         });
     }
 
-    const selectedTypeIncludes = useMemo(
-        () => Object.keys(typeMode).filter((t) => typeMode[t] === "type"),
-        [typeMode]
-    );
+    const selectedTypeIncludes = useMemo(() => {
+        return Object.keys(typeMode).filter((type) => typeMode[type] === "type");
+    }, [typeMode]);
 
-    const selectedWeaknessTargets = useMemo(
-        () => Object.keys(typeMode).filter((t) => typeMode[t] === "weakness"),
-        [typeMode]
-    );
+    const selectedWeaknessTargets = useMemo(() => {
+        return Object.keys(typeMode).filter(
+            (type) => typeMode[type] === "weakness"
+        );
+    }, [typeMode]);
 
     const hasAnyAdvancedFilter = useMemo(() => {
         return (
             damageClass !== "all" ||
-            !!minPower ||
-            !!minAccuracy ||
-            !!minPP ||
+            Boolean(minPower) ||
+            Boolean(minAccuracy) ||
+            Boolean(minPP) ||
             selectedTypeIncludes.length > 0 ||
             selectedWeaknessTargets.length > 0
         );
@@ -229,81 +260,89 @@ export default function MovimentosPage() {
         selectedWeaknessTargets.length,
     ]);
 
-    // =========================
-    // Fraquezas: load + ensure
-    // =========================
-    function isWeaknessMapReady(map) {
-        return map && Object.keys(map).length > 0;
-    }
-
     async function loadTypeWeaknessesFromApi() {
-        // cache 24h
         try {
-            const cachedRaw = localStorage.getItem(TYPE_CACHE_KEY);
+            const cachedRaw = window.localStorage.getItem(TYPE_CACHE_KEY);
+
             if (cachedRaw) {
-                const parsed = JSON.parse(cachedRaw);
+                const parsedCache = JSON.parse(cachedRaw);
                 const isFresh =
-                    parsed?.ts && Date.now() - parsed.ts < 24 * 60 * 60 * 1000;
-                if (isFresh && parsed?.data && isWeaknessMapReady(parsed.data)) {
-                    setTypeWeaknesses(parsed.data);
-                    return parsed.data;
+                    parsedCache?.ts &&
+                    Date.now() - parsedCache.ts < 24 * 60 * 60 * 1000;
+
+                if (
+                    isFresh &&
+                    parsedCache?.data &&
+                    isWeaknessMapReady(parsedCache.data)
+                ) {
+                    setTypeWeaknesses(parsedCache.data);
+                    return parsedCache.data;
                 }
             }
-        } catch { }
+        } catch {}
 
-        const listRes = await fetch("https://pokeapi.co/api/v2/type?limit=1000");
-        const listData = await listRes.json();
+        const listResponse = await fetch(
+            "https://pokeapi.co/api/v2/type?limit=1000"
+        );
+        const listData = await listResponse.json();
 
         const types = (listData.results || [])
-            .map((t) => t.name)
+            .map((type) => type.name)
             .filter((name) => name !== "unknown" && name !== "shadow");
 
-        const CONCURRENCY = 6;
-        const out = {};
-        let idx = 0;
+        const concurrency = 6;
+        const output = {};
+        let index = 0;
 
         async function worker() {
-            while (idx < types.length) {
-                const my = idx++;
-                const typeName = types[my];
+            while (index < types.length) {
+                const currentIndex = index;
+                index += 1;
+
+                const typeName = types[currentIndex];
 
                 try {
-                    const res = await fetch(`https://pokeapi.co/api/v2/type/${typeName}`);
-                    const data = await res.json();
-
-                    const weakFrom = (data.damage_relations?.double_damage_from || []).map(
-                        (x) => x.name
+                    const response = await fetch(
+                        `https://pokeapi.co/api/v2/type/${typeName}`
                     );
+                    const data = await response.json();
 
-                    out[typeName] = weakFrom;
+                    output[typeName] = (
+                        data.damage_relations?.double_damage_from || []
+                    ).map((type) => type.name);
                 } catch {
-                    out[typeName] = [];
+                    output[typeName] = [];
                 }
             }
         }
 
-        await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()));
+        await Promise.all(Array.from({ length: concurrency }, () => worker()));
 
         try {
-            localStorage.setItem(
+            window.localStorage.setItem(
                 TYPE_CACHE_KEY,
-                JSON.stringify({ ts: Date.now(), data: out })
+                JSON.stringify({ ts: Date.now(), data: output })
             );
-        } catch { }
+        } catch {}
 
-        setTypeWeaknesses(out);
-        return out;
+        setTypeWeaknesses(output);
+        return output;
     }
 
     async function ensureTypeWeaknesses() {
-        if (isWeaknessMapReady(typeWeaknesses)) return typeWeaknesses;
-        if (typeWeaknessesPromiseRef.current) return typeWeaknessesPromiseRef.current;
+        if (isWeaknessMapReady(typeWeaknesses)) {
+            return typeWeaknesses;
+        }
+
+        if (typeWeaknessesPromiseRef.current) {
+            return typeWeaknessesPromiseRef.current;
+        }
 
         setTypeWeaknessesLoading(true);
 
-        const p = loadTypeWeaknessesFromApi()
+        const promise = loadTypeWeaknessesFromApi()
             .catch(() => {
-                setTypeWeaknesses({});
+                setTypeWeaknesses([]);
                 return {};
             })
             .finally(() => {
@@ -311,56 +350,29 @@ export default function MovimentosPage() {
                 setTypeWeaknessesLoading(false);
             });
 
-        typeWeaknessesPromiseRef.current = p;
-        return p;
+        typeWeaknessesPromiseRef.current = promise;
+
+        return promise;
     }
 
-    useEffect(() => {
-        let alive = true;
-
-        (async () => {
-            try {
-                await ensureTypeWeaknesses();
-            } catch { }
-            if (!alive) return;
-        })();
-
-        return () => {
-            alive = false;
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const weaknessAllowedTypes = useMemo(() => {
-        const s = new Set();
-        selectedWeaknessTargets.forEach((target) => {
-            const arr = typeWeaknesses[target] || [];
-            arr.forEach((atk) => s.add(atk));
-        });
-        return s;
-    }, [selectedWeaknessTargets, typeWeaknesses]);
-
-    // =========================
-    // Move details (estável)
-    // =========================
     const getMoveDetail = useCallback(
-        async (m) => {
-            const id = m.id;
-            const current = moveDetailsRef.current;
+        async (move) => {
+            const id = move.id;
+            const currentDetails = moveDetailsRef.current;
 
-            if (current[id]) return current[id];
+            if (currentDetails[id]) return currentDetails[id];
             if (detailsCache.current.has(id)) return detailsCache.current.get(id);
             if (inFlight.current.has(id)) return inFlight.current.get(id);
 
-            const p = fetch(m.url)
-                .then((r) => r.json())
-                .then((d) => {
+            const promise = fetch(move.url)
+                .then((response) => response.json())
+                .then((data) => {
                     const simplified = {
-                        type: d.type?.name,
-                        power: d.power,
-                        accuracy: d.accuracy,
-                        pp: d.pp,
-                        damageClass: d.damage_class?.name,
+                        type: data.type?.name,
+                        power: data.power,
+                        accuracy: data.accuracy,
+                        pp: data.pp,
+                        damageClass: data.damage_class?.name,
                     };
 
                     detailsCache.current.set(id, simplified);
@@ -373,46 +385,77 @@ export default function MovimentosPage() {
                     inFlight.current.delete(id);
                 });
 
-            inFlight.current.set(id, p);
-            return p;
+            inFlight.current.set(id, promise);
+
+            return promise;
         },
         [queueDetailToState]
     );
 
-    function matchesAdvanced(detail) {
+    function createFilterSnapshot(weaknessMap = typeWeaknesses) {
+        return {
+            selectedTypeIncludes,
+            selectedWeaknessTargets,
+            weaknessAllowedTypes: buildWeaknessAllowedTypes(
+                selectedWeaknessTargets,
+                weaknessMap
+            ),
+            damageClass,
+            minPower,
+            minAccuracy,
+            minPP,
+        };
+    }
+
+    function matchesAdvanced(detail, filterSnapshot) {
         if (!detail) return false;
 
-        if (selectedTypeIncludes.length > 0) {
-            if (!detail.type || !selectedTypeIncludes.includes(detail.type)) return false;
+        if (filterSnapshot.selectedTypeIncludes.length > 0) {
+            if (
+                !detail.type ||
+                !filterSnapshot.selectedTypeIncludes.includes(detail.type)
+            ) {
+                return false;
+            }
         }
 
-        if (selectedWeaknessTargets.length > 0) {
-            if (!detail.type || !weaknessAllowedTypes.has(detail.type)) return false;
+        if (filterSnapshot.selectedWeaknessTargets.length > 0) {
+            if (
+                !detail.type ||
+                !filterSnapshot.weaknessAllowedTypes.has(detail.type)
+            ) {
+                return false;
+            }
         }
 
-        if (damageClass !== "all" && detail.damageClass !== damageClass) return false;
-
-        if (minPower) {
-            const p = detail.power ?? 0;
-            if (p < Number(minPower)) return false;
+        if (
+            filterSnapshot.damageClass !== "all" &&
+            detail.damageClass !== filterSnapshot.damageClass
+        ) {
+            return false;
         }
 
-        if (minAccuracy) {
-            const a = detail.accuracy ?? 0;
-            if (a < Number(minAccuracy)) return false;
+        if (filterSnapshot.minPower) {
+            const power = detail.power ?? 0;
+
+            if (power < Number(filterSnapshot.minPower)) return false;
         }
 
-        if (minPP) {
+        if (filterSnapshot.minAccuracy) {
+            const accuracy = detail.accuracy ?? 0;
+
+            if (accuracy < Number(filterSnapshot.minAccuracy)) return false;
+        }
+
+        if (filterSnapshot.minPP) {
             const pp = detail.pp ?? 0;
-            if (pp < Number(minPP)) return false;
+
+            if (pp < Number(filterSnapshot.minPP)) return false;
         }
 
         return true;
     }
 
-    // =========================
-    // Load moves list
-    // =========================
     useEffect(() => {
         let alive = true;
 
@@ -421,34 +464,40 @@ export default function MovimentosPage() {
                 setError("");
                 setLoading(true);
 
-                const res = await fetch("https://pokeapi.co/api/v2/move?limit=1000");
-                const data = await res.json();
+                const response = await fetch(
+                    "https://pokeapi.co/api/v2/move?limit=1000"
+                );
+                const data = await response.json();
+
                 if (!alive) return;
 
                 setAllMoves(
-                    (data.results || []).map((m) => ({
-                        name: m.name,
-                        id: getIdFromUrl(m.url),
-                        url: m.url,
+                    (data.results || []).map((move) => ({
+                        name: move.name,
+                        id: getIdFromUrl(move.url),
+                        url: move.url,
                     }))
                 );
-            } catch (e) {
-                console.error(e);
-                setError("Erro ao carregar movimentos.");
+            } catch (loadError) {
+                console.error(loadError);
+
+                if (alive) {
+                    setError("Erro ao carregar movimentos.");
+                }
             } finally {
-                setLoading(false);
+                if (alive) {
+                    setLoading(false);
+                }
             }
         }
 
         loadMoves();
+
         return () => {
             alive = false;
         };
     }, []);
 
-    // =========================
-    // Prefetch moves details
-    // =========================
     const prefetchStartedRef = useRef(false);
 
     useEffect(() => {
@@ -457,11 +506,15 @@ export default function MovimentosPage() {
 
         prefetchStartedRef.current = true;
 
-        function idle(cb) {
-            if (typeof window !== "undefined" && "requestIdleCallback" in window) {
-                return window.requestIdleCallback(cb, { timeout: 800 });
+        function idle(callback) {
+            if (
+                typeof window !== "undefined" &&
+                "requestIdleCallback" in window
+            ) {
+                return window.requestIdleCallback(callback, { timeout: 800 });
             }
-            return setTimeout(cb, 200);
+
+            return setTimeout(callback, 200);
         }
 
         const queue = allMoves.slice(0, PREFETCH_INITIAL);
@@ -470,20 +523,29 @@ export default function MovimentosPage() {
 
         async function worker() {
             while (!stopped) {
-                const i = index++;
-                if (i >= queue.length) return;
+                const currentIndex = index;
+                index += 1;
 
-                const m = queue[i];
-                const current = moveDetailsRef.current;
+                if (currentIndex >= queue.length) return;
 
-                if (detailsCache.current.has(m.id) || current[m.id]) continue;
-                await getMoveDetail(m);
+                const move = queue[currentIndex];
+                const currentDetails = moveDetailsRef.current;
+
+                if (detailsCache.current.has(move.id) || currentDetails[move.id]) {
+                    continue;
+                }
+
+                await getMoveDetail(move);
             }
         }
 
         idle(() => {
-            const workers = Array.from({ length: PREFETCH_CONCURRENCY }, () => worker());
-            Promise.allSettled(workers).catch(() => { });
+            const workers = Array.from(
+                { length: PREFETCH_CONCURRENCY },
+                () => worker()
+            );
+
+            Promise.allSettled(workers).catch(() => {});
         });
 
         return () => {
@@ -491,26 +553,24 @@ export default function MovimentosPage() {
         };
     }, [allMoves, getMoveDetail, PREFETCH_INITIAL, PREFETCH_CONCURRENCY]);
 
-    // =========================
-    // Suggestions
-    // =========================
     const suggestions = useMemo(() => {
-        const q = search.trim().toLowerCase();
-        if (!q) return [];
+        const query = search.trim().toLowerCase();
 
-        const isNumeric = /^\d+$/.test(q);
+        if (!query) return [];
+
+        const isNumeric = /^\d+$/.test(query);
 
         const byName = allMoves
-            .filter((m) => m.name.includes(q))
+            .filter((move) => move.name.includes(query))
             .slice(0, 8)
-            .map((m) => m.name);
+            .map((move) => move.name);
 
         if (!isNumeric) return byName;
 
         const byId = allMoves
-            .filter((m) => String(m.id).includes(q))
+            .filter((move) => String(move.id).includes(query))
             .slice(0, 8)
-            .map((m) => m.name);
+            .map((move) => move.name);
 
         return Array.from(new Set([...byId, ...byName])).slice(0, 8);
     }, [search, allMoves]);
@@ -519,77 +579,81 @@ export default function MovimentosPage() {
         setSearch(name);
         setVisibleCount(20);
         setShowSuggestions(false);
-
-        setAdvancedApplied(false);
-        setAdvancedMatches([]);
-        setAdvancedCursor(0);
-        setAdvancedHasMore(false);
+        resetAdvancedResults();
     }
 
     useEffect(() => {
-        function onDocMouseDown(e) {
+        function handleDocumentMouseDown(event) {
             if (!searchBoxRef.current) return;
-            if (!searchBoxRef.current.contains(e.target)) setShowSuggestions(false);
+
+            if (!searchBoxRef.current.contains(event.target)) {
+                setShowSuggestions(false);
+            }
         }
 
-        document.addEventListener("mousedown", onDocMouseDown);
-        return () => document.removeEventListener("mousedown", onDocMouseDown);
+        document.addEventListener("mousedown", handleDocumentMouseDown);
+
+        return () => {
+            document.removeEventListener("mousedown", handleDocumentMouseDown);
+        };
     }, []);
 
-    // =========================
-    // Basic filter (name/id)
-    // =========================
     const basicFiltered = useMemo(() => {
-        const q = search.trim().toLowerCase();
+        const query = search.trim().toLowerCase();
 
-        return allMoves.filter((m) => {
-            if (!q) return true;
-            const byName = m.name.includes(q);
-            const byId = String(m.id).includes(q);
+        return allMoves.filter((move) => {
+            if (!query) return true;
+
+            const byName = move.name.includes(query);
+            const byId = String(move.id).includes(query);
+
             return byName || byId;
         });
     }, [allMoves, search]);
 
     const baseList = useMemo(() => {
-        if (advancedApplied && hasAnyAdvancedFilter) return advancedMatches;
+        if (advancedApplied && hasAnyAdvancedFilter) {
+            return advancedMatches;
+        }
+
         return basicFiltered;
     }, [advancedApplied, hasAnyAdvancedFilter, advancedMatches, basicFiltered]);
 
-    const visibleMoves = useMemo(() => baseList.slice(0, visibleCount), [baseList, visibleCount]);
+    const visibleMoves = useMemo(() => {
+        return baseList.slice(0, visibleCount);
+    }, [baseList, visibleCount]);
 
-    // preload details visíveis
     useEffect(() => {
         let alive = true;
 
         async function preloadVisibleDetails() {
-            const toLoad = visibleMoves.filter(
-                (m) => !moveDetailsRef.current[m.id] && !detailsCache.current.has(m.id)
-            );
-            if (!toLoad.length) return;
+            const movesToLoad = visibleMoves.filter((move) => {
+                return (
+                    !moveDetailsRef.current[move.id] &&
+                    !detailsCache.current.has(move.id)
+                );
+            });
 
-            const slice = toLoad.slice(0, 24);
-            await Promise.all(slice.map((m) => getMoveDetail(m)));
+            if (!movesToLoad.length) return;
+
+            const slice = movesToLoad.slice(0, 24);
+
+            await Promise.all(slice.map((move) => getMoveDetail(move)));
 
             if (!alive) return;
         }
 
         preloadVisibleDetails();
+
         return () => {
             alive = false;
         };
     }, [visibleMoves, getMoveDetail]);
 
-    // =========================
-    // Actions
-    // =========================
     function applySimpleSearch() {
         setVisibleCount(20);
         setShowSuggestions(false);
-
-        setAdvancedApplied(false);
-        setAdvancedMatches([]);
-        setAdvancedCursor(0);
-        setAdvancedHasMore(false);
+        resetAdvancedResults();
     }
 
     function clearAllFilters() {
@@ -601,11 +665,9 @@ export default function MovimentosPage() {
         setTypeMode(createEmptyTypeMode());
         setVisibleCount(20);
         setShowSuggestions(false);
+        setError("");
 
-        setAdvancedApplied(false);
-        setAdvancedMatches([]);
-        setAdvancedCursor(0);
-        setAdvancedHasMore(false);
+        resetAdvancedResults();
     }
 
     function resetAdvanced() {
@@ -615,31 +677,39 @@ export default function MovimentosPage() {
         setMinPP("");
         setTypeMode(createEmptyTypeMode());
         setVisibleCount(20);
+        setError("");
 
-        setAdvancedApplied(false);
-        setAdvancedMatches([]);
-        setAdvancedCursor(0);
-        setAdvancedHasMore(false);
+        resetAdvancedResults();
     }
 
-    function fastScanFromCache(list, needCount) {
+    function fastScanFromCache(list, needCount, filterSnapshot) {
         const matches = [];
         let cursor = 0;
 
         while (matches.length < needCount && cursor < list.length) {
-            const m = list[cursor];
-            cursor++;
+            const move = list[cursor];
+            cursor += 1;
 
-            const d = detailsCache.current.get(m.id) || moveDetailsRef.current[m.id];
-            if (!d) continue;
+            const detail =
+                detailsCache.current.get(move.id) || moveDetailsRef.current[move.id];
 
-            if (matchesAdvanced(d)) matches.push(m);
+            if (!detail) continue;
+
+            if (matchesAdvanced(detail, filterSnapshot)) {
+                matches.push(move);
+            }
         }
 
         return { matches, cursor };
     }
 
-    async function scanAdvancedToTarget({ targetCount, runId, startCursor, startMatches }) {
+    async function scanAdvancedToTarget({
+        targetCount,
+        runId,
+        startCursor,
+        startMatches,
+        filterSnapshot,
+    }) {
         const list = basicFiltered;
         let cursor = startCursor;
         let matches = [...startMatches];
@@ -658,27 +728,42 @@ export default function MovimentosPage() {
             const needFetch = [];
             const details = new Array(batch.length).fill(null);
 
-            for (let i = 0; i < batch.length; i++) {
-                const m = batch[i];
-                const cached = detailsCache.current.get(m.id) || moveDetailsRef.current[m.id];
-                if (cached) details[i] = cached;
-                else needFetch.push({ m, i });
+            for (let index = 0; index < batch.length; index += 1) {
+                const move = batch[index];
+                const cachedDetail =
+                    detailsCache.current.get(move.id) ||
+                    moveDetailsRef.current[move.id];
+
+                if (cachedDetail) {
+                    details[index] = cachedDetail;
+                } else {
+                    needFetch.push({ move, index });
+                }
             }
 
             if (needFetch.length) {
-                for (let i = 0; i < needFetch.length; i += SCAN_PARALLEL_FETCH) {
+                for (
+                    let index = 0;
+                    index < needFetch.length;
+                    index += SCAN_PARALLEL_FETCH
+                ) {
                     if (runIdRef.current !== runId) return;
 
-                    const group = needFetch.slice(i, i + SCAN_PARALLEL_FETCH);
-                    const fetched = await Promise.all(group.map((x) => getMoveDetail(x.m)));
-                    for (let k = 0; k < group.length; k++) {
-                        details[group[k].i] = fetched[k];
+                    const group = needFetch.slice(index, index + SCAN_PARALLEL_FETCH);
+                    const fetched = await Promise.all(
+                        group.map((item) => getMoveDetail(item.move))
+                    );
+
+                    for (let itemIndex = 0; itemIndex < group.length; itemIndex += 1) {
+                        details[group[itemIndex].index] = fetched[itemIndex];
                     }
                 }
             }
 
-            for (let i = 0; i < batch.length; i++) {
-                if (matchesAdvanced(details[i])) matches.push(batch[i]);
+            for (let index = 0; index < batch.length; index += 1) {
+                if (matchesAdvanced(details[index], filterSnapshot)) {
+                    matches.push(batch[index]);
+                }
             }
 
             setAdvancedMatches([...matches]);
@@ -694,29 +779,34 @@ export default function MovimentosPage() {
         setVisibleCount(20);
 
         if (!hasAnyAdvancedFilter) {
-            setAdvancedApplied(false);
-            setAdvancedMatches([]);
-            setAdvancedCursor(0);
-            setAdvancedHasMore(false);
+            resetAdvancedResults();
             return;
         }
 
+        let weaknessMap = typeWeaknesses;
+
         if (selectedWeaknessTargets.length > 0) {
-            await ensureTypeWeaknesses();
+            weaknessMap = await ensureTypeWeaknesses();
         }
+
+        const filterSnapshot = createFilterSnapshot(weaknessMap);
+        advancedFilterSnapshotRef.current = filterSnapshot;
 
         const runId = runIdRef.current + 1;
         runIdRef.current = runId;
 
         setAdvancedLoading(true);
-
         setAdvancedApplied(true);
         setAdvancedMatches([]);
         setAdvancedCursor(0);
         setAdvancedHasMore(true);
 
         try {
-            const { matches, cursor } = fastScanFromCache(basicFiltered, 20);
+            const { matches, cursor } = fastScanFromCache(
+                basicFiltered,
+                20,
+                filterSnapshot
+            );
 
             if (runIdRef.current !== runId) return;
 
@@ -732,36 +822,58 @@ export default function MovimentosPage() {
                     runId,
                     startCursor: cursor,
                     startMatches: matches,
+                    filterSnapshot,
                 });
             }
         } finally {
-            if (runIdRef.current === runId) setAdvancedLoading(false);
+            if (runIdRef.current === runId) {
+                setAdvancedLoading(false);
+            }
         }
     }
 
     async function handleLoadMore() {
-        const next = visibleCount + 15;
-        setVisibleCount(next);
+        const nextVisibleCount = visibleCount + 15;
+
+        setVisibleCount(nextVisibleCount);
 
         if (advancedAppliedRef.current && hasAnyAdvancedFilter) {
-            if (!advancedHasMore && advancedMatchesRef.current.length >= next) return;
+            if (
+                !advancedHasMore &&
+                advancedMatchesRef.current.length >= nextVisibleCount
+            ) {
+                return;
+            }
 
-            if (selectedWeaknessTargets.length > 0 && !isWeaknessMapReady(typeWeaknesses)) {
-                await ensureTypeWeaknesses();
+            let filterSnapshot = advancedFilterSnapshotRef.current;
+
+            if (!filterSnapshot) {
+                let weaknessMap = typeWeaknesses;
+
+                if (selectedWeaknessTargets.length > 0) {
+                    weaknessMap = await ensureTypeWeaknesses();
+                }
+
+                filterSnapshot = createFilterSnapshot(weaknessMap);
+                advancedFilterSnapshotRef.current = filterSnapshot;
             }
 
             const runId = runIdRef.current;
+
             setAdvancedLoading(true);
 
             try {
                 await scanAdvancedToTarget({
-                    targetCount: next,
+                    targetCount: nextVisibleCount,
                     runId,
                     startCursor: advancedCursorRef.current,
                     startMatches: advancedMatchesRef.current,
+                    filterSnapshot,
                 });
             } finally {
-                if (runIdRef.current === runId) setAdvancedLoading(false);
+                if (runIdRef.current === runId) {
+                    setAdvancedLoading(false);
+                }
             }
         }
     }
@@ -770,131 +882,134 @@ export default function MovimentosPage() {
         <div>
             <h1
                 className="
-          text-2xl sm:text-3xl
-          font-normal tracking-tight text-neutral-700
-          text-left
-          ml-5 sm:ml-10 md:ml-10 lg:ml-16
-        "
+                    text-2xl sm:text-3xl
+                    font-normal tracking-tight text-neutral-700
+                    text-left
+                    ml-5 sm:ml-10 md:ml-10 lg:ml-16
+                "
             >
                 Movimentos
             </h1>
 
             <div className="relative w-full">
-                <section className="w-full mt-6 px-3 sm:px-6 lg:px-8 mb-10">
-                    <div className="w-full max-w-6xl mx-auto">
-
-                        {/* CARD PRINCIPAL */}
+                <section className="mb-10 mt-6 w-full px-3 sm:px-6 lg:px-8">
+                    <div className="mx-auto w-full max-w-6xl">
                         <motion.div
                             className={`
-                relative z-20
-                w-full mx-auto
-                bg-[url('/wallpaper-preto.png')] bg-cover bg-center bg-no-repeat
-                shadow-md backdrop-blur-sm
-                px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16 py-5
-                ${advancedOpen ? "rounded-t-2xl rounded-b-none" : "rounded-2xl"}
-              `}
+                                relative z-20
+                                mx-auto w-full
+                                bg-[url('/wallpaper-preto.png')] bg-cover bg-center bg-no-repeat
+                                px-5 py-5 shadow-md backdrop-blur-sm
+                                sm:px-8 md:px-10 lg:px-12 xl:px-16
+                                ${
+                                    advancedOpen
+                                        ? "rounded-t-2xl rounded-b-none"
+                                        : "rounded-2xl"
+                                }
+                            `}
                         >
                             <div className="mb-3">
-                                <div className="flex items-center gap-2 mb-3">
+                                <div className="mb-3 flex items-center gap-2">
                                     <motion.div
-                                        className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
+                                        className="h-4 w-1.5 rounded-sm bg-[#E3350D] shadow-[0_0_6px_#E3350D]"
                                         initial={{ scaleY: 0.3, opacity: 0 }}
                                         animate={{ scaleY: 1, opacity: 1 }}
                                         transition={{ delay: 0.2, duration: 0.35 }}
                                     />
-                                    <label className="block text-white text-lg font-medium">
+
+                                    <label className="block text-lg font-medium text-white">
                                         Buscar Movimento
                                     </label>
                                 </div>
 
-                                <div className="flex flex-col sm:flex-row sm:items-stretch gap-3 mb-2">
-                                    {/* INPUT */}
-                                    <div className="relative w-full sm:w-auto" ref={searchBoxRef}>
+                                <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-stretch">
+                                    <div
+                                        className="relative w-full sm:w-auto"
+                                        ref={searchBoxRef}
+                                    >
                                         <input
                                             type="text"
                                             value={search}
-                                            onChange={(e) => {
-                                                setSearch(e.target.value);
+                                            onChange={(event) => {
+                                                setSearch(event.target.value);
+                                                setVisibleCount(20);
                                                 setShowSuggestions(true);
-
-                                                setAdvancedApplied(false);
-                                                setAdvancedMatches([]);
-                                                setAdvancedCursor(0);
-                                                setAdvancedHasMore(false);
+                                                resetAdvancedResults();
                                             }}
-                                            onKeyDown={(e) => {
-                                                if (e.key === "Enter") applySimpleSearch();
+                                            onKeyDown={(event) => {
+                                                if (event.key === "Enter") {
+                                                    applySimpleSearch();
+                                                }
                                             }}
+                                            placeholder="Ex: thunderbolt ou 85"
                                             className="
-                        w-full
-                        sm:w-80
-                        md:w-96
-                        lg:w-md
-                        bg-neutral-50
-                        text-gray-900
-                        px-4 py-2
-                        rounded-md
-                        border border-neutral-200
-                        focus:outline-none
-                        focus:ring-2
-                        focus:ring-[#E3350D]/70
-                      "
+                                                w-full rounded-md border border-neutral-200 bg-neutral-50
+                                                px-4 py-2 text-gray-900
+                                                outline-none transition
+                                                placeholder:text-neutral-400
+                                                focus:ring-2 focus:ring-[#E3350D]/70
+                                                sm:w-80 md:w-96 lg:w-md
+                                            "
                                         />
 
                                         {showSuggestions && suggestions.length > 0 && (
-                                            <div className="absolute left-0 right-0 top-full mt-1 bg-white rounded-md shadow-lg border border-neutral-200 z-50 overflow-hidden">
+                                            <div className="absolute left-0 right-0 top-full z-50 mt-1 overflow-hidden rounded-md border border-neutral-200 bg-white shadow-lg">
                                                 {suggestions.map((name) => (
                                                     <button
                                                         key={name}
                                                         type="button"
                                                         onClick={() => pickSuggestion(name)}
-                                                        className="w-full text-left px-4 py-2 text-sm hover:bg-neutral-100 capitalize"
+                                                        className="w-full cursor-pointer px-4 py-2 text-left text-sm capitalize transition hover:bg-neutral-100"
                                                     >
-                                                        {name}
+                                                        {formatName(name)}
                                                     </button>
                                                 ))}
                                             </div>
                                         )}
                                     </div>
 
-                                    {/* BOTÕES */}
                                     <div className="flex gap-3">
                                         <button
                                             type="button"
                                             onClick={applySimpleSearch}
-                                            className="h-[42px] px-4 rounded-md bg-[#E3350D] text-white hover:bg-[#c52c0b] flex items-center justify-center"
+                                            className="flex h-[42px] cursor-pointer items-center justify-center rounded-md bg-[#E3350D] px-4 text-white transition hover:bg-[#c52c0b]"
                                             aria-label="Buscar"
                                             title="Buscar"
                                         >
-                                            <Search className="w-5 h-5" />
+                                            <Search className="h-5 w-5" />
                                         </button>
 
                                         <button
                                             type="button"
                                             onClick={clearAllFilters}
-                                            className="h-[42px] px-4 rounded-md bg-white/15 text-white hover:bg-white/20 border border-white/10 flex items-center justify-center"
+                                            className="flex h-[42px] cursor-pointer items-center justify-center rounded-md border border-white/10 bg-white/15 px-4 text-white transition hover:bg-white/20"
                                             aria-label="Limpar filtros"
                                             title="Limpar filtros"
                                         >
-                                            <BrushCleaning className="w-5 h-5" />
+                                            <BrushCleaning className="h-5 w-5" />
                                         </button>
                                     </div>
                                 </div>
 
-                                <p className="mt-3 text-sm sm:text-base text-white">
-                                    Use a busca avançada para filtrar movimentos por tipo, classe de dano e valores mínimos!
+                                <p className="mt-3 text-sm text-white sm:text-base">
+                                    Use a busca avançada para filtrar movimentos por
+                                    tipo, classe de dano e valores mínimos.
                                 </p>
 
                                 {loading && (
-                                    <p className="mt-2 text-white/80 text-sm">
+                                    <p className="mt-2 text-sm text-white/80">
                                         Carregando lista de movimentos...
                                     </p>
                                 )}
-                                {error && <p className="mt-2 text-red-200 text-sm">{error}</p>}
+
+                                {error && (
+                                    <p className="mt-2 text-sm text-red-200">
+                                        {error}
+                                    </p>
+                                )}
                             </div>
                         </motion.div>
 
-                        {/* ACCORDION */}
                         <div className="relative">
                             <AnimatePresence initial={false}>
                                 {advancedOpen && (
@@ -906,53 +1021,73 @@ export default function MovimentosPage() {
                                         transition={{ duration: 0.25, ease: "easeOut" }}
                                         className="overflow-hidden"
                                     >
-                                        <div className="bg-[#616161] p-4 rounded-b-[3px]">
-                                            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                                                {/* ESQUERDA */}
+                                        <div className="rounded-b-[3px] bg-[#616161] p-4">
+                                            <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
                                                 <div className="lg:col-span-7">
-                                                    <div className="flex items-start justify-between gap-4 mb-3">
+                                                    <div className="mb-3 flex items-start justify-between gap-4">
                                                         <div>
-                                                            <h3 className="text-white text-lg font-semibold">
+                                                            <h3 className="text-lg font-semibold text-white">
                                                                 Tipo e Fraqueza
                                                             </h3>
+
                                                             {typeWeaknessesLoading && (
-                                                                <p className="text-white/70 text-xs mt-1">
-                                                                    Carregando relações de fraqueza da PokéAPI...
+                                                                <p className="mt-1 text-xs text-white/70">
+                                                                    Carregando relações de
+                                                                    fraqueza da PokéAPI...
                                                                 </p>
                                                             )}
                                                         </div>
 
-                                                        <div className="text-white/70 text-xs">
-                                                            <span className="font-semibold">T</span> = Tipo{" "}
-                                                            <span className="font-semibold">F</span> = Fraqueza
+                                                        <div className="text-xs text-white/70">
+                                                            <span className="font-semibold">
+                                                                T
+                                                            </span>{" "}
+                                                            = Tipo{" "}
+                                                            <span className="font-semibold">
+                                                                F
+                                                            </span>{" "}
+                                                            = Fraqueza
                                                         </div>
                                                     </div>
 
-                                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                                        {ALL_TYPES.map((t) => {
-                                                            const mode = typeMode[t];
-                                                            const isT = mode === "type";
-                                                            const isF = mode === "weakness";
+                                                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                                                        {ALL_TYPES.map((type) => {
+                                                            const mode = typeMode[type];
+                                                            const isType =
+                                                                mode === "type";
+                                                            const isWeakness =
+                                                                mode === "weakness";
 
                                                             return (
-                                                                <div key={t} className="flex items-center justify-between gap-2">
+                                                                <div
+                                                                    key={type}
+                                                                    className="flex items-center justify-between gap-2"
+                                                                >
                                                                     <span
-                                                                        className={`min-w-[120px] px-3 py-1 rounded-md text-xs font-semibold text-center ${getTypeClass(
-                                                                            t
+                                                                        className={`min-w-[120px] rounded-md px-3 py-1 text-center text-xs font-semibold ${getTypeClass(
+                                                                            type
                                                                         )}`}
                                                                     >
-                                                                        {TYPE_LABELS_PT[t] || formatName(t)}
+                                                                        {TYPE_LABELS_PT[type] ||
+                                                                            formatName(type)}
                                                                     </span>
 
                                                                     <div className="flex items-center gap-2">
                                                                         <button
                                                                             type="button"
-                                                                            onClick={() => toggleTypeModeLocal(t, "type")}
-                                                                            className={`w-7 h-7 rounded-full border text-xs font-bold transition
-                                        ${isT
-                                                                                    ? "bg-white text-neutral-900 border-white"
-                                                                                    : "bg-transparent text-white border-white/40 hover:border-white/80"
-                                                                                }`}
+                                                                            onClick={() =>
+                                                                                toggleTypeModeLocal(
+                                                                                    type,
+                                                                                    "type"
+                                                                                )
+                                                                            }
+                                                                            className={`h-7 w-7 cursor-pointer rounded-full border text-xs font-bold transition
+                                                                                ${
+                                                                                    isType
+                                                                                        ? "border-white bg-white text-neutral-900"
+                                                                                        : "border-white/40 bg-transparent text-white hover:border-white/80"
+                                                                                }
+                                                                            `}
                                                                             title="Filtrar por Tipo"
                                                                         >
                                                                             T
@@ -960,14 +1095,27 @@ export default function MovimentosPage() {
 
                                                                         <button
                                                                             type="button"
-                                                                            disabled={typeWeaknessesLoading}
-                                                                            onClick={() => toggleTypeModeLocal(t, "weakness")}
-                                                                            className={`w-7 h-7 rounded-full border text-xs font-bold transition
-                                        ${typeWeaknessesLoading ? "opacity-50 cursor-not-allowed" : ""}
-                                        ${isF
-                                                                                    ? "bg-white text-neutral-900 border-white"
-                                                                                    : "bg-transparent text-white border-white/40 hover:border-white/80"
-                                                                                }`}
+                                                                            disabled={
+                                                                                typeWeaknessesLoading
+                                                                            }
+                                                                            onClick={() =>
+                                                                                toggleTypeModeLocal(
+                                                                                    type,
+                                                                                    "weakness"
+                                                                                )
+                                                                            }
+                                                                            className={`h-7 w-7 rounded-full border text-xs font-bold transition
+                                                                                ${
+                                                                                    typeWeaknessesLoading
+                                                                                        ? "cursor-not-allowed opacity-50"
+                                                                                        : "cursor-pointer"
+                                                                                }
+                                                                                ${
+                                                                                    isWeakness
+                                                                                        ? "border-white bg-white text-neutral-900"
+                                                                                        : "border-white/40 bg-transparent text-white hover:border-white/80"
+                                                                                }
+                                                                            `}
                                                                             title={
                                                                                 typeWeaknessesLoading
                                                                                     ? "Carregando relações..."
@@ -983,27 +1131,39 @@ export default function MovimentosPage() {
                                                     </div>
                                                 </div>
 
-                                                {/* DIREITA */}
                                                 <div className="lg:col-span-5">
                                                     <div className="mb-5">
-                                                        <h3 className="text-white text-lg font-semibold mb-2">
+                                                        <h3 className="mb-2 text-lg font-semibold text-white">
                                                             Classe de dano
                                                         </h3>
 
-                                                        <div className="relative w-75">
+                                                        <div className="relative w-full max-w-[300px]">
                                                             <select
                                                                 value={damageClass}
-                                                                onChange={(e) => setDamageClass(e.target.value)}
-                                                                className="w-full appearance-none bg-neutral-700 text-white px-3 py-2 pr-10 rounded-md border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
+                                                                onChange={(event) =>
+                                                                    setDamageClass(
+                                                                        event.target
+                                                                            .value
+                                                                    )
+                                                                }
+                                                                className="w-full appearance-none rounded-md border border-white/10 bg-neutral-700 px-3 py-2 pr-10 text-white focus:outline-none focus:ring-2 focus:ring-[#E3350D]/60"
                                                             >
-                                                                <option value="all">Todas</option>
-                                                                <option value="physical">Physical</option>
-                                                                <option value="special">Special</option>
-                                                                <option value="status">Status</option>
+                                                                <option value="all">
+                                                                    Todas
+                                                                </option>
+                                                                <option value="physical">
+                                                                    Physical
+                                                                </option>
+                                                                <option value="special">
+                                                                    Special
+                                                                </option>
+                                                                <option value="status">
+                                                                    Status
+                                                                </option>
                                                             </select>
 
                                                             <svg
-                                                                className="pointer-events-none absolute right-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-white/70"
+                                                                className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/70"
                                                                 viewBox="0 0 20 20"
                                                                 fill="currentColor"
                                                                 aria-hidden="true"
@@ -1018,18 +1178,28 @@ export default function MovimentosPage() {
                                                     </div>
 
                                                     <div className="mb-5">
-                                                        <h3 className="text-white text-lg font-semibold mb-2">Power</h3>
+                                                        <h3 className="mb-2 text-lg font-semibold text-white">
+                                                            Power mínimo
+                                                        </h3>
+
                                                         <input
                                                             type="number"
                                                             value={minPower}
-                                                            onChange={(e) => setMinPower(e.target.value)}
-                                                            className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none no-spinner"
+                                                            onChange={(event) =>
+                                                                setMinPower(
+                                                                    event.target.value
+                                                                )
+                                                            }
+                                                            className="no-spinner w-40 rounded-md border border-white/10 bg-white px-3 py-2 text-neutral-900 focus:outline-none"
                                                         />
+
                                                         <div className="mt-2">
                                                             <button
                                                                 type="button"
-                                                                onClick={() => setMinPower("")}
-                                                                className="text-xs text-white/70 hover:text-white underline"
+                                                                onClick={() =>
+                                                                    setMinPower("")
+                                                                }
+                                                                className="cursor-pointer text-xs text-white/70 underline hover:text-white"
                                                             >
                                                                 Limpar Power
                                                             </button>
@@ -1037,18 +1207,28 @@ export default function MovimentosPage() {
                                                     </div>
 
                                                     <div className="mb-5">
-                                                        <h3 className="text-white text-lg font-semibold mb-2">Accuracy</h3>
+                                                        <h3 className="mb-2 text-lg font-semibold text-white">
+                                                            Accuracy mínima
+                                                        </h3>
+
                                                         <input
                                                             type="number"
                                                             value={minAccuracy}
-                                                            onChange={(e) => setMinAccuracy(e.target.value)}
-                                                            className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none no-spinner"
+                                                            onChange={(event) =>
+                                                                setMinAccuracy(
+                                                                    event.target.value
+                                                                )
+                                                            }
+                                                            className="no-spinner w-40 rounded-md border border-white/10 bg-white px-3 py-2 text-neutral-900 focus:outline-none"
                                                         />
+
                                                         <div className="mt-2">
                                                             <button
                                                                 type="button"
-                                                                onClick={() => setMinAccuracy("")}
-                                                                className="text-xs text-white/70 hover:text-white underline"
+                                                                onClick={() =>
+                                                                    setMinAccuracy("")
+                                                                }
+                                                                className="cursor-pointer text-xs text-white/70 underline hover:text-white"
                                                             >
                                                                 Limpar Accuracy
                                                             </button>
@@ -1056,18 +1236,28 @@ export default function MovimentosPage() {
                                                     </div>
 
                                                     <div className="mb-5">
-                                                        <h3 className="text-white text-lg font-semibold mb-2">PP</h3>
+                                                        <h3 className="mb-2 text-lg font-semibold text-white">
+                                                            PP mínimo
+                                                        </h3>
+
                                                         <input
                                                             type="number"
                                                             value={minPP}
-                                                            onChange={(e) => setMinPP(e.target.value)}
-                                                            className="w-40 bg-white text-neutral-900 px-3 py-2 rounded-md border border-white/10 focus:outline-none no-spinner"
+                                                            onChange={(event) =>
+                                                                setMinPP(
+                                                                    event.target.value
+                                                                )
+                                                            }
+                                                            className="no-spinner w-40 rounded-md border border-white/10 bg-white px-3 py-2 text-neutral-900 focus:outline-none"
                                                         />
+
                                                         <div className="mt-2">
                                                             <button
                                                                 type="button"
-                                                                onClick={() => setMinPP("")}
-                                                                className="text-xs text-white/70 hover:text-white underline"
+                                                                onClick={() =>
+                                                                    setMinPP("")
+                                                                }
+                                                                className="cursor-pointer text-xs text-white/70 underline hover:text-white"
                                                             >
                                                                 Limpar PP
                                                             </button>
@@ -1075,24 +1265,25 @@ export default function MovimentosPage() {
                                                     </div>
 
                                                     <style jsx>{`
-                            .no-spinner::-webkit-outer-spin-button,
-                            .no-spinner::-webkit-inner-spin-button {
-                              -webkit-appearance: none;
-                              margin: 0;
-                            }
-                            .no-spinner {
-                              -moz-appearance: textfield;
-                              appearance: textfield;
-                            }
-                          `}</style>
+                                                        .no-spinner::-webkit-outer-spin-button,
+                                                        .no-spinner::-webkit-inner-spin-button {
+                                                            -webkit-appearance: none;
+                                                            margin: 0;
+                                                        }
+
+                                                        .no-spinner {
+                                                            -moz-appearance: textfield;
+                                                            appearance: textfield;
+                                                        }
+                                                    `}</style>
                                                 </div>
                                             </div>
 
-                                            <div className="flex items-center gap-3 justify-start lg:justify-end">
+                                            <div className="mt-4 flex items-center justify-start gap-3 lg:justify-end">
                                                 <button
                                                     type="button"
                                                     onClick={resetAdvanced}
-                                                    className="px-5 py-2 rounded-md bg-white/20 text-white hover:bg-white/25 border border-white/10"
+                                                    className="cursor-pointer rounded-md border border-white/10 bg-white/20 px-5 py-2 text-white transition hover:bg-white/25"
                                                 >
                                                     Redefinir
                                                 </button>
@@ -1101,10 +1292,12 @@ export default function MovimentosPage() {
                                                     type="button"
                                                     onClick={applyAdvancedFilters}
                                                     disabled={advancedLoading}
-                                                    className="px-5 py-2 rounded-md bg-[#E3350D] text-white hover:bg-[#c52c0b] flex items-center gap-2 disabled:opacity-70"
+                                                    className="flex cursor-pointer items-center gap-2 rounded-md bg-[#E3350D] px-5 py-2 text-white transition hover:bg-[#c52c0b] disabled:cursor-not-allowed disabled:opacity-70"
                                                 >
-                                                    <Search className="w-4 h-4" />
-                                                    {advancedLoading ? "Pesquisando..." : "Pesquisar"}
+                                                    <Search className="h-4 w-4" />
+                                                    {advancedLoading
+                                                        ? "Pesquisando..."
+                                                        : "Pesquisar"}
                                                 </button>
                                             </div>
                                         </div>
@@ -1112,101 +1305,139 @@ export default function MovimentosPage() {
                                 )}
                             </AnimatePresence>
 
-                            <div className="w-60 mx-auto flex justify-center bg-[#616161] rounded-b-[5px] overflow-visible relative z-10">
+                            <div className="relative z-10 mx-auto flex w-60 justify-center overflow-visible rounded-b-[5px] bg-[#616161]">
                                 <button
                                     type="button"
-                                    onClick={() => setAdvancedOpen((v) => !v)}
-                                    className="flex items-center justify-center gap-2 text-white/90 hover:text-white transition py-2 w-full"
+                                    onClick={() =>
+                                        setAdvancedOpen((currentValue) => !currentValue)
+                                    }
+                                    className="flex w-full cursor-pointer items-center justify-center gap-2 py-2 text-white/90 transition hover:text-white"
                                 >
                                     <span className="text-sm font-medium">
-                                        {advancedOpen ? "Esconder busca avançada" : "Mostrar busca avançada"}
+                                        {advancedOpen
+                                            ? "Esconder busca avançada"
+                                            : "Mostrar busca avançada"}
                                     </span>
 
-                                    <span className="ml-1 inline-flex items-center justify-center w-5 h-5 rounded-full bg-white shadow-sm">
+                                    <span className="ml-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-white shadow-sm">
                                         {advancedOpen ? (
-                                            <ChevronUp className="w-4 h-4 text-neutral-900" />
+                                            <ChevronUp className="h-4 w-4 text-neutral-900" />
                                         ) : (
-                                            <ChevronDown className="w-4 h-4 text-neutral-900" />
+                                            <ChevronDown className="h-4 w-4 text-neutral-900" />
                                         )}
                                     </span>
                                 </button>
                             </div>
                         </div>
 
-                        {/* GRID */}
                         {visibleMoves.length > 0 ? (
                             <div className="mt-6">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                                    {visibleMoves.map((m) => {
-                                        const d = moveDetailsRef.current[m.id] || detailsCache.current.get(m.id);
+                                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                                    {visibleMoves.map((move) => {
+                                        const detail =
+                                            moveDetailsRef.current[move.id] ||
+                                            detailsCache.current.get(move.id);
 
                                         return (
                                             <motion.button
-                                                key={m.id}
+                                                key={move.id}
                                                 type="button"
                                                 whileHover={{ scale: 1.03 }}
-                                                onClick={() => navigateToMove(m.name)}          // ✅ URL por nome
-                                                onMouseEnter={() => prefetchMove(m.name)}       // ✅ prefetch por nome
-                                                onFocus={() => prefetchMove(m.name)}            // ✅ acessibilidade
-                                                className="flex flex-col items-stretch justify-start rounded-md bg-white p-4 shadow-[0_4px_10px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_18px_rgba(0,0,0,0.1)] border border-neutral-200 transition-shadow duration-200 text-left"
+                                                onClick={() => navigateToMove(move.name)}
+                                                onMouseEnter={() =>
+                                                    prefetchMove(move.name)
+                                                }
+                                                onFocus={() => prefetchMove(move.name)}
+                                                className="flex cursor-pointer flex-col items-stretch justify-start rounded-md border border-neutral-200 bg-white p-4 text-left shadow-[0_4px_10px_rgba(0,0,0,0.06)] transition-shadow duration-200 hover:shadow-[0_8px_18px_rgba(0,0,0,0.1)]"
                                             >
-                                                <div className="flex items-center gap-2 mb-2">
+                                                <div className="mb-2 flex items-center gap-2">
                                                     <motion.div
-                                                        className="w-1.5 h-4 bg-[#E3350D] rounded-sm shadow-[0_0_6px_#E3350D]"
-                                                        initial={{ scaleY: 0.3, opacity: 0 }}
-                                                        animate={{ scaleY: 1, opacity: 1 }}
-                                                        transition={{ delay: 0.2, duration: 0.35 }}
+                                                        className="h-4 w-1.5 rounded-sm bg-[#E3350D] shadow-[0_0_6px_#E3350D]"
+                                                        initial={{
+                                                            scaleY: 0.3,
+                                                            opacity: 0,
+                                                        }}
+                                                        animate={{
+                                                            scaleY: 1,
+                                                            opacity: 1,
+                                                        }}
+                                                        transition={{
+                                                            delay: 0.2,
+                                                            duration: 0.35,
+                                                        }}
                                                     />
-                                                    <h3 className="text-lg font-semibold text-neutral-600 capitalize">
-                                                        {formatName(m.name)}
+
+                                                    <h3 className="truncate text-lg font-semibold capitalize text-neutral-600">
+                                                        {formatName(move.name)}
                                                     </h3>
                                                 </div>
 
-                                                {d?.type ? (
+                                                {detail?.type ? (
                                                     <span
                                                         className={`
-                              self-start w-fit inline-flex
-                              px-3 py-1 text-xs rounded-md font-medium capitalize
-                              ${getTypeClass(d.type)}
-                            `}
+                                                            inline-flex w-fit self-start rounded-md
+                                                            px-3 py-1 text-xs font-medium capitalize
+                                                            ${getTypeClass(detail.type)}
+                                                        `}
                                                     >
-                                                        {TYPE_LABELS_PT[d.type] || d.type}
+                                                        {TYPE_LABELS_PT[detail.type] ||
+                                                            detail.type}
                                                     </span>
                                                 ) : (
-                                                    <span className="text-[11px] text-slate-500">Carregando tipo...</span>
+                                                    <span className="text-[11px] text-slate-500">
+                                                        Carregando tipo...
+                                                    </span>
                                                 )}
 
-                                                {d ? (
-                                                    <div className="mt-2 text-sm text-neutral-600 space-y-1">
-                                                        <div>Classe: {d.damageClass || "—"}</div>
-                                                        <div>Power: {d.power ?? "-"}</div>
-                                                        <div>Accuracy: {d.accuracy ?? "-"}</div>
-                                                        <div>PP: {d.pp ?? "-"}</div>
+                                                {detail ? (
+                                                    <div className="mt-2 space-y-1 text-sm text-neutral-600">
+                                                        <div>
+                                                            Classe:{" "}
+                                                            {detail.damageClass || "—"}
+                                                        </div>
+                                                        <div>
+                                                            Power: {detail.power ?? "-"}
+                                                        </div>
+                                                        <div>
+                                                            Accuracy:{" "}
+                                                            {detail.accuracy ?? "-"}
+                                                        </div>
+                                                        <div>PP: {detail.pp ?? "-"}</div>
                                                     </div>
                                                 ) : (
-                                                    <div className="mt-2 text-[11px] text-slate-500">Carregando detalhes...</div>
+                                                    <div className="mt-2 text-[11px] text-slate-500">
+                                                        Carregando detalhes...
+                                                    </div>
                                                 )}
                                             </motion.button>
                                         );
                                     })}
                                 </div>
 
-                                <div className="flex justify-center mt-6">
-                                    {(advancedApplied && hasAnyAdvancedFilter ? advancedHasMore : visibleCount < baseList.length) && (
+                                <div className="mt-6 flex justify-center">
+                                    {(advancedApplied && hasAnyAdvancedFilter
+                                        ? advancedHasMore
+                                        : visibleCount < baseList.length) && (
                                         <button
                                             type="button"
                                             onClick={handleLoadMore}
                                             disabled={advancedLoading}
-                                            className="bg-[#E3350D] text-white px-6 py-2 rounded-md hover:bg-[#c52c0b] disabled:opacity-70"
+                                            className="cursor-pointer rounded-md bg-[#E3350D] px-6 py-2 text-white transition hover:bg-[#c52c0b] disabled:cursor-not-allowed disabled:opacity-70"
                                         >
-                                            {advancedLoading ? "Carregando..." : "Carregar mais movimentos"}
+                                            {advancedLoading
+                                                ? "Carregando..."
+                                                : "Carregar mais movimentos"}
                                         </button>
                                     )}
                                 </div>
                             </div>
+                        ) : advancedLoading ? (
+                            <div className="mt-6 text-center text-neutral-700">
+                                Pesquisando movimentos...
+                            </div>
                         ) : (
-                            <div className="mt-6 text-center text-white/80">
-                                Nenhuma move encontrada com os filtros atuais.
+                            <div className="mt-6 text-center text-neutral-700">
+                                Nenhum movimento encontrado com os filtros atuais.
                             </div>
                         )}
                     </div>

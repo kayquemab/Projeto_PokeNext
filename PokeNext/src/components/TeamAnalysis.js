@@ -1,6 +1,15 @@
 "use client";
 
-import { AlertTriangle, BarChart3, ShieldCheck, Sparkles } from "lucide-react";
+import { useMemo, useSyncExternalStore } from "react";
+import {
+    AlertTriangle,
+    BarChart3,
+    ShieldCheck,
+    Sparkles,
+    UsersRound,
+} from "lucide-react";
+
+const STORAGE_KEY = "pokemon-team-builder";
 
 const TYPE_LABELS = {
     bug: "Inseto",
@@ -65,14 +74,52 @@ const TYPE_WEAKNESSES = {
     fairy: ["poison", "steel"],
 };
 
-const STAT_LABELS = {
-    hp: "HP",
-    attack: "Ataque",
-    defense: "Defesa",
-    "special-attack": "Atq. Esp.",
-    "special-defense": "Def. Esp.",
-    speed: "Velocidade",
-};
+const STAT_CONFIG = [
+    { name: "hp", label: "HP", shortLabel: "HP" },
+    { name: "attack", label: "Ataque", shortLabel: "ATK" },
+    { name: "defense", label: "Defesa", shortLabel: "DEF" },
+    { name: "special-attack", label: "Atq. Esp.", shortLabel: "SPA" },
+    { name: "special-defense", label: "Def. Esp.", shortLabel: "SPD" },
+    { name: "speed", label: "Velocidade", shortLabel: "VEL" },
+];
+
+function subscribeToStoredTeam(callback) {
+    if (typeof window === "undefined") {
+        return () => {};
+    }
+
+    window.addEventListener("storage", callback);
+
+    return () => {
+        window.removeEventListener("storage", callback);
+    };
+}
+
+function getStoredTeamSnapshot() {
+    if (typeof window === "undefined") {
+        return "[]";
+    }
+
+    return window.localStorage.getItem(STORAGE_KEY) ?? "[]";
+}
+
+function getServerStoredTeamSnapshot() {
+    return "[]";
+}
+
+function parseStoredTeam(value) {
+    try {
+        const parsedTeam = JSON.parse(value);
+
+        if (Array.isArray(parsedTeam)) {
+            return parsedTeam.slice(0, 6);
+        }
+
+        return [];
+    } catch {
+        return [];
+    }
+}
 
 function formatName(name) {
     return String(name || "")
@@ -94,7 +141,7 @@ function getStat(pokemon, statName) {
 function TypeBadge({ type }) {
     return (
         <span
-            className="rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase text-white"
+            className="rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-white"
             style={{ backgroundColor: TYPE_COLORS[type] ?? "#737373" }}
         >
             {TYPE_LABELS[type] ?? type}
@@ -102,45 +149,70 @@ function TypeBadge({ type }) {
     );
 }
 
-function SimpleCard({ icon: Icon, title, value, description }) {
+function SectionCard({ children, className = "" }) {
     return (
-        <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
-            <div className="flex items-start gap-3">
-                <div className="rounded-xl bg-[#E3350D]/10 p-2 text-[#E3350D]">
-                    <Icon className="h-5 w-5" />
-                </div>
+        <div
+            className={`
+                rounded-[28px] border border-neutral-200 bg-white
+                p-5 shadow-sm
+                ${className}
+            `}
+        >
+            {children}
+        </div>
+    );
+}
 
+function TacticalMetric({ icon: Icon, label, value, description }) {
+    return (
+        <div className="rounded-2xl border border-white/10 bg-white/10 p-4 text-white backdrop-blur-sm">
+            <div className="flex items-start justify-between gap-3">
                 <div>
-                    <p className="text-xs font-semibold uppercase text-neutral-400">
-                        {title}
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-white/50">
+                        {label}
                     </p>
 
-                    <p className="mt-1 text-2xl font-bold text-neutral-800">
+                    <p className="mt-2 text-2xl font-bold tabular-nums">
                         {value}
                     </p>
 
-                    <p className="mt-1 text-xs text-neutral-500">
+                    <p className="mt-1 text-xs text-white/55">
                         {description}
                     </p>
+                </div>
+
+                <div className="shrink-0 rounded-xl bg-white/10 p-2 text-white">
+                    <Icon className="h-5 w-5" />
                 </div>
             </div>
         </div>
     );
 }
 
-function StatLine({ label, value }) {
+function StatLine({ shortLabel, label, value }) {
     const width = Math.min(100, Math.round((value / 150) * 100));
 
     return (
-        <div>
-            <div className="mb-1 flex items-center justify-between text-xs">
-                <span className="text-neutral-600">{label}</span>
-                <span className="font-semibold text-neutral-700">{value}</span>
+        <div className="cursor-pointer rounded-xl border border-neutral-100 bg-neutral-50 px-3 py-2.5 transition hover:border-neutral-200 hover:bg-white hover:shadow-sm">
+            <div className="mb-1.5 flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                    <p className="text-[10px] font-bold uppercase tracking-wide text-neutral-400">
+                        {shortLabel}
+                    </p>
+
+                    <p className="truncate text-xs font-medium text-neutral-500">
+                        {label}
+                    </p>
+                </div>
+
+                <span className="shrink-0 text-sm font-bold tabular-nums text-neutral-800">
+                    {value}
+                </span>
             </div>
 
-            <div className="h-2 overflow-hidden rounded-full bg-neutral-200">
+            <div className="h-1.5 overflow-hidden rounded-full bg-neutral-200">
                 <div
-                    className="h-full rounded-full bg-[#E3350D]"
+                    className="h-full rounded-full bg-[#E3350D] transition-all"
                     style={{ width: `${width}%` }}
                 />
             </div>
@@ -148,216 +220,316 @@ function StatLine({ label, value }) {
     );
 }
 
-export default function TeamAnalysis({ team = [] }) {
-    if (team.length === 0) {
-        return (
-            <section className="rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-8 text-center">
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#E3350D] shadow-sm">
-                    <BarChart3 className="h-7 w-7" />
-                </div>
-
-                <h2 className="text-lg font-semibold text-neutral-800">
-                    Nenhum time para analisar
-                </h2>
-
-                <p className="mx-auto mt-2 max-w-xl text-sm text-neutral-500">
-                    Adicione Pokémon no Construtor de times para visualizar a análise.
-                </p>
-            </section>
-        );
-    }
-
-    const totalPower = team.reduce((total, pokemon) => {
-        return total + getTotalStats(pokemon);
-    }, 0);
-
-    const allTypes = team.flatMap((pokemon) =>
-        pokemon.types.map((item) => item.type.name)
-    );
-
-    const uniqueTypes = [...new Set(allTypes)];
-
-    const averageStats = Object.keys(STAT_LABELS).map((statName) => {
-        const average = Math.round(
-            team.reduce((sum, pokemon) => sum + getStat(pokemon, statName), 0) /
-            team.length
-        );
-
-        return {
-            statName,
-            label: STAT_LABELS[statName],
-            value: average,
-        };
-    });
-
-    const weaknessCount = {};
-
-    allTypes.forEach((type) => {
-        const weaknesses = TYPE_WEAKNESSES[type] ?? [];
-
-        weaknesses.forEach((weakness) => {
-            weaknessCount[weakness] = (weaknessCount[weakness] ?? 0) + 1;
-        });
-    });
-
-    const mainWeaknesses = Object.entries(weaknessCount)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 5);
-
-    const balanceScore = Math.min(
-        100,
-        Math.round(uniqueTypes.length * 10 + team.length * 8)
-    );
-
+function EmptyAnalysis() {
     return (
-        <section className="space-y-5">
-            <div className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-                <div className="border-b border-neutral-200 bg-neutral-50 px-5 py-4">
-                    <h2 className="text-xl font-semibold text-neutral-800">
-                        Análise de times
+        <section className="rounded-[28px] border border-dashed border-neutral-300 bg-neutral-50 p-8 text-center">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#E3350D] shadow-sm">
+                <BarChart3 className="h-7 w-7" />
+            </div>
+
+            <h2 className="text-lg font-semibold text-neutral-800">
+                Nenhum time para analisar
+            </h2>
+
+            <p className="mx-auto mt-2 max-w-xl text-sm text-neutral-500">
+                Adicione Pokémon no Construtor de times para visualizar a
+                análise.
+            </p>
+        </section>
+    );
+}
+
+function TacticalHeader({ analysisData, teamLength }) {
+    return (
+        <section className="overflow-hidden rounded-[28px] bg-[url('/wallpaper-preto.png')] bg-cover bg-center bg-no-repeat p-5 shadow-md">
+            <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                <div>
+                    <div className="mb-3 flex items-center gap-2">
+                        <div className="h-4 w-1.5 rounded-sm bg-[#E3350D] shadow-[0_0_6px_#E3350D]" />
+
+                        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
+                            Painel tático
+                        </p>
+                    </div>
+
+                    <h2 className="text-2xl font-semibold text-white">
+                        Análise de batalha
                     </h2>
 
-                    <p className="mt-1 text-sm text-neutral-500">
-                        Uma visão simples do equilíbrio, força e fraquezas do seu time.
+                    <p className="mt-1 max-w-2xl text-sm text-white/60">
+                        Resumo estratégico do time atual para preparação antes
+                        da batalha.
                     </p>
                 </div>
 
-                <div className="p-5">
-                    <div className="grid gap-4 md:grid-cols-3">
-                        <SimpleCard
-                            icon={Sparkles}
-                            title="Equilíbrio"
-                            value={`${balanceScore}%`}
-                            description="Estimativa geral do time."
-                        />
+                <span className="w-fit rounded-full bg-white px-3 py-1 text-xs font-semibold text-neutral-800">
+                    {teamLength}/6 Pokémon
+                </span>
+            </div>
 
-                        <SimpleCard
-                            icon={ShieldCheck}
-                            title="Tipos únicos"
-                            value={uniqueTypes.length}
-                            description="Variedade de tipos no time."
-                        />
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                <TacticalMetric
+                    icon={Sparkles}
+                    label="Poder total"
+                    value={analysisData.totalPower}
+                    description="Soma dos atributos."
+                />
 
-                        <SimpleCard
-                            icon={AlertTriangle}
-                            title="Fraquezas"
-                            value={mainWeaknesses.length}
-                            description="Principais riscos encontrados."
-                        />
-                    </div>
+                <TacticalMetric
+                    icon={ShieldCheck}
+                    label="Equilíbrio"
+                    value={`${analysisData.balanceScore}%`}
+                    description="Distribuição geral."
+                />
+
+                <TacticalMetric
+                    icon={UsersRound}
+                    label="Tipos únicos"
+                    value={analysisData.uniqueTypes.length}
+                    description="Variedade do time."
+                />
+
+                <TacticalMetric
+                    icon={AlertTriangle}
+                    label="Riscos"
+                    value={analysisData.mainWeaknesses.length}
+                    description="Fraquezas principais."
+                />
+            </div>
+        </section>
+    );
+}
+
+function TypeSummary({ uniqueTypes }) {
+    return (
+        <SectionCard>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400">
+                Tipos usados
+            </p>
+
+            <p className="mt-1 text-sm text-neutral-500">
+                Cobertura principal do time.
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-2">
+                {uniqueTypes.map((type) => (
+                    <TypeBadge key={type} type={type} />
+                ))}
+            </div>
+        </SectionCard>
+    );
+}
+
+function WeaknessSummary({ mainWeaknesses }) {
+    return (
+        <SectionCard>
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400">
+                Fraquezas principais
+            </p>
+
+            {mainWeaknesses.length === 0 ? (
+                <p className="mt-3 text-sm text-neutral-500">
+                    Nenhuma fraqueza encontrada.
+                </p>
+            ) : (
+                <div className="mt-4 space-y-2">
+                    {mainWeaknesses.map(([type, count]) => (
+                        <div
+                            key={type}
+                            className="flex cursor-pointer items-center justify-between rounded-xl border border-neutral-100 bg-neutral-50 px-3 py-2 transition hover:border-neutral-200 hover:bg-white hover:shadow-sm"
+                        >
+                            <TypeBadge type={type} />
+
+                            <span className="text-sm font-semibold tabular-nums text-neutral-600">
+                                {count}x
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </SectionCard>
+    );
+}
+
+function AnalyzedPokemonCard({ pokemon }) {
+    const totalStats = getTotalStats(pokemon);
+
+    return (
+        <div className="cursor-pointer rounded-2xl border border-neutral-100 bg-neutral-50 p-3 transition hover:border-neutral-200 hover:bg-white hover:shadow-sm">
+            <div className="flex items-start justify-between gap-3">
+                <div>
+                    <p className="font-mono text-xs font-semibold text-neutral-400">
+                        #{String(pokemon.id).padStart(3, "0")}
+                    </p>
+
+                    <h4 className="mt-1 font-semibold text-neutral-800">
+                        {formatName(pokemon.name)}
+                    </h4>
+                </div>
+
+                <div className="rounded-xl bg-white px-2.5 py-1.5 text-right shadow-sm">
+                    <p className="text-[9px] font-semibold uppercase text-neutral-400">
+                        Total
+                    </p>
+
+                    <p className="text-xs font-bold tabular-nums text-neutral-800">
+                        {totalStats}
+                    </p>
                 </div>
             </div>
 
-            <div className="grid gap-5 lg:grid-cols-[1fr_340px]">
-                <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-                    <h3 className="text-lg font-semibold text-neutral-800">
-                        Médias do time
-                    </h3>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+                {pokemon.types.map((item) => (
+                    <TypeBadge key={item.type.name} type={item.type.name} />
+                ))}
+            </div>
+        </div>
+    );
+}
 
-                    <p className="mt-1 text-sm text-neutral-500">
-                        Média dos principais atributos dos Pokémon escolhidos.
-                    </p>
+export default function TeamAnalysis({ team = [] }) {
+    const storedTeamSnapshot = useSyncExternalStore(
+        subscribeToStoredTeam,
+        getStoredTeamSnapshot,
+        getServerStoredTeamSnapshot
+    );
 
-                    <div className="mt-5 space-y-3">
-                        {averageStats.map((item) => (
+    const savedTeam = useMemo(() => {
+        return parseStoredTeam(storedTeamSnapshot);
+    }, [storedTeamSnapshot]);
+
+    const analysisTeam = team.length > 0 ? team : savedTeam;
+
+    const analysisData = useMemo(() => {
+        if (analysisTeam.length === 0) return null;
+
+        const totalPower = analysisTeam.reduce((total, pokemon) => {
+            return total + getTotalStats(pokemon);
+        }, 0);
+
+        const allTypes = analysisTeam.flatMap((pokemon) =>
+            pokemon.types.map((item) => item.type.name)
+        );
+
+        const uniqueTypes = [...new Set(allTypes)];
+
+        const averageStats = STAT_CONFIG.map((stat) => {
+            const average = Math.round(
+                analysisTeam.reduce((sum, pokemon) => {
+                    return sum + getStat(pokemon, stat.name);
+                }, 0) / analysisTeam.length
+            );
+
+            return {
+                ...stat,
+                value: average,
+            };
+        });
+
+        const weaknessCount = {};
+
+        allTypes.forEach((type) => {
+            const weaknesses = TYPE_WEAKNESSES[type] ?? [];
+
+            weaknesses.forEach((weakness) => {
+                weaknessCount[weakness] = (weaknessCount[weakness] ?? 0) + 1;
+            });
+        });
+
+        const mainWeaknesses = Object.entries(weaknessCount)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5);
+
+        const balanceScore = Math.min(
+            100,
+            Math.round(uniqueTypes.length * 10 + analysisTeam.length * 8)
+        );
+
+        return {
+            totalPower,
+            uniqueTypes,
+            averageStats,
+            mainWeaknesses,
+            balanceScore,
+        };
+    }, [analysisTeam]);
+
+    if (!analysisData) {
+        return <EmptyAnalysis />;
+    }
+
+    return (
+        <section className="space-y-5">
+            <TacticalHeader
+                analysisData={analysisData}
+                teamLength={analysisTeam.length}
+            />
+
+            <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px]">
+                <SectionCard>
+                    <div className="mb-4 flex items-center justify-between gap-3">
+                        <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400">
+                                Médias do time
+                            </p>
+
+                            <h3 className="mt-1 text-lg font-semibold text-neutral-800">
+                                Atributos médios
+                            </h3>
+                        </div>
+
+                        <div className="shrink-0 rounded-xl bg-neutral-100 px-3 py-2 text-right">
+                            <p className="text-[10px] font-semibold uppercase text-neutral-400">
+                                Pokémon
+                            </p>
+
+                            <p className="text-sm font-bold tabular-nums text-neutral-800">
+                                {analysisTeam.length}/6
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="grid gap-2 sm:grid-cols-2">
+                        {analysisData.averageStats.map((item) => (
                             <StatLine
-                                key={item.statName}
+                                key={item.name}
+                                shortLabel={item.shortLabel}
                                 label={item.label}
                                 value={item.value}
                             />
                         ))}
                     </div>
-                </div>
+                </SectionCard>
 
                 <aside className="space-y-5">
-                    <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-                        <h3 className="text-lg font-semibold text-neutral-800">
-                            Resumo
-                        </h3>
+                    <TypeSummary uniqueTypes={analysisData.uniqueTypes} />
 
-                        <div className="mt-4 rounded-2xl bg-[#E3350D]/10 p-4">
-                            <p className="text-xs font-semibold uppercase text-[#E3350D]">
-                                Poder total
-                            </p>
-
-                            <p className="mt-1 text-3xl font-bold text-neutral-800">
-                                {totalPower}
-                            </p>
-                        </div>
-
-                        <div className="mt-4">
-                            <p className="mb-2 text-sm font-semibold text-neutral-700">
-                                Tipos usados
-                            </p>
-
-                            <div className="flex flex-wrap gap-2">
-                                {uniqueTypes.map((type) => (
-                                    <TypeBadge key={type} type={type} />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-                        <h3 className="text-lg font-semibold text-neutral-800">
-                            Fraquezas principais
-                        </h3>
-
-                        {mainWeaknesses.length === 0 ? (
-                            <p className="mt-2 text-sm text-neutral-500">
-                                Nenhuma fraqueza encontrada.
-                            </p>
-                        ) : (
-                            <div className="mt-4 space-y-2">
-                                {mainWeaknesses.map(([type, count]) => (
-                                    <div
-                                        key={type}
-                                        className="flex items-center justify-between rounded-xl bg-neutral-50 px-3 py-2"
-                                    >
-                                        <TypeBadge type={type} />
-
-                                        <span className="text-sm font-semibold text-neutral-600">
-                                            {count}x
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    <WeaknessSummary
+                        mainWeaknesses={analysisData.mainWeaknesses}
+                    />
                 </aside>
             </div>
 
-            <div className="rounded-2xl border border-neutral-200 bg-white p-5 shadow-sm">
-                <h3 className="text-lg font-semibold text-neutral-800">
-                    Pokémon analisados
-                </h3>
+            <SectionCard>
+                <div className="mb-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400">
+                        Pokémon analisados
+                    </p>
 
-                <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {team.map((pokemon) => (
-                        <div
+                    <h3 className="mt-1 text-lg font-semibold text-neutral-800">
+                        Time atual
+                    </h3>
+                </div>
+
+                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {analysisTeam.map((pokemon) => (
+                        <AnalyzedPokemonCard
                             key={pokemon.id}
-                            className="rounded-2xl border border-neutral-200 bg-neutral-50 p-3"
-                        >
-                            <p className="font-mono text-xs font-semibold text-neutral-400">
-                                #{String(pokemon.id).padStart(3, "0")}
-                            </p>
-
-                            <h4 className="mt-1 font-semibold text-neutral-800">
-                                {formatName(pokemon.name)}
-                            </h4>
-
-                            <div className="mt-2 flex flex-wrap gap-1.5">
-                                {pokemon.types.map((item) => (
-                                    <TypeBadge
-                                        key={item.type.name}
-                                        type={item.type.name}
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                            pokemon={pokemon}
+                        />
                     ))}
                 </div>
-            </div>
+            </SectionCard>
         </section>
     );
 }

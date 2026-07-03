@@ -65,12 +65,12 @@ export default function Navbar() {
           </nav>
 
           {/* Botão destaque Desktop */}
-          <Link
+          {/* <Link
             href="/Batalha"
             className="hidden md:block px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold hover:opacity-90 transition"
           >
             Batalha Online
-          </Link>
+          </Link> */}
 
           {/* Botão Hambúrguer — apenas mobile */}
           <button
@@ -92,13 +92,13 @@ export default function Navbar() {
                 transition={{ duration: 0.2 }}
                 className="absolute right-0 top-full mt-2 w-56 bg-white border border-neutral-200 rounded-2xl shadow-lg flex flex-col p-3 gap-2"
               >
-                <Link
+                {/* <Link
                   href="/Batalha"
                   className="px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold text-left"
                   onClick={() => setOpen(false)}
                 >
                   Batalha Online
-                </Link>
+                </Link> */}
                 {menu.map((item) => (
                   <Link
                     key={item.href}

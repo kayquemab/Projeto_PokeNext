@@ -6,7 +6,6 @@ import { BarChart3, UsersRound } from "lucide-react";
 import TeamBuilder from "../../components/TeamBuilder";
 import TeamAnalysis from "@/components/TeamAnalysis";
 
-
 export default function Times() {
     const [activeTab, setActiveTab] = useState("builder");
     const [currentTeam, setCurrentTeam] = useState([]);
@@ -16,8 +15,9 @@ export default function Times() {
 
     function tabBackground(isActive) {
         return {
-            backgroundImage: `url(${isActive ? "/wallpaper-preto.png" : "/wallpaper-cinza.png"
-                })`,
+            backgroundImage: `url(${
+                isActive ? "/wallpaper-preto.png" : "/wallpaper-cinza.png"
+            })`,
             backgroundSize: "cover",
             backgroundPosition: "center",
         };
@@ -25,7 +25,7 @@ export default function Times() {
 
     const baseButtonClass = `
         group relative overflow-hidden
-        flex items-center gap-3
+        flex cursor-pointer items-center gap-3
         px-4 py-3 text-white
         transition-all duration-200
     `;
@@ -63,7 +63,8 @@ export default function Times() {
                                         group-hover:opacity-100
                                     "
                                     style={{
-                                        backgroundImage: "url(/wallpaper-preto.png)",
+                                        backgroundImage:
+                                            "url(/wallpaper-preto.png)",
                                         backgroundSize: "cover",
                                         backgroundPosition: "center",
                                     }}
@@ -74,9 +75,10 @@ export default function Times() {
                                 className={`
                                     relative z-10 grid h-7 w-7 place-items-center rounded-full bg-white
                                     transition-colors duration-200
-                                    ${isBuilderActive
-                                        ? "text-[#1B1B1B]"
-                                        : "text-[#616161] group-hover:text-[#1B1B1B]"
+                                    ${
+                                        isBuilderActive
+                                            ? "text-[#1B1B1B]"
+                                            : "text-[#616161] group-hover:text-[#1B1B1B]"
                                     }
                                 `}
                             >
@@ -111,7 +113,8 @@ export default function Times() {
                                         group-hover:opacity-100
                                     "
                                     style={{
-                                        backgroundImage: "url(/wallpaper-preto.png)",
+                                        backgroundImage:
+                                            "url(/wallpaper-preto.png)",
                                         backgroundSize: "cover",
                                         backgroundPosition: "center",
                                     }}
@@ -132,9 +135,10 @@ export default function Times() {
                                 className={`
                                     relative z-10 grid h-7 w-7 place-items-center rounded-full bg-white
                                     transition-colors duration-200
-                                    ${isAnalysisActive
-                                        ? "text-[#1B1B1B]"
-                                        : "text-[#616161] group-hover:text-[#1B1B1B]"
+                                    ${
+                                        isAnalysisActive
+                                            ? "text-[#1B1B1B]"
+                                            : "text-[#616161] group-hover:text-[#1B1B1B]"
                                     }
                                 `}
                             >

@@ -1,18 +1,17 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
 import {
+    BrushCleaning,
     Loader2,
     Plus,
     Search,
-    Shield,
-    Swords,
     Trash2,
     X,
-    Zap,
 } from "lucide-react";
+
+const STORAGE_KEY = "pokemon-team-builder";
 
 const TYPE_STYLES = {
     bug: "bg-[#A8B820] text-white",
@@ -25,39 +24,41 @@ const TYPE_STYLES = {
     psychic: "bg-[#F85888] text-white",
     steel: "bg-[#B8B8D0] text-white",
     dark: "bg-[#705848] text-white",
-    electric: "bg-[#F8D030] text-neutral-900",
+    electric: "bg-[#F8D030] text-white",
     fighting: "bg-[#C03028] text-white",
     flying: "bg-[#A890F0] text-white",
     grass: "bg-[#78C850] text-white",
-    ice: "bg-[#98D8D8] text-neutral-900",
+    ice: "bg-[#98D8D8] text-white",
     poison: "bg-[#A040A0] text-white",
     rock: "bg-[#B8A038] text-white",
     water: "bg-[#6890F0] text-white",
+    default: "bg-neutral-400 text-white",
 };
 
-const STAT_LABELS = {
-    hp: "HP",
-    attack: "Ataque",
-    defense: "Defesa",
-    "special-attack": "Atq. Esp.",
-    "special-defense": "Def. Esp.",
-    speed: "Velocidade",
-};
-
-const QUICK_SEARCH = [
-    "pikachu",
-    "charizard",
-    "gengar",
-    "lucario",
-    "dragonite",
-    "greninja",
+const STAT_CONFIG = [
+    { name: "hp", label: "HP", shortLabel: "HP" },
+    { name: "attack", label: "Ataque", shortLabel: "ATK" },
+    { name: "defense", label: "Defesa", shortLabel: "DEF" },
+    { name: "special-attack", label: "Atq. Esp.", shortLabel: "SPA" },
+    { name: "special-defense", label: "Def. Esp.", shortLabel: "SPD" },
+    { name: "speed", label: "Velocidade", shortLabel: "VEL" },
 ];
 
-function formatName(name) {
+function formatPokemonName(name) {
     return String(name || "")
         .split("-")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" ");
+}
+
+function normalizeSearchValue(value) {
+    const formattedValue = String(value || "").trim().toLowerCase();
+
+    if (/^\d+$/.test(formattedValue)) {
+        return String(Number(formattedValue));
+    }
+
+    return formattedValue;
 }
 
 function getPokemonImage(pokemon) {
@@ -68,23 +69,23 @@ function getPokemonImage(pokemon) {
     );
 }
 
-function getPokemonTotalStats(pokemon) {
-    return pokemon.stats.reduce((total, item) => total + item.base_stat, 0);
-}
-
 function getPokemonStat(pokemon, statName) {
     return (
         pokemon.stats.find((item) => item.stat.name === statName)?.base_stat ?? 0
     );
 }
 
+function getPokemonTotalStats(pokemon) {
+    return pokemon.stats.reduce((total, item) => total + item.base_stat, 0);
+}
+
 function TypeBadge({ type }) {
     return (
         <span
             className={`
-                rounded-full px-2 py-0.5
+                rounded-full px-2.5 py-1
                 text-[10px] font-semibold uppercase tracking-wide
-                ${TYPE_STYLES[type] || "bg-neutral-400 text-white"}
+                ${TYPE_STYLES[type] || TYPE_STYLES.default}
             `}
         >
             {type}
@@ -92,21 +93,73 @@ function TypeBadge({ type }) {
     );
 }
 
-function StatBar({ label, value }) {
-    const percent = Math.min(100, Math.round((value / 150) * 100));
+function StatsPanel({ pokemon }) {
+    const totalStats = getPokemonTotalStats(pokemon);
 
     return (
-        <div>
-            <div className="mb-1 flex items-center justify-between text-[11px] text-neutral-600">
-                <span>{label}</span>
-                <span className="font-semibold text-neutral-700">{value}</span>
+        <div className="mt-4 border-t border-neutral-100 pt-4">
+            <div className="mb-3 flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-neutral-400">
+                        Status base
+                    </p>
+
+                    <p className="mt-0.5 text-[11px] text-neutral-400">
+                        Atributos principais.
+                    </p>
+                </div>
+
+                <div className="shrink-0 rounded-xl bg-neutral-100 px-2.5 py-1.5 text-right">
+                    <p className="text-[9px] font-semibold uppercase text-neutral-400">
+                        Total
+                    </p>
+
+                    <p className="text-xs font-bold tabular-nums text-neutral-800">
+                        {totalStats}
+                    </p>
+                </div>
             </div>
 
-            <div className="h-1.5 overflow-hidden rounded-full bg-neutral-200">
-                <div
-                    className="h-full rounded-full bg-[#E3350D]"
-                    style={{ width: `${percent}%` }}
-                />
+            <div className="grid grid-cols-2 gap-1.5">
+                {STAT_CONFIG.map((stat) => {
+                    const value = getPokemonStat(pokemon, stat.name);
+                    const percent = Math.min(
+                        100,
+                        Math.round((value / 150) * 100)
+                    );
+
+                    return (
+                        <div
+                            key={stat.name}
+                            className="
+                                cursor-pointer rounded-xl border border-neutral-100
+                                bg-neutral-50 px-2 py-2 transition
+                                hover:border-neutral-200 hover:bg-white hover:shadow-sm
+                            "
+                        >
+                            <div className="mb-1 flex items-center justify-between gap-2">
+                                <span className="truncate text-[9px] font-bold uppercase tracking-wide text-neutral-400">
+                                    {stat.shortLabel}
+                                </span>
+
+                                <span className="shrink-0 text-sm font-bold leading-none tabular-nums text-neutral-800">
+                                    {value}
+                                </span>
+                            </div>
+
+                            <p className="mb-1.5 truncate text-[10px] font-medium text-neutral-500">
+                                {stat.label}
+                            </p>
+
+                            <div className="h-1.5 overflow-hidden rounded-full bg-neutral-200">
+                                <div
+                                    className="h-full rounded-full bg-[#E3350D] transition-all"
+                                    style={{ width: `${percent}%` }}
+                                />
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
@@ -114,53 +167,247 @@ function StatBar({ label, value }) {
 
 function EmptySlot({ index }) {
     return (
-        <div className="flex min-h-[230px] flex-col items-center justify-center rounded-2xl border border-dashed border-neutral-300 bg-neutral-50 p-4 text-center">
-            <div className="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-sm">
+        <div className="flex min-h-[380px] flex-col items-center justify-center rounded-[28px] border border-dashed border-neutral-300 bg-neutral-50 p-6 text-center">
+            <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-sm">
                 <Image
                     src="/pokeball.png"
                     alt=""
-                    width={34}
-                    height={34}
-                    className="opacity-40"
+                    width={36}
+                    height={36}
+                    className="opacity-35"
                 />
             </div>
 
-            <p className="text-xs font-semibold uppercase tracking-wide text-neutral-400">
-                Espaço {index + 1}
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400">
+                Espaço {index}
             </p>
 
-            <p className="mt-1 text-xs text-neutral-400">
+            <p className="mt-1 text-sm text-neutral-500">
                 Adicione um Pokémon
             </p>
         </div>
     );
 }
 
-function PokemonCard({ pokemon, onRemove }) {
-    const totalStats = getPokemonTotalStats(pokemon);
+function PokemonTeamCard({ pokemon, onRemove }) {
+    return (
+        <article className="group relative min-h-[380px] overflow-hidden rounded-[28px] border border-neutral-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
+            <button
+                type="button"
+                onClick={() => onRemove(pokemon.id)}
+                className="absolute right-3 top-3 z-10 cursor-pointer rounded-full bg-white/90 p-1.5 text-neutral-400 shadow-sm transition hover:bg-red-50 hover:text-[#E3350D]"
+                title="Remover Pokémon"
+            >
+                <X className="h-4 w-4" />
+            </button>
+
+            <div className="flex flex-col items-center text-center">
+                <div className="mb-3 flex h-28 w-28 items-center justify-center rounded-full bg-neutral-50">
+                    <Image
+                        src={getPokemonImage(pokemon)}
+                        alt={pokemon.name}
+                        width={112}
+                        height={112}
+                        className="h-28 w-28 object-contain transition group-hover:scale-105"
+                    />
+                </div>
+
+                <p className="font-mono text-xs font-semibold text-neutral-400">
+                    #{String(pokemon.id).padStart(3, "0")}
+                </p>
+
+                <h3 className="mt-1 text-base font-semibold text-neutral-800">
+                    {formatPokemonName(pokemon.name)}
+                </h3>
+
+                <div className="mt-3 flex flex-wrap justify-center gap-1.5">
+                    {pokemon.types.map((item) => (
+                        <TypeBadge
+                            key={item.type.name}
+                            type={item.type.name}
+                        />
+                    ))}
+                </div>
+            </div>
+
+            <div className="mt-4 grid grid-cols-2 gap-2 text-center">
+                <div className="rounded-2xl bg-neutral-50 p-2">
+                    <p className="text-[10px] font-semibold uppercase text-neutral-400">
+                        Altura
+                    </p>
+
+                    <p className="text-sm font-semibold text-neutral-700">
+                        {(pokemon.height / 10).toFixed(1)}m
+                    </p>
+                </div>
+
+                <div className="rounded-2xl bg-neutral-50 p-2">
+                    <p className="text-[10px] font-semibold uppercase text-neutral-400">
+                        Peso
+                    </p>
+
+                    <p className="text-sm font-semibold text-neutral-700">
+                        {(pokemon.weight / 10).toFixed(1)}kg
+                    </p>
+                </div>
+            </div>
+
+            <StatsPanel pokemon={pokemon} />
+        </article>
+    );
+}
+
+function SearchCard({
+    search,
+    suggestions,
+    loading,
+    error,
+    onSearchChange,
+    onSearch,
+    onSuggestionClick,
+    onClearSearch,
+}) {
+    return (
+        <div className="relative z-20 w-full rounded-2xl bg-[url('/wallpaper-preto.png')] bg-cover bg-center bg-no-repeat px-5 py-5 shadow-md backdrop-blur-sm">
+            <div className="mb-4 flex items-center gap-2">
+                <div className="h-4 w-1.5 rounded-sm bg-[#E3350D] shadow-[0_0_6px_#E3350D]" />
+
+                <label className="block text-lg font-medium text-white">
+                    Nome ou número
+                </label>
+            </div>
+
+            <div className="space-y-3">
+                <div className="relative w-full">
+                    <input
+                        type="text"
+                        value={search}
+                        onChange={(event) => onSearchChange(event.target.value)}
+                        onKeyDown={(event) => {
+                            if (event.key === "Enter") {
+                                onSearch();
+                            }
+                        }}
+                        placeholder="Ex: pikachu ou 25"
+                        className="w-full rounded-md border border-neutral-200 bg-neutral-50 px-4 py-3 text-gray-900 outline-none transition placeholder:text-neutral-400 focus:ring-2 focus:ring-[#E3350D]/70"
+                    />
+
+                    {suggestions.length > 0 && (
+                        <div className="absolute left-0 right-0 top-full z-50 mt-1 overflow-hidden rounded-md border border-neutral-200 bg-white shadow-lg">
+                            {suggestions.map((pokemonName) => (
+                                <button
+                                    key={pokemonName}
+                                    type="button"
+                                    onClick={() =>
+                                        onSuggestionClick(pokemonName)
+                                    }
+                                    className="w-full cursor-pointer px-4 py-2 text-left text-sm capitalize text-neutral-700 transition hover:bg-neutral-100"
+                                >
+                                    {pokemonName}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                <div className="flex items-center gap-3">
+                    <button
+                        type="button"
+                        onClick={onSearch}
+                        disabled={loading}
+                        className="flex h-[44px] w-[44px] cursor-pointer items-center justify-center rounded-md bg-[#E3350D] text-white transition hover:bg-[#c52c0b] disabled:cursor-not-allowed disabled:opacity-50"
+                        aria-label="Buscar"
+                        title="Buscar"
+                    >
+                        {loading ? (
+                            <Loader2 className="h-5 w-5 animate-spin" />
+                        ) : (
+                            <Search className="h-5 w-5" />
+                        )}
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={onClearSearch}
+
+                        className="flex h-[44px] w-[44px] cursor-pointer items-center justify-center rounded-md border border-white/10 bg-white/15 text-white transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-40"
+                        aria-label="Limpar busca"
+                        title="Limpar busca"
+                    >
+                        <BrushCleaning className="h-5 w-5" />
+                    </button>
+                </div>
+            </div>
+
+            <p className="mt-3 text-sm text-white">
+                Use a busca avançada para explorar Pokémon por tipo, fraqueza,
+                habilidade e mais!
+            </p>
+
+            {error && <p className="mt-3 text-sm text-red-300">{error}</p>}
+        </div>
+    );
+}
+
+function PreviewCard({ pokemonResult, team, onAddPokemon }) {
+    const pokemonAlreadyInTeam = pokemonResult
+        ? team.some((pokemon) => pokemon.id === pokemonResult.id)
+        : false;
+
+    const teamIsFull = team.length >= 6;
+
+    function getButtonText() {
+        if (teamIsFull) return "Time completo";
+        if (pokemonAlreadyInTeam) return "Já está no time";
+
+        return "Adicionar ao time";
+    }
 
     return (
-        <motion.article
-            layout
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 12 }}
-            transition={{ duration: 0.25 }}
-            className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-        >
-            <div className="p-4">
-                <div className="flex items-start justify-between gap-3">
-                    <div>
+        <div className="rounded-[28px] border border-neutral-200 bg-white p-5 shadow-sm">
+            {!pokemonResult ? (
+                <div className="flex min-h-[260px] flex-col items-center justify-center rounded-[24px] border border-dashed border-neutral-200 bg-neutral-50 p-6 text-center">
+                    <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white shadow-sm">
+                        <Image
+                            src="/pokeball.png"
+                            alt=""
+                            width={34}
+                            height={34}
+                            className="opacity-35"
+                        />
+                    </div>
+
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-neutral-400">
+                        Aguardando busca
+                    </p>
+
+                    <p className="mt-1 text-sm text-neutral-500">
+                        O Pokémon encontrado aparecerá aqui.
+                    </p>
+                </div>
+            ) : (
+                <div>
+                    <div className="flex flex-col items-center text-center">
+                        <div className="mb-3 flex h-32 w-32 items-center justify-center rounded-full bg-neutral-50">
+                            <Image
+                                src={getPokemonImage(pokemonResult)}
+                                alt={pokemonResult.name}
+                                width={128}
+                                height={128}
+                                className="h-32 w-32 object-contain"
+                            />
+                        </div>
+
                         <p className="font-mono text-xs font-semibold text-neutral-400">
-                            #{String(pokemon.id).padStart(3, "0")}
+                            #{String(pokemonResult.id).padStart(3, "0")}
                         </p>
 
-                        <h3 className="mt-1 text-lg font-semibold text-neutral-800">
-                            {formatName(pokemon.name)}
-                        </h3>
+                        <h4 className="mt-1 text-lg font-semibold text-neutral-800">
+                            {formatPokemonName(pokemonResult.name)}
+                        </h4>
 
-                        <div className="mt-2 flex flex-wrap gap-1.5">
-                            {pokemon.types.map((item) => (
+                        <div className="mt-3 flex flex-wrap justify-center gap-1.5">
+                            {pokemonResult.types.map((item) => (
                                 <TypeBadge
                                     key={item.type.name}
                                     type={item.type.name}
@@ -169,66 +416,66 @@ function PokemonCard({ pokemon, onRemove }) {
                         </div>
                     </div>
 
+                    <StatsPanel pokemon={pokemonResult} />
+
                     <button
                         type="button"
-                        onClick={() => onRemove(pokemon.id)}
-                        className="rounded-full p-1.5 text-neutral-400 transition hover:bg-red-50 hover:text-[#E3350D]"
-                        title="Remover Pokémon"
+                        onClick={() => onAddPokemon(pokemonResult)}
+                        disabled={teamIsFull || pokemonAlreadyInTeam}
+                        className="mt-5 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-2xl bg-[#E3350D] px-4 py-3 text-sm font-semibold text-white transition hover:bg-[#c92d0b] disabled:cursor-not-allowed disabled:bg-neutral-300"
                     >
-                        <X className="h-4 w-4" />
+                        <Plus className="h-4 w-4" />
+                        {getButtonText()}
                     </button>
                 </div>
+            )}
+        </div>
+    );
+}
 
-                <div className="my-4 flex justify-center rounded-2xl bg-neutral-50 p-3">
-                    <Image
-                        src={getPokemonImage(pokemon)}
-                        alt={pokemon.name}
-                        width={130}
-                        height={130}
-                        className="h-[130px] w-[130px] object-contain"
-                    />
-                </div>
+function SearchPanel({
+    search,
+    pokemonResult,
+    suggestions,
+    loading,
+    error,
+    team,
+    onSearchChange,
+    onSearch,
+    onSuggestionClick,
+    onAddPokemon,
+    onClearSearch,
+    onClearTeam,
+}) {
+    return (
+        <aside className="space-y-4">
+            <SearchCard
+                search={search}
+                suggestions={suggestions}
+                loading={loading}
+                error={error}
+                onSearchChange={onSearchChange}
+                onSearch={onSearch}
+                onSuggestionClick={onSuggestionClick}
+                onClearSearch={onClearSearch}
+            />
 
-                <div className="mb-4 grid grid-cols-3 gap-2 text-center">
-                    <div className="rounded-xl bg-neutral-50 p-2">
-                        <p className="text-[10px] font-semibold uppercase text-neutral-400">
-                            Altura
-                        </p>
-                        <p className="text-sm font-semibold text-neutral-700">
-                            {(pokemon.height / 10).toFixed(1)}m
-                        </p>
-                    </div>
+            <PreviewCard
+                pokemonResult={pokemonResult}
+                team={team}
+                onAddPokemon={onAddPokemon}
+            />
 
-                    <div className="rounded-xl bg-neutral-50 p-2">
-                        <p className="text-[10px] font-semibold uppercase text-neutral-400">
-                            Peso
-                        </p>
-                        <p className="text-sm font-semibold text-neutral-700">
-                            {(pokemon.weight / 10).toFixed(1)}kg
-                        </p>
-                    </div>
-
-                    <div className="rounded-xl bg-neutral-50 p-2">
-                        <p className="text-[10px] font-semibold uppercase text-neutral-400">
-                            Total
-                        </p>
-                        <p className="text-sm font-semibold text-neutral-700">
-                            {totalStats}
-                        </p>
-                    </div>
-                </div>
-
-                <div className="space-y-2">
-                    {Object.keys(STAT_LABELS).map((statName) => (
-                        <StatBar
-                            key={statName}
-                            label={STAT_LABELS[statName]}
-                            value={getPokemonStat(pokemon, statName)}
-                        />
-                    ))}
-                </div>
-            </div>
-        </motion.article>
+            <button
+                type="button"
+                onClick={onClearTeam}
+                disabled={team.length === 0}
+                className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-[20px] border border-neutral-200 bg-white px-4 py-3 text-sm font-semibold text-neutral-600 shadow-sm transition hover:border-[#E3350D] hover:text-[#E3350D] disabled:cursor-not-allowed disabled:opacity-40"
+            >
+                <Trash2 className="h-4 w-4" />
+                Limpar time
+            </button>
+        </aside>
     );
 }
 
@@ -236,28 +483,26 @@ export default function TeamBuilder({ onTeamChange }) {
     const [team, setTeam] = useState([]);
     const [search, setSearch] = useState("");
     const [pokemonResult, setPokemonResult] = useState(null);
+    const [pokemonNames, setPokemonNames] = useState([]);
+    const [suggestions, setSuggestions] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [hasHydrated, setHasHydrated] = useState(false);
 
-    useEffect(() => {
-        onTeamChange?.(team);
-    }, [team, onTeamChange]);
+    const requestIdRef = useRef(0);
+    const lastAutoSearchRef = useRef("");
 
-    const teamTotalStats = useMemo(() => {
-        return team.reduce((total, pokemon) => {
-            return total + getPokemonTotalStats(pokemon);
-        }, 0);
-    }, [team]);
-
-    async function handleSearchPokemon() {
-        const value = search.trim().toLowerCase();
+    const fetchPokemon = useCallback(async (searchValue) => {
+        const value = normalizeSearchValue(searchValue);
 
         if (!value) return;
+
+        const currentRequestId = requestIdRef.current + 1;
+        requestIdRef.current = currentRequestId;
 
         try {
             setLoading(true);
             setError("");
-            setPokemonResult(null);
 
             const response = await fetch(
                 `https://pokeapi.co/api/v2/pokemon/${value}`
@@ -268,24 +513,179 @@ export default function TeamBuilder({ onTeamChange }) {
             }
 
             const data = await response.json();
+
+            if (requestIdRef.current !== currentRequestId) return;
+
             setPokemonResult(data);
+            setSuggestions([]);
         } catch {
+            if (requestIdRef.current !== currentRequestId) return;
+
+            setPokemonResult(null);
             setError(
                 "Pokémon não encontrado. Tente buscar pelo nome em inglês ou pelo número da Pokédex."
             );
         } finally {
-            setLoading(false);
+            if (requestIdRef.current === currentRequestId) {
+                setLoading(false);
+            }
         }
+    }, []);
+
+    useEffect(() => {
+        let alive = true;
+
+        async function loadPokemonNames() {
+            try {
+                const response = await fetch(
+                    "https://pokeapi.co/api/v2/pokemon?limit=1025"
+                );
+
+                if (!response.ok) return;
+
+                const data = await response.json();
+
+                if (!alive) return;
+
+                setPokemonNames(
+                    Array.isArray(data.results)
+                        ? data.results.map((item) => item.name)
+                        : []
+                );
+            } catch {
+                setPokemonNames([]);
+            }
+        }
+
+        loadPokemonNames();
+
+        return () => {
+            alive = false;
+        };
+    }, []);
+
+    useEffect(() => {
+        try {
+            const savedTeam = window.localStorage.getItem(STORAGE_KEY);
+
+            if (savedTeam) {
+                const parsedTeam = JSON.parse(savedTeam);
+
+                if (Array.isArray(parsedTeam)) {
+                    setTeam(parsedTeam.slice(0, 6));
+                }
+            }
+        } catch {
+            window.localStorage.removeItem(STORAGE_KEY);
+        } finally {
+            setHasHydrated(true);
+        }
+    }, []);
+
+    useEffect(() => {
+        onTeamChange?.(team);
+    }, [team, onTeamChange]);
+
+    useEffect(() => {
+        if (!hasHydrated) return;
+
+        if (team.length === 0) {
+            window.localStorage.removeItem(STORAGE_KEY);
+            return;
+        }
+
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(team));
+    }, [team, hasHydrated]);
+
+    useEffect(() => {
+        const value = normalizeSearchValue(search);
+
+        setError("");
+        setPokemonResult(null);
+
+        if (!value) {
+            setSuggestions([]);
+            lastAutoSearchRef.current = "";
+            return;
+        }
+
+        const timer = window.setTimeout(() => {
+            const isNumberSearch = /^\d+$/.test(value);
+
+            if (isNumberSearch) {
+                setSuggestions([]);
+
+                if (lastAutoSearchRef.current !== value) {
+                    lastAutoSearchRef.current = value;
+                    fetchPokemon(value);
+                }
+
+                return;
+            }
+
+            const starts = [];
+            const contains = [];
+
+            for (const pokemonName of pokemonNames) {
+                if (pokemonName.startsWith(value)) {
+                    starts.push(pokemonName);
+                } else if (pokemonName.includes(value)) {
+                    contains.push(pokemonName);
+                }
+
+                if (starts.length + contains.length >= 8) break;
+            }
+
+            const nextSuggestions = [...starts, ...contains].slice(0, 8);
+            setSuggestions(nextSuggestions);
+
+            const hasExactMatch = pokemonNames.includes(value);
+
+            if (hasExactMatch && lastAutoSearchRef.current !== value) {
+                lastAutoSearchRef.current = value;
+                fetchPokemon(value);
+            }
+        }, 120);
+
+        return () => {
+            window.clearTimeout(timer);
+        };
+    }, [search, pokemonNames, fetchPokemon]);
+
+    const emptySlots = useMemo(() => {
+        return Array.from({ length: 6 - team.length });
+    }, [team.length]);
+
+    function handleManualSearch() {
+        const value = normalizeSearchValue(search);
+
+        if (!value) return;
+
+        lastAutoSearchRef.current = value;
+        fetchPokemon(value);
+    }
+
+    function handleSuggestionClick(pokemonName) {
+        setSearch(pokemonName);
+        setSuggestions([]);
+        setError("");
+        lastAutoSearchRef.current = pokemonName;
+        fetchPokemon(pokemonName);
     }
 
     function handleAddPokemon(pokemon) {
-        const alreadyExists = team.some((item) => item.id === pokemon.id);
+        const pokemonAlreadyInTeam = team.some(
+            (teamPokemon) => teamPokemon.id === pokemon.id
+        );
 
-        if (alreadyExists || team.length >= 6) return;
+        if (pokemonAlreadyInTeam || team.length >= 6) return;
 
         setTeam((currentTeam) => [...currentTeam, pokemon]);
         setPokemonResult(null);
+        setSuggestions([]);
         setSearch("");
+        setError("");
+        lastAutoSearchRef.current = "";
     }
 
     function handleRemovePokemon(id) {
@@ -294,234 +694,57 @@ export default function TeamBuilder({ onTeamChange }) {
         );
     }
 
+    function handleClearSearch() {
+        setSearch("");
+        setPokemonResult(null);
+        setSuggestions([]);
+        setError("");
+        lastAutoSearchRef.current = "";
+    }
+
     function handleClearTeam() {
         setTeam([]);
-        setPokemonResult(null);
         setSearch("");
+        setPokemonResult(null);
+        setSuggestions([]);
         setError("");
+        lastAutoSearchRef.current = "";
+        window.localStorage.removeItem(STORAGE_KEY);
     }
 
     return (
-        <section className="rounded-2xl border border-neutral-200 bg-white shadow-sm">
-            <div className="border-b border-neutral-200 bg-neutral-50 px-5 py-4">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                        <h2 className="text-xl font-semibold text-neutral-800">
-                            Construtor de times
-                        </h2>
+        <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_340px]">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {team.map((pokemon) => (
+                    <PokemonTeamCard
+                        key={pokemon.id}
+                        pokemon={pokemon}
+                        onRemove={handleRemovePokemon}
+                    />
+                ))}
 
-                        <p className="mt-1 text-sm text-neutral-500">
-                            Monte seu time com até 6 Pokémon.
-                        </p>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                        <span className="rounded-full bg-[#E3350D]/10 px-3 py-1 text-sm font-semibold text-[#E3350D]">
-                            {team.length}/6
-                        </span>
-
-                        <button
-                            type="button"
-                            onClick={handleClearTeam}
-                            disabled={team.length === 0}
-                            className="inline-flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-3 py-2 text-sm font-medium text-neutral-600 transition hover:border-[#E3350D] hover:text-[#E3350D] disabled:cursor-not-allowed disabled:opacity-40"
-                        >
-                            <Trash2 className="h-4 w-4" />
-                            Limpar
-                        </button>
-                    </div>
-                </div>
+                {emptySlots.map((_, index) => (
+                    <EmptySlot
+                        key={`empty-slot-${index}`}
+                        index={team.length + index + 1}
+                    />
+                ))}
             </div>
 
-            <div className="grid gap-5 p-5 lg:grid-cols-[1fr_330px]">
-                <div>
-                    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-                        <AnimatePresence mode="popLayout">
-                            {team.map((pokemon) => (
-                                <PokemonCard
-                                    key={pokemon.id}
-                                    pokemon={pokemon}
-                                    onRemove={handleRemovePokemon}
-                                />
-                            ))}
-
-                            {Array.from({ length: 6 - team.length }).map(
-                                (_, index) => (
-                                    <EmptySlot
-                                        key={`empty-${index}`}
-                                        index={team.length + index}
-                                    />
-                                )
-                            )}
-                        </AnimatePresence>
-                    </div>
-                </div>
-
-                <aside className="space-y-4">
-                    <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
-                        <h3 className="text-base font-semibold text-neutral-800">
-                            Buscar Pokémon
-                        </h3>
-
-                        <p className="mt-1 text-sm text-neutral-500">
-                            Digite o nome em inglês ou número da Pokédex.
-                        </p>
-
-                        <div className="relative mt-4">
-                            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" />
-
-                            <input
-                                value={search}
-                                onChange={(event) =>
-                                    setSearch(event.target.value)
-                                }
-                                onKeyDown={(event) => {
-                                    if (event.key === "Enter") {
-                                        handleSearchPokemon();
-                                    }
-                                }}
-                                placeholder="Ex: pikachu ou 25"
-                                className="w-full rounded-xl border border-neutral-200 bg-white py-2.5 pl-9 pr-10 text-sm text-neutral-700 outline-none transition focus:border-[#E3350D] focus:ring-2 focus:ring-[#E3350D]/20"
-                            />
-
-                            <button
-                                type="button"
-                                onClick={handleSearchPokemon}
-                                disabled={loading}
-                                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg p-1.5 text-neutral-400 transition hover:bg-neutral-100 hover:text-[#E3350D]"
-                            >
-                                {loading ? (
-                                    <Loader2 className="h-4 w-4 animate-spin" />
-                                ) : (
-                                    <Search className="h-4 w-4" />
-                                )}
-                            </button>
-                        </div>
-
-                        <div className="mt-3 flex flex-wrap gap-2">
-                            {QUICK_SEARCH.map((pokemonName) => (
-                                <button
-                                    key={pokemonName}
-                                    type="button"
-                                    onClick={() => setSearch(pokemonName)}
-                                    className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium capitalize text-neutral-600 transition hover:bg-[#E3350D]/10 hover:text-[#E3350D]"
-                                >
-                                    {pokemonName}
-                                </button>
-                            ))}
-                        </div>
-
-                        {error && (
-                            <p className="mt-3 rounded-xl border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-600">
-                                {error}
-                            </p>
-                        )}
-
-                        {pokemonResult && (
-                            <div className="mt-4 rounded-2xl border border-neutral-200 bg-neutral-50 p-3">
-                                <div className="flex items-center gap-3">
-                                    <div className="rounded-xl bg-white p-2 shadow-sm">
-                                        <Image
-                                            src={getPokemonImage(pokemonResult)}
-                                            alt={pokemonResult.name}
-                                            width={72}
-                                            height={72}
-                                            className="h-[72px] w-[72px] object-contain"
-                                        />
-                                    </div>
-
-                                    <div className="min-w-0 flex-1">
-                                        <p className="font-mono text-xs font-semibold text-neutral-400">
-                                            #
-                                            {String(
-                                                pokemonResult.id
-                                            ).padStart(3, "0")}
-                                        </p>
-
-                                        <h4 className="truncate font-semibold text-neutral-800">
-                                            {formatName(pokemonResult.name)}
-                                        </h4>
-
-                                        <div className="mt-1 flex flex-wrap gap-1">
-                                            {pokemonResult.types.map((item) => (
-                                                <TypeBadge
-                                                    key={item.type.name}
-                                                    type={item.type.name}
-                                                />
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        handleAddPokemon(pokemonResult)
-                                    }
-                                    disabled={
-                                        team.length >= 6 ||
-                                        team.some(
-                                            (item) =>
-                                                item.id === pokemonResult.id
-                                        )
-                                    }
-                                    className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#E3350D] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#c92d0b] disabled:cursor-not-allowed disabled:bg-neutral-300"
-                                >
-                                    <Plus className="h-4 w-4" />
-                                    Adicionar ao time
-                                </button>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm">
-                        <h3 className="text-base font-semibold text-neutral-800">
-                            Resumo do time
-                        </h3>
-
-                        {team.length === 0 ? (
-                            <p className="mt-2 text-sm text-neutral-500">
-                                Adicione Pokémon para visualizar o resumo.
-                            </p>
-                        ) : (
-                            <div className="mt-4 space-y-3">
-                                <div className="rounded-2xl bg-[#E3350D]/10 p-4">
-                                    <p className="text-xs font-semibold uppercase text-[#E3350D]">
-                                        Poder total
-                                    </p>
-
-                                    <p className="mt-1 text-3xl font-bold text-neutral-800">
-                                        {teamTotalStats}
-                                    </p>
-                                </div>
-
-                                <div className="grid grid-cols-3 gap-2">
-                                    <div className="rounded-xl bg-neutral-50 p-3 text-center">
-                                        <Swords className="mx-auto h-4 w-4 text-[#E3350D]" />
-                                        <p className="mt-1 text-xs text-neutral-500">
-                                            Ataque
-                                        </p>
-                                    </div>
-
-                                    <div className="rounded-xl bg-neutral-50 p-3 text-center">
-                                        <Shield className="mx-auto h-4 w-4 text-[#E3350D]" />
-                                        <p className="mt-1 text-xs text-neutral-500">
-                                            Defesa
-                                        </p>
-                                    </div>
-
-                                    <div className="rounded-xl bg-neutral-50 p-3 text-center">
-                                        <Zap className="mx-auto h-4 w-4 text-[#E3350D]" />
-                                        <p className="mt-1 text-xs text-neutral-500">
-                                            Velocidade
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </aside>
-            </div>
+            <SearchPanel
+                search={search}
+                pokemonResult={pokemonResult}
+                suggestions={suggestions}
+                loading={loading}
+                error={error}
+                team={team}
+                onSearchChange={setSearch}
+                onSearch={handleManualSearch}
+                onSuggestionClick={handleSuggestionClick}
+                onAddPokemon={handleAddPokemon}
+                onClearSearch={handleClearSearch}
+                onClearTeam={handleClearTeam}
+            />
         </section>
     );
 }
