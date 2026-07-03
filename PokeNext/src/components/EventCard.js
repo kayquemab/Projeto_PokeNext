@@ -96,6 +96,7 @@ export default function EventCard() {
                     >
                         <Link
                             href="https://www.pokemon.com/br/videogames-pokemon"
+                            target="blank"
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold shadow-sm hover:bg-red-600 transition-colors"
                         >
                             <Swords className="w-4 h-4 inline-block" />
