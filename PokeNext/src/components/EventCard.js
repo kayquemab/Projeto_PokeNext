@@ -95,11 +95,11 @@ export default function EventCard() {
                         className="py-3"
                     >
                         <Link
-                            href="/Battle"
+                            href="https://www.pokemon.com/br/videogames-pokemon"
                             className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#E3350D] text-white text-sm font-semibold shadow-sm hover:bg-red-600 transition-colors"
                         >
                             <Swords className="w-4 h-4 inline-block" />
-                            Batalhe Agora!
+                            Jogue agora!
                         </Link>
                     </motion.div>
                 </div>
