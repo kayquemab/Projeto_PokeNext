@@ -1,0 +1,3750 @@
+{
+  "pound": {
+    "flavorText": "Libras com pernas, pernas ou cauda.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "karate-chop": {
+    "flavorText": "Tem alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "double-slap": {
+    "flavorText": "Repetidamente bate 2-5 vezes.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "comet-punch": {
+    "flavorText": "Repetidamente soca 2-5 vezes.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "mega-punch": {
+    "flavorText": "Um soco poderoso lançado muito forte.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "pay-day": {
+    "flavorText": "Atira moedas, que podem ser recolhidas depois da batalha.",
+    "effectText": "Espalha moedas que, após a batalha, rendem cinco vezes o nível do usuário."
+  },
+  "fire-punch": {
+    "flavorText": "Um soco de fogo.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "ice-punch": {
+    "flavorText": "Um soco gelado.",
+    "effectText": "Tem uma chance de congelar o alvo."
+  },
+  "thunder-punch": {
+    "flavorText": "Um soco eletrificado que pode paralisar o inimigo.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "scratch": {
+    "flavorText": "Rachaduras com garras afiadas.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "vice-grip": {
+    "flavorText": "Apertos com poder, pinceres ful.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "guillotine": {
+    "flavorText": "Um ataque de pinça que causa nocaute em um único golpe se acertar.",
+    "effectText": "Causa nocaute em um único golpe se acertar."
+  },
+  "razor-wind": {
+    "flavorText": "1a volta: Preparar a 2a volta: Ataque",
+    "effectText": "Requer uma volta para a carga antes de atacar."
+  },
+  "swords-dance": {
+    "flavorText": "Uma dança vigorosa que aumenta muito o Ataque do usuário.",
+    "effectText": "Aumenta o Ataque do usuário em dois estágios."
+  },
+  "cut": {
+    "flavorText": "Um ataque básico. Pode ser usado para cortar árvores finas e grama.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "gust": {
+    "flavorText": "Acelera um forte prognóstico de vento.",
+    "effectText": "Inflige danos regulares e pode acertar o Pokémon no ar."
+  },
+  "wing-attack": {
+    "flavorText": "Atinge o alvo com asas.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "whirlwind": {
+    "flavorText": "Abanda a batalha do inimigo & termina.",
+    "effectText": "Termina imediatamente batalhas selvagens. Força os treinadores a trocar o Pokémon."
+  },
+  "fly": {
+    "flavorText": "1a volta: Voar 2a volta: Ataque",
+    "effectText": "O usuário voa alto para o ar, evitando todos os ataques e acerta a próxima volta."
+  },
+  "bind": {
+    "flavorText": "Ajusta o alvo para 2-5 voltas.",
+    "effectText": "Previene a fuga do alvo e causa danos durante 2-5 voltas."
+  },
+  "slam": {
+    "flavorText": "Arrasta o inimigo com uma cauda, videira, etc.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "vine-whip": {
+    "flavorText": "Aperta o inimigo com vinhas desleixadas.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "stomp": {
+    "flavorText": "Um ataque que pode causar um hesitação.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "double-kick": {
+    "flavorText": "Um ataque de chute duplo.",
+    "effectText": "Atinge duas vezes em um turno."
+  },
+  "mega-kick": {
+    "flavorText": "Um poderoso ataque de chute.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "jump-kick": {
+    "flavorText": "Pode errar, prejudicando o usuário.",
+    "effectText": "Se o usuário errar, sofrerá metade do dano que teria causado no recuo."
+  },
+  "rolling-kick": {
+    "flavorText": "Um chute rápido e giratório.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "sand-attack": {
+    "flavorText": "Reduz a precisão jogando areia.",
+    "effectText": "Reduz a precisão do alvo em um estágio."
+  },
+  "headbutt": {
+    "flavorText": "Um ataque que pode fazer o inimigo recuar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "horn-attack": {
+    "flavorText": "Um ataque usando uma buzina para golpear.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "fury-attack": {
+    "flavorText": "Golpeia o alvo de 2 a 5 vezes.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "horn-drill": {
+    "flavorText": "Um ataque perfurante com o chifre que causa nocaute em um único golpe se acertar.",
+    "effectText": "Causa nocaute em um único golpe se acertar."
+  },
+  "tackle": {
+    "flavorText": "Um ataque de carga de corpo inteiro.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "body-slam": {
+    "flavorText": "Um ataque que pode causar paralisia.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "wrap": {
+    "flavorText": "Aperta o inimigo por 2 a 5 turnos.",
+    "effectText": "Previene a fuga do alvo e causa danos durante 2-5 voltas."
+  },
+  "take-down": {
+    "flavorText": "Um ataque que também prejudica o usuário.",
+    "effectText": "O usuário recebe 1/4 do dano causado no recuo."
+  },
+  "thrash": {
+    "flavorText": "Funciona de 2 a 3 voltas e confunde o usuário.",
+    "effectText": "Atinge cada turno por 2-3 turnos e confunde o usuário."
+  },
+  "double-edge": {
+    "flavorText": "Um ataque que também prejudica o usuário.",
+    "effectText": "O usuário recebe 1/3 do dano infligido no recuo."
+  },
+  "tail-whip": {
+    "flavorText": "Diminui a DEFESA do inimigo.",
+    "effectText": "Reduz a Defesa do alvo em um estágio."
+  },
+  "poison-sting": {
+    "flavorText": "Um ataque que pode envenenar o alvo.",
+    "effectText": "Tem chance de envenenar o alvo."
+  },
+  "twineedle": {
+    "flavorText": "Golpeia o inimigo duas vezes usando ferrões.",
+    "effectText": "Acerte duas vezes no mesmo turno. Tem chance de envenenar o alvo."
+  },
+  "pin-missile": {
+    "flavorText": "Dispara pinos que atingem de 2 a 5 vezes.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "leer": {
+    "flavorText": "Reduz a DEFESA do inimigo.",
+    "effectText": "Reduz a Defesa do alvo em um estágio."
+  },
+  "bite": {
+    "flavorText": "Um ataque que pode causar um hesitação.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "growl": {
+    "flavorText": "Reduz o ATAQUE do inimigo.",
+    "effectText": "Reduz o ataque do alvo em um estágio."
+  },
+  "roar": {
+    "flavorText": "Assusta inimigos selvagens para encerrar a batalha.",
+    "effectText": "Termina imediatamente batalhas selvagens. Força os treinadores a trocar o Pokémon."
+  },
+  "sing": {
+    "flavorText": "Pode fazer com que o inimigo adormeça.",
+    "effectText": "Coloca o alvo para dormir."
+  },
+  "supersonic": {
+    "flavorText": "Ondas sonoras que causam confusão.",
+    "effectText": "Confunde o alvo."
+  },
+  "sonic-boom": {
+    "flavorText": "Sempre causa 20 HP de dano.",
+    "effectText": "Inflige 20 pontos de dano."
+  },
+  "disable": {
+    "flavorText": "Desativa o movimento mais recente do inimigo.",
+    "effectText": "Desativa o último movimento usado pelo alvo por 1 a 8 turnos."
+  },
+  "acid": {
+    "flavorText": "Um ataque que pode diminuir a DEFESA.",
+    "effectText": "Tem chance de diminuir a Defesa Especial do alvo em um estágio."
+  },
+  "ember": {
+    "flavorText": "Um ataque que pode causar queimaduras.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "flamethrower": {
+    "flavorText": "Um ataque que pode causar queimaduras.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "mist": {
+    "flavorText": "Impede a redução de estatísticas.",
+    "effectText": "Protege as estatísticas do usuário de serem alteradas por movimentos inimigos."
+  },
+  "water-gun": {
+    "flavorText": "Esguicha água para atacar.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "hydro-pump": {
+    "flavorText": "Um poderoso ataque do tipo água.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "surf": {
+    "flavorText": "Um forte ataque do tipo água.",
+    "effectText": "Inflige danos regulares e pode atingir usuários de mergulho."
+  },
+  "ice-beam": {
+    "flavorText": "Um ataque que pode congelar o inimigo.",
+    "effectText": "Tem uma chance de congelar o alvo."
+  },
+  "blizzard": {
+    "flavorText": "Um ataque que pode congelar o inimigo.",
+    "effectText": "Tem uma chance de congelar o alvo."
+  },
+  "psybeam": {
+    "flavorText": "Um ataque que pode confundir o inimigo.",
+    "effectText": "Tem a chance de confundir o alvo."
+  },
+  "bubble-beam": {
+    "flavorText": "Um ataque que pode diminuir a VELOCIDADE.",
+    "effectText": "Tem a chance de diminuir a velocidade do alvo em um estágio."
+  },
+  "aurora-beam": {
+    "flavorText": "Um ataque que pode diminuir o ATAQUE.",
+    "effectText": "Tem chance de diminuir o ataque do alvo em um estágio."
+  },
+  "hyper-beam": {
+    "flavorText": "1º turno: Ataque 2º turno: Descanso",
+    "effectText": "O usuário renuncia ao próximo turno para recarregar."
+  },
+  "peck": {
+    "flavorText": "Golpeia o inimigo com um bico, etc.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "drill-peck": {
+    "flavorText": "Um ataque forte e giratório.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "submission": {
+    "flavorText": "Um ataque que também prejudica o usuário.",
+    "effectText": "O usuário recebe 1/4 do dano causado no recuo."
+  },
+  "low-kick": {
+    "flavorText": "Um ataque que pode causar um hesitação.",
+    "effectText": "Inflige mais dano a alvos mais pesados, com no máximo 120 de potência."
+  },
+  "counter": {
+    "flavorText": "Retorna um golpe físico duplo.",
+    "effectText": "Inflige o dobro do dano que o usuário recebeu no último golpe físico que recebeu."
+  },
+  "seismic-toss": {
+    "flavorText": "O nível do usuário é igual ao HP de dano.",
+    "effectText": "Inflige dano igual ao nível do usuário."
+  },
+  "strength": {
+    "flavorText": "Um poderoso ataque físico.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "absorb": {
+    "flavorText": "Rouba 1/2 do dano infligido.",
+    "effectText": "Drena metade do dano infligido para curar o usuário."
+  },
+  "mega-drain": {
+    "flavorText": "Rouba 1/2 do dano infligido.",
+    "effectText": "Drena metade do dano infligido para curar o usuário."
+  },
+  "leech-seed": {
+    "flavorText": "Rouba HP do inimigo a cada turno.",
+    "effectText": "Semeia o alvo, roubando HP dele a cada turno."
+  },
+  "growth": {
+    "flavorText": "Aumenta o SPCL. Classificação ATK.",
+    "effectText": "Aumenta o Ataque e o Ataque Especial do usuário em um estágio."
+  },
+  "razor-leaf": {
+    "flavorText": "Tem alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "solar-beam": {
+    "flavorText": "1a volta: Preparar a 2a volta: Ataque",
+    "effectText": "Requer uma volta para a carga antes de atacar."
+  },
+  "poison-powder": {
+    "flavorText": "Um movimento que pode envenenar o inimigo.",
+    "effectText": "Envenena o alvo."
+  },
+  "stun-spore": {
+    "flavorText": "Um movimento que pode paralisar o inimigo.",
+    "effectText": "Paralisa o alvo."
+  },
+  "sleep-powder": {
+    "flavorText": "Pode fazer com que o inimigo adormeça.",
+    "effectText": "Coloca o alvo para dormir."
+  },
+  "petal-dance": {
+    "flavorText": "Funciona de 2 a 3 voltas e confunde o usuário.",
+    "effectText": "Atinge cada turno por 2-3 turnos e confunde o usuário."
+  },
+  "string-shot": {
+    "flavorText": "Um movimento que diminui a VELOCIDADE do inimigo.",
+    "effectText": "Reduz a velocidade do alvo em dois estágios."
+  },
+  "dragon-rage": {
+    "flavorText": "Sempre causa 40HP de dano.",
+    "effectText": "Inflige 40 pontos de dano."
+  },
+  "fire-spin": {
+    "flavorText": "Prende o inimigo no fogo por 2 a 5 turnos.",
+    "effectText": "Previene a fuga do alvo e causa danos durante 2-5 voltas."
+  },
+  "thunder-shock": {
+    "flavorText": "Um ataque elétrico que pode causar paralisia.",
+    "effectText": "Pode paralisar o alvo."
+  },
+  "thunderbolt": {
+    "flavorText": "Um ataque que pode causar paralisia.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "thunder-wave": {
+    "flavorText": "Um movimento que pode causar paralisia.",
+    "effectText": "Paralisa o alvo."
+  },
+  "thunder": {
+    "flavorText": "Um ataque que pode causar paralisia.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "rock-throw": {
+    "flavorText": "Joga pedras no inimigo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "earthquake": {
+    "flavorText": "Resistente, mas inútil contra inimigos voadores.",
+    "effectText": "Inflige danos regulares e pode atingir usuários do Cavar."
+  },
+  "fissure": {
+    "flavorText": "Abre uma fissura no chão e derruba o alvo em um único golpe se acertar.",
+    "effectText": "Causa nocaute em um único golpe se acertar."
+  },
+  "dig": {
+    "flavorText": "1º turno: Toca 2º turno: Ataque",
+    "effectText": "O usuário cava no subsolo, esquivando-se de todos os ataques, e acerta no próximo turno."
+  },
+  "toxic": {
+    "flavorText": "Um movimento venenoso com dano crescente.",
+    "effectText": "Envenena gravemente o alvo, causando mais dano a cada turno."
+  },
+  "confusion": {
+    "flavorText": "Um ataque que pode causar confusão.",
+    "effectText": "Tem a chance de confundir o alvo."
+  },
+  "psychic": {
+    "flavorText": "Um ataque que pode diminuir o SPCL.DEF.",
+    "effectText": "Tem chance de diminuir a Defesa Especial do alvo em um estágio."
+  },
+  "hypnosis": {
+    "flavorText": "Pode fazer o inimigo dormir.",
+    "effectText": "Coloca o alvo para dormir."
+  },
+  "meditate": {
+    "flavorText": "Aumenta o ATAQUE do usuário.",
+    "effectText": "Aumenta o ataque do usuário em um estágio."
+  },
+  "agility": {
+    "flavorText": "Aumenta drasticamente a VELOCIDADE do usuário.",
+    "effectText": "Aumenta a velocidade do usuário em dois estágios."
+  },
+  "quick-attack": {
+    "flavorText": "Permite que o usuário receba o primeiro hit.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "rage": {
+    "flavorText": "Aumenta o Ataque se o usuário for atingido.",
+    "effectText": "Se o usuário for atingido após usar este movimento, seu ataque aumenta em um estágio."
+  },
+  "teleport": {
+    "flavorText": "Um movimento para fugir da batalha.",
+    "effectText": "Termina imediatamente as batalhas selvagens. Nenhum efeito de outra forma."
+  },
+  "night-shade": {
+    "flavorText": "O nível do usuário é igual ao HP de dano.",
+    "effectText": "Inflige dano igual ao nível do usuário."
+  },
+  "mimic": {
+    "flavorText": "Copia um movimento usado pelo inimigo.",
+    "effectText": "Copia o último movimento usado pelo alvo."
+  },
+  "screech": {
+    "flavorText": "Reduz drasticamente a DEFESA do inimigo.",
+    "effectText": "Reduz a Defesa do alvo em dois estágios."
+  },
+  "double-team": {
+    "flavorText": "Aumenta a evasão.",
+    "effectText": "Aumenta a evasão do usuário em um estágio."
+  },
+  "recover": {
+    "flavorText": "Restaura o HP em metade do HP máximo.",
+    "effectText": "Cura o usuário pela metade do seu HP máximo."
+  },
+  "harden": {
+    "flavorText": "Aumenta a DEFESA do usuário.",
+    "effectText": "Aumenta a defesa do usuário em um estágio."
+  },
+  "minimize": {
+    "flavorText": "Aumenta a evasão.",
+    "effectText": "Aumenta a evasão do usuário em dois estágios."
+  },
+  "smokescreen": {
+    "flavorText": "Reduz a precisão do inimigo.",
+    "effectText": "Reduz a precisão do alvo em um estágio."
+  },
+  "confuse-ray": {
+    "flavorText": "Um movimento que causa confusão.",
+    "effectText": "Confunde o alvo."
+  },
+  "withdraw": {
+    "flavorText": "Aumenta a DEFESA do usuário.",
+    "effectText": "Aumenta a defesa do usuário em um estágio."
+  },
+  "defense-curl": {
+    "flavorText": "Aumenta a DEFESA do usuário.",
+    "effectText": "Aumenta a defesa do usuário em um estágio."
+  },
+  "barrier": {
+    "flavorText": "Aumenta drasticamente a DEFESA do usuário.",
+    "effectText": "Aumenta a Defesa do usuário em dois estágios."
+  },
+  "light-screen": {
+    "flavorText": "Ups SPCL.DEF com uma parede de luz.",
+    "effectText": "Reduz o dano de ataques especiais em 50% por cinco turnos."
+  },
+  "haze": {
+    "flavorText": "Elimina todas as alterações de estatísticas.",
+    "effectText": "Redefine todas as estatísticas, precisão e evasão de todos os Pokémon."
+  },
+  "reflect": {
+    "flavorText": "Aumenta a DEFESA com uma barreira.",
+    "effectText": "Reduz pela metade o dano de ataques físicos."
+  },
+  "focus-energy": {
+    "flavorText": "Aumenta a taxa de acerto crítico.",
+    "effectText": "Aumenta a chance do usuário de acertar um acerto crítico."
+  },
+  "bide": {
+    "flavorText": "Espera 2-3 turnos e revida em dobro.",
+    "effectText": "O usuário espera por dois turnos e depois revida causando o dobro do dano que sofreu."
+  },
+  "metronome": {
+    "flavorText": "O usuário balança um dedo e estimula seu cérebro a usar praticamente qualquer movimento aleatoriamente.",
+    "effectText": "Seleciona e usa aleatoriamente qualquer movimento do jogo."
+  },
+  "mirror-move": {
+    "flavorText": "Contadores com o mesmo movimento.",
+    "effectText": "Usa o último movimento usado pelo alvo."
+  },
+  "self-destruct": {
+    "flavorText": "Poderoso, mas faz o usuário desmaiar.",
+    "effectText": "O usuário desmaia."
+  },
+  "egg-bomb": {
+    "flavorText": "Os ovos são arremessados contra o inimigo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "lick": {
+    "flavorText": "Um ataque que pode causar paralisia.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "smog": {
+    "flavorText": "Um ataque que pode envenenar o inimigo.",
+    "effectText": "Tem chance de envenenar o alvo."
+  },
+  "sludge": {
+    "flavorText": "Um ataque que pode envenenar o inimigo.",
+    "effectText": "Tem chance de envenenar o alvo."
+  },
+  "bone-club": {
+    "flavorText": "Um ataque que pode causar um hesitação.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "fire-blast": {
+    "flavorText": "Um ataque que pode causar queimaduras.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "waterfall": {
+    "flavorText": "Um ataque de carga aquática.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "clamp": {
+    "flavorText": "Prende o inimigo por 2 a 5 turnos.",
+    "effectText": "Previene a fuga do alvo e causa danos durante 2-5 voltas."
+  },
+  "swift": {
+    "flavorText": "Um ataque que nunca erra.",
+    "effectText": "Nunca erra."
+  },
+  "skull-bash": {
+    "flavorText": "1a volta: Preparar a 2a volta: Ataque",
+    "effectText": "Aumenta a defesa do usuário em um estágio. O usuário cobra um turno antes de atacar."
+  },
+  "spike-cannon": {
+    "flavorText": "Dispara espinhos para acertar de 2 a 5 vezes.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "constrict": {
+    "flavorText": "Um ataque que pode diminuir a VELOCIDADE.",
+    "effectText": "Tem a chance de diminuir a velocidade do alvo em um estágio."
+  },
+  "amnesia": {
+    "flavorText": "Aumenta acentuadamente o SPCL.DEF do usuário.",
+    "effectText": "Aumenta a Defesa Especial do usuário em dois estágios."
+  },
+  "kinesis": {
+    "flavorText": "Reduz a precisão do inimigo.",
+    "effectText": "Reduz a precisão do alvo em um estágio."
+  },
+  "soft-boiled": {
+    "flavorText": "Restaura o HP em metade do HP máximo do usuário.",
+    "effectText": "Cura o usuário pela metade do seu HP máximo."
+  },
+  "high-jump-kick": {
+    "flavorText": "Pode errar e machucar o usuário.",
+    "effectText": "Se o usuário errar, sofrerá metade do dano que teria causado no recuo."
+  },
+  "glare": {
+    "flavorText": "Um movimento que pode causar paralisia.",
+    "effectText": "Paralisa o alvo."
+  },
+  "dream-eater": {
+    "flavorText": "Rouba HP de uma vítima adormecida.",
+    "effectText": "Funciona apenas em Pokémon adormecidos. Drena metade do dano infligido para curar o usuário."
+  },
+  "poison-gas": {
+    "flavorText": "Um movimento que pode envenenar o inimigo.",
+    "effectText": "Envenena o alvo."
+  },
+  "barrage": {
+    "flavorText": "Lança orbes para acertar de 2 a 5 vezes.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "leech-life": {
+    "flavorText": "Rouba 1/2 do dano infligido.",
+    "effectText": "Drena metade do dano infligido para curar o usuário."
+  },
+  "lovely-kiss": {
+    "flavorText": "Pode fazer com que o inimigo adormeça.",
+    "effectText": "Coloca o alvo para dormir."
+  },
+  "sky-attack": {
+    "flavorText": "1a volta: Preparar a 2a volta: Ataque",
+    "effectText": "O usuário cobra um turno antes de atacar. Tem a chance de fazer o alvo recuar."
+  },
+  "transform": {
+    "flavorText": "O usuário assume o disfarce do inimigo.",
+    "effectText": "O usuário se torna uma cópia do alvo até que ele saia da batalha."
+  },
+  "bubble": {
+    "flavorText": "Um ataque que pode reduzir a VELOCIDADE.",
+    "effectText": "Tem a chance de diminuir a velocidade do alvo em um estágio."
+  },
+  "dizzy-punch": {
+    "flavorText": "Um ataque que pode causar confusão.",
+    "effectText": "Tem a chance de confundir o alvo."
+  },
+  "spore": {
+    "flavorText": "Um movimento que induz ao sono.",
+    "effectText": "Coloca o alvo para dormir."
+  },
+  "flash": {
+    "flavorText": "Cega o inimigo para reduzir a precisão.",
+    "effectText": "Reduz a precisão do alvo em um estágio."
+  },
+  "psywave": {
+    "flavorText": "Um ataque com poder variável.",
+    "effectText": "Inflige danos entre 50% e 150% do nível do usuário."
+  },
+  "splash": {
+    "flavorText": "Não tem efeito algum.",
+    "effectText": "Não faz nada."
+  },
+  "acid-armor": {
+    "flavorText": "Aumenta drasticamente a DEFESA do usuário.",
+    "effectText": "Aumenta a Defesa do usuário em dois estágios."
+  },
+  "crabhammer": {
+    "flavorText": "Tem alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "explosion": {
+    "flavorText": "Muito poderoso, mas faz o usuário desmaiar.",
+    "effectText": "O usuário desmaia."
+  },
+  "fury-swipes": {
+    "flavorText": "Arranhe rapidamente 2 a 5 vezes.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "bonemerang": {
+    "flavorText": "Um ataque que atinge duas vezes.",
+    "effectText": "Atinge duas vezes em um turno."
+  },
+  "rest": {
+    "flavorText": "Durma por 2 turnos para se recuperar totalmente.",
+    "effectText": "O usuário dorme por dois turnos, curando-se completamente."
+  },
+  "rock-slide": {
+    "flavorText": "Um ataque que pode causar um hesitação.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "hyper-fang": {
+    "flavorText": "Um ataque que pode causar um hesitação.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "sharpen": {
+    "flavorText": "Um movimento que aumenta o ATAQUE do usuário.",
+    "effectText": "Aumenta o ataque do usuário em um estágio."
+  },
+  "conversion": {
+    "flavorText": "Altere o tipo de usuário para um tipo de movimento.",
+    "effectText": "O tipo do usuário muda aleatoriamente para o tipo de um de seus movimentos."
+  },
+  "tri-attack": {
+    "flavorText": "Dispara três tipos de feixes ao mesmo tempo.",
+    "effectText": "Tem chance de queimar, congelar ou paralisar o alvo."
+  },
+  "super-fang": {
+    "flavorText": "Reduz o HP do inimigo em 1/2.",
+    "effectText": "Inflige dano igual a metade do HP do alvo."
+  },
+  "slash": {
+    "flavorText": "Tem alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "substitute": {
+    "flavorText": "Faz uma isca com 1/4 do HP máximo do usuário.",
+    "effectText": "Transfere 1/4 do HP máximo do usuário para uma boneca, protegendo o usuário de mais danos ou mudanças de status até que ela quebre."
+  },
+  "struggle": {
+    "flavorText": "Usado somente se todos os PP estiverem esgotados.",
+    "effectText": "O usuário recebe 1/4 do seu HP máximo em recuo."
+  },
+  "sketch": {
+    "flavorText": "Copia o movimento do inimigo permanentemente.",
+    "effectText": "Torna-se permanentemente o último movimento usado pelo alvo."
+  },
+  "triple-kick": {
+    "flavorText": "Atinge três vezes com potência crescente.",
+    "effectText": "Atinge três vezes, aumentando o poder em 100% a cada acerto bem-sucedido."
+  },
+  "thief": {
+    "flavorText": "Um ataque que pode roubar um item retido.",
+    "effectText": "Pega o item do alvo."
+  },
+  "spider-web": {
+    "flavorText": "Evita fuga ou troca.",
+    "effectText": "Impede que o alvo saia da batalha."
+  },
+  "mind-reader": {
+    "flavorText": "Garante que o próximo ataque acertará.",
+    "effectText": "Garante que o próximo movimento do usuário atinja o alvo."
+  },
+  "nightmare": {
+    "flavorText": "Um dorminhoco perde 1/4 de HP a cada turno.",
+    "effectText": "O alvo perde 1/4 do seu HP máximo a cada turno enquanto estiver dormindo."
+  },
+  "flame-wheel": {
+    "flavorText": "Um ataque que pode causar queimaduras.",
+    "effectText": "Tem chance de queimar o alvo. Permite que os Pokémon congelados se descongelem."
+  },
+  "snore": {
+    "flavorText": "Um ataque alto que só pode ser usado durante o sono.",
+    "effectText": "Tem a chance de fazer o alvo recuar. Só funciona se o usuário estiver dormindo."
+  },
+  "curse": {
+    "flavorText": "Funciona de maneira diferente para tipos fantasmas.",
+    "effectText": "Fantasmas pagam metade de seu HP máximo para ferir o alvo a cada turno. Outros diminuem a Velocidade, mas aumentam o Ataque e a Defesa."
+  },
+  "flail": {
+    "flavorText": "Mais forte se o HP do usuário estiver baixo.",
+    "effectText": "Inflige mais dano quando o usuário tem menos HP restante, com no máximo 200 de poder."
+  },
+  "conversion-2": {
+    "flavorText": "O tipo do usuário se torna resistente.",
+    "effectText": "Muda o tipo do usuário para um tipo aleatório, resistente ou imune ao último movimento usado contra ele."
+  },
+  "aeroblast": {
+    "flavorText": "Tem alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "cotton-spore": {
+    "flavorText": "Reduz drasticamente a VELOCIDADE do inimigo.",
+    "effectText": "Reduz a velocidade do alvo em dois estágios."
+  },
+  "reversal": {
+    "flavorText": "Mais forte se o HP do usuário estiver baixo.",
+    "effectText": "Inflige mais dano quando o usuário tem menos HP restante, com no máximo 200 de poder."
+  },
+  "spite": {
+    "flavorText": "Corta o PP do último movimento do inimigo.",
+    "effectText": "Reduz o PP do último movimento usado pelo alvo em 4."
+  },
+  "powder-snow": {
+    "flavorText": "Um ataque que pode causar congelamento.",
+    "effectText": "Tem uma chance de congelar o alvo."
+  },
+  "protect": {
+    "flavorText": "Foils atacam naquele turno. Pode falhar.",
+    "effectText": "Impede que qualquer movimento atinja o usuário neste turno."
+  },
+  "mach-punch": {
+    "flavorText": "Um soco rápido que acerta primeiro.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "scary-face": {
+    "flavorText": "Reduz drasticamente a VELOCIDADE do inimigo.",
+    "effectText": "Reduz a velocidade do alvo em dois estágios."
+  },
+  "feint-attack": {
+    "flavorText": "Um ataque que nunca erra.",
+    "effectText": "Nunca erra."
+  },
+  "sweet-kiss": {
+    "flavorText": "Um movimento que causa confusão.",
+    "effectText": "Confunde o alvo."
+  },
+  "belly-drum": {
+    "flavorText": "Reduz o próprio HP para maximizar o ATAQUE.",
+    "effectText": "O usuário paga metade do seu HP máximo para maximizar seu ataque."
+  },
+  "sludge-bomb": {
+    "flavorText": "Um ataque que pode envenenar o inimigo.",
+    "effectText": "Tem chance de envenenar o alvo."
+  },
+  "mud-slap": {
+    "flavorText": "Reduz a precisão do inimigo.",
+    "effectText": "Tem a chance de diminuir a precisão do alvo em um estágio."
+  },
+  "octazooka": {
+    "flavorText": "Um ataque que pode reduzir a precisão.",
+    "effectText": "Tem a chance de diminuir a precisão do alvo em um estágio."
+  },
+  "spikes": {
+    "flavorText": "Espalha espinhos que ferem adversários ao entrarem em campo.",
+    "effectText": "Espalha espinhos que ferem Pokémon adversários ao entrarem em campo."
+  },
+  "zap-cannon": {
+    "flavorText": "Um ataque que sempre paralisa.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "foresight": {
+    "flavorText": "Nega movimentos de redução de precisão.",
+    "effectText": "Força o alvo a não ter Evasão e permite que ele seja atingido por movimentos Normais e de Luta, mesmo que seja um Fantasma."
+  },
+  "destiny-bond": {
+    "flavorText": "O inimigo desmaia se o usuário o fizer.",
+    "effectText": "Se o usuário desmaiar neste turno, o alvo também irá automaticamente."
+  },
+  "perish-song": {
+    "flavorText": "Tanto o usuário quanto o inimigo desmaiam em 3 turnos.",
+    "effectText": "O usuário e o alvo desmaiam após três turnos."
+  },
+  "icy-wind": {
+    "flavorText": "Um ataque gelado que reduz a VELOCIDADE.",
+    "effectText": "Tem a chance de diminuir a velocidade do alvo em um estágio."
+  },
+  "detect": {
+    "flavorText": "Evita o ataque naquele turno. Pode falhar.",
+    "effectText": "Impede que qualquer movimento atinja o usuário neste turno."
+  },
+  "bone-rush": {
+    "flavorText": "Um ataque que atinge de 2 a 5 vezes.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "lock-on": {
+    "flavorText": "Garante que o próximo ataque acertará.",
+    "effectText": "Garante que o próximo movimento do usuário atinja o alvo."
+  },
+  "outrage": {
+    "flavorText": "Funciona de 2 a 3 voltas e confunde o usuário.",
+    "effectText": "Atinge cada turno por 2-3 turnos e confunde o usuário."
+  },
+  "sandstorm": {
+    "flavorText": "Causa dano a cada turno.",
+    "effectText": "Muda o clima para uma tempestade de areia por cinco turnos."
+  },
+  "giga-drain": {
+    "flavorText": "Rouba 1/2 do dano infligido.",
+    "effectText": "Drena metade do dano infligido para curar o usuário."
+  },
+  "endure": {
+    "flavorText": "Sempre deixa pelo menos 1HP.",
+    "effectText": "Impede que o HP do usuário caia abaixo de 1 neste turno."
+  },
+  "charm": {
+    "flavorText": "Reduz drasticamente o ATAQUE do inimigo.",
+    "effectText": "Reduz o ataque do alvo em dois estágios."
+  },
+  "rollout": {
+    "flavorText": "Ataca 5 turnos com poder crescente.",
+    "effectText": "A potência dobra a cada turno. Este movimento é usado sucessivamente após o primeiro, reiniciando após cinco turnos."
+  },
+  "false-swipe": {
+    "flavorText": "Deixa o inimigo com pelo menos 1HP.",
+    "effectText": "Não é possível diminuir o HP do alvo abaixo de 1."
+  },
+  "swagger": {
+    "flavorText": "Causa confusão e aumenta o ATAQUE.",
+    "effectText": "Aumenta o Ataque do alvo em dois estágios e confunde o alvo."
+  },
+  "milk-drink": {
+    "flavorText": "Restaura o HP em metade do HP máximo.",
+    "effectText": "Cura o usuário pela metade do seu HP máximo."
+  },
+  "spark": {
+    "flavorText": "Um ataque que pode causar paralisia.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "fury-cutter": {
+    "flavorText": "Golpes sucessivos aumentam o poder.",
+    "effectText": "O poder dobra a cada turno. Este movimento é usado sucessivamente após o primeiro, atingindo o máximo após cinco turnos."
+  },
+  "steel-wing": {
+    "flavorText": "Asas rígidas atingem o inimigo.",
+    "effectText": "Tem a chance de aumentar a Defesa do usuário em um estágio."
+  },
+  "mean-look": {
+    "flavorText": "Evita fuga ou troca.",
+    "effectText": "Impede que o alvo saia da batalha."
+  },
+  "attract": {
+    "flavorText": "Deixa o sexo oposto apaixonado.",
+    "effectText": "O alvo se apaixona se for do sexo oposto e tem 50% de chance de recusar atacar o usuário."
+  },
+  "sleep-talk": {
+    "flavorText": "Ataca aleatoriamente enquanto dorme.",
+    "effectText": "Usa aleatoriamente um dos outros três movimentos do usuário. Só funciona se o usuário estiver dormindo."
+  },
+  "heal-bell": {
+    "flavorText": "Elimina todos os problemas de status.",
+    "effectText": "Cura todo o grupo dos principais efeitos de status."
+  },
+  "return": {
+    "flavorText": "Um ataque baseado na lealdade.",
+    "effectText": "O poder aumenta com a felicidade, até um máximo de 102."
+  },
+  "present": {
+    "flavorText": "Uma bomba que pode restaurar HP.",
+    "effectText": "Inflige dano aleatoriamente com poder de 40 a 120 ou cura o alvo em 1/4 do seu HP máximo."
+  },
+  "frustration": {
+    "flavorText": "Um ataque baseado na falta de lealdade.",
+    "effectText": "O poder aumenta à medida que a felicidade diminui, até um máximo de 102."
+  },
+  "safeguard": {
+    "flavorText": "Evita todos os problemas de status.",
+    "effectText": "Protege o campo do usuário contra grandes problemas de status e confusão por cinco turnos."
+  },
+  "pain-split": {
+    "flavorText": "Adiciona HPs de usuários e inimigos. Total de ações.",
+    "effectText": "Define o HP do usuário e do alvo como a média do HP atual."
+  },
+  "sacred-fire": {
+    "flavorText": "Um ataque que pode causar queimaduras.",
+    "effectText": "Tem chance de queimar o alvo. Permite que os Pokémon congelados se descongelem."
+  },
+  "magnitude": {
+    "flavorText": "Um ataque terrestre com poder aleatório.",
+    "effectText": "A potência varia aleatoriamente de 10 a 150."
+  },
+  "dynamic-punch": {
+    "flavorText": "Um ataque que sempre confunde.",
+    "effectText": "Tem a chance de confundir o alvo."
+  },
+  "megahorn": {
+    "flavorText": "Um poderoso ataque de carga.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "dragon-breath": {
+    "flavorText": "Um forte ataque de respiração.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "baton-pass": {
+    "flavorText": "Muda enquanto mantém os efeitos.",
+    "effectText": "Permite que o treinador troque o usuário e passe os efeitos para seu substituto."
+  },
+  "encore": {
+    "flavorText": "Faz o inimigo repetir 2 a 6 vezes.",
+    "effectText": "Força o alvo a repetir seu último movimento usado a cada turno por 2 a 6 turnos."
+  },
+  "pursuit": {
+    "flavorText": "Atinge fortemente a troca de Pokémon.",
+    "effectText": "Tem o dobro do poder contra e pode acertar Pokémon que tentam trocar."
+  },
+  "rapid-spin": {
+    "flavorText": "Um ataque giratório em alta velocidade.",
+    "effectText": "Libera o usuário de movimentos de amarração, remove Semente de sanguessuga e afasta Espinhos."
+  },
+  "sweet-scent": {
+    "flavorText": "Reduz a evasão do inimigo.",
+    "effectText": "Reduz a evasão do alvo em um estágio."
+  },
+  "iron-tail": {
+    "flavorText": "Um ataque que pode reduzir a DEFESA.",
+    "effectText": "Tem chance de diminuir a Defesa do alvo em um estágio."
+  },
+  "metal-claw": {
+    "flavorText": "Um ataque que pode aumentar o ATAQUE do usuário.",
+    "effectText": "Tem a chance de aumentar o ataque do usuário em um estágio."
+  },
+  "vital-throw": {
+    "flavorText": "Um movimento de segundo ataque que nunca falha.",
+    "effectText": "Nunca erra."
+  },
+  "morning-sun": {
+    "flavorText": "Restaura HP (varia com o tempo).",
+    "effectText": "Cura o usuário pela metade do seu HP máximo. Afetado pelo clima."
+  },
+  "synthesis": {
+    "flavorText": "Restaura HP. A quantidade varia de acordo com o clima.",
+    "effectText": "Cura o usuário pela metade do seu HP máximo. Afetado pelo clima."
+  },
+  "moonlight": {
+    "flavorText": "Restaura HP (varia com o tempo).",
+    "effectText": "Cura o usuário pela metade do seu HP máximo. Afetado pelo clima."
+  },
+  "hidden-power": {
+    "flavorText": "O poder varia de acordo com o Pokémon.",
+    "effectText": "A potência e o tipo dependem dos IVs do usuário. A potência pode variar de 30 a 70."
+  },
+  "cross-chop": {
+    "flavorText": "Tem alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "twister": {
+    "flavorText": "Cria um tornado para atacar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "rain-dance": {
+    "flavorText": "Aumenta movimentos do tipo água por 5 turnos.",
+    "effectText": "Muda o clima para chuva por cinco turnos."
+  },
+  "sunny-day": {
+    "flavorText": "Aumenta movimentos do tipo fogo por 5 turnos.",
+    "effectText": "Muda o clima para ensolarado por cinco turnos."
+  },
+  "crunch": {
+    "flavorText": "Um ataque que pode diminuir o SPCL.DEF.",
+    "effectText": "Tem chance de diminuir a Defesa do alvo em um estágio."
+  },
+  "mirror-coat": {
+    "flavorText": "Contabiliza um SPCL. ATQ. mova-se em dobro.",
+    "effectText": "Inflige o dobro do dano que o usuário recebeu no último golpe especial que recebeu."
+  },
+  "psych-up": {
+    "flavorText": "Copia as alterações de estatísticas do inimigo.",
+    "effectText": "Descarta as alterações de estatísticas do usuário e copia as do alvo."
+  },
+  "extreme-speed": {
+    "flavorText": "Um poderoso movimento de primeiro ataque.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "ancient-power": {
+    "flavorText": "Um ataque que pode aumentar todas as estatísticas.",
+    "effectText": "Tem a chance de aumentar todas as estatísticas do usuário em um estágio."
+  },
+  "shadow-ball": {
+    "flavorText": "Um ataque que pode diminuir o SPCL.DEF.",
+    "effectText": "Tem chance de diminuir a Defesa Especial do alvo em um estágio."
+  },
+  "future-sight": {
+    "flavorText": "Um ataque que atinge no 3º turno.",
+    "effectText": "Atinge o alvo dois turnos depois."
+  },
+  "rock-smash": {
+    "flavorText": "Um ataque que pode diminuir a DEFESA.",
+    "effectText": "Tem chance de diminuir a Defesa do alvo em um estágio."
+  },
+  "whirlpool": {
+    "flavorText": "Prende o inimigo por 2 a 5 turnos.",
+    "effectText": "Impede que o alvo saia da batalha e inflige 1/16 de seu HP máximo em dano por 2 a 5 turnos."
+  },
+  "beat-up": {
+    "flavorText": "Party Pokémon junta-se ao ataque.",
+    "effectText": "Atinge uma vez para cada Pokémon consciente que o treinador possui."
+  },
+  "fake-out": {
+    "flavorText": "Um movimento de 1º turno e 1º golpe que causa vacilação.",
+    "effectText": "Só pode ser usado como primeiro movimento após o usuário entrar na batalha. Faz o alvo recuar."
+  },
+  "uproar": {
+    "flavorText": "Causa alvoroço por 2 a 5 turnos e impede o sono.",
+    "effectText": "Forçado a usar esse movimento por vários turnos. Pokémon não consegue dormir nesse período."
+  },
+  "stockpile": {
+    "flavorText": "Carrega energia por até 3 turnos.",
+    "effectText": "Armazena energia até três vezes para uso com Cuspir e Engolir."
+  },
+  "spit-up": {
+    "flavorText": "Libera energia armazenada (quanto mais, melhor).",
+    "effectText": "A potência é 100 vezes a quantidade de energia armazenada."
+  },
+  "swallow": {
+    "flavorText": "A energia armazenada usando o movimento Estoque é absorvida pelo usuário para curar seu HP.",
+    "effectText": "Recupera 1/4 HP após um Estoque, 1/2 HP após dois Estoques ou HP total após três Estoques."
+  },
+  "heat-wave": {
+    "flavorText": "Exala um hálito quente no inimigo. Pode causar queimaduras.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "hail": {
+    "flavorText": "Invoca uma tempestade de granizo que atinge todos os turnos.",
+    "effectText": "Muda o clima para tempestade de granizo por cinco turnos."
+  },
+  "torment": {
+    "flavorText": "Atormenta o inimigo e interrompe o uso sucessivo de um movimento.",
+    "effectText": "Impede que o alvo use o mesmo movimento duas vezes seguidas."
+  },
+  "flatter": {
+    "flavorText": "Confunde o inimigo, mas aumenta seu Ataque Especial.",
+    "effectText": "Aumenta o Ataque Especial do alvo em um estágio e confunde o alvo."
+  },
+  "will-o-wisp": {
+    "flavorText": "Inflige uma queimadura no inimigo com fogo intenso.",
+    "effectText": "Queima o alvo."
+  },
+  "memento": {
+    "flavorText": "O usuário desmaia e diminui as habilidades do inimigo.",
+    "effectText": "Reduz o Ataque e o Ataque Especial do alvo em dois estágios. O usuário desmaia."
+  },
+  "facade": {
+    "flavorText": "Este movimento de ataque dobra seu poder se o usuário for envenenado, queimado ou paralisado.",
+    "effectText": "O poder dobra se o usuário for queimado, paralisado ou envenenado."
+  },
+  "focus-punch": {
+    "flavorText": "Um poderoso ataque de lealdade. O usuário estremece se for atingido.",
+    "effectText": "Se o usuário sofrer dano antes de atacar, o ataque será cancelado."
+  },
+  "smelling-salts": {
+    "flavorText": "Poderoso contra inimigos paralisados, mas também os cura.",
+    "effectText": "Se o alvo estiver paralisado, causa dano duplo e cura a paralisia."
+  },
+  "follow-me": {
+    "flavorText": "Chama a atenção para fazer com que os inimigos ataquem apenas o usuário.",
+    "effectText": "Redireciona os efeitos de alvo único do alvo para o usuário neste turno."
+  },
+  "nature-power": {
+    "flavorText": "O tipo de ataque varia dependendo do local.",
+    "effectText": "Usa um movimento que depende do terreno."
+  },
+  "charge": {
+    "flavorText": "Carrega energia para aumentar o movimento elétrico usado a seguir.",
+    "effectText": "Aumenta a Defesa Especial do usuário em um estágio. Os movimentos elétricos do usuário dobraram a potência no próximo turno."
+  },
+  "taunt": {
+    "flavorText": "Incita o inimigo a usar apenas movimentos de ataque.",
+    "effectText": "Nos próximos turnos, o alvo só poderá usar movimentos prejudiciais."
+  },
+  "helping-hand": {
+    "flavorText": "Aumenta o poder dos movimentos do destinatário.",
+    "effectText": "O próximo movimento de Ally causa metade do dano a mais."
+  },
+  "trick": {
+    "flavorText": "Engana o inimigo para que ele troque itens retidos.",
+    "effectText": "Itens de troca de usuário e destino."
+  },
+  "role-play": {
+    "flavorText": "Imita o alvo e copia sua habilidade especial.",
+    "effectText": "Copia a habilidade do alvo."
+  },
+  "wish": {
+    "flavorText": "Um desejo que restaura HP. Leva tempo para funcionar.",
+    "effectText": "O usuário recuperará metade do seu HP máximo no final do próximo turno."
+  },
+  "assist": {
+    "flavorText": "Ataca aleatoriamente com um dos movimentos do parceiro.",
+    "effectText": "Seleciona e usa aleatoriamente um dos outros movimentos do Pokémon do treinador."
+  },
+  "ingrain": {
+    "flavorText": "Estabelece raízes que restauram HP. O usuário não pode sair.",
+    "effectText": "Impede que o usuário saia da batalha. O usuário recupera 1/16 de seu HP máximo a cada turno."
+  },
+  "superpower": {
+    "flavorText": "Aumenta drasticamente a força, mas diminui as habilidades.",
+    "effectText": "Reduz o Ataque e a Defesa do usuário em um estágio após causar dano."
+  },
+  "magic-coat": {
+    "flavorText": "Reflete os efeitos especiais de volta para o atacante.",
+    "effectText": "Reflete o primeiro movimento de efeito usado no usuário neste turno."
+  },
+  "recycle": {
+    "flavorText": "Recicla um item usado para mais um uso.",
+    "effectText": "O usuário recupera o último item usado."
+  },
+  "revenge": {
+    "flavorText": "Um ataque que ganha poder se for ferido pelo inimigo.",
+    "effectText": "Inflige dano duplo se o usuário sofrer dano antes de atacar neste turno."
+  },
+  "brick-break": {
+    "flavorText": "Destrói barreiras como REFLECT e causa danos.",
+    "effectText": "Destrói Refletir e Tela clara."
+  },
+  "yawn": {
+    "flavorText": "Faz o inimigo bocejar e depois dormir no próximo turno.",
+    "effectText": "O alvo dorme no final do próximo turno."
+  },
+  "knock-off": {
+    "flavorText": "Derruba o item segurado pelo inimigo para evitar seu uso.",
+    "effectText": "O alvo larga o item que está segurando."
+  },
+  "endeavor": {
+    "flavorText": "Ganha poder se o HP do usuário for menor que o HP do inimigo.",
+    "effectText": "Reduz o HP do alvo para igualar o do usuário."
+  },
+  "eruption": {
+    "flavorText": "Quanto maior o HP do usuário, maior será o dano causado.",
+    "effectText": "Inflige mais dano quando o usuário tem mais HP restante, com no máximo 150 de poder."
+  },
+  "skill-swap": {
+    "flavorText": "O usuário troca habilidades especiais com o alvo.",
+    "effectText": "Habilidades de troca de usuário e alvo."
+  },
+  "imprison": {
+    "flavorText": "Impede que inimigos usem movimentos conhecidos pelo usuário.",
+    "effectText": "Impede que o alvo use quaisquer movimentos que o usuário também conheça."
+  },
+  "refresh": {
+    "flavorText": "Cura envenenamento, paralisia ou queimadura.",
+    "effectText": "Limpa o usuário de queimaduras, paralisia ou veneno."
+  },
+  "grudge": {
+    "flavorText": "Caso o usuário desmaie, apaga o PP do movimento final.",
+    "effectText": "Se o usuário desmaiar neste turno, o PP do golpe que o desmaiou cai para 0."
+  },
+  "snatch": {
+    "flavorText": "Rouba os efeitos do movimento que o inimigo usará em seguida.",
+    "effectText": "Rouba o movimento do alvo, se for auto-direcionado."
+  },
+  "secret-power": {
+    "flavorText": "Um ataque com efeitos que variam de acordo com o local.",
+    "effectText": "Tem a chance de infligir um efeito de status que depende do terreno."
+  },
+  "dive": {
+    "flavorText": "Mergulha debaixo d'água no primeiro turno e ataca no próximo turno.",
+    "effectText": "O usuário mergulha debaixo d’água, esquivando-se de todos os ataques, e acerta no próximo turno."
+  },
+  "arm-thrust": {
+    "flavorText": "Socos com o braço reto que atingem o inimigo de 2 a 5 vezes.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "camouflage": {
+    "flavorText": "Altera o tipo do Pokémon dependendo da localização.",
+    "effectText": "O tipo do usuário muda para corresponder ao terreno."
+  },
+  "tail-glow": {
+    "flavorText": "Pisca uma luz que aumenta drasticamente o Ataque Especial.",
+    "effectText": "Aumenta o Ataque Especial do usuário em três estágios."
+  },
+  "luster-purge": {
+    "flavorText": "Ataca com uma explosão de luz. Pode diminuir Defesa Especial.",
+    "effectText": "Tem chance de diminuir a Defesa Especial do alvo em um estágio."
+  },
+  "mist-ball": {
+    "flavorText": "Ataca com uma rajada de descidas. Pode diminuir Ataque Especial.",
+    "effectText": "Tem a chance de diminuir o Ataque Especial do alvo em um estágio."
+  },
+  "feather-dance": {
+    "flavorText": "Envolve o inimigo para baixo para reduzir drasticamente o ATAQUE.",
+    "effectText": "Reduz o ataque do alvo em dois estágios."
+  },
+  "teeter-dance": {
+    "flavorText": "Confunde todos os Pokémon em cena.",
+    "effectText": "Confunde o alvo."
+  },
+  "blaze-kick": {
+    "flavorText": "Um chute com alta taxa de acerto crítico. Pode causar queimaduras.",
+    "effectText": "Tem maior chance de acerto crítico e chance de queimar o alvo."
+  },
+  "mud-sport": {
+    "flavorText": "Cobre o usuário com lama para aumentar a resistência elétrica.",
+    "effectText": "Reduz pela metade todos os danos do tipo elétrico."
+  },
+  "ice-ball": {
+    "flavorText": "Um ataque de 5 turnos que ganha poder em ataques sucessivos.",
+    "effectText": "A potência dobra a cada turno. Este movimento é usado sucessivamente após o primeiro, reiniciando após cinco turnos."
+  },
+  "needle-arm": {
+    "flavorText": "Ataca com braços espinhosos. Pode causar estremecimento.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "slack-off": {
+    "flavorText": "Afrouxa e restaura metade do HP máximo.",
+    "effectText": "Cura o usuário pela metade do seu HP máximo."
+  },
+  "hyper-voice": {
+    "flavorText": "Um ataque alto que usa ondas sonoras para ferir.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "poison-fang": {
+    "flavorText": "Um ataque de presas afiadas. Pode envenenar gravemente o inimigo.",
+    "effectText": "Tem a chance de envenenar gravemente o alvo."
+  },
+  "crush-claw": {
+    "flavorText": "Rasga o inimigo com garras afiadas. Pode diminuir a DEFESA.",
+    "effectText": "Tem chance de diminuir a Defesa do alvo em um estágio."
+  },
+  "blast-burn": {
+    "flavorText": "Poderoso, mas deixa o usuário imóvel no próximo turno.",
+    "effectText": "O usuário renuncia ao próximo turno para recarregar."
+  },
+  "hydro-cannon": {
+    "flavorText": "Poderoso, mas deixa o usuário imóvel no próximo turno.",
+    "effectText": "O usuário renuncia ao próximo turno para recarregar."
+  },
+  "meteor-mash": {
+    "flavorText": "Dispara um soco semelhante ao de um meteoro. Pode aumentar o ATAQUE.",
+    "effectText": "Tem a chance de aumentar o ataque do usuário em um estágio."
+  },
+  "astonish": {
+    "flavorText": "Um ataque que pode chocar o inimigo e fazê-lo vacilar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "weather-ball": {
+    "flavorText": "O tipo e o poder do movimento mudam de acordo com o clima.",
+    "effectText": "Se houver clima, esse movimento dobrou a potência e o tipo de clima."
+  },
+  "aromatherapy": {
+    "flavorText": "Cura todos os problemas de status com um aroma calmante.",
+    "effectText": "Cura todo o grupo dos principais efeitos de status."
+  },
+  "fake-tears": {
+    "flavorText": "Finge chorar para diminuir drasticamente o SP do inimigo. DEF.",
+    "effectText": "Reduz a Defesa Especial do alvo em dois estágios."
+  },
+  "air-cutter": {
+    "flavorText": "Hacks com vento cortante. Alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "overheat": {
+    "flavorText": "Permite um ataque com força total, mas reduz drasticamente o Ataque Especial.",
+    "effectText": "Reduz o Ataque Especial do usuário em dois estágios após causar dano."
+  },
+  "odor-sleuth": {
+    "flavorText": "Nega os esforços do inimigo para aumentar a evasão.",
+    "effectText": "Força o alvo a não ter Evasão e permite que ele seja atingido por movimentos Normais e de Luta, mesmo que seja um Fantasma."
+  },
+  "rock-tomb": {
+    "flavorText": "Impede o inimigo de se mover com pedras e corta a VELOCIDADE.",
+    "effectText": "Tem a chance de diminuir a velocidade do alvo em um estágio."
+  },
+  "silver-wind": {
+    "flavorText": "Um ataque pulverulento que pode aumentar as habilidades.",
+    "effectText": "Tem a chance de aumentar todas as estatísticas do usuário em um estágio."
+  },
+  "metal-sound": {
+    "flavorText": "Emite um grito horrível que reduz drasticamente o Defesa Especial.",
+    "effectText": "Reduz a Defesa Especial do alvo em dois estágios."
+  },
+  "grass-whistle": {
+    "flavorText": "Acalma o inimigo até dormir com uma melodia agradável.",
+    "effectText": "Coloca o alvo para dormir."
+  },
+  "tickle": {
+    "flavorText": "Faz o inimigo rir para diminuir o ATAQUE e a DEFESA.",
+    "effectText": "Reduz o Ataque e a Defesa do alvo em um estágio."
+  },
+  "cosmic-power": {
+    "flavorText": "Aumenta DEFESA e Defesa Especial com um poder místico.",
+    "effectText": "Aumenta a Defesa e a Defesa Especial do usuário em um estágio."
+  },
+  "water-spout": {
+    "flavorText": "Causa mais dano se o HP do usuário estiver alto.",
+    "effectText": "Inflige mais dano quando o usuário tem mais HP restante, com no máximo 150 de poder."
+  },
+  "signal-beam": {
+    "flavorText": "Um estranho ataque de feixe que pode confundir o inimigo.",
+    "effectText": "Tem a chance de confundir o alvo."
+  },
+  "shadow-punch": {
+    "flavorText": "Um soco inevitável lançado das sombras.",
+    "effectText": "Nunca erra."
+  },
+  "extrasensory": {
+    "flavorText": "Ataca com um poder peculiar. Pode causar estremecimento.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "sky-uppercut": {
+    "flavorText": "Um gancho lançado como se estivesse saltando para o céu.",
+    "effectText": "Inflige danos regulares e pode atingir usuários do Saltar and Voar."
+  },
+  "sand-tomb": {
+    "flavorText": "Prende e fere o inimigo em areia movediça por 2 a 5 turnos.",
+    "effectText": "Previene a fuga do alvo e causa danos durante 2-5 voltas."
+  },
+  "sheer-cold": {
+    "flavorText": "Um ataque de frio extremo que causa nocaute em um único golpe se acertar.",
+    "effectText": "Causa nocaute em um único golpe se acertar."
+  },
+  "muddy-water": {
+    "flavorText": "Ataca com água lamacenta. Pode diminuir a precisão.",
+    "effectText": "Tem a chance de diminuir a precisão do alvo em um estágio."
+  },
+  "bullet-seed": {
+    "flavorText": "Atira 2 a 5 sementes seguidas para atingir o inimigo.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "aerial-ace": {
+    "flavorText": "Um ataque extremamente rápido e inevitável.",
+    "effectText": "Nunca erra."
+  },
+  "icicle-spear": {
+    "flavorText": "Ataca o inimigo disparando de 2 a 5 pingentes de gelo seguidos.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "iron-defense": {
+    "flavorText": "Endurece a superfície do corpo para aumentar drasticamente a DEFESA.",
+    "effectText": "Aumenta a Defesa do usuário em dois estágios."
+  },
+  "block": {
+    "flavorText": "Bloqueia o caminho do inimigo para evitar a fuga.",
+    "effectText": "Impede que o alvo saia da batalha."
+  },
+  "howl": {
+    "flavorText": "Uiva para elevar o ânimo e aumenta o ATAQUE.",
+    "effectText": "Aumenta o ataque do usuário em um estágio."
+  },
+  "dragon-claw": {
+    "flavorText": "Corta o inimigo com garras afiadas.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "frenzy-plant": {
+    "flavorText": "Poderoso, mas deixa o usuário imóvel no próximo turno.",
+    "effectText": "O usuário renuncia ao próximo turno para recarregar."
+  },
+  "bulk-up": {
+    "flavorText": "Aumenta o corpo para aumentar o ATAQUE e a DEFESA.",
+    "effectText": "Aumenta o Ataque e a Defesa do usuário em um estágio."
+  },
+  "bounce": {
+    "flavorText": "Salta para cima e depois para baixo na próxima curva. Pode paralisar.",
+    "effectText": "O usuário salta alto, esquivando-se de todos os ataques, e acerta no próximo turno."
+  },
+  "mud-shot": {
+    "flavorText": "Lança lama no inimigo e reduz a VELOCIDADE.",
+    "effectText": "Tem a chance de diminuir a velocidade do alvo em um estágio."
+  },
+  "poison-tail": {
+    "flavorText": "Tem uma alta taxa de acerto crítico. Também pode envenenar.",
+    "effectText": "Tem maior chance de acerto crítico e chance de envenenar o alvo."
+  },
+  "covet": {
+    "flavorText": "Implora fofamente para obter um item que está em poder do inimigo.",
+    "effectText": "Pega o item do alvo."
+  },
+  "volt-tackle": {
+    "flavorText": "Um ataque com risco de vida que fere levemente o usuário.",
+    "effectText": "O usuário sofre 1/3 do dano infligido no recuo. Tem chance de paralisar o alvo."
+  },
+  "magical-leaf": {
+    "flavorText": "Ataca com uma folha estranha que não pode ser evitada.",
+    "effectText": "Nunca erra."
+  },
+  "water-sport": {
+    "flavorText": "O usuário fica encharcado para aumentar a resistência ao fogo.",
+    "effectText": "Reduz pela metade todos os danos do tipo Fogo."
+  },
+  "calm-mind": {
+    "flavorText": "Aumenta Ataque Especial e Defesa Especial focando a mente.",
+    "effectText": "Aumenta o Ataque Especial e a Defesa Especial do usuário em um estágio."
+  },
+  "leaf-blade": {
+    "flavorText": "Cortes com folha afiada. Alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "dragon-dance": {
+    "flavorText": "Uma dança mística que aumenta o ATAQUE e a VELOCIDADE.",
+    "effectText": "Aumenta o ataque e a velocidade do usuário em um estágio."
+  },
+  "rock-blast": {
+    "flavorText": "Lança pedras no inimigo 2 a 5 vezes seguidas.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "shock-wave": {
+    "flavorText": "Um ataque elétrico rápido e inevitável.",
+    "effectText": "Nunca erra."
+  },
+  "water-pulse": {
+    "flavorText": "Ataca com ondas ultrassônicas. Pode confundir o inimigo",
+    "effectText": "Tem a chance de confundir o alvo."
+  },
+  "doom-desire": {
+    "flavorText": "Invoca forte luz solar para atacar 2 turnos depois.",
+    "effectText": "Atinge o alvo dois turnos depois."
+  },
+  "psycho-boost": {
+    "flavorText": "Permite um ataque com força total, mas reduz drasticamente o Ataque Especial.",
+    "effectText": "Reduz o Ataque Especial do usuário em dois estágios após causar dano."
+  },
+  "roost": {
+    "flavorText": "O usuário pousa e descansa seu corpo. Ele restaura o HP do usuário em até metade do seu HP máximo.",
+    "effectText": "Cura o usuário pela metade do seu HP máximo."
+  },
+  "gravity": {
+    "flavorText": "A gravidade é intensificada por cinco turnos, tornando os movimentos que envolvem voar inutilizáveis e negando a levitação.",
+    "effectText": "Desativa movimentos e imunidades que envolvem voar ou levitar por cinco turnos."
+  },
+  "miracle-eye": {
+    "flavorText": "Permite ao usuário acertar um tipo Fantasma com qualquer tipo de movimento. Também permite ao usuário atingir um inimigo evasivo.",
+    "effectText": "Força o alvo a não ter evasão e permite que ele seja atingido por movimentos Psíquicos mesmo que seja das Trevas."
+  },
+  "wake-up-slap": {
+    "flavorText": "Este ataque inflige grandes danos a um inimigo adormecido. No entanto, também acorda o inimigo.",
+    "effectText": "Se o alvo estiver dormindo, tem o dobro do poder e o acorda."
+  },
+  "hammer-arm": {
+    "flavorText": "O usuário balança e bate com seu punho forte e pesado. No entanto, diminui a velocidade do usuário.",
+    "effectText": "Reduz a velocidade do usuário em um estágio."
+  },
+  "gyro-ball": {
+    "flavorText": "O usuário ataca o inimigo com um giro em alta velocidade. Quanto mais lento for o usuário, maior será o dano.",
+    "effectText": "A potência aumenta quando o usuário tem velocidade menor, até um máximo de 150."
+  },
+  "healing-wish": {
+    "flavorText": "O usuário desmaia. Em troca, o Pokémon que tomar o seu lugar terá seu HP restaurado e seu status curado.",
+    "effectText": "O usuário desmaia. Seu substituto tem seu HP totalmente restaurado e qualquer efeito de status importante removido."
+  },
+  "brine": {
+    "flavorText": "Se o HP do alvo cair para cerca de metade, este ataque atingirá o dobro da potência.",
+    "effectText": "Tem o dobro do poder contra Pokémon que tenham menos da metade do HP máximo restante."
+  },
+  "natural-gift": {
+    "flavorText": "O usuário obtém poder para atacar usando sua fruta. A fruta determina seu tipo e poder.",
+    "effectText": "A potência e o tipo dependem da baga mantida."
+  },
+  "feint": {
+    "flavorText": "Um ataque que atinge um inimigo usando Proteger ou Detectar. Também elimina os efeitos desses movimentos.",
+    "effectText": "Acessos por meio de Proteger e Detectar."
+  },
+  "pluck": {
+    "flavorText": "O usuário bica o inimigo. Se o inimigo estiver segurando uma fruta, o usuário a arranca e ganha seu efeito.",
+    "effectText": "Se o alvo tiver uma baga, causa dano duplo e usa a baga."
+  },
+  "tailwind": {
+    "flavorText": "O usuário cria um redemoinho turbulento que aumenta a velocidade de todos os Pokémon do grupo por três turnos.",
+    "effectText": "Por três turnos, os Pokémon aliados dobraram a velocidade."
+  },
+  "acupressure": {
+    "flavorText": "O usuário aplica pressão nos pontos de estresse, aumentando drasticamente uma de suas estatísticas.",
+    "effectText": "Aumenta aleatoriamente as estatísticas de um Pokémon amigável em dois estágios."
+  },
+  "metal-burst": {
+    "flavorText": "O usuário retalia contra o último inimigo que lhe infligiu dano com um poder muito maior.",
+    "effectText": "Contra-ataca o último Pokémon para atingir o usuário neste turno com 1,5x o dano."
+  },
+  "u-turn": {
+    "flavorText": "Depois de fazer seu ataque, o usuário volta correndo para trocar de lugar com um Pokémon do grupo que o espera.",
+    "effectText": "O usuário deve sair após atacar."
+  },
+  "close-combat": {
+    "flavorText": "O usuário luta contra o inimigo de perto sem se proteger. Também corta a Defesa e Defesa Especial do usuário.",
+    "effectText": "Reduz a Defesa e a Defesa Especial do usuário em um estágio após causar dano."
+  },
+  "payback": {
+    "flavorText": "Se o usuário puder usar este ataque após o ataque do inimigo, seu poder será duplicado.",
+    "effectText": "O poder é duplicado se o alvo já tiver se movido neste turno."
+  },
+  "assurance": {
+    "flavorText": "Se o inimigo já tiver sofrido algum dano no mesmo turno, o poder deste ataque é duplicado.",
+    "effectText": "O poder é duplicado se o alvo já tiver recebido dano neste turno."
+  },
+  "embargo": {
+    "flavorText": "Impede que o inimigo use seu item retido. Seu Treinador também está impedido de usar itens nele.",
+    "effectText": "O alvo não pode usar itens retidos."
+  },
+  "fling": {
+    "flavorText": "O usuário arremessa seu item no inimigo para atacar. Seu poder e efeitos dependem do item.",
+    "effectText": "Lança o item segurado no alvo; a potência depende do item."
+  },
+  "psycho-shift": {
+    "flavorText": "Usando seu poder psíquico de sugestão, o usuário transfere seus problemas de status para o alvo.",
+    "effectText": "Transfere o principal efeito de status do usuário para o alvo."
+  },
+  "trump-card": {
+    "flavorText": "Quanto menos PP esse movimento tiver, maior será seu poder.",
+    "effectText": "O poder aumenta quando este movimento tem menos PP, até um máximo de 200."
+  },
+  "heal-block": {
+    "flavorText": "O usuário evita que o inimigo use qualquer movimento de recuperação de HP por cinco turnos.",
+    "effectText": "Impede que o alvo restaure seu HP por cinco turnos."
+  },
+  "wring-out": {
+    "flavorText": "O usuário torce poderosamente o inimigo. Quanto mais HP o inimigo tiver, maior será o poder deste ataque.",
+    "effectText": "O poder aumenta contra alvos com mais HP restante, até um máximo de 121 de poder."
+  },
+  "power-trick": {
+    "flavorText": "O usuário emprega seu poder psíquico para trocar seu ataque por sua estatística de defesa.",
+    "effectText": "O usuário troca Ataque e Defesa."
+  },
+  "gastro-acid": {
+    "flavorText": "O usuário vomita seus ácidos estomacais no inimigo. O fluido elimina o efeito da habilidade do inimigo.",
+    "effectText": "Anula a habilidade do alvo até que ele saia da batalha."
+  },
+  "lucky-chant": {
+    "flavorText": "O usuário entoa um encantamento em direção ao céu, evitando que o inimigo acerte ataques críticos.",
+    "effectText": "Impede que o alvo obtenha acertos críticos por cinco turnos."
+  },
+  "me-first": {
+    "flavorText": "O usuário tenta ultrapassar o inimigo para roubar e usar o movimento pretendido pelo inimigo com maior poder.",
+    "effectText": "Usa o movimento do alvo contra ele antes de atacar, com poder aumentado pela metade."
+  },
+  "copycat": {
+    "flavorText": "O usuário imita o movimento usado imediatamente antes dele. O movimento falha se nenhum outro movimento tiver sido usado ainda.",
+    "effectText": "Usa o último movimento usado pelo alvo."
+  },
+  "power-swap": {
+    "flavorText": "O usuário emprega seu poder psíquico para alterar seu Ataque e Ataque Especial com o inimigo.",
+    "effectText": "O usuário troca as alterações de Ataque e Ataque Especial com o alvo."
+  },
+  "guard-swap": {
+    "flavorText": "O usuário emprega seu poder psíquico para mudar as alterações em sua Defesa e Defesa Especial com o inimigo.",
+    "effectText": "O usuário troca as alterações de Defesa e Defesa Especial com o alvo."
+  },
+  "punishment": {
+    "flavorText": "O poder deste ataque aumenta quanto mais o inimigo aumenta com as mudanças de estatísticas.",
+    "effectText": "O poder aumenta contra alvos com estatísticas mais elevadas, até um máximo de 200."
+  },
+  "last-resort": {
+    "flavorText": "Este movimento só pode ser usado depois que o usuário tiver usado todos os outros movimentos que conhece na batalha.",
+    "effectText": "Só pode ser usado depois que todos os outros movimentos do usuário tiverem sido usados."
+  },
+  "worry-seed": {
+    "flavorText": "Uma semente que causa preocupação é plantada no inimigo. Impede o sono, tornando sua capacidade Insônia.",
+    "effectText": "Muda a habilidade do alvo para Insônia."
+  },
+  "sucker-punch": {
+    "flavorText": "Este movimento permite ao usuário atacar primeiro. No entanto, ele falha se o inimigo não estiver preparando um ataque.",
+    "effectText": "Só funciona se o alvo estiver prestes a usar um movimento prejudicial."
+  },
+  "toxic-spikes": {
+    "flavorText": "Espalha espinhos venenosos que envenenam adversários ao entrarem em campo.",
+    "effectText": "Espalha espinhos venenosos que envenenam Pokémon adversários ao entrarem em campo."
+  },
+  "heart-swap": {
+    "flavorText": "O usuário emprega seu poder psíquico para trocar mudanças de estatísticas com o inimigo.",
+    "effectText": "Mudanças nas estatísticas de troca de usuário e destino."
+  },
+  "aqua-ring": {
+    "flavorText": "O usuário se envolve em um véu feito de água. Ele recupera algum HP a cada turno.",
+    "effectText": "Restaura 1/16 do HP máximo do usuário a cada turno."
+  },
+  "magnet-rise": {
+    "flavorText": "O usuário levita usando magnetismo gerado eletricamente por cinco voltas.",
+    "effectText": "O usuário fica imune a movimentos e efeitos terrestres por cinco turnos."
+  },
+  "flare-blitz": {
+    "flavorText": "O usuário se cobre de fogo e ataca o inimigo. O usuário também sofre sérios danos.",
+    "effectText": "O usuário sofre 1/3 do dano infligido no recuo. Tem chance de queimar o alvo."
+  },
+  "force-palm": {
+    "flavorText": "O inimigo é atacado com uma onda de choque. Também pode deixar o alvo paralisado.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "aura-sphere": {
+    "flavorText": "O usuário libera uma explosão de poder da aura das profundezas de seu corpo. Este movimento certamente acertará.",
+    "effectText": "Nunca erra."
+  },
+  "rock-polish": {
+    "flavorText": "O usuário lustra seu corpo para reduzir o arrasto. Pode aumentar drasticamente a estatística de velocidade.",
+    "effectText": "Aumenta a velocidade do usuário em dois estágios."
+  },
+  "poison-jab": {
+    "flavorText": "O inimigo é esfaqueado com um tentáculo ou braço embebido em veneno. Também pode envenenar o inimigo.",
+    "effectText": "Tem chance de envenenar o alvo."
+  },
+  "dark-pulse": {
+    "flavorText": "O usuário libera uma aura horrível imbuída de pensamentos sombrios. Também pode fazer o alvo recuar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "night-slash": {
+    "flavorText": "O usuário ataca o inimigo no instante em que surge uma oportunidade. Tem uma alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "aqua-tail": {
+    "flavorText": "O usuário ataca balançando a cauda como se fosse uma onda violenta em uma tempestade violenta.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "seed-bomb": {
+    "flavorText": "O usuário lança uma saraivada de sementes de casca dura no inimigo vindo de cima.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "air-slash": {
+    "flavorText": "O usuário ataca com uma lâmina de ar que corta até o céu. Também pode fazer o alvo recuar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "x-scissor": {
+    "flavorText": "O usuário ataca o inimigo cruzando suas foices ou garras como se fossem uma tesoura.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "bug-buzz": {
+    "flavorText": "O usuário vibra suas asas para gerar uma onda sonora prejudicial. Também pode diminuir o Sp do inimigo. Estatística definida.",
+    "effectText": "Tem chance de diminuir a Defesa Especial do alvo em um estágio."
+  },
+  "dragon-pulse": {
+    "flavorText": "O inimigo é atacado com uma onda de choque gerada pela boca aberta do usuário.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "dragon-rush": {
+    "flavorText": "O usuário ataca o inimigo enquanto exibe uma ameaça esmagadora. Também pode fazer o alvo recuar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "power-gem": {
+    "flavorText": "O usuário ataca com um raio de luz que brilha como se fosse feito de pedras preciosas.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "drain-punch": {
+    "flavorText": "Um soco que drena energia. O HP do usuário é restaurado pela metade do dano sofrido pelo alvo.",
+    "effectText": "Drena metade do dano infligido para curar o usuário."
+  },
+  "vacuum-wave": {
+    "flavorText": "O usuário gira os punhos para enviar uma onda de puro vácuo ao inimigo. Esse movimento sempre vem primeiro.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "focus-blast": {
+    "flavorText": "O usuário aumenta seu foco mental e libera seu poder. Também pode diminuir o Sp do alvo. Definitivamente.",
+    "effectText": "Tem chance de diminuir a Defesa Especial do alvo em um estágio."
+  },
+  "energy-ball": {
+    "flavorText": "O usuário extrai poder da natureza e dispara contra o inimigo. Também pode diminuir o Sp do alvo. Definitivamente.",
+    "effectText": "Tem chance de diminuir a Defesa Especial do alvo em um estágio."
+  },
+  "brave-bird": {
+    "flavorText": "O usuário fecha as asas e ataca de baixa altitude. O usuário também sofre sérios danos.",
+    "effectText": "O usuário recebe 1/3 do dano infligido no recuo."
+  },
+  "earth-power": {
+    "flavorText": "O usuário faz o solo sob o inimigo explodir de poder. Também pode diminuir o Sp do alvo. Definitivamente.",
+    "effectText": "Tem chance de diminuir a Defesa Especial do alvo em um estágio."
+  },
+  "switcheroo": {
+    "flavorText": "O usuário troca itens mantidos com o inimigo mais rápido do que o olho pode acompanhar.",
+    "effectText": "Itens de troca de usuário e destino."
+  },
+  "giga-impact": {
+    "flavorText": "O usuário ataca o inimigo usando todo o seu poder. O usuário deve descansar no próximo turno.",
+    "effectText": "O usuário renuncia ao próximo turno para recarregar."
+  },
+  "nasty-plot": {
+    "flavorText": "O usuário estimula seu cérebro tendo pensamentos ruins. Aumenta drasticamente o Ataque Especial do usuário.",
+    "effectText": "Aumenta o Ataque Especial do usuário em dois estágios."
+  },
+  "bullet-punch": {
+    "flavorText": "O usuário ataca com um soco forte tão rápido quanto uma bala. Esse movimento sempre vem primeiro.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "avalanche": {
+    "flavorText": "Um movimento de ataque que inflige o dobro do dano se o usuário for ferido pelo inimigo no mesmo turno.",
+    "effectText": "Inflige dano duplo se o usuário sofrer dano antes de atacar neste turno."
+  },
+  "ice-shard": {
+    "flavorText": "O flash do usuário congela pedaços de gelo e os arremessa. Esse movimento sempre vem primeiro.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "shadow-claw": {
+    "flavorText": "O usuário corta com uma garra afiada feita de sombras. Tem uma alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "thunder-fang": {
+    "flavorText": "O usuário morde com presas eletrificadas. Também pode fazer o inimigo recuar ou ficar paralisado.",
+    "effectText": "Tem a chance de paralisar o alvo e de fazer o alvo recuar."
+  },
+  "ice-fang": {
+    "flavorText": "O usuário morde com presas infundidas a frio. Também pode fazer o inimigo recuar ou congelar.",
+    "effectText": "Tem a chance de congelar o alvo e de fazê-lo recuar."
+  },
+  "fire-fang": {
+    "flavorText": "O usuário morde com presas envoltas em chamas. Também pode fazer o inimigo recuar ou sofrer uma queimadura.",
+    "effectText": "Tem chance de queimar o alvo e de fazer o alvo recuar."
+  },
+  "shadow-sneak": {
+    "flavorText": "O usuário estende sua sombra e ataca o inimigo por trás. Esse movimento sempre vem primeiro.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "mud-bomb": {
+    "flavorText": "O usuário lança uma bola de lama compacta para atacar. Também pode diminuir a precisão do alvo.",
+    "effectText": "Tem a chance de diminuir a precisão do alvo em um estágio."
+  },
+  "psycho-cut": {
+    "flavorText": "O usuário ataca o inimigo com lâminas formadas por poder psíquico. Tem uma alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "zen-headbutt": {
+    "flavorText": "O usuário concentra sua força de vontade na cabeça e ataca o inimigo. Também pode fazer o alvo recuar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "mirror-shot": {
+    "flavorText": "O usuário libera um flash de energia de seu corpo polido. Também pode diminuir a precisão do alvo.",
+    "effectText": "Tem a chance de diminuir a precisão do alvo em um estágio."
+  },
+  "flash-cannon": {
+    "flavorText": "O usuário reúne toda a sua energia luminosa e a libera de uma só vez. Também pode diminuir o Sp do inimigo. Estatística definida.",
+    "effectText": "Tem chance de diminuir a Defesa Especial do alvo em um estágio."
+  },
+  "rock-climb": {
+    "flavorText": "Um ataque de investida que também pode deixar o inimigo confuso. Também pode ser usado para escalar paredes rochosas.",
+    "effectText": "Tem a chance de confundir o alvo."
+  },
+  "defog": {
+    "flavorText": "Os obstáculos são movidos, reduzindo a estatística de evasão do inimigo. Também pode ser usado para limpar neblina profunda, etc.",
+    "effectText": "Reduz a evasão do alvo em um estágio. Remove efeitos de campo do campo inimigo."
+  },
+  "trick-room": {
+    "flavorText": "O usuário cria uma área bizarra na qual Pokémon mais lentos se movem primeiro por cinco turnos.",
+    "effectText": "Durante cinco turnos, os Pokémon mais lentos agirão antes dos Pokémon mais rápidos."
+  },
+  "draco-meteor": {
+    "flavorText": "Os cometas são convocados do céu. O recuo do ataque reduz drasticamente o Ataque Especial do usuário.",
+    "effectText": "Reduz o Ataque Especial do usuário em dois estágios após causar dano."
+  },
+  "discharge": {
+    "flavorText": "Um raio de eletricidade é liberado para atingir todos os Pokémon em batalha. Também pode causar paralisia.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "lava-plume": {
+    "flavorText": "Um inferno de chamas escarlates envolve todos os Pokémon em batalha. Também pode causar queimaduras.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "leaf-storm": {
+    "flavorText": "Uma tempestade de folhas afiadas é desencadeada. O recuo do ataque reduz drasticamente o Ataque Especial do usuário.",
+    "effectText": "Reduz o Ataque Especial do usuário em dois estágios após causar dano."
+  },
+  "power-whip": {
+    "flavorText": "O usuário gira violentamente suas vinhas ou tentáculos para atacar duramente o inimigo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "rock-wrecker": {
+    "flavorText": "O usuário lança uma pedra enorme no inimigo para atacar. No entanto, ele deve descansar no próximo turno.",
+    "effectText": "O usuário renuncia ao próximo turno para recarregar."
+  },
+  "cross-poison": {
+    "flavorText": "Um ataque cortante que também pode deixar o alvo envenenado. Tem uma alta taxa de acerto crítico.",
+    "effectText": "Tem maior chance de acerto crítico e chance de envenenar o alvo."
+  },
+  "gunk-shot": {
+    "flavorText": "O usuário atira lixo imundo no inimigo para atacar. Também pode envenenar o alvo.",
+    "effectText": "Tem chance de envenenar o alvo."
+  },
+  "iron-head": {
+    "flavorText": "O inimigo atinge o alvo com sua cabeça dura como aço. Também pode fazer o alvo recuar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "magnet-bomb": {
+    "flavorText": "O usuário lança uma bomba de aço que atinge o alvo. Este ataque não falhará.",
+    "effectText": "Nunca erra."
+  },
+  "stone-edge": {
+    "flavorText": "O usuário apunhala o inimigo com uma pedra afiada. Tem uma alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "captivate": {
+    "flavorText": "Se for do sexo oposto do usuário, o inimigo é levado a diminuir drasticamente seu Ataque Especial.",
+    "effectText": "Reduz o Ataque Especial do alvo em dois estágios se for do sexo oposto."
+  },
+  "stealth-rock": {
+    "flavorText": "Espalha pedras flutuantes que ferem adversários ao entrarem em campo.",
+    "effectText": "Fere Pokémon adversários quando eles entram em campo."
+  },
+  "grass-knot": {
+    "flavorText": "O usuário prende o inimigo com grama e o derruba. Quanto mais pesado o inimigo, maior será o dano.",
+    "effectText": "Inflige mais dano a alvos mais pesados, com no máximo 120 de potência."
+  },
+  "chatter": {
+    "flavorText": "O usuário ataca usando uma onda sonora baseada nas palavras que aprendeu. Também pode confundir o inimigo.",
+    "effectText": "Tem maior chance de confundir o alvo quando o som gravado é mais alto."
+  },
+  "judgment": {
+    "flavorText": "O usuário libera inúmeros tiros de luz. Seu tipo varia de acordo com o tipo de Placa que o usuário está segurando.",
+    "effectText": "Se o usuário estiver segurando uma placa ou unidade apropriada, o dano causado será igual."
+  },
+  "bug-bite": {
+    "flavorText": "O usuário morde o inimigo. Se o inimigo estiver segurando uma fruta, o usuário a come e ganha seu efeito.",
+    "effectText": "Se o alvo tiver uma baga, causa dano duplo e usa a baga."
+  },
+  "charge-beam": {
+    "flavorText": "O usuário dispara um pacote concentrado de eletricidade. Também pode aumentar o Ataque Especial do usuário.",
+    "effectText": "Tem a chance de aumentar o Ataque Especial do usuário em um estágio."
+  },
+  "wood-hammer": {
+    "flavorText": "O usuário bate seu corpo robusto no inimigo para atacar. O usuário também sofre sérios danos.",
+    "effectText": "O usuário recebe 1/3 do dano infligido no recuo."
+  },
+  "aqua-jet": {
+    "flavorText": "O usuário ataca o inimigo a uma velocidade que o torna quase invisível. É certo que atacará primeiro.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "attack-order": {
+    "flavorText": "O usuário convoca seus subordinados para atacar o inimigo. Tem uma alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "defend-order": {
+    "flavorText": "O usuário convoca seus subordinados para criarem um escudo vivo, aumentando sua Defesa e Defesa Especial.",
+    "effectText": "Aumenta a Defesa e a Defesa Especial do usuário em um estágio."
+  },
+  "heal-order": {
+    "flavorText": "O usuário chama seus subordinados para curá-lo. O usuário recupera até metade do seu HP máximo.",
+    "effectText": "Cura o usuário pela metade do seu HP máximo."
+  },
+  "head-smash": {
+    "flavorText": "O usuário desfere uma cabeçada com risco de vida com força total. O usuário também sofre danos terríveis.",
+    "effectText": "O usuário recebe metade do dano infligido no recuo."
+  },
+  "double-hit": {
+    "flavorText": "O usuário acerta o inimigo com a cauda, ​​etc. O alvo é atingido duas vezes seguidas.",
+    "effectText": "Atinge duas vezes em um turno."
+  },
+  "roar-of-time": {
+    "flavorText": "O usuário ataca o inimigo com um poder que distorce o tempo. O usuário deve descansar no próximo turno.",
+    "effectText": "O usuário renuncia ao próximo turno para recarregar."
+  },
+  "spacial-rend": {
+    "flavorText": "O usuário rasga o inimigo junto com o espaço ao seu redor. Este movimento tem uma alta taxa de acerto crítico.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "lunar-dance": {
+    "flavorText": "O usuário desmaia. Em troca, o Pokémon que tomar o seu lugar terá seu status e HP totalmente restaurados.",
+    "effectText": "O usuário desmaia e seu substituto fica totalmente curado."
+  },
+  "crush-grip": {
+    "flavorText": "O inimigo é esmagado com grande força. O ataque é mais poderoso quanto mais HP sobrar para o inimigo.",
+    "effectText": "O poder aumenta contra alvos com mais HP restante, até um máximo de 121 de poder."
+  },
+  "magma-storm": {
+    "flavorText": "O inimigo fica preso em um turbilhão de fogo que dura de dois a cinco turnos.",
+    "effectText": "Previene a fuga do alvo e causa danos durante 2-5 voltas."
+  },
+  "dark-void": {
+    "flavorText": "O inimigo é arrastado para um mundo de escuridão total que o adormece.",
+    "effectText": "Coloca o alvo para dormir."
+  },
+  "seed-flare": {
+    "flavorText": "O usuário gera uma onda de choque dentro de seu corpo. Também pode diminuir o Sp do alvo. Definitivamente.",
+    "effectText": "Tem chance de diminuir a Defesa Especial do alvo em dois estágios."
+  },
+  "ominous-wind": {
+    "flavorText": "O usuário cria uma rajada de vento repulsiva. Também pode aumentar todas as estatísticas do usuário de uma só vez.",
+    "effectText": "Tem a chance de aumentar todas as estatísticas do usuário em um estágio."
+  },
+  "shadow-force": {
+    "flavorText": "O usuário desaparece e ataca o inimigo no segundo turno. Atinge mesmo que o inimigo tenha usado Proteger.",
+    "effectText": "O usuário desaparece, esquivando-se de todos os ataques, e acerta no próximo turno. Acessos por meio de Proteger e Detectar."
+  },
+  "hone-claws": {
+    "flavorText": "O usuário afia suas garras para aumentar suas estatísticas e precisão de ataque.",
+    "effectText": "Aumenta o ataque e a precisão do usuário em um estágio."
+  },
+  "wide-guard": {
+    "flavorText": "O usuário e seus aliados ficam protegidos de ataques abrangentes por um turno. Se usado em sucessão, a chance de falhar aumenta.",
+    "effectText": "Impede que qualquer movimento de múltiplos alvos atinja Pokémon aliados neste turno."
+  },
+  "guard-split": {
+    "flavorText": "O usuário emprega seu poder psíquico para calcular a média de sua Defesa e Defesa Especial com as de seu alvo.",
+    "effectText": "Média de Defesa e Defesa Especial com o alvo."
+  },
+  "power-split": {
+    "flavorText": "O usuário emprega seu poder psíquico para calcular a média de seu Ataque e Ataque Especial com as do alvo.",
+    "effectText": "Médias de Ataque e Ataque Especial com o alvo."
+  },
+  "wonder-room": {
+    "flavorText": "O usuário cria uma área bizarra na qual a Defesa e o Sp do Pokémon. As estatísticas de defesa são trocadas por cinco turnos.",
+    "effectText": "Todas as defesas e defesas especiais dos Pokémon são trocadas por 5 turnos."
+  },
+  "psyshock": {
+    "flavorText": "O usuário materializa uma estranha onda psíquica para atacar o alvo. Este ataque causa dano físico.",
+    "effectText": "Inflige dano com base na Defesa do alvo, não na Defesa Especial."
+  },
+  "venoshock": {
+    "flavorText": "O usuário encharca o alvo com um líquido venenoso especial. Seu poder é duplicado se o alvo estiver envenenado.",
+    "effectText": "Causa dano duplo se o alvo estiver envenenado."
+  },
+  "autotomize": {
+    "flavorText": "O usuário perde parte de seu corpo para ficar mais leve e aumentar drasticamente seu status de velocidade.",
+    "effectText": "Aumenta a velocidade do usuário em dois estágios e reduz pela metade o peso do usuário."
+  },
+  "rage-powder": {
+    "flavorText": "O usuário espalha uma nuvem de pó irritante para chamar a atenção. Os oponentes visam apenas o usuário.",
+    "effectText": "Redireciona os efeitos de alvo único do alvo para o usuário neste turno."
+  },
+  "telekinesis": {
+    "flavorText": "O usuário faz o alvo flutuar com seu poder psíquico. O alvo é mais fácil de acertar por três turnos.",
+    "effectText": "Os movimentos têm 100% de precisão contra o alvo por três turnos."
+  },
+  "magic-room": {
+    "flavorText": "O usuário cria uma área bizarra na qual os itens retidos pelo Pokémon perdem seus efeitos por cinco turnos.",
+    "effectText": "Nega itens retidos por cinco turnos."
+  },
+  "smack-down": {
+    "flavorText": "O usuário lança uma pedra ou projétil para atacar um oponente. Um Pokémon voador cairá no chão ao ser atingido.",
+    "effectText": "Remove qualquer imunidade a danos de solo."
+  },
+  "storm-throw": {
+    "flavorText": "O usuário atinge o alvo com um golpe violento. Este ataque sempre resulta em um acerto crítico.",
+    "effectText": "Sempre consegue um acerto crítico."
+  },
+  "flame-burst": {
+    "flavorText": "O usuário ataca o alvo com uma chama explosiva. A explosão de chamas também causa danos aos Pokémon próximos ao alvo.",
+    "effectText": "Causa dano inicial aos Pokémon próximos ao alvo."
+  },
+  "sludge-wave": {
+    "flavorText": "Ele inunda a área ao redor do usuário com uma onda gigante de lama. Também pode envenenar os atingidos.",
+    "effectText": "Tem chance de envenenar o alvo."
+  },
+  "quiver-dance": {
+    "flavorText": "O usuário executa levemente uma dança linda e mística. Aumenta o Ataque Especial do usuário, Defesa Especial e velocidade.",
+    "effectText": "Aumenta o Ataque Especial, a Defesa Especial e a Velocidade do usuário em um estágio cada."
+  },
+  "heavy-slam": {
+    "flavorText": "O usuário bate no alvo com seu corpo pesado. Quanto mais o usuário supera o alvo, maior será o dano.",
+    "effectText": "A potência é maior quando o usuário pesa mais que o alvo, até um máximo de 120."
+  },
+  "synchronoise": {
+    "flavorText": "Usando uma estranha onda de choque, o usuário causa dano a qualquer Pokémon do mesmo tipo na área ao seu redor.",
+    "effectText": "Atinge qualquer Pokémon que compartilhe um tipo com o usuário."
+  },
+  "electro-ball": {
+    "flavorText": "O usuário lança um orbe elétrico no alvo. Quanto mais rápido o usuário for que o alvo, maior será o dano.",
+    "effectText": "O poder é maior quando o usuário tem velocidade maior que o alvo, até um máximo de 150."
+  },
+  "soak": {
+    "flavorText": "O usuário atira uma torrente de água no alvo e muda o tipo do alvo para Água.",
+    "effectText": "Muda o tipo do alvo para Água."
+  },
+  "flame-charge": {
+    "flavorText": "O usuário se cobre com chamas e ataques. Acumulando mais poder, aumenta a estatística de velocidade do usuário.",
+    "effectText": "Inflige danos regulares. Aumenta a velocidade do usuário em um estágio."
+  },
+  "coil": {
+    "flavorText": "O usuário se enrola e se concentra. Isso aumenta suas estatísticas de ataque e defesa, bem como sua precisão.",
+    "effectText": "Aumenta o ataque, a defesa e a precisão do usuário em um estágio cada."
+  },
+  "low-sweep": {
+    "flavorText": "O usuário ataca as pernas do alvo rapidamente, reduzindo a estatística de velocidade do alvo.",
+    "effectText": "Reduz a velocidade do alvo em um estágio."
+  },
+  "acid-spray": {
+    "flavorText": "O usuário cospe um fluido que funciona para derreter o alvo. Isso reduz drasticamente o Sp do alvo. Estatística definida.",
+    "effectText": "Reduz a Defesa Especial do alvo em dois estágios."
+  },
+  "foul-play": {
+    "flavorText": "O usuário vira o poder do alvo contra ele. Quanto maior a estatística de Ataque do alvo, maior será o dano.",
+    "effectText": "Calcula o dano com as estatísticas de ataque do alvo."
+  },
+  "simple-beam": {
+    "flavorText": "A misteriosa onda psíquica do usuário altera a Habilidade do alvo para Simples.",
+    "effectText": "Muda a habilidade do alvo para Simples."
+  },
+  "entrainment": {
+    "flavorText": "O usuário dança com um ritmo estranho que obriga o alvo a imitá-lo, tornando a Habilidade do alvo igual à do usuário.",
+    "effectText": "Copia a habilidade do usuário no alvo."
+  },
+  "after-you": {
+    "flavorText": "O usuário ajuda o alvo e faz com que ele use seu movimento logo após o usuário.",
+    "effectText": "Faz o alvo agir no próximo turno."
+  },
+  "round": {
+    "flavorText": "O usuário ataca o alvo com uma música. Outros podem participar da Rodada e fazer com que o ataque cause danos maiores.",
+    "effectText": "Tem o dobro do poder se for usado mais de uma vez por turno."
+  },
+  "echoed-voice": {
+    "flavorText": "O usuário ataca o alvo com uma voz ecoante. Se este movimento for usado a cada turno, causará danos maiores.",
+    "effectText": "O poder aumenta em 100% para cada uso consecutivo por qualquer Pokémon aliado, até um máximo de 200."
+  },
+  "chip-away": {
+    "flavorText": "Procurando por uma abertura, o usuário ataca continuamente. As mudanças nas estatísticas do alvo não afetam o dano deste ataque.",
+    "effectText": "Ignora os modificadores de estatísticas do alvo."
+  },
+  "clear-smog": {
+    "flavorText": "O usuário ataca jogando um pedaço de lama especial. Todas as alterações de status voltam ao normal.",
+    "effectText": "Remove todos os modificadores de estatísticas do alvo."
+  },
+  "stored-power": {
+    "flavorText": "O usuário ataca o alvo com energia armazenada. Quanto mais as estatísticas do usuário aumentam, maior será o dano.",
+    "effectText": "O poder é maior quanto mais as estatísticas do usuário forem aumentadas, até um máximo de 31×."
+  },
+  "quick-guard": {
+    "flavorText": "O usuário protege a si mesmo e a seus aliados de movimentos prioritários. Se usado em sucessão, a chance de falhar aumenta.",
+    "effectText": "Impede que qualquer movimento prioritário atinja Pokémon aliados neste turno."
+  },
+  "ally-switch": {
+    "flavorText": "O usuário se teletransporta usando um poder estranho e troca de lugar com um de seus aliados.",
+    "effectText": "O usuário troca de lugar com o Pokémon amigável à sua frente."
+  },
+  "scald": {
+    "flavorText": "O usuário atira água fervente em seu alvo. Também pode deixar o alvo queimado.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "shell-smash": {
+    "flavorText": "O usuário quebra sua casca, diminuindo sua Defesa e Defesa Especial, mas aumentando drasticamente o Ataque, Ataque Especial e Velocidade.",
+    "effectText": "Aumenta o Ataque, o Ataque Especial e a Velocidade do usuário em dois estágios. Reduza a Defesa e a Defesa Especial do usuário em um estágio."
+  },
+  "heal-pulse": {
+    "flavorText": "O usuário emite um pulso de cura que restaura o HP do alvo em até metade do seu HP máximo.",
+    "effectText": "Cura o alvo em metade do seu HP máximo."
+  },
+  "hex": {
+    "flavorText": "Este ataque implacável causa danos massivos a um alvo afetado por problemas de status.",
+    "effectText": "Tem poder duplo se o alvo tiver uma doença grave de status."
+  },
+  "sky-drop": {
+    "flavorText": "O usuário leva o alvo para o céu e o solta no próximo turno. O alvo não pode atacar enquanto estiver no céu.",
+    "effectText": "Carrega o alvo para o alto, esquivando-se de todos os ataques contra qualquer um deles, e derruba-o no próximo turno."
+  },
+  "shift-gear": {
+    "flavorText": "O usuário gira suas engrenagens, aumentando seu Ataque e aumentando drasticamente sua Velocidade.",
+    "effectText": "Aumenta o ataque do usuário em um estágio e sua velocidade em dois estágios."
+  },
+  "circle-throw": {
+    "flavorText": "O usuário lança o alvo e arrasta outro Pokémon de seu grupo. Na natureza, a batalha termina.",
+    "effectText": "Termina batalhas selvagens. Força os treinadores a trocar de Pokémon."
+  },
+  "incinerate": {
+    "flavorText": "O usuário ataca o alvo com fogo. Se o alvo estiver segurando uma fruta, a fruta queima e fica inutilizável.",
+    "effectText": "Destrói a baga segurada pelo alvo."
+  },
+  "quash": {
+    "flavorText": "O usuário suprime o alvo e faz seu movimento durar.",
+    "effectText": "Faz o alvo agir por último neste turno."
+  },
+  "acrobatics": {
+    "flavorText": "O usuário atinge o alvo com agilidade. Se o usuário não estiver segurando um item, este ataque causará danos massivos.",
+    "effectText": "Tem poder duplo se o usuário não tiver nenhum item retido."
+  },
+  "reflect-type": {
+    "flavorText": "O usuário reflete o tipo do alvo, tornando-o do mesmo tipo do alvo.",
+    "effectText": "O usuário se torna o tipo do alvo."
+  },
+  "retaliate": {
+    "flavorText": "O usuário se vinga de um aliado desmaiado. Se um aliado desmaiou no turno anterior, o dano deste ataque aumenta.",
+    "effectText": "Tem o dobro do poder se um Pokémon amigo desmaiou no último turno."
+  },
+  "final-gambit": {
+    "flavorText": "O usuário arrisca tudo para atacar seu alvo. O usuário desmaia, mas causa dano igual ao HP do usuário.",
+    "effectText": "Inflige dano igual ao HP restante do usuário. O usuário desmaia."
+  },
+  "bestow": {
+    "flavorText": "O usuário passa seu item retido para o alvo quando o alvo não está segurando um item.",
+    "effectText": "Fornece o item retido do usuário ao alvo."
+  },
+  "inferno": {
+    "flavorText": "O usuário ataca envolvendo o alvo em um fogo intenso. Deixa o alvo com queimadura.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "water-pledge": {
+    "flavorText": "Uma coluna de água atinge o alvo. Quando combinado com o seu equivalente de fogo, o dano aumenta e um arco-íris aparece.",
+    "effectText": "Com Compromisso de Grama, reduz pela metade a velocidade do Pokémon adversário por quatro turnos."
+  },
+  "fire-pledge": {
+    "flavorText": "Uma coluna de fogo atinge o Pokémon adversário. Quando usado com seu equivalente Planta, seu dano aumenta e se transforma em um vasto mar de fogo.",
+    "effectText": "Com Compromisso de Água, dobra a chance de efeito dos movimentos de Pokémon aliados por quatro turnos."
+  },
+  "grass-pledge": {
+    "flavorText": "Uma coluna de grama atinge o Pokémon adversário. Quando usado com seu equivalente em água, seu dano aumenta e se transforma em um vasto pântano.",
+    "effectText": "Com Compromisso de Fogo, causa dano a Pokémon oponentes em 1/8 de seu HP máximo a cada turno, durante quatro turnos."
+  },
+  "volt-switch": {
+    "flavorText": "Depois de fazer seu ataque, o usuário volta correndo para trocar de lugar com um Pokémon do grupo que o espera.",
+    "effectText": "O usuário deve sair após atacar."
+  },
+  "struggle-bug": {
+    "flavorText": "Enquanto resiste, o usuário ataca o Pokémon adversário. O Sp dos alvos. A estatística de ataque é reduzida.",
+    "effectText": "Tem a chance de diminuir o Ataque Especial do alvo em um estágio."
+  },
+  "bulldoze": {
+    "flavorText": "O usuário pisa no chão e ataca tudo que estiver na área. A estatística de velocidade do Pokémon atingido é reduzida.",
+    "effectText": "Tem a chance de diminuir a velocidade do alvo em um estágio."
+  },
+  "frost-breath": {
+    "flavorText": "O usuário sopra um sopro frio no alvo. Este ataque sempre resulta em um acerto crítico.",
+    "effectText": "Sempre consegue um acerto crítico."
+  },
+  "dragon-tail": {
+    "flavorText": "O usuário derruba o alvo e arrasta outro Pokémon de seu grupo. Na natureza, a batalha termina.",
+    "effectText": "Termina batalhas selvagens. Força os treinadores a trocar de Pokémon."
+  },
+  "work-up": {
+    "flavorText": "O usuário é despertado e seu Ataque e Ataque Especial aumentam.",
+    "effectText": "Aumenta o Ataque e o Ataque Especial do usuário em um estágio cada."
+  },
+  "electroweb": {
+    "flavorText": "O usuário captura e ataca Pokémon adversários usando uma rede elétrica. Reduz a estatística de velocidade dos alvos.",
+    "effectText": "Reduz a velocidade do alvo em um estágio."
+  },
+  "wild-charge": {
+    "flavorText": "O usuário se envolve em eletricidade e atinge seu alvo. Também prejudica um pouco o usuário.",
+    "effectText": "O usuário recebe 1/4 do dano causado no recuo."
+  },
+  "drill-run": {
+    "flavorText": "O usuário colide com seu alvo enquanto gira seu corpo como uma furadeira. Acertos críticos acertam com mais facilidade.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "dual-chop": {
+    "flavorText": "O usuário ataca seu alvo acertando-o com golpes brutais. O alvo é atingido duas vezes seguidas.",
+    "effectText": "Atinge duas vezes em um turno."
+  },
+  "heart-stamp": {
+    "flavorText": "O usuário desfere um golpe violento após seu ato fofo tornar o alvo menos cauteloso. Também pode fazer o alvo recuar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "horn-leech": {
+    "flavorText": "O usuário drena a energia do alvo com seus chifres. O HP do usuário é restaurado pela metade do dano sofrido pelo alvo.",
+    "effectText": "Drena metade do dano infligido para curar o usuário."
+  },
+  "sacred-sword": {
+    "flavorText": "O usuário ataca cortando com seus longos chifres. As mudanças nas estatísticas do alvo não afetam o dano deste ataque.",
+    "effectText": "Ignora os modificadores de estatísticas do alvo."
+  },
+  "razor-shell": {
+    "flavorText": "O usuário corta seu alvo com projéteis afiados. Este ataque também pode diminuir as estatísticas de Defesa do alvo.",
+    "effectText": "Tem chance de diminuir a Defesa do alvo em um estágio."
+  },
+  "heat-crash": {
+    "flavorText": "O usuário atinge seu alvo com seu corpo coberto de chamas. Quanto mais o usuário superar o alvo, maior será o dano.",
+    "effectText": "A potência é maior quando o usuário pesa mais que o alvo, até um máximo de 120."
+  },
+  "leaf-tornado": {
+    "flavorText": "O usuário ataca seu alvo cercando-o com folhas afiadas. Este ataque também pode diminuir a precisão do alvo.",
+    "effectText": "Tem a chance de diminuir a precisão do alvo em um estágio."
+  },
+  "steamroller": {
+    "flavorText": "O usuário esmaga seus alvos rolando sobre eles com seu corpo enrolado. Este ataque pode fazer o alvo recuar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "cotton-guard": {
+    "flavorText": "O usuário se protege envolvendo seu corpo em algodão macio, aumentando drasticamente o status de Defesa do usuário.",
+    "effectText": "Aumenta a Defesa do usuário em três estágios."
+  },
+  "night-daze": {
+    "flavorText": "O usuário libera uma onda de choque negra em seu alvo. Também pode diminuir a precisão do alvo.",
+    "effectText": "Tem a chance de diminuir a precisão do alvo em um estágio."
+  },
+  "psystrike": {
+    "flavorText": "O usuário materializa uma estranha onda psíquica para atacar o alvo. Este ataque causa dano físico.",
+    "effectText": "Inflige dano com base na Defesa do alvo, não na Defesa Especial."
+  },
+  "tail-slap": {
+    "flavorText": "O usuário ataca atingindo o alvo com sua cauda dura. Atinge o alvo de duas a cinco vezes seguidas.",
+    "effectText": "Atinge 2-5 vezes em uma volta."
+  },
+  "hurricane": {
+    "flavorText": "O usuário ataca envolvendo seu oponente em um vento forte que voa para o céu. Também pode confundir o alvo.",
+    "effectText": "Tem a chance de confundir o alvo."
+  },
+  "head-charge": {
+    "flavorText": "O usuário ataca seu alvo com sua cabeça, usando seu poderoso cabelo protetor. Também prejudica um pouco o usuário.",
+    "effectText": "O usuário recebe 1/4 do dano causado no recuo."
+  },
+  "gear-grind": {
+    "flavorText": "O usuário ataca jogando duas engrenagens de aço em seu alvo.",
+    "effectText": "Atinge duas vezes em um turno."
+  },
+  "searing-shot": {
+    "flavorText": "Um inferno de chamas escarlates incendeia tudo ao redor do usuário. Pode deixar os alvos queimados.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "techno-blast": {
+    "flavorText": "O usuário dispara um feixe de luz em seu alvo. O tipo muda dependendo da unidade que o usuário possui.",
+    "effectText": "Se o usuário estiver segurando uma placa ou unidade apropriada, o dano causado será igual."
+  },
+  "relic-song": {
+    "flavorText": "O usuário canta uma canção antiga e ataca apelando ao coração de quem ouve. Também pode induzir o sono.",
+    "effectText": "Tem a chance de colocar o alvo para dormir."
+  },
+  "secret-sword": {
+    "flavorText": "O usuário corta com seu longo chifre. O estranho poder contido na buzina causa dano físico ao alvo.",
+    "effectText": "Inflige dano com base na Defesa do alvo, não na Defesa Especial."
+  },
+  "glaciate": {
+    "flavorText": "O usuário ataca soprando ar gelado em Pokémon adversários. Este ataque reduz a estatística de velocidade dos alvos.",
+    "effectText": "Reduz a velocidade do alvo em um estágio."
+  },
+  "bolt-strike": {
+    "flavorText": "O usuário carrega seu alvo, cercando-se de uma grande quantidade de eletricidade. Pode deixar o alvo paralisado.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "blue-flare": {
+    "flavorText": "O usuário ataca engolfando o alvo em uma intensa, mas bela, chama azul. Pode deixar o alvo queimado.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "fiery-dance": {
+    "flavorText": "Envolto em chamas, o usuário dança e bate as asas. Também pode aumentar o Ataque Especial do usuário.",
+    "effectText": "Tem a chance de aumentar o Ataque Especial do usuário em um estágio."
+  },
+  "freeze-shock": {
+    "flavorText": "No segundo turno, o usuário atinge o alvo com gelo carregado eletricamente. Pode deixar o alvo paralisado.",
+    "effectText": "Requer um turno para carregar antes de atacar. Tem chance de paralisar o alvo."
+  },
+  "ice-burn": {
+    "flavorText": "No segundo turno, um vento ultrafrio e gelado envolve o alvo. Isso pode deixar o alvo queimado.",
+    "effectText": "Requer um turno para carregar antes de atacar. Tem chance de queimar o alvo."
+  },
+  "snarl": {
+    "flavorText": "O usuário grita como se estivesse reclamando de alguma coisa, fazendo com que o Sp do alvo. Diminuição das estatísticas de ataque.",
+    "effectText": "Tem a chance de diminuir o Ataque Especial do alvo em um estágio."
+  },
+  "icicle-crash": {
+    "flavorText": "O usuário ataca deixando cair um pingente de gelo no alvo. Também pode fazer o alvo recuar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "v-create": {
+    "flavorText": "Com uma chama quente na testa, o usuário se atira contra o alvo. Reduz a Defesa do usuário, Defesa Especial e velocidade.",
+    "effectText": "Reduz a Defesa, Defesa Especial e Velocidade do usuário em um estágio cada."
+  },
+  "fusion-flare": {
+    "flavorText": "O usuário derruba uma chama gigante. Este ataque causa danos maiores quando influenciado por um enorme raio.",
+    "effectText": "Com Parafuso de Fusão, causa dano duplo."
+  },
+  "fusion-bolt": {
+    "flavorText": "O usuário lança um raio gigante. Este ataque causa danos maiores quando influenciado por uma chama enorme.",
+    "effectText": "Com Sinalizador de Fusão, causa dano duplo."
+  },
+  "flying-press": {
+    "flavorText": "O usuário mergulha do céu no alvo. Este movimento é do tipo Lutador e Voador simultaneamente.",
+    "effectText": "Causa dano do tipo Lutador e Voador."
+  },
+  "mat-block": {
+    "flavorText": "Usando um tapete puxado como escudo, o usuário protege a si mesmo e a seus aliados de movimentos prejudiciais. Isso não impede as mudanças de status.",
+    "effectText": "Protege todos os Pokémon aliados de movimentos prejudiciais. Só funciona no primeiro turno após o usuário ser enviado."
+  },
+  "belch": {
+    "flavorText": "O usuário solta um arroto prejudicial no alvo. O usuário deve comer uma fruta segurada para usar este movimento.",
+    "effectText": "Só pode ser usado depois que o usuário tiver comido uma fruta."
+  },
+  "rototiller": {
+    "flavorText": "Ao cultivar o solo, o usuário facilita o crescimento das plantas. Isso aumenta o Ataque e Ataque Especial de Pokémon do tipo Planta.",
+    "effectText": "Aumenta o Ataque e o Ataque Especial de todos os Pokémon Planta em batalha."
+  },
+  "sticky-web": {
+    "flavorText": "O usuário tece uma rede pegajosa ao redor do time adversário, o que diminui sua estatística de velocidade ao entrar na batalha.",
+    "effectText": "Cobre o campo adversário, diminuindo a velocidade dos oponentes em um estágio após a troca."
+  },
+  "fell-stinger": {
+    "flavorText": "Quando o usuário nocauteia um alvo com este movimento, a estatística de ataque do usuário aumenta drasticamente.",
+    "effectText": "Aumenta o ataque do usuário em dois estágios se ele nocautear o alvo."
+  },
+  "phantom-force": {
+    "flavorText": "O usuário desaparece em algum lugar e atinge o alvo no próximo turno. Este movimento acerta mesmo que o alvo se proteja.",
+    "effectText": "O usuário desaparece, esquivando-se de todos os ataques, e acerta no próximo turno. Acessos por meio de Proteger e Detectar."
+  },
+  "trick-or-treat": {
+    "flavorText": "O usuário pega o doce ou travessura alvo. Isso adiciona o tipo Fantasma ao tipo do alvo.",
+    "effectText": "Adiciona Fantasma aos tipos do alvo."
+  },
+  "noble-roar": {
+    "flavorText": "Soltando um rugido nobre, o usuário intimida o alvo e diminui seu Ataque e Ataque Especial.",
+    "effectText": "Reduz o Ataque e o Ataque Especial do alvo em um estágio."
+  },
+  "ion-deluge": {
+    "flavorText": "O usuário dispersa partículas eletricamente carregadas, o que transforma movimentos do tipo Normal em movimentos do tipo Elétrico.",
+    "effectText": "Muda todos os movimentos normais para movimentos elétricos pelo resto do turno."
+  },
+  "parabolic-charge": {
+    "flavorText": "O usuário ataca tudo ao seu redor. O HP do usuário é restaurado pela metade do dano sofrido pelos atingidos.",
+    "effectText": "Cura o usuário metade do dano total causado a todos os alvos."
+  },
+  "forests-curse": {
+    "flavorText": "O usuário coloca uma maldição da floresta no alvo. Os alvos afetados agora também são do tipo Grama.",
+    "effectText": "Adiciona Grama aos tipos do alvo."
+  },
+  "petal-blizzard": {
+    "flavorText": "O usuário provoca uma violenta nevasca de pétalas e ataca tudo ao seu redor.",
+    "effectText": "Inflige danos regulares."
+  },
+  "freeze-dry": {
+    "flavorText": "O usuário esfria rapidamente o alvo. Isto também pode deixar o alvo congelado. Este movimento é supereficaz em tipos Água.",
+    "effectText": "Supereficaz contra Água."
+  },
+  "disarming-voice": {
+    "flavorText": "Soltando um grito encantador, o usuário causa danos emocionais aos Pokémon adversários. Este ataque nunca erra.",
+    "effectText": "Nunca erra."
+  },
+  "parting-shot": {
+    "flavorText": "Com uma ameaça de despedida, o usuário reduz o Ataque e Sp do alvo. Estatísticas de ataque. Em seguida, ele troca com um Pokémon de grupo.",
+    "effectText": "Reduz o Ataque e o Ataque Especial de todos os alvos em um estágio. Faz a troca do usuário."
+  },
+  "topsy-turvy": {
+    "flavorText": "Todas as alterações de estatísticas que afetam o alvo ficam de cabeça para baixo e se tornam o oposto do que eram.",
+    "effectText": "Inverte os modificadores de estatísticas do alvo."
+  },
+  "draining-kiss": {
+    "flavorText": "O usuário rouba a energia do alvo com um beijo. O HP do usuário é restaurado em mais da metade do dano sofrido pelo alvo.",
+    "effectText": "Drena 75% do dano infligido para curar o usuário."
+  },
+  "crafty-shield": {
+    "flavorText": "O usuário protege a si mesmo e a seus aliados de movimentos de status com um poder misterioso. Isso não impede movimentos que causam danos.",
+    "effectText": "Protege todos os Pokémon aliados de movimentos que não causam dano."
+  },
+  "flower-shield": {
+    "flavorText": "O usuário aumenta a estatística de Defesa de todos os Pokémon do tipo Planta em batalha com um poder misterioso.",
+    "effectText": "Aumenta a defesa de todos os Pokémon Planta em batalha."
+  },
+  "grassy-terrain": {
+    "flavorText": "O usuário transforma o chão sob os pés de todos em grama por cinco turnos. Isso restaura um pouco o HP dos Pokémon no chão a cada turno.",
+    "effectText": "Por cinco turnos, cura todos os Pokémon no chão em 1/16 do HP máximo a cada turno e fortalece seus movimentos de grama para 1,5x seu poder."
+  },
+  "misty-terrain": {
+    "flavorText": "O usuário cobre o chão sob os pés de todos com névoa por cinco turnos. Isso protege os Pokémon no solo das condições de status.",
+    "effectText": "Por cinco turnos, protege todos os Pokémon no solo contra grandes problemas de status e confusão, e reduz pela metade o poder dos movimentos do Dragão recebidos."
+  },
+  "electrify": {
+    "flavorText": "Se o alvo for eletrificado antes de usar um movimento durante aquele turno, o movimento do alvo se torna do tipo Elétrico.",
+    "effectText": "Muda o tipo de movimento do alvo para Elétrico se ele ainda não tiver se movido neste turno."
+  },
+  "play-rough": {
+    "flavorText": "O usuário joga duro com o alvo e o ataca. Isso também pode diminuir as estatísticas de ataque do alvo.",
+    "effectText": "Tem chance de diminuir o ataque do alvo em um estágio."
+  },
+  "fairy-wind": {
+    "flavorText": "O usuário desperta um vento mágico e atinge o alvo com ele.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "moonblast": {
+    "flavorText": "Tomando emprestado o poder da lua, o usuário ataca o alvo. Isso também pode diminuir o Sp do alvo. Estatística de ataque.",
+    "effectText": "Tem a chance de diminuir o Ataque Especial do alvo em um estágio."
+  },
+  "boomburst": {
+    "flavorText": "O usuário ataca tudo ao seu redor com o poder destrutivo de um som terrível e explosivo.",
+    "effectText": "Inflige danos regulares."
+  },
+  "fairy-lock": {
+    "flavorText": "Ao bloquear o campo de batalha, o usuário evita que todos os Pokémon fujam durante o próximo turno.",
+    "effectText": "Impede que todos os Pokémon fujam ou saiam durante o próximo turno."
+  },
+  "kings-shield": {
+    "flavorText": "O usuário assume uma postura defensiva enquanto se protege de danos. Também reduz drasticamente a estatística de ataque de qualquer atacante que faça contato direto.",
+    "effectText": "Bloqueia ataques prejudiciais e reduz o ataque do Pokémon atacante em dois estágios ao entrar em contato. Muda Aegislash para Forma de Escudo."
+  },
+  "play-nice": {
+    "flavorText": "O usuário e o alvo tornam-se amigos e o alvo perde a vontade de lutar. Isso diminui a estatística de ataque do alvo.",
+    "effectText": "Reduz o ataque do alvo em um estágio."
+  },
+  "confide": {
+    "flavorText": "O usuário conta um segredo ao alvo e o alvo perde a capacidade de concentração. Isso reduz o Sp do alvo. Estatística de ataque.",
+    "effectText": "Reduz o Ataque Especial do alvo em um estágio."
+  },
+  "diamond-storm": {
+    "flavorText": "O usuário cria uma tempestade de diamantes para causar danos aos Pokémon adversários. Isso também pode aumentar a estatística de Defesa do usuário.",
+    "effectText": "Tem a chance de aumentar a Defesa do usuário em dois estágios para cada alvo atingido."
+  },
+  "steam-eruption": {
+    "flavorText": "O usuário mergulha o alvo em vapor superaquecido. Isso também pode deixar o alvo queimado.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "hyperspace-hole": {
+    "flavorText": "Usando um buraco no hiperespaço, o usuário aparece bem próximo ao alvo e ataca. Isso também atinge um alvo usando Proteger ou Detectar.",
+    "effectText": "Ignora e destrói efeitos de proteção."
+  },
+  "water-shuriken": {
+    "flavorText": "O usuário acerta o alvo com estrelas ninja de duas a cinco vezes seguidas. Esse movimento sempre vem primeiro.",
+    "effectText": "Atinge 2 a 5 vezes."
+  },
+  "mystical-fire": {
+    "flavorText": "O usuário ataca respirando um fogo especial e quente. Isso também reduz o Sp do alvo. Estatística de ataque.",
+    "effectText": "Tem a chance de diminuir o Ataque Especial do alvo em um estágio."
+  },
+  "spiky-shield": {
+    "flavorText": "Além de proteger o usuário de ataques, esse movimento também prejudica qualquer invasor que faça contato direto.",
+    "effectText": "Bloqueia ataques prejudiciais e causa dano ao Pokémon atacante em 1/8 do seu HP máximo."
+  },
+  "aromatic-mist": {
+    "flavorText": "O usuário aumenta o Defesa Especial status de um Pokémon aliado usando um aroma misterioso.",
+    "effectText": "Aumenta a Defesa Especial de um aliado selecionado em um estágio."
+  },
+  "eerie-impulse": {
+    "flavorText": "O corpo do usuário gera um impulso estranho. Expor o alvo a isso reduz drasticamente o Sp do alvo. Estatística de ataque.",
+    "effectText": "Reduz o Ataque Especial do alvo em dois estágios."
+  },
+  "venom-drench": {
+    "flavorText": "Os Pokémon oponentes ficam encharcados em um estranho líquido venenoso. Isso diminui o Ataque, Ataque Especial e Velocidade de um alvo envenenado.",
+    "effectText": "Reduz o Ataque, o Ataque Especial e a Velocidade do alvo em um estágio se ele estiver envenenado."
+  },
+  "powder": {
+    "flavorText": "O usuário cobre o alvo com uma pólvora que explode e danifica o alvo se usar um movimento do tipo Fogo.",
+    "effectText": "Explodir se o alvo usar um movimento de Fogo neste turno, causando dano a ele em 1/4 do seu HP máximo e impedindo o movimento."
+  },
+  "geomancy": {
+    "flavorText": "O usuário absorve energia e aumenta drasticamente seu Ataque Especial, Defesa Especial e Velocidade no próximo turno.",
+    "effectText": "Leva um turno para carregar e depois aumenta o Ataque Especial, a Defesa Especial e a Velocidade do usuário em dois estágios."
+  },
+  "magnetic-flux": {
+    "flavorText": "O usuário manipula campos magnéticos, o que aumenta a Defesa e o Defesa Especial de Pokémon aliados com a habilidade Mais ou Menos.",
+    "effectText": "Aumenta a Defesa e a Defesa Especial de todos os Pokémon aliados com Mais ou Menos em um estágio."
+  },
+  "happy-hour": {
+    "flavorText": "Usar o Hora feliz dobra o valor do prêmio em dinheiro recebido após a batalha.",
+    "effectText": "Dobra o prêmio em dinheiro."
+  },
+  "electric-terrain": {
+    "flavorText": "O usuário eletrifica o chão sob os pés de todos por cinco turnos. Os Pokémon no chão não adormecem mais.",
+    "effectText": "Por cinco turnos, evita que todos os Pokémon no chão durmam e fortalece seus movimentos elétricos para 1,5x seu poder."
+  },
+  "dazzling-gleam": {
+    "flavorText": "O usuário causa dano ao Pokémon adversário emitindo um flash poderoso.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "celebrate": {
+    "flavorText": "O Pokémon parabeniza você pelo seu dia especial!",
+    "effectText": "Não faz nada."
+  },
+  "hold-hands": {
+    "flavorText": "O usuário e um aliado dão as mãos. Isso os deixa muito felizes.",
+    "effectText": "Não faz nada."
+  },
+  "baby-doll-eyes": {
+    "flavorText": "O usuário encara o alvo com seus olhos de boneca, o que diminui sua estatística de Ataque. Esse movimento sempre vem primeiro.",
+    "effectText": "Reduz o ataque do alvo em um estágio."
+  },
+  "nuzzle": {
+    "flavorText": "O usuário ataca esfregando suas bochechas eletrificadas no alvo. Isso também deixa o alvo paralisado.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "hold-back": {
+    "flavorText": "O usuário recua quando ataca e o alvo fica com pelo menos 1 HP.",
+    "effectText": "Não é possível diminuir o HP do alvo abaixo de 1."
+  },
+  "infestation": {
+    "flavorText": "O alvo fica infestado e atacado por quatro a cinco turnos. O alvo não pode fugir durante este tempo.",
+    "effectText": "Previene a fuga do alvo e causa danos durante 2-5 voltas."
+  },
+  "power-up-punch": {
+    "flavorText": "Golpear os oponentes repetidamente torna os punhos do usuário mais difíceis. Acertar um alvo aumenta a estatística de Ataque.",
+    "effectText": "Aumenta o ataque do usuário em um estágio após causar dano."
+  },
+  "oblivion-wing": {
+    "flavorText": "O usuário absorve o HP do seu alvo. O HP do usuário é restaurado em mais da metade do dano sofrido pelo alvo.",
+    "effectText": "Drena 75% do dano infligido para curar o usuário."
+  },
+  "thousand-arrows": {
+    "flavorText": "Este movimento também atinge Pokémon adversários que estão no ar. Esses Pokémon são derrubados no chão.",
+    "effectText": "Aterra o alvo e atinge até mesmo Pokémon do tipo Voador ou levitando."
+  },
+  "thousand-waves": {
+    "flavorText": "O usuário ataca com uma onda que rasteja pelo chão. Aqueles atingidos não podem fugir da batalha.",
+    "effectText": "Impede que o alvo saia da batalha."
+  },
+  "lands-wrath": {
+    "flavorText": "O usuário reúne a energia da terra e concentra esse poder nos Pokémon adversários para danificá-los.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "light-of-ruin": {
+    "flavorText": "Extraindo o poder da Flor Eterna, o usuário dispara um poderoso feixe de luz. Isso também prejudica bastante o usuário.",
+    "effectText": "O usuário recebe metade do dano infligido no recuo."
+  },
+  "origin-pulse": {
+    "flavorText": "O usuário ataca Pokémon adversários com inúmeros raios de luz que brilham em um azul profundo e brilhante.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "precipice-blades": {
+    "flavorText": "O usuário ataca Pokémon adversários manifestando o poder da terra em temíveis lâminas de pedra.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "dragon-ascent": {
+    "flavorText": "Depois de subir, o usuário ataca seu alvo caindo do céu em alta velocidade, embora reduza sua própria Defesa e Defesa Especial no processo.",
+    "effectText": "Reduz a Defesa e a Defesa Especial do usuário em um estágio após causar dano."
+  },
+  "hyperspace-fury": {
+    "flavorText": "Usando seus vários braços, o usuário desencadeia uma série de ataques que ignoram os efeitos de movimentos como Proteger e Detectar. Este ataque diminui a Defesa do usuário.",
+    "effectText": "Ignora e destrói efeitos de proteção."
+  },
+  "breakneck-blitz--physical": {
+    "flavorText": "O usuário aumenta seu impulso usando seu Poder Z e atinge o alvo a toda velocidade. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "breakneck-blitz--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "all-out-pummeling--physical": {
+    "flavorText": "O usuário lança um orbe de energia criado por seu Poder Z no alvo com força total. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "all-out-pummeling--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "supersonic-skystrike--physical": {
+    "flavorText": "O usuário sobe com seu Poder Z e cai em direção ao alvo a toda velocidade. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "supersonic-skystrike--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "acid-downpour--physical": {
+    "flavorText": "O usuário cria um pântano venenoso usando seu Poder Z e afunda o alvo nele com força total. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "acid-downpour--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "tectonic-rage--physical": {
+    "flavorText": "O usuário se enterra profundamente no chão e atinge o alvo com toda a força de seu Poder Z. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "tectonic-rage--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "continental-crush--physical": {
+    "flavorText": "O usuário invoca uma enorme montanha rochosa usando seu Poder Z e a lança no alvo com força total. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "continental-crush--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "savage-spin-out--physical": {
+    "flavorText": "O usuário amarra o alvo com força total com fios de seda que o usuário cospe usando seu Poder Z. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "savage-spin-out--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "never-ending-nightmare--physical": {
+    "flavorText": "Rancores profundos invocados pelo Poder Z do usuário prendem o alvo. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "never-ending-nightmare--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "corkscrew-crash--physical": {
+    "flavorText": "O usuário gira muito rápido e atinge o alvo com toda a força de seu Poder Z. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "corkscrew-crash--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "inferno-overdrive--physical": {
+    "flavorText": "O usuário respira um fluxo de fogo intenso em direção ao alvo com toda a força de seu Poder Z. O poder varia dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "inferno-overdrive--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "hydro-vortex--physical": {
+    "flavorText": "O usuário cria uma enorme corrente giratória usando seu Poder Z para engolir o alvo com força total. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "hydro-vortex--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "bloom-doom--physical": {
+    "flavorText": "O usuário coleta energia das plantas usando seu Poder Z e ataca o alvo com força total. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "bloom-doom--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "gigavolt-havoc--physical": {
+    "flavorText": "O usuário atinge o alvo com uma poderosa corrente elétrica coletada pelo seu Poder Z. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "gigavolt-havoc--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "shattered-psyche--physical": {
+    "flavorText": "O usuário controla o alvo com seu Poder Z e fere o alvo com força total. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "shattered-psyche--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "subzero-slammer--physical": {
+    "flavorText": "O usuário reduz drasticamente a temperatura usando seu Poder Z e congela o alvo com força total. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "subzero-slammer--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "devastating-drake--physical": {
+    "flavorText": "O usuário materializa sua aura usando seu Poder Z e ataca o alvo com força total. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "devastating-drake--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "black-hole-eclipse--physical": {
+    "flavorText": "O usuário reúne energia escura usando seu Poder Z e suga o alvo para dentro dela. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "black-hole-eclipse--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "twinkle-tackle--physical": {
+    "flavorText": "O usuário cria um espaço muito charmoso utilizando seu Poder Z e brinca totalmente com o alvo. O poder varia, dependendo do movimento original.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "twinkle-tackle--special": {
+    "flavorText": "Dados fictícios",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "catastropika": {
+    "flavorText": "O usuário, Pikachu, cerca-se da quantidade máxima de eletricidade usando seu Poder Z e ataca seu alvo com força total.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "shore-up": {
+    "flavorText": "O usuário recupera até metade do seu HP máximo. Restaura mais HP em uma tempestade de areia.",
+    "effectText": "Cura o usuário em ½ de seu HP máximo, ou ⅔ durante uma tempestade de areia."
+  },
+  "first-impression": {
+    "flavorText": "Embora esse movimento tenha grande poder, ele só funciona no primeiro turno em que o usuário entra em batalha.",
+    "effectText": "Só pode ser usado como primeiro movimento após o usuário entrar na batalha."
+  },
+  "baneful-bunker": {
+    "flavorText": "Além de proteger o usuário de ataques, esse movimento também envenena qualquer invasor que faça contato direto.",
+    "effectText": "Concede proteção ao usuário pelo resto do turno e envenena qualquer Pokémon que tente usar um movimento de contato nele."
+  },
+  "spirit-shackle": {
+    "flavorText": "O usuário ataca enquanto simultaneamente costura a sombra do alvo no chão para evitar que o alvo escape.",
+    "effectText": "Prende o alvo."
+  },
+  "darkest-lariat": {
+    "flavorText": "O usuário balança os dois braços e acerta o alvo. As mudanças nas estatísticas do alvo não afetam o dano deste ataque.",
+    "effectText": "Ignora os modificadores de estatísticas do alvo."
+  },
+  "sparkling-aria": {
+    "flavorText": "O usuário começa a cantar, emitindo muitas bolhas. Qualquer Pokémon que sofra queimaduras será curado pelo toque dessas bolhas.",
+    "effectText": "Cura o alvo das queimaduras."
+  },
+  "ice-hammer": {
+    "flavorText": "O usuário balança e bate com seu punho forte e pesado. No entanto, diminui a velocidade do usuário.",
+    "effectText": "Reduz a velocidade do usuário em um estágio."
+  },
+  "floral-healing": {
+    "flavorText": "O usuário restaura o HP do alvo em até metade do seu HP máximo. Restaura mais HP quando o terreno é gramado.",
+    "effectText": "Cura o alvo em ½ de seu HP máximo ou ⅔ em terreno gramado."
+  },
+  "high-horsepower": {
+    "flavorText": "O usuário ataca ferozmente o alvo usando todo o seu corpo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "strength-sap": {
+    "flavorText": "O usuário restaura seu HP na mesma quantidade que a estatística de Ataque do alvo. Também reduz a estatística de ataque do alvo.",
+    "effectText": "Cura o usuário de acordo com a estatística de ataque atual do alvo e reduz o ataque do alvo em um estágio."
+  },
+  "solar-blade": {
+    "flavorText": "Neste ataque de dois turnos, o usuário reúne luz e preenche uma lâmina com a energia da luz, atacando o alvo no próximo turno.",
+    "effectText": "Requer uma volta para a carga antes de atacar."
+  },
+  "leafage": {
+    "flavorText": "O usuário ataca atirando folhas no alvo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "spotlight": {
+    "flavorText": "O usuário ilumina o alvo para que apenas o alvo seja atacado durante o turno.",
+    "effectText": "Força os oponentes do alvo a mirarem no alvo pelo resto do turno."
+  },
+  "toxic-thread": {
+    "flavorText": "O usuário atira fios venenosos para envenenar o alvo e diminuir a estatística de velocidade do alvo.",
+    "effectText": "Envenena o alvo e reduz sua velocidade em um estágio."
+  },
+  "laser-focus": {
+    "flavorText": "O usuário se concentra intensamente. O ataque no próximo turno sempre resulta em um acerto crítico.",
+    "effectText": "Garante um acerto crítico no próximo movimento do usuário."
+  },
+  "gear-up": {
+    "flavorText": "O usuário aciona suas engrenagens para aumentar o Ataque e o Ataque Especial de Pokémon aliados com a habilidade Mais ou Menos.",
+    "effectText": "Aumenta o Ataque e o Ataque Especial de todos os Pokémon aliados com Mais ou Menos em um estágio."
+  },
+  "throat-chop": {
+    "flavorText": "O usuário ataca a garganta do alvo, e o sofrimento resultante impede o alvo de usar movimentos que emitem som por dois turnos.",
+    "effectText": "Impede que o alvo use movimentos baseados em som por dois turnos."
+  },
+  "pollen-puff": {
+    "flavorText": "O usuário ataca o inimigo com uma nuvem de pólen que explode. Se o alvo for um aliado, ele dá ao aliado uma nuvem de pólen que restaura seu HP.",
+    "effectText": "Causa dano aos oponentes, mas cura aliados em 50% de seu HP máximo."
+  },
+  "anchor-shot": {
+    "flavorText": "O usuário envolve o alvo com sua corrente de âncora enquanto ataca. O alvo torna-se incapaz de fugir.",
+    "effectText": "Prende o alvo."
+  },
+  "psychic-terrain": {
+    "flavorText": "Isso protege os Pokémon no solo de movimentos prioritários e fortalece movimentos do tipo Psíquico por cinco turnos.",
+    "effectText": "Protege os Pokémon no solo de movimentos prioritários e aumenta o poder de seus movimentos psíquicos em 50%."
+  },
+  "lunge": {
+    "flavorText": "O usuário dá uma estocada no alvo, atacando com força total. Isso também reduz a estatística de ataque do alvo.",
+    "effectText": "Reduz o ataque do alvo em um estágio após causar dano."
+  },
+  "fire-lash": {
+    "flavorText": "O usuário atinge o alvo com um chicote ardente. Isso também reduz as estatísticas de defesa do alvo.",
+    "effectText": "Reduz a Defesa do alvo em um estágio após causar dano."
+  },
+  "power-trip": {
+    "flavorText": "O usuário ostenta sua força e ataca o alvo. Quanto mais as estatísticas do usuário aumentam, maior é o poder do movimento.",
+    "effectText": "O poder é maior quanto mais as estatísticas do usuário forem aumentadas, até um máximo de 31×."
+  },
+  "burn-up": {
+    "flavorText": "Para infligir danos massivos, o usuário se esgota. Após usar este movimento, o usuário não será mais do tipo Fogo.",
+    "effectText": "Remove o tipo Fogo do usuário após causar dano."
+  },
+  "speed-swap": {
+    "flavorText": "O usuário troca estatísticas de velocidade com o alvo.",
+    "effectText": "Troca a Velocidade do usuário pela do alvo."
+  },
+  "smart-strike": {
+    "flavorText": "O usuário apunhala o alvo com um chifre afiado. Este ataque nunca erra.",
+    "effectText": "Nunca erra."
+  },
+  "purify": {
+    "flavorText": "O usuário cura a condição de status do alvo. Se o movimento for bem-sucedido, ele também restaura o HP do próprio usuário.",
+    "effectText": "Cura o alvo de uma doença grave de status e cura o usuário em 50% de seu HP máximo."
+  },
+  "revelation-dance": {
+    "flavorText": "O usuário ataca o alvo dançando muito. O tipo do usuário determina o tipo deste movimento.",
+    "effectText": "Tem o mesmo tipo do usuário."
+  },
+  "core-enforcer": {
+    "flavorText": "Se o Pokémon ao qual o usuário infligiu dano já tiver usado seus movimentos, este movimento elimina o efeito da Habilidade do alvo.",
+    "effectText": "Anula a habilidade do alvo se ele se mover antes."
+  },
+  "trop-kick": {
+    "flavorText": "O usuário acerta um chute intenso de origem tropical no alvo. Isso também reduz a estatística de ataque do alvo.",
+    "effectText": "Reduz o ataque do alvo em um estágio após causar dano."
+  },
+  "instruct": {
+    "flavorText": "O usuário instrui o alvo a usar seu último movimento novamente.",
+    "effectText": "Força o alvo a repetir o último movimento usado."
+  },
+  "beak-blast": {
+    "flavorText": "O usuário primeiro aquece o bico e depois ataca o alvo. Fazer contato direto com o Pokémon enquanto ele aquece o bico resulta em queimaduras.",
+    "effectText": "Inflige uma queimadura em qualquer Pokémon que faça contato antes do ataque."
+  },
+  "clanging-scales": {
+    "flavorText": "O usuário esfrega as escamas em todo o corpo e faz um barulho enorme para atacar o Pokémon adversário. A estatística de defesa do usuário diminui após o ataque.",
+    "effectText": "Reduz a Defesa do usuário em um estágio após causar dano."
+  },
+  "dragon-hammer": {
+    "flavorText": "O usuário usa seu corpo como um martelo para atacar o alvo e causar danos.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "brutal-swing": {
+    "flavorText": "O usuário balança seu corpo violentamente para causar danos a tudo ao seu redor.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "aurora-veil": {
+    "flavorText": "Este movimento reduz o dano causado por movimentos físicos e especiais por cinco turnos. Isso só pode ser usado em uma tempestade de granizo.",
+    "effectText": "Reduz o dano em cinco turnos, mas deve ser usado durante granizo."
+  },
+  "sinister-arrow-raid": {
+    "flavorText": "O usuário, Decidueye, cria inúmeras flechas usando seu Poder Z e atira no alvo com força total.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "malicious-moonsault": {
+    "flavorText": "O usuário, Incineroar, fortalece seu corpo usando seu Poder Z e atinge o alvo com força total.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "oceanic-operetta": {
+    "flavorText": "A usuária, Primarina, invoca uma enorme quantidade de água usando seu Poder Z e ataca o alvo com força total.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "guardian-of-alola": {
+    "flavorText": "O usuário, o Pokémon Land Espírito, obtém a energia de Alola usando seu Poder Z e ataca o alvo com força total. Isso reduz bastante o HP do alvo.",
+    "effectText": "Danifica o alvo em 75% do HP restante."
+  },
+  "soul-stealing-7-star-strike": {
+    "flavorText": "Após obter Poder Z, o usuário, Marshadow, soca e chuta o alvo consecutivamente com força total.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "stoked-sparksurfer": {
+    "flavorText": "Após obter Poder Z, o usuário, Alolan Raichu, ataca o alvo com força total. Este movimento deixa o alvo paralisado.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "pulverizing-pancake": {
+    "flavorText": "Poder Z traz à tona as verdadeiras capacidades do usuário, Snorlax. O Pokémon move seu enorme corpo com energia e ataca o alvo com força total.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "extreme-evoboost": {
+    "flavorText": "Após obter o Poder Z, o usuário Eevee obtém energia de seus amigos evoluídos e aumenta drasticamente suas estatísticas.",
+    "effectText": "Aumenta todas as estatísticas do usuário em dois estágios."
+  },
+  "genesis-supernova": {
+    "flavorText": "Após obter Poder Z, o usuário Mew ataca o alvo com força total. O terreno ficará carregado de energia psíquica.",
+    "effectText": "Muda o terreno para Terreno Psíquico após causar dano."
+  },
+  "shell-trap": {
+    "flavorText": "O usuário define uma armadilha de shell. Se o usuário for atingido por um movimento físico, a armadilha explodirá e causará danos ao Pokémon adversário.",
+    "effectText": "Causa dano apenas se o usuário for atingido por um movimento físico neste turno."
+  },
+  "fleur-cannon": {
+    "flavorText": "O usuário libera um feixe forte. O recuo do ataque reduz drasticamente o Ataque Especial do usuário.",
+    "effectText": "Reduz o Ataque Especial do usuário em dois estágios após causar dano."
+  },
+  "psychic-fangs": {
+    "flavorText": "O usuário morde o alvo com suas capacidades psíquicas. Isso também pode destruir Tela clara e Refletir.",
+    "effectText": "Destrói Refletir e Tela clara."
+  },
+  "stomping-tantrum": {
+    "flavorText": "Movido pela frustração, o usuário ataca o alvo. Se o movimento anterior do usuário falhar, o poder deste movimento dobra.",
+    "effectText": "Tem poder duplo se o último movimento do usuário falhar."
+  },
+  "shadow-bone": {
+    "flavorText": "O usuário ataca batendo no alvo com um osso que contém um espírito. Isso também pode diminuir as estatísticas de Defesa do alvo.",
+    "effectText": "Tem chance de diminuir a Defesa do alvo em um estágio."
+  },
+  "accelerock": {
+    "flavorText": "O usuário atinge o alvo em alta velocidade. Esse movimento sempre vem primeiro.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "liquidation": {
+    "flavorText": "O usuário bate no alvo usando um jato de água com força total. Isso também pode diminuir as estatísticas de Defesa do alvo.",
+    "effectText": "Tem chance de diminuir a Defesa do alvo em um estágio."
+  },
+  "prismatic-laser": {
+    "flavorText": "O usuário dispara lasers poderosos usando o poder de um prisma. O usuário não pode se mover no próximo turno.",
+    "effectText": "O usuário renuncia ao próximo turno para recarregar."
+  },
+  "spectral-thief": {
+    "flavorText": "O usuário se esconde na sombra do alvo, rouba os aumentos de estatísticas do alvo e então ataca.",
+    "effectText": "Rouba os aumentos de estatísticas do alvo e depois inflige dano."
+  },
+  "sunsteel-strike": {
+    "flavorText": "O usuário atinge o alvo com a força de um meteoro. Este movimento pode ser usado no alvo independentemente de suas Habilidades.",
+    "effectText": "Não pode ser interrompido por habilidades."
+  },
+  "moongeist-beam": {
+    "flavorText": "O usuário emite um raio sinistro para atacar o alvo. Este movimento pode ser usado no alvo independentemente de suas Habilidades.",
+    "effectText": "Não pode ser interrompido por habilidades."
+  },
+  "tearful-look": {
+    "flavorText": "O usuário fica com os olhos marejados para fazer o alvo perder o espírito combativo. Isso reduz o Ataque e Sp do alvo. Estatísticas de ataque.",
+    "effectText": "Reduz o Ataque e o Ataque Especial do alvo em um estágio."
+  },
+  "zing-zap": {
+    "flavorText": "Uma forte explosão elétrica atinge o alvo, causando-lhe um choque elétrico. Isso também pode fazer o alvo recuar.",
+    "effectText": "Tem a chance de fazer o alvo recuar."
+  },
+  "natures-madness": {
+    "flavorText": "O usuário atinge o alvo com a força da natureza. Reduz pela metade o HP do alvo.",
+    "effectText": "Inflige dano igual a metade do HP do alvo."
+  },
+  "multi-attack": {
+    "flavorText": "Disfarçando-se em alta energia, o usuário atinge o alvo. A memória mantida determina o tipo do movimento.",
+    "effectText": "Se o usuário estiver segurando uma placa ou unidade apropriada, o dano causado será igual."
+  },
+  "10-000-000-volt-thunderbolt": {
+    "flavorText": "O usuário, Pikachu usando um boné, ativa uma descarga elétrica usando seu Poder Z e a libera. Acertos críticos acertam com mais facilidade.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "mind-blown": {
+    "flavorText": "O usuário ataca tudo ao seu redor fazendo sua própria cabeça explodir. Isso também prejudica o usuário.",
+    "effectText": "Inflige dano e o usuário sofre dano igual à metade de seu HP máximo, arredondado para cima."
+  },
+  "plasma-fists": {
+    "flavorText": "O usuário ataca com punhos carregados eletricamente. Este movimento altera movimentos do tipo Normal para movimentos do tipo Elétrico.",
+    "effectText": "Depois de infligir dano, faz com que todos os movimentos do tipo Normal se tornem do tipo Elétrico pelo resto do turno."
+  },
+  "photon-geyser": {
+    "flavorText": "O usuário ataca um alvo com um pilar de luz. Este movimento inflige Ataque ou dano de Ataque Especial – qualquer estatística que seja maior para o usuário.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "light-that-burns-the-sky": {
+    "flavorText": "Este ataque inflige Ataque ou dano de Ataque Especial – qualquer estatística que seja maior para o usuário, Necrozma. Este movimento ignora a Habilidade do alvo.",
+    "effectText": "Inflige dano usando a estatística de Ataque ou Ataque Especial, o que for maior."
+  },
+  "searing-sunraze-smash": {
+    "flavorText": "Após obter o Poder Z, o usuário Solgaleo ataca o alvo com força total. Este movimento pode ignorar o efeito da Habilidade do alvo.",
+    "effectText": "Não pode ser interrompido por habilidades."
+  },
+  "menacing-moonraze-maelstrom": {
+    "flavorText": "Após obter Poder Z, o usuário Lunala ataca o alvo com força total. Este movimento pode ignorar o efeito da Habilidade do alvo.",
+    "effectText": "Não pode ser interrompido por habilidades."
+  },
+  "lets-snuggle-forever": {
+    "flavorText": "Após obter o Poder Z, o usuário, Mimikyu, dá um soco no alvo com força total.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "splintered-stormshards": {
+    "flavorText": "Após obter o Poder Z, o usuário, Lycanroc, ataca o alvo com força total. Este movimento anula o efeito no campo de batalha.",
+    "effectText": "Causa dano e remove qualquer terreno presente no campo de batalha."
+  },
+  "clangorous-soulblaze": {
+    "flavorText": "Após obter Poder Z, o usuário Kommo-o ataca o Pokémon adversário com força total. Este movimento aumenta as estatísticas do usuário.",
+    "effectText": "Causa dano a todos os Pokémon oponentes e aumenta o Ataque, Defesa, Ataque Especial, Defesa Especial e Velocidade do usuário em um estágio cada."
+  },
+  "zippy-zap": {
+    "flavorText": "O usuário ataca o alvo com rajadas de eletricidade em alta velocidade. Esse movimento sempre ocorre primeiro e resulta em um acerto crítico.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "splishy-splash": {
+    "flavorText": "O usuário carrega uma onda enorme com eletricidade e atinge o Pokémon adversário com a onda. Isso também pode deixar o Pokémon adversário paralisado.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "floaty-fall": {
+    "flavorText": "O usuário flutua no ar e depois mergulha em um ângulo acentuado para atacar o alvo. Isso também pode fazer o alvo recuar.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "pika-papow": {
+    "flavorText": "Quanto mais Pikachu ama seu Treinador, maior será o poder do movimento. Nunca falha.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "bouncy-bubble": {
+    "flavorText": "O usuário ataca atirando bolhas de água no alvo. Em seguida, ele absorve água e restaura seu HP pela metade do dano sofrido pelo alvo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "buzzy-buzz": {
+    "flavorText": "O usuário dispara uma descarga elétrica para atacar o alvo. Isso também deixa o alvo paralisado.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "sizzly-slide": {
+    "flavorText": "O usuário se cobre de fogo e ataca o alvo. Isso também deixa o alvo queimado.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "glitzy-glow": {
+    "flavorText": "O usuário bombardeia o alvo com força telecinética. Uma maravilhosa parede de luz é erguida para enfraquecer o poder dos movimentos especiais do Pokémon adversário.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "baddy-bad": {
+    "flavorText": "O usuário age mal e ataca o alvo. Uma maravilhosa parede de luz é erguida para enfraquecer o poder dos movimentos físicos do Pokémon adversário.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "sappy-seed": {
+    "flavorText": "O usuário desenvolve um talo gigantesco que espalha sementes para atacar o alvo. As sementes drenam o HP do alvo a cada turno.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "freezy-frost": {
+    "flavorText": "O usuário ataca com um cristal feito de névoa fria e congelada. Elimina todas as alterações de estatísticas entre todos os Pokémon envolvidos na batalha.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "sparkly-swirl": {
+    "flavorText": "O usuário ataca o alvo envolvendo-o em um turbilhão de cheiro avassalador. Isso também cura todas as condições de status do grupo do usuário.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "veevee-volley": {
+    "flavorText": "Quanto mais Eevee ama seu Treinador, maior será o poder do movimento. Nunca falha.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "double-iron-bash": {
+    "flavorText": "O usuário gira, centralizando a porca sextavada em seu peito, e então golpeia com os braços duas vezes seguidas. Isso também pode fazer o alvo recuar.",
+    "effectText": "Atinge duas vezes em um turno."
+  },
+  "max-guard": {
+    "flavorText": "Este movimento permite ao usuário se proteger de todos os ataques. Sua chance de falhar aumenta se for usado sucessivamente.",
+    "effectText": "Impede que qualquer movimento atinja o usuário neste turno."
+  },
+  "dynamax-cannon": {
+    "flavorText": "O usuário libera um feixe forte de seu núcleo. Este movimento causa o dobro do dano se o alvo estiver com Dinamax.",
+    "effectText": "O usuário libera um feixe forte de seu núcleo. Este movimento causa o dobro do dano se o alvo estiver com Dinamax."
+  },
+  "snipe-shot": {
+    "flavorText": "O usuário ignora os efeitos dos movimentos e habilidades do Pokémon adversário que atraem movimentos, permitindo que esse movimento atinja o alvo escolhido.",
+    "effectText": "O usuário ignora os efeitos dos movimentos e habilidades do Pokémon adversário que atraem movimentos, permitindo que este movimento atinja o alvo escolhido."
+  },
+  "jaw-lock": {
+    "flavorText": "Este movimento evita que o usuário e o alvo troquem até que um deles desmaie. O efeito desaparece se algum dos Pokémon sair do campo.",
+    "effectText": "Semeia o alvo após causar dano."
+  },
+  "stuff-cheeks": {
+    "flavorText": "O usuário come a fruta que está segurando e aumenta drasticamente seu status de Defesa.",
+    "effectText": "Cura todo o grupo de efeitos de status importantes após infligir danos."
+  },
+  "no-retreat": {
+    "flavorText": "Este movimento aumenta todas as estatísticas do usuário, mas evita que ele troque ou fuja.",
+    "effectText": "Atinge duas vezes em um turno, com chance de fazer o alvo recuar."
+  },
+  "tar-shot": {
+    "flavorText": "O usuário derrama alcatrão pegajoso sobre o alvo, diminuindo a estatística de velocidade do alvo. O alvo fica mais fraco para movimentos do tipo Fogo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "magic-powder": {
+    "flavorText": "O usuário espalha uma nuvem de pó mágico que muda o alvo para o tipo Psíquico.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "dragon-darts": {
+    "flavorText": "O usuário ataca duas vezes usando Dreepy. Se houver dois alvos, este movimento atinge cada alvo uma vez.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "teatime": {
+    "flavorText": "O usuário toma chá com todos os Pokémon na batalha. Cada Pokémon come sua fruta.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "octolock": {
+    "flavorText": "O usuário bloqueia o alvo e evita que ele fuja. Este movimento também reduz a Defesa e Sp do alvo. Definitivamente em cada turno.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "bolt-beak": {
+    "flavorText": "O usuário esfaqueia o alvo com seu bico eletrificado. Se o usuário atacar antes do alvo, o poder deste movimento é duplicado.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "fishious-rend": {
+    "flavorText": "O usuário despedaça o alvo com suas guelras duras. Se o usuário atacar antes do alvo, o poder deste movimento é duplicado.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "court-change": {
+    "flavorText": "Com seu poder misterioso, o usuário troca os efeitos em ambos os lados do campo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "max-flare": {
+    "flavorText": "Este é um ataque do tipo Fogo que o Pokémon Dinamax usa. O usuário intensifica o sol por cinco turnos.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-flutterby": {
+    "flavorText": "Este é um ataque do tipo Inseto que o Pokémon Dinamax usa. Isso reduz o Sp do alvo. Estatística de ataque.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-lightning": {
+    "flavorText": "Este é um ataque do tipo elétrico que o Pokémon Dinamax usa. O usuário transforma o solo em Terreno Elétrico por cinco turnos.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-strike": {
+    "flavorText": "Este é um ataque do tipo Normal que o Pokémon Dinamax usa. Isso diminui a estatística de velocidade do alvo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-knuckle": {
+    "flavorText": "Este é um ataque do tipo Lutador que o Pokémon Dinamax usa. Isso aumenta as estatísticas de ataque dos Pokémon aliados.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-phantasm": {
+    "flavorText": "Este é um ataque do tipo Fantasma que o Pokémon Dinamax usa. Isso reduz as estatísticas de defesa do alvo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-hailstorm": {
+    "flavorText": "Este é um ataque do tipo Gelo que o Pokémon Dinamax usa. O usuário invoca uma tempestade de granizo com duração de cinco turnos.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-ooze": {
+    "flavorText": "Este é um ataque do tipo venenoso que o Pokémon Dinamax usa. Isso aumenta o Sp do Pokémon aliado. Estatísticas de ataque.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-geyser": {
+    "flavorText": "Este é um ataque do tipo Água que o Pokémon Dinamax usa. O usuário invoca uma forte chuva que cai durante cinco turnos.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-airstream": {
+    "flavorText": "Este é um ataque do tipo voador que o Pokémon Dinamax usa. Isso aumenta as estatísticas de velocidade dos Pokémon aliados.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-starfall": {
+    "flavorText": "Este é um ataque do tipo Fada que o Pokémon Dinamax usa. O usuário transforma o solo em Terreno Enevoado por cinco turnos.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-wyrmwind": {
+    "flavorText": "Este é um ataque do tipo Dragão que o Pokémon Dinamax usa. Isso diminui a estatística de ataque do alvo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-mindstorm": {
+    "flavorText": "Este é um ataque do tipo Psíquico que o Pokémon Dinamax usa. O usuário transforma o terreno em Terreno Psíquico por cinco turnos.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-rockfall": {
+    "flavorText": "Este é um ataque do tipo Pedra que o Pokémon Dinamax usa. O usuário invoca uma tempestade de areia com duração de cinco turnos.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-quake": {
+    "flavorText": "Este é um ataque do tipo Terra que o Pokémon Dinamax usa. Isso aumenta o Sp do Pokémon aliado. Estatísticas de definição.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-darkness": {
+    "flavorText": "Este é um ataque do tipo Sombrio que o Pokémon Dinamax usa. Isso reduz o Sp do alvo. Estatística definida.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-overgrowth": {
+    "flavorText": "Este é um ataque do tipo Planta que o Pokémon Dinamax usa. O usuário transforma o solo em terreno gramado por cinco turnos.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "max-steelspike": {
+    "flavorText": "Este é um ataque do tipo Aço que o Pokémon Dinamax usa. Isso aumenta as estatísticas de defesa dos Pokémon aliados.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "clangorous-soul": {
+    "flavorText": "O usuário aumenta todas as suas estatísticas usando parte de seu HP.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "body-press": {
+    "flavorText": "O usuário ataca batendo seu corpo no alvo. Quanto maior a Defesa do usuário, mais dano ele pode causar ao alvo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "decorate": {
+    "flavorText": "O usuário aumenta drasticamente o Ataque e Sp do alvo. Estatísticas de Atk decorando o alvo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "drum-beating": {
+    "flavorText": "O usuário toca seu tambor, controlando as raízes do tambor para atacar o alvo. Isso também diminui a estatística de velocidade do alvo.",
+    "effectText": "Tem a chance de diminuir a velocidade do alvo em um estágio."
+  },
+  "snap-trap": {
+    "flavorText": "O usuário prende o alvo em uma armadilha instantânea por quatro a cinco turnos.",
+    "effectText": "Previene a fuga do alvo e causa danos durante 2-5 voltas."
+  },
+  "pyro-ball": {
+    "flavorText": "O usuário ataca acendendo uma pequena pedra e lançando-a como uma bola de fogo no alvo. Isso também pode deixar o alvo queimado.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "behemoth-blade": {
+    "flavorText": "O usuário se transforma em uma espada gigantesca e corta o alvo. Este movimento causa o dobro do dano se o alvo estiver com Dinamax.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "behemoth-bash": {
+    "flavorText": "O usuário se torna um escudo gigantesco e atinge o alvo. Este movimento causa o dobro do dano se o alvo estiver com Dinamax.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "aura-wheel": {
+    "flavorText": "Morpeko ataca e aumenta sua velocidade com a energia armazenada em suas bochechas. O tipo deste movimento muda dependendo da forma do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "breaking-swipe": {
+    "flavorText": "O usuário balança sua cauda resistente descontroladamente e ataca Pokémon adversários. Isso também reduz suas estatísticas de ataque.",
+    "effectText": "Reduz o ataque do alvo em um estágio após causar dano."
+  },
+  "branch-poke": {
+    "flavorText": "O usuário ataca o alvo cutucando-o com um galho pontiagudo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "overdrive": {
+    "flavorText": "O usuário ataca Pokémon adversários tocando uma guitarra ou baixo, causando um enorme eco e forte vibração.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "apple-acid": {
+    "flavorText": "O usuário ataca o alvo com um líquido ácido criado a partir de maçãs azedas. Isso também reduz o Sp do alvo. Estatística definida.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "grav-apple": {
+    "flavorText": "O usuário causa dano ao deixar cair uma maçã do alto. Isso também reduz as estatísticas de defesa do alvo.",
+    "effectText": "Reduz a Defesa do alvo em um estágio após causar dano."
+  },
+  "spirit-break": {
+    "flavorText": "O usuário ataca o alvo com tanta força que pode quebrar o espírito do alvo. Isso também reduz o Sp do alvo. Estatística de ataque.",
+    "effectText": "Tem a chance de diminuir o Ataque Especial do alvo em um estágio."
+  },
+  "strange-steam": {
+    "flavorText": "O usuário ataca o alvo emitindo vapor. Isso também pode confundir o alvo.",
+    "effectText": "Tem a chance de confundir o alvo."
+  },
+  "life-dew": {
+    "flavorText": "O usuário espalha água misteriosa e restaura o HP de si mesmo e de seu Pokémon aliado na batalha.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "obstruct": {
+    "flavorText": "Este movimento permite ao usuário se proteger de todos os ataques. Sua chance de falhar aumenta se for usado sucessivamente. O contato direto reduz drasticamente as estatísticas de Defesa do atacante.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "false-surrender": {
+    "flavorText": "O usuário finge abaixar a cabeça, mas depois apunhala o alvo com o cabelo desgrenhado. Este ataque nunca erra.",
+    "effectText": "Nunca erra."
+  },
+  "meteor-assault": {
+    "flavorText": "O usuário ataca descontroladamente com seu grosso alho-poró. O usuário não pode se mover no próximo turno, pois a força desse movimento o faz cambalear.",
+    "effectText": "O usuário renuncia ao próximo turno para recarregar."
+  },
+  "eternabeam": {
+    "flavorText": "Este é o ataque mais poderoso do Eternatus em sua forma original. O usuário não pode se mover no próximo turno.",
+    "effectText": "O usuário renuncia ao próximo turno para recarregar."
+  },
+  "steel-beam": {
+    "flavorText": "O usuário dispara um feixe de aço coletado de todo o corpo. Isso também prejudica o usuário.",
+    "effectText": "Inflige dano e o usuário sofre dano igual à metade de seu HP máximo, arredondado para cima."
+  },
+  "expanding-force": {
+    "flavorText": "O usuário ataca o alvo com seu poder psíquico. O poder deste movimento aumenta e causa danos a todos os Pokémon oponentes em Terreno Psíquico.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "steel-roller": {
+    "flavorText": "O usuário ataca enquanto destrói o terreno. Este movimento falha quando o solo não se transforma em terreno.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "scale-shot": {
+    "flavorText": "O usuário ataca atirando em escalas de duas a cinco vezes seguidas. Este movimento aumenta a estatística de velocidade do usuário, mas diminui sua estatística de defesa.",
+    "effectText": "Aumenta a velocidade do usuário e reduz sua defesa em um estágio após causar dano de duas a cinco vezes seguidas."
+  },
+  "meteor-beam": {
+    "flavorText": "Neste ataque de dois turnos, o usuário reúne poder espacial e aumenta seu Ataque Especial e, em seguida, ataca o alvo no próximo turno.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "shell-side-arm": {
+    "flavorText": "Este movimento inflige dano físico ou especial, o que for mais eficaz. Isso também pode envenenar o alvo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "misty-explosion": {
+    "flavorText": "O usuário ataca tudo ao seu redor e desmaia ao usar este movimento. O poder deste movimento é aumentado em Terreno Enevoado.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "grassy-glide": {
+    "flavorText": "Deslizando no chão, o usuário ataca o alvo. Este movimento sempre ocorre primeiro em terreno gramado.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "rising-voltage": {
+    "flavorText": "O usuário ataca com tensão elétrica subindo do solo. O poder deste movimento dobra quando o alvo está em terreno elétrico.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "terrain-pulse": {
+    "flavorText": "O usuário utiliza o poder do terreno para atacar. O tipo e o poder deste movimento mudam dependendo do terreno quando é usado.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "skitter-smack": {
+    "flavorText": "O usuário desliza atrás do alvo para atacar. Isso também reduz o Sp do alvo. Estatística de ataque.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "burning-jealousy": {
+    "flavorText": "O usuário ataca com energia por ciúme. Isso deixa todos os Pokémon adversários que tiveram suas estatísticas aumentadas durante o turno queimados.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "lash-out": {
+    "flavorText": "O usuário ataca para descarregar sua frustração em relação ao alvo. Se as estatísticas do usuário forem reduzidas durante este turno, o poder deste movimento será duplicado.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "poltergeist": {
+    "flavorText": "O usuário ataca o alvo controlando o item do alvo. O movimento falha se o alvo não tiver um item.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "corrosive-gas": {
+    "flavorText": "O usuário envolve tudo ao seu redor com gás altamente ácido e derrete os itens que contém.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "coaching": {
+    "flavorText": "O usuário treina adequadamente seus Pokémon aliados, aumentando suas estatísticas de Ataque e Defesa.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "flip-turn": {
+    "flavorText": "Depois de fazer seu ataque, o usuário volta correndo para trocar de lugar com um Pokémon do grupo que o espera.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "triple-axel": {
+    "flavorText": "Um ataque consecutivo de três chutes que se torna mais poderoso a cada golpe bem-sucedido.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "dual-wingbeat": {
+    "flavorText": "O usuário bate no alvo com as asas. O alvo é atingido duas vezes seguidas.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "scorching-sands": {
+    "flavorText": "O usuário joga areia escaldante no alvo para atacar. Isso também pode deixar o alvo queimado.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "jungle-healing": {
+    "flavorText": "O usuário se torna um com a selva, restaurando HP e curando quaisquer condições de status dele e de seu Pokémon aliado na batalha.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "wicked-blow": {
+    "flavorText": "O usuário, tendo dominado o estilo Sombrio, atinge o alvo com um golpe violento. Este ataque sempre resulta em um acerto crítico.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "surging-strikes": {
+    "flavorText": "O usuário, tendo dominado o estilo Água, atinge o alvo com um movimento fluido três vezes seguidas. Este ataque sempre resulta em um acerto crítico.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "thunder-cage": {
+    "flavorText": "O usuário prende o alvo em uma gaiola de eletricidade por quatro a cinco turnos.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "dragon-energy": {
+    "flavorText": "Convertendo sua força vital em poder, o usuário ataca Pokémon adversários. Quanto menor o HP do usuário, menor o poder do movimento.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "freezing-glare": {
+    "flavorText": "O usuário dispara seu poder psíquico dos olhos para atacar. Isto também pode deixar o alvo congelado.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "fiery-wrath": {
+    "flavorText": "O usuário transforma sua ira em uma aura semelhante a fogo para atacar. Isso também pode fazer com que o Pokémon adversário estremeça.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "thunderous-kick": {
+    "flavorText": "O usuário domina o alvo com movimentos semelhantes a um raio antes de desferir um chute. Isso também reduz as estatísticas de defesa do alvo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "glacial-lance": {
+    "flavorText": "O usuário ataca lançando uma lança de gelo coberta de nevasca contra o Pokémon adversário.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "astral-barrage": {
+    "flavorText": "O usuário ataca enviando uma quantidade assustadora de pequenos fantasmas aos Pokémon adversários.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "eerie-spell": {
+    "flavorText": "O usuário ataca com seu tremendo poder psíquico. Isso também remove 3 PP do último movimento do alvo.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "dire-claw": {
+    "flavorText": "O usuário ataca o alvo com garras ruinosas, com o objetivo de acertar um golpe crítico. Isso também pode deixar o alvo envenenado, paralisado ou sonolento.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "psyshield-bash": {
+    "flavorText": "Disfarçando-se de energia psíquica, o usuário atinge o alvo. Isso também pode aumentar as estatísticas defensivas do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "power-shift": {
+    "flavorText": "O usuário troca suas estatísticas ofensivas e defensivas.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "stone-axe": {
+    "flavorText": "O usuário balança seus machados de pedra no alvo, com o objetivo de acertar um golpe crítico. Lascas de pedra deixadas por este ataque continuam a danificar o alvo por vários turnos.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "springtide-storm": {
+    "flavorText": "O usuário ataca envolvendo o alvo em ventos ferozes cheios de amor e ódio. Os efeitos adicionais deste movimento dependem da forma do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "mystical-power": {
+    "flavorText": "O usuário se fortalece com um poder misterioso. Se for excelente no ataque, suas estatísticas ofensivas aumentam. Se for excelente na defesa, suas estatísticas defensivas aumentam.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "raging-fury": {
+    "flavorText": "O usuário ataca e cospe chamas violentas para infligir danos ao alvo, e então fica obcecado em usar esse movimento.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "wave-crash": {
+    "flavorText": "O usuário se envolve em água e bate no alvo com todo o corpo para causar danos. Isso também prejudica o usuário e aumenta a velocidade de ação do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "chloroblast": {
+    "flavorText": "O usuário lança sua clorofila acumulada para causar danos ao alvo. Isso também prejudica o usuário e diminui a velocidade de ação do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "mountain-gale": {
+    "flavorText": "O usuário atira pedaços gigantes de gelo no alvo para causar danos.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "victory-dance": {
+    "flavorText": "O usuário executa uma dança para inaugurar a vitória. Isso aumenta as estatísticas ofensivas e defensivas do usuário e aumenta o dano causado pelos movimentos do usuário em 50 por cento.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "headlong-rush": {
+    "flavorText": "O usuário atinge o alvo em um ataque de corpo inteiro. Isso também reduz as estatísticas defensivas do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "barb-barrage": {
+    "flavorText": "O usuário lança inúmeras farpas tóxicas para causar danos. Isso também pode envenenar o alvo. O poder deste movimento é duplicado se o alvo tiver uma condição de status.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "esper-wing": {
+    "flavorText": "O usuário corta o alvo com asas enriquecidas com aura. Isso também aumenta a velocidade de ação do usuário. Este movimento tem uma chance maior de acertar um acerto crítico.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "bitter-malice": {
+    "flavorText": "O usuário ataca seu alvo com um ressentimento arrepiante. Isso também pode deixar o alvo com queimaduras de frio. O poder deste movimento é duplicado se o alvo tiver uma condição de status.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "shelter": {
+    "flavorText": "O usuário torna sua pele tão dura quanto um escudo de ferro, aumentando suas estatísticas defensivas. Os movimentos recebidos também têm maior probabilidade de falhar.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "triple-arrows": {
+    "flavorText": "O usuário desfere um chute de machado e depois dispara três flechas. Isso aumenta a chance de seus ataques futuros acertarem acertos críticos e também reduz as estatísticas defensivas do alvo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "infernal-parade": {
+    "flavorText": "O usuário ataca com inúmeras bolas de fogo. Isso também pode deixar o alvo queimado. O poder deste movimento é duplicado se o alvo tiver uma condição de status.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "ceaseless-edge": {
+    "flavorText": "O usuário corta sua lâmina no alvo, com o objetivo de acertar um golpe crítico. Lascas de projéteis deixadas por este ataque continuarão a danificar o alvo por vários turnos.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "bleakwind-storm": {
+    "flavorText": "O usuário ataca com ventos extremamente frios que fazem o corpo e o espírito tremerem. Isso também pode deixar o alvo com queimaduras de frio.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "wildbolt-storm": {
+    "flavorText": "O usuário invoca uma tempestade estrondosa e ataca selvagemente com raios e vento. Isso também pode deixar o alvo paralisado.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "sandsear-storm": {
+    "flavorText": "O usuário ataca envolvendo o alvo em ventos fortes e areia escaldante. Isso também deixa o alvo queimado.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "lunar-blessing": {
+    "flavorText": "O usuário cura suas próprias condições de status e restaura seu HP. Os movimentos recebidos também têm maior probabilidade de falhar.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "take-heart": {
+    "flavorText": "O usuário levanta seu ânimo, curando suas próprias condições de status e aumentando suas estatísticas ofensivas e defensivas.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "tera-blast": {
+    "flavorText": "Se o usuário tiver Teracristalizado, ele libera energia do seu Tipo Tera. Este movimento inflige dano usando o Ataque ou Ataque Especial – o que for maior para o usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "silk-trap": {
+    "flavorText": "O usuário gira uma armadilha de seda, protegendo-se de danos enquanto reduz a estatística de velocidade de qualquer atacante que faça contato direto.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "axe-kick": {
+    "flavorText": "O usuário ataca chutando o ar e batendo o calcanhar no alvo. Isso também pode confundir o alvo. Se errar, o usuário sofre dano.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "last-respects": {
+    "flavorText": "O usuário ataca para vingar seus aliados. Quanto mais aliados derrotados houver no grupo do usuário, maior será o poder do movimento.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "lumina-crash": {
+    "flavorText": "O usuário ataca liberando uma luz peculiar que afeta até a mente. Isso também reduz drasticamente o Sp do alvo. Estatística definida.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "order-up": {
+    "flavorText": "O usuário ataca com equilíbrio elegante. Se o usuário tiver um Tatsugiri na boca, este movimento aumenta uma das estatísticas do usuário com base na forma do Tatsugiri.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "jet-punch": {
+    "flavorText": "O usuário invoca uma torrente em torno de seu punho e dá um soco em uma velocidade estonteante. Esse movimento sempre vem primeiro.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "spicy-extract": {
+    "flavorText": "O usuário emite um extrato incrivelmente picante, aumentando drasticamente o status de Ataque do alvo e diminuindo drasticamente o status de Defesa do alvo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "spin-out": {
+    "flavorText": "O usuário gira furiosamente esticando as pernas, causando danos ao alvo. Isso também reduz drasticamente a estatística de velocidade do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "population-bomb": {
+    "flavorText": "Os companheiros do usuário se reúnem em massa para realizar um ataque combinado que atinge o alvo de uma a dez vezes seguidas.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "ice-spinner": {
+    "flavorText": "O usuário cobre os pés com gelo fino e gira, atingindo o alvo. O movimento giratório deste movimento também destrói o terreno.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "glaive-rush": {
+    "flavorText": "O usuário lança todo o seu corpo em uma investida imprudente. Após este movimento ser usado, os ataques ao usuário não podem errar e causarão o dobro de dano até o próximo turno do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "revival-blessing": {
+    "flavorText": "O usuário concede uma bênção amorosa, revivendo um Pokémon do grupo que desmaiou e restaurando metade do HP máximo desse Pokémon.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "salt-cure": {
+    "flavorText": "O sal do usuário cura o alvo, causando dano a cada turno. Os tipos Aço e Água são mais fortemente afetados por este movimento.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "triple-dive": {
+    "flavorText": "O usuário realiza um mergulho triplo perfeitamente cronometrado, atingindo o alvo com jatos de água três vezes seguidas.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "mortal-spin": {
+    "flavorText": "O usuário realiza um ataque giratório que também pode eliminar os efeitos de movimentos como Constrição, Embrulhar e Semente de sanguessuga. Isso também envenena Pokémon adversários.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "doodle": {
+    "flavorText": "O usuário captura a própria essência do alvo em um esboço. Isso altera as habilidades do usuário e de seu Pokémon aliado para as do alvo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "fillet-away": {
+    "flavorText": "O usuário aumenta drasticamente seu Ataque, Ataque Especial e Velocidade usando seu próprio HP.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "kowtow-cleave": {
+    "flavorText": "O usuário ataca o alvo após se curvar para fazer o alvo baixar a guarda. Este ataque nunca erra.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "flower-trick": {
+    "flavorText": "O usuário joga um buquê de flores no alvo. Este ataque nunca erra e sempre acerta um golpe crítico.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "torch-song": {
+    "flavorText": "O usuário solta chamas violentas como se estivesse cantando uma música, queimando o alvo. Isso também aumenta o Ataque Especial do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "aqua-step": {
+    "flavorText": "O usuário brinca com o alvo e o ataca com passos de dança leves e fluidos. Isso também aumenta a estatística de velocidade do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "raging-bull": {
+    "flavorText": "O usuário executa um ataque como um touro furioso. O tipo deste movimento depende da forma do usuário. Também pode quebrar barreiras, como Tela clara e Refletir.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "make-it-rain": {
+    "flavorText": "O usuário ataca jogando uma grande quantidade de moedas. Isso também reduz o Ataque Especial do usuário. O dinheiro é ganho após a batalha.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "psyblade": {
+    "flavorText": "O usuário despedaça o alvo com uma lâmina etérea. O poder deste movimento é aumentado em 50 por cento se o usuário estiver em Terreno Elétrico.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "hydro-steam": {
+    "flavorText": "O usuário ataca o alvo com água fervente. O poder deste movimento não é reduzido sob a forte luz solar, mas sim aumentado em 50 por cento.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "ruination": {
+    "flavorText": "O usuário invoca um desastre ruinoso. Isso corta o HP do alvo pela metade.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "collision-course": {
+    "flavorText": "O usuário se transforma e cai no chão, causando uma enorme explosão pré-histórica. O poder deste movimento aumenta mais do que o normal se for um golpe supereficaz.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "electro-drift": {
+    "flavorText": "O usuário avança em velocidades ultrarrápidas, perfurando seu alvo com eletricidade futurista. O poder deste movimento aumenta mais do que o normal se for um golpe supereficaz.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "shed-tail": {
+    "flavorText": "O usuário cria um substituto para si mesmo usando seu próprio HP antes de trocar de lugar com um Pokémon do grupo que está esperando.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "chilly-reception": {
+    "flavorText": "O usuário conta uma piada assustadoramente ruim antes de trocar de lugar com um Pokémon do grupo que o espera. Isso invoca uma tempestade de neve com duração de cinco turnos.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "tidy-up": {
+    "flavorText": "O usuário arruma e remove os efeitos de Espinhos, Rocha furtiva, Teia pegajosa, Picos Tóxicos e Substituto. Isso também aumenta as estatísticas de ataque e velocidade do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "snowscape": {
+    "flavorText": "O usuário invoca uma tempestade de neve com duração de cinco turnos. Isso aumenta as estatísticas de defesa dos tipos de gelo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "pounce": {
+    "flavorText": "O usuário ataca atacando o alvo. Isso também diminui a estatística de velocidade do alvo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "trailblaze": {
+    "flavorText": "O usuário ataca repentinamente como se estivesse saltando de uma grama alta. O movimento ágil dos pés do usuário aumenta sua estatística de velocidade.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "chilling-water": {
+    "flavorText": "O usuário ataca o alvo regando-o com água tão fria que esgota o poder do alvo. Isso também diminui a estatística de ataque do alvo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "hyper-drill": {
+    "flavorText": "O usuário gira a parte pontiaguda de seu corpo em alta velocidade para perfurar o alvo. Este ataque pode atingir um alvo usando um movimento como Proteger ou Detectar.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "twin-beam": {
+    "flavorText": "O usuário dispara raios místicos de seus olhos para causar danos. O alvo é atingido duas vezes seguidas.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "rage-fist": {
+    "flavorText": "O usuário converte sua raiva em energia para atacar. Quanto mais vezes o usuário for atingido por ataques, maior será o poder do movimento.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "armor-cannon": {
+    "flavorText": "O usuário atira sua própria armadura como projéteis em chamas. Isso também diminui a Defesa e Defesa Especial do usuário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "bitter-blade": {
+    "flavorText": "O usuário concentra seus sentimentos amargos em relação ao mundo dos vivos em um ataque cortante. O HP do usuário é restaurado em até metade do dano sofrido pelo alvo.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "double-shock": {
+    "flavorText": "O usuário descarrega toda a eletricidade de seu corpo para realizar um ataque de alto dano. Após usar este movimento, o usuário não será mais do tipo Elétrico.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "gigaton-hammer": {
+    "flavorText": "O usuário gira todo o corpo para atacar com seu enorme martelo. Este movimento não pode ser usado duas vezes seguidas.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "comeuppance": {
+    "flavorText": "O usuário retalia com muito mais força contra o oponente que lhe infligiu o último dano.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "aqua-cutter": {
+    "flavorText": "O usuário expele água pressurizada para cortar o alvo como uma lâmina. Este movimento tem uma chance maior de acertar um acerto crítico.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "blazing-torque": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "wicked-torque": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "noxious-torque": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "combat-torque": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "magical-torque": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "blood-moon": {
+    "flavorText": "O usuário libera todo o peso de seu espírito de uma lua cheia que brilha vermelha como sangue. Este movimento não pode ser usado duas vezes seguidas.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "matcha-gotcha": {
+    "flavorText": "O usuário dispara uma rajada de chá que misturou. O HP do usuário é restaurado em até metade do dano sofrido pelo alvo. Isso também pode deixar o alvo queimado.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "syrup-bomb": {
+    "flavorText": "O usuário desencadeia uma explosão de xarope de doce pegajoso, que cobre o alvo e faz com que a estatística de velocidade do alvo caia a cada turno por três turnos.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "ivy-cudgel": {
+    "flavorText": "O usuário ataca com um porrete envolto em hera. O tipo deste movimento muda dependendo da máscara usada pelo usuário e tem uma chance maior de acertar um acerto crítico.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "electro-shot": {
+    "flavorText": "O usuário coleta eletricidade no primeiro turno, aumentando seu Ataque Especial e, em seguida, dispara um tiro de alta voltagem no próximo turno. O tiro será disparado imediatamente sob chuva.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "tera-starstorm": {
+    "flavorText": "Com o poder de seus cristais, o usuário bombardeia e elimina o alvo. Quando usado por Terapagos em sua forma estelar, este movimento causa dano a todos os Pokémon oponentes.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "fickle-beam": {
+    "flavorText": "O usuário dispara um feixe de luz para causar danos. Às vezes, todas as cabeças do usuário disparam raios em uníssono, dobrando o poder do movimento.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "burning-bulwark": {
+    "flavorText": "O pelo intensamente quente do usuário o protege de ataques e também queima qualquer atacante que faça contato direto com ele.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "thunderclap": {
+    "flavorText": "Este movimento permite ao usuário atacar primeiro com um choque de eletricidade. Este movimento falha se o alvo não estiver preparando um ataque.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "mighty-cleave": {
+    "flavorText": "O usuário empunha a luz que se acumulou no topo de sua cabeça para cortar o alvo. Este movimento acerta mesmo que o alvo se proteja.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "tachyon-cutter": {
+    "flavorText": "O usuário ataca lançando lâminas de partículas no alvo duas vezes seguidas. Este ataque nunca erra.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "hard-press": {
+    "flavorText": "O alvo é esmagado com um braço, uma garra ou algo semelhante para causar dano. Quanto mais HP sobrar no alvo, maior será o poder do movimento.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "dragon-cheer": {
+    "flavorText": "O usuário eleva o moral de seus aliados com um grito dracônico para que seus ataques futuros tenham uma chance maior de acertar ataques críticos. Isso desperta mais os tipos Dragão.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "alluring-voice": {
+    "flavorText": "O usuário ataca o alvo usando sua voz angelical. Isso também confunde o alvo se suas estatísticas tiverem aumentado durante o turno.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "temper-flare": {
+    "flavorText": "Estimulado pelo desespero, o usuário ataca o alvo. O poder deste movimento é duplicado se o movimento anterior do usuário falhar.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "supercell-slam": {
+    "flavorText": "O usuário eletrifica seu corpo e cai sobre o alvo para causar dano. Se este movimento falhar, o usuário sofre dano.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "psychic-noise": {
+    "flavorText": "O usuário ataca o alvo com ondas sonoras desagradáveis. Por dois turnos, o alvo fica impedido de recuperar HP através de movimentos, habilidades ou itens retidos.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "upper-hand": {
+    "flavorText": "O usuário reage ao movimento do alvo e golpeia com a palma da mão, fazendo o alvo estremecer. Este movimento falha se o alvo não estiver preparando um movimento prioritário.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "malignant-chain": {
+    "flavorText": "O usuário despeja toxinas no alvo, envolvendo-o em uma corrente tóxica e corrosiva. Isso também pode deixar o alvo gravemente envenenado.",
+    "effectText": "Efeito indisponível em português."
+  },
+  "shadow-rush": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Tem uma chance maior de acerto crítico no Hyper Mode."
+  },
+  "shadow-blast": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Tem uma chance aumentada de um hit crítico."
+  },
+  "shadow-blitz": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "shadow-bolt": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Tem uma chance de paralisar o alvo."
+  },
+  "shadow-break": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "shadow-chill": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Tem uma chance de congelar o alvo."
+  },
+  "shadow-end": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "O usuário recebe metade do seu HP em recuo."
+  },
+  "shadow-fire": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Tem uma chance de queimar o alvo."
+  },
+  "shadow-rave": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "shadow-storm": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "shadow-wave": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Inflige danos regulares sem efeito adicional."
+  },
+  "shadow-down": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Reduz a Defesa do alvo em dois estágios."
+  },
+  "shadow-half": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Reduz pela metade o HP de todos os Pokémon no campo. Deve recarregar"
+  },
+  "shadow-hold": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Impede que o alvo saia da batalha."
+  },
+  "shadow-mist": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Reduz a evasão do alvo em dois estágios."
+  },
+  "shadow-panic": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Confunde o alvo."
+  },
+  "shadow-shed": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Remove Tela clara, Refletir e Salvaguardar."
+  },
+  "shadow-sky": {
+    "flavorText": "Descrição indisponível em português.",
+    "effectText": "Muda o clima para Céu Sombrio por cinco turnos."
+  }
+}

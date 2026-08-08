@@ -1,0 +1,11 @@
+{
+  "locale": "pt-BR",
+  "source": "https://pokeapi.co/api/v2",
+  "translationModel": "Xenova/opus-mt-en-ROMANCE",
+  "translationModelRevision": "9d2ba69ac80c8e8453c3d9a1e2323a0e7b8ca3cd",
+  "resources": {
+    "moves": 937,
+    "abilities": 373,
+    "species": 1025
+  }
+}
