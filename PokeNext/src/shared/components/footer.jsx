@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer className="relative flex justify-center px-4 sm:px-6 lg:px-8 py-6">
+    <footer data-pokemon-pixel-footer className="relative flex justify-center px-4 sm:px-6 lg:px-8 py-6">
       <motion.div
         className="
       grid grid-cols-1

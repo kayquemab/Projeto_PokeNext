@@ -31,7 +31,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="relative z-50 flex justify-center px-4 sm:px-6 lg:px-8 py-4 h-20">
+    <header data-pokemon-pixel-header className="relative z-50 flex justify-center px-4 sm:px-6 lg:px-8 py-4 h-20">
       <motion.div
         className="w-full max-w-6xl rounded-2xl border border-neutral-200 bg-white/95 shadow-md backdrop-blur-sm px-4 sm:px-6 lg:px-8"
         initial={{ opacity: 0, y: -24 }}

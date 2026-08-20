@@ -1,5 +1,6 @@
 // app/layout.js
 import { Footer, Navbar } from "@/shared/components";
+import PokemonPixelWorld from "@/shared/components/pokemon-pixel-world";
 import "./globals.css";
 
 export const metadata = {
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
           {children}
         </div>
         <Footer />
+        <PokemonPixelWorld />
       </body>
     </html>
   );
