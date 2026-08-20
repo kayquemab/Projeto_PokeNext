@@ -260,9 +260,11 @@ export function mapAbilityListDto(dto) {
 
 export function mapPokemonDto(dto) {
   const speciesSlug = String(dto?.species?.name || dto?.name || "");
+  const speciesId = getResourceId(dto?.species);
 
   return {
     id: Number(dto?.id || 0),
+    speciesId: speciesId || Number(dto?.id || 0),
     slug: String(dto?.name || ""),
     displayName: formatPokemonDisplayName(dto?.name, speciesSlug),
     artworkUrl:

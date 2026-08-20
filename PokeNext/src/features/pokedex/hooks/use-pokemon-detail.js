@@ -35,9 +35,10 @@ export function usePokemonDetail(pokemonId) {
   const [weakLoading, setWeakLoading] = useState(false);
 
   const currentId = Number(pokemon?.id || 0);
+  const nationalDexId = Number(pokemon?.speciesId || currentId);
   const { previousId: prevId, nextId } = useMemo(
-    () => getAdjacentPokemonIdsUseCase(currentId, maxId),
-    [currentId, maxId]
+    () => getAdjacentPokemonIdsUseCase(nationalDexId, maxId),
+    [nationalDexId, maxId]
   );
   const allForms = useMemo(
     () => getPokemonFormsUseCase(evoStages, pokemon?.id),
@@ -149,7 +150,7 @@ export function usePokemonDetail(pokemonId) {
   }, [pokemon]);
 
   useEffect(() => {
-    if (!currentId) return;
+    if (!nationalDexId) return;
 
     const controller = new AbortController();
     let alive = true;
@@ -173,7 +174,7 @@ export function usePokemonDetail(pokemonId) {
       alive = false;
       controller.abort();
     };
-  }, [currentId, nextId, prevId]);
+  }, [nationalDexId, nextId, prevId]);
 
   useEffect(() => {
     if (!pokemon?.speciesUrl) return;

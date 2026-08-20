@@ -13,7 +13,6 @@ import {
 } from "@/shared/components";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useFeaturedPokemon } from "../hooks/use-featured-pokemon";
 
 // cores para cada tipo de Pokémon
 const typeColors = {
@@ -38,9 +37,8 @@ const typeColors = {
   default: "#D3D3D3",
 };
 
-export default function PokemonCarousel({ spaceBetween = 1 }) {
+export default function PokemonCarousel({ cards, spaceBetween = 1 }) {
   const router = useRouter();
-  const cards = useFeaturedPokemon();
 
   const [realIndex, setRealIndex] = useState(0);
 
